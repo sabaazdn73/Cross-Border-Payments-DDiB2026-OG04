@@ -25,7 +25,7 @@
  *  chosen — this is illustrative scaffolding, not a claim that these
  *  specific partners are integrated. */
 export const PARTNER_CHAIN_SUPPORT = {
-  payout_partner_default: ["hedera", "solana", "ethereum"],
+  payout_partner_default: ["hedera", "solana", "ethereum", "base"],
   // Add more partners here as they're onboarded:
   // payout_partner_africa: ["solana", "ethereum"],
 };
@@ -38,6 +38,13 @@ export const COMPLIANT_STABLECOIN_CHAINS = {
   hedera:   { stablecoin: "USDC", native: true },
   ethereum: { stablecoin: "USDC", native: true },
   solana:   { stablecoin: "USDC", native: true },
+  // Base: native USDC, ~$4.1-4.3B supply (~5.8% of global USDC supply,
+  // mid-2026). Smaller supply than Ethereum/Solana, but very high
+  // transaction velocity — caveat: a large share of that volume is
+  // concentrated in a few DeFi pools (e.g. Aerodrome), not necessarily
+  // representative of available payment-settlement liquidity. Included
+  // as a fallback option, ranked by real supply, not headline volume.
+  base:     { stablecoin: "USDC", native: true },
   // EURC has a much smaller native footprint; add chains here only
   // once you've confirmed Circle issues EURC natively on them.
 };
@@ -54,7 +61,7 @@ export const HEDERA_SAFE_AMOUNT_USD = 20_000;
  *  first, per the researched USDC-supply-by-chain figures (Ethereum
  *  ≈ 70% of global USDC supply, Solana second and fastest-growing,
  *  sub-cent fees). */
-export const FALLBACK_CHAIN_PRIORITY = ["ethereum", "solana"];
+export const FALLBACK_CHAIN_PRIORITY = ["ethereum", "solana", "base"];
 
 /** How value would move onto a non-Hedera chain, given today's state
  *  of Circle's Cross-Chain Transfer Protocol (CCTP):
@@ -70,5 +77,6 @@ export const BRIDGE_METHOD_BY_CHAIN = {
   hedera: "native",              // no bridging — it's the anchor chain too
   ethereum: "cctp",
   solana: "cctp",
+  base: "cctp",                  // Base is a first-class CCTP chain
 };
 

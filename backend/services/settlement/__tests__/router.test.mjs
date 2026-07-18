@@ -71,7 +71,7 @@ test("candidatesConsidered only includes chains that are both partner-supported 
     "payout_partner_default", 100, { liquidityFetcher: deepLiquidity }
   );
   assert.ok(decision.candidatesConsidered.every((c) =>
-    ["hedera", "ethereum", "solana"].includes(c)
+    ["hedera", "ethereum", "solana", "base"].includes(c)
   ));
 });
 

@@ -11,3 +11,12 @@
 **Backup:** pre-anchored records and a screen recording, in case a sandbox or the Mirror Node lags.
 
 ---
+
+## Illustrative corridor: Portugal → Armenia
+
+A useful concrete example throughout this project: a sender in
+Portugal (SEPA, EUR) paying a recipient in Armenia (AMD). This
+corridor has no Nexus link, no G7 wholesale relevance, and thin
+correspondent-banking coverage from incumbent fintechs — exactly the
+access gap this architecture targets, distinct from a well-served
+EU-to-EU transfer where incumbents already compete effectively.

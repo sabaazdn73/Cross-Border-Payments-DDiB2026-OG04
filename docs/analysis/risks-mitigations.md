@@ -11,6 +11,6 @@
 | Wrong stablecoin | EU leg non-compliant | [this section](/legal/regulatory-landscape.md) — USDC/EURC only |
 | Mirror Node lag in the demo | Dead air | Pre-anchored records + recording |
 | Working alone | Deliverables slip | [this section](/project/roadmap.md); raise with the organisers early, not on 23 Jul |
-| Presentation clash with other commitments | Miss the graded presentation | Resolve before 20 Jul |
+| Working alone or with an uneven team split | Deliverables slip | Freeze scope early and prioritise the highest-risk items first |
 
 ---

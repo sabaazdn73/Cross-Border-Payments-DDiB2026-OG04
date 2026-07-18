@@ -31,7 +31,7 @@ that the researched liquidity depth suggests visible slippage.
 | Chain | Execution |
 |---|---|
 | **Hedera** | Fully real — a genuine HTS token transfer on testnet, a real transaction ID, verifiable on HashScan |
-| **Ethereum / Solana** | The *decision* is real and anchored; actual execution is a clearly labeled non-event — no funded testnet credentials exist for these chains in this project yet |
+| **Ethereum / Solana / Base** | The *decision* is real and anchored; actual execution is a clearly labeled non-event — no funded testnet credentials exist for these chains in this project yet |
 
 {% hint style="warning" %}
 This project deliberately does not fabricate a transaction reference
@@ -49,3 +49,15 @@ the design falls back to **Circle Mint redeem-and-reissue** —
 performed by the licensed partner, never by us, consistent with the
 non-custodial model throughout this project. This is a fast-moving
 detail; re-verify before relying on a specific bridge method.
+
+
+## Why Base is included as a fallback
+
+Base carries native USDC with roughly **$4.1–4.3B in supply** (~5.8%
+of global USDC supply, mid-2026) — smaller than Ethereum (~70%) or
+Solana (~10–20%+), but with very high transaction velocity. One
+caveat worth stating plainly: a large share of that volume is
+concentrated in a handful of DeFi pools (e.g. Aerodrome), not
+necessarily representative of liquidity available for payment
+settlement specifically. Base is ranked in `FALLBACK_CHAIN_PRIORITY`
+by its real, cited supply figure — not by headline transaction volume.
