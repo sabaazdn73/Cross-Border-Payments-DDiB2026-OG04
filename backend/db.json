@@ -1,0 +1,83 @@
+{
+  "transactions": {
+    "TXN-DEMO-001": {
+      "id": "TXN-DEMO-001",
+      "senderName": "James Okafor",
+      "senderEmail": "james@example.com",
+      "senderCountry": "US",
+      "recipientName": "Amara Diallo",
+      "recipientEmail": "amara@example.com",
+      "recipientCountry": "NG",
+      "amount": 500,
+      "currency": "USD",
+      "receivingCurrency": "NGN",
+      "recipientAmount": 790000,
+      "fee": 7.49,
+      "exchangeRate": 1580,
+      "payoutMethod": "bank_transfer",
+      "purpose": "Family Support",
+      "status": "completed",
+      "createdAt": "2026-07-17T11:30:00.000Z",
+      "completedAt": "2026-07-17T11:31:00.000Z",
+      "estimatedDelivery": "1-2 business days",
+      "hederaTxRef": "0.0.4891234@1722345678.000000000",
+      "hederaTopicId": "0.0.4891234",
+      "hederaSequenceNumber": "847",
+      "hederaConsensusTimestamp": "2026-07-17T11:30:05.123456789Z",
+      "complianceStatus": "verified",
+      "settlementStatus": "settled",
+      "payoutStatus": "paid"
+    },
+    "TXN-GWY11DS": {
+      "id": "TXN-GWY11DS",
+      "senderName": "Mohammad Usman",
+      "senderEmail": "drusmanka00786@gmail.com",
+      "senderCountry": "EG",
+      "recipientName": "Mohammad Usman",
+      "recipientEmail": "drusmanka00786@gmail.com",
+      "recipientCountry": "NG",
+      "amount": 100,
+      "currency": "EUR",
+      "receivingCurrency": "NGN",
+      "recipientAmount": 162310.65,
+      "fee": 5.49,
+      "exchangeRate": 1717.391304347826,
+      "payoutMethod": "wallet",
+      "purpose": "Family Support",
+      "status": "completed",
+      "createdAt": "2026-07-18T13:34:36.083Z",
+      "completedAt": "2026-07-18T13:34:36.083Z",
+      "estimatedDelivery": "Within hours",
+      "hederaTxRef": "0.0.9617780@1784381676.000000000",
+      "hederaTopicId": "0.0.9617780",
+      "hederaSequenceNumber": "40",
+      "hederaConsensusTimestamp": "2026-07-18T13:34:36.062Z",
+      "complianceStatus": "verified",
+      "settlementStatus": "settled",
+      "payoutStatus": "paid",
+      "complianceAnchor": {
+        "sequenceNumber": 38,
+        "recordHash": "sha256:e9e1a055d792c20e418d350a89658a57ee9df4e397a947407c6675b4edab915e",
+        "consensusTimestamp": "2026-07-18T13:34:36.062Z",
+        "hashscanTxUrl": "https://hashscan.io/testnet/topic/0.0.9617780"
+      },
+      "quoteAnchor": {
+        "sequenceNumber": 39,
+        "recordHash": "sha256:1c7f30c43b046fc96aa2b5c3c5fd09922719d87ae077c5a2c68d0a72b12ef736",
+        "consensusTimestamp": "2026-07-18T13:34:36.062Z",
+        "hashscanTxUrl": "https://hashscan.io/testnet/topic/0.0.9617780"
+      },
+      "routingAnchor": {
+        "sequenceNumber": 40,
+        "recordHash": "sha256:3abb6c42c6f24a0c0f8316e9edde082279474d3600dd7d2b53284abb752345bf",
+        "consensusTimestamp": "2026-07-18T13:34:36.062Z",
+        "hashscanTxUrl": "https://hashscan.io/testnet/topic/0.0.9617780"
+      },
+      "settlementChain": "hedera",
+      "settlementBridgeMethod": "native",
+      "settlementReason": "Partner supports Hedera and $100 is within the safe threshold ($20000), given ~$18,111,247 in checked Hedera stablecoin liquidity depth.",
+      "settlementHashscanUrl": "https://hashscan.io/testnet/transaction/0.0.9617780@1784381676.000000000",
+      "settlementNote": null
+    }
+  }
+}

@@ -1,0 +1,36 @@
+export const countries = [
+  { code: 'US', name: 'United States', flag: '🇺🇸', currency: 'USD', dialCode: '+1' },
+  { code: 'GB', name: 'United Kingdom', flag: '🇬🇧', currency: 'GBP', dialCode: '+44' },
+  { code: 'EU', name: 'European Union', flag: '🇪🇺', currency: 'EUR', dialCode: '+' },
+  { code: 'NG', name: 'Nigeria', flag: '🇳🇬', currency: 'NGN', dialCode: '+234' },
+  { code: 'GH', name: 'Ghana', flag: '🇬🇭', currency: 'GHS', dialCode: '+233' },
+  { code: 'KE', name: 'Kenya', flag: '🇰🇪', currency: 'KES', dialCode: '+254' },
+  { code: 'ZA', name: 'South Africa', flag: '🇿🇦', currency: 'ZAR', dialCode: '+27' },
+  { code: 'UG', name: 'Uganda', flag: '🇺🇬', currency: 'UGX', dialCode: '+256' },
+  { code: 'TZ', name: 'Tanzania', flag: '🇹🇿', currency: 'TZS', dialCode: '+255' },
+  { code: 'ET', name: 'Ethiopia', flag: '🇪🇹', currency: 'ETB', dialCode: '+251' },
+  { code: 'EG', name: 'Egypt', flag: '🇪🇬', currency: 'EGP', dialCode: '+20' },
+  { code: 'MA', name: 'Morocco', flag: '🇲🇦', currency: 'MAD', dialCode: '+212' },
+  { code: 'IN', name: 'India', flag: '🇮🇳', currency: 'INR', dialCode: '+91' },
+  { code: 'PH', name: 'Philippines', flag: '🇵🇭', currency: 'PHP', dialCode: '+63' },
+  { code: 'MX', name: 'Mexico', flag: '🇲🇽', currency: 'MXN', dialCode: '+52' },
+  { code: 'BR', name: 'Brazil', flag: '🇧🇷', currency: 'BRL', dialCode: '+55' },
+  { code: 'CO', name: 'Colombia', flag: '🇨🇴', currency: 'COP', dialCode: '+57' },
+  { code: 'AR', name: 'Argentina', flag: '🇦🇷', currency: 'ARS', dialCode: '+54' },
+  { code: 'CN', name: 'China', flag: '🇨🇳', currency: 'CNY', dialCode: '+86' },
+  { code: 'JP', name: 'Japan', flag: '🇯🇵', currency: 'JPY', dialCode: '+81' },
+  { code: 'KR', name: 'South Korea', flag: '🇰🇷', currency: 'KRW', dialCode: '+82' },
+  { code: 'SG', name: 'Singapore', flag: '🇸🇬', currency: 'SGD', dialCode: '+65' },
+  { code: 'AU', name: 'Australia', flag: '🇦🇺', currency: 'AUD', dialCode: '+61' },
+  { code: 'CA', name: 'Canada', flag: '🇨🇦', currency: 'CAD', dialCode: '+1' },
+  { code: 'AE', name: 'UAE', flag: '🇦🇪', currency: 'AED', dialCode: '+971' },
+  { code: 'SA', name: 'Saudi Arabia', flag: '🇸🇦', currency: 'SAR', dialCode: '+966' },
+  { code: 'PK', name: 'Pakistan', flag: '🇵🇰', currency: 'PKR', dialCode: '+92' },
+  { code: 'BD', name: 'Bangladesh', flag: '🇧🇩', currency: 'BDT', dialCode: '+880' },
+  { code: 'ID', name: 'Indonesia', flag: '🇮🇩', currency: 'IDR', dialCode: '+62' },
+  { code: 'VN', name: 'Vietnam', flag: '🇻🇳', currency: 'VND', dialCode: '+84' },
+];
+
+export const getCountryByCode = (code) => countries.find((c) => c.code === code);
+export const getCountryByName = (name) =>
+  countries.find((c) => c.name.toLowerCase() === name.toLowerCase());
