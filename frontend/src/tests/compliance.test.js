@@ -13,7 +13,7 @@ const sampleRecord = {
 describe('generateRecordHash', () => {
   it('returns a hex string starting with 0x', () => {
     const hash = generateRecordHash(sampleRecord);
-    expect(hash).toMatch(/^0x[0-9a-f]+$/);
+    expect(hash).toMatch(/^sha256:[0-9a-f]+$/);
   });
 
   it('is deterministic for same input', () => {

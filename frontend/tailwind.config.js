@@ -7,33 +7,39 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Single restrained brand accent — a muted indigo-violet, matching
+        // the F2F mark. Banking-grade palettes (N26, Revolut, Wise) lean on
+        // ONE accent used sparingly, not saturating every surface — that
+        // discipline is what this ramp replaces the old green with.
         brand: {
-          50:  '#ecfdf5',
-          100: '#d1fae5',
-          200: '#a7f3d0',
-          300: '#6ee7b7',
-          400: '#34d399',
-          500: '#10b981',
-          600: '#059669',
-          700: '#047857',
-          800: '#065f46',
-          900: '#064e3b',
-          950: '#022c22',
+          50:  '#f3f1fe',
+          100: '#e6e1fd',
+          200: '#c9bffa',
+          300: '#a99af5',
+          400: '#8874ee',
+          500: '#6c56e3',
+          600: '#5641c4',
+          700: '#43329c',
+          800: '#33267a',
+          900: '#251b59',
+          950: '#16102f',
         },
         navy: {
-          800: '#0f1629',
-          900: '#080d1a',
-          950: '#04070f',
+          800: '#12141c',
+          900: '#0a0b10',
+          950: '#050609',
         },
         accent: {
-          400: '#34d399',
-          500: '#10b981',
-          600: '#059669',
+          400: '#8874ee',
+          500: '#6c56e3',
+          600: '#5641c4',
         },
+        // "Success/verified" reads as a professional blue rather than
+        // green — the same signal banks use for a verified badge.
         success: {
-          400: '#4ade80',
-          500: '#22c55e',
-          600: '#16a34a',
+          400: '#6fa8f5',
+          500: '#3d7ee8',
+          600: '#2e63c2',
         },
         warning: {
           400: '#fbbf24',
@@ -50,15 +56,15 @@ export default {
         mono: ['JetBrains Mono', 'monospace'],
       },
       backgroundImage: {
-        'hero-gradient': 'linear-gradient(135deg, #080d1a 0%, #022c22 50%, #04070f 100%)',
+        'hero-gradient': 'linear-gradient(135deg, #0a0b10 0%, #16102f 55%, #050609 100%)',
         'card-gradient': 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
-        'brand-gradient': 'linear-gradient(135deg, #10b981 0%, #34d399 100%)',
-        'success-gradient': 'linear-gradient(135deg, #22c55e 0%, #34d399 100%)',
+        'brand-gradient': 'linear-gradient(135deg, #6c56e3 0%, #8874ee 100%)',
+        'success-gradient': 'linear-gradient(135deg, #3d7ee8 0%, #6fa8f5 100%)',
       },
       boxShadow: {
-        'glass': '0 8px 32px 0 rgba(16, 185, 129, 0.15)',
-        'glow': '0 0 20px rgba(16, 185, 129, 0.4)',
-        'glow-success': '0 0 20px rgba(34, 197, 94, 0.4)',
+        'glass': '0 8px 32px 0 rgba(108, 86, 227, 0.15)',
+        'glow': '0 0 20px rgba(108, 86, 227, 0.4)',
+        'glow-success': '0 0 20px rgba(61, 126, 232, 0.4)',
         'glow-danger': '0 0 20px rgba(239, 68, 68, 0.4)',
       },
       animation: {

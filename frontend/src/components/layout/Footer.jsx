@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
 import { Zap, Shield, Globe, Lock } from 'lucide-react';
+import SiteQRCode from '../ui/SiteQRCode';
+
+import { DOCS_URL } from './Navbar';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   return (
     <footer className="border-t border-white/10 bg-navy-900/50 backdrop-blur-sm">
       <div className="container-app py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-8">
           <div className="md:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-3">
               <div className="w-8 h-8 rounded-lg bg-brand-gradient flex items-center justify-center shadow-glow">
@@ -54,6 +57,12 @@ export default function Footer() {
               <li>Stablecoin Settlement</li>
               <li>KYC / AML Compliance</li>
               <li>Hash Verification</li>
+              <li>
+                <a href={DOCS_URL} target="_blank" rel="noopener noreferrer"
+                   className="hover:text-brand-400 transition-colors">
+                  Full Documentation ↗
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -65,6 +74,10 @@ export default function Footer() {
               <li>Bank Transfer</li>
               <li>Mobile Money</li>
             </ul>
+          </div>
+
+          <div className="flex md:justify-end">
+            <SiteQRCode />
           </div>
         </div>
 

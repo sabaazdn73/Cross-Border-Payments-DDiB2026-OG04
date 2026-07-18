@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { X, Zap, SendHorizonal, Search } from 'lucide-react';
 
+import { DOCS_URL } from './Navbar';
+
 export default function MobileMenu({ isOpen, onClose, navLinks }) {
   return (
     <div
@@ -47,6 +49,15 @@ export default function MobileMenu({ isOpen, onClose, navLinks }) {
               </Link>
             );
           })}
+          <a
+            href={DOCS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={onClose}
+            className="flex items-center gap-3 px-3 py-3 rounded-xl text-white/70 hover:text-white hover:bg-white/5 transition-all"
+          >
+            <span>Docs ↗</span>
+          </a>
         </nav>
 
         <div className="p-4 space-y-2 border-t border-white/10">

@@ -17,7 +17,7 @@ const defaultFormData = {
   amount: '',
   currency: 'USD',
   recipientName: '',
-  recipientContact: '',
+  recipientAccountDetails: '',
   recipientCountry: 'NG',
   receivingCurrency: 'NGN',
   payoutMethod: 'bank_transfer',

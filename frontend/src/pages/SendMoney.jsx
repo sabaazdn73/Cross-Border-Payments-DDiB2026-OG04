@@ -17,12 +17,18 @@ import { payoutMethods, transferPurposes } from '../data/payoutMethods';
 
 const schema = z.object({
   senderName: z.string().min(2, 'Full name must be at least 2 characters'),
-  senderEmail: z.string().email('Enter a valid email address'),
+  // Optional: used only to send a receipt, never as part of the payment
+  // route. A sender's identity for settlement comes from the licensed
+  // payment provider's own KYC, not from this field.
+  senderEmail: z.string().email('Enter a valid email address').optional().or(z.literal('')),
   senderCountry: z.string().min(1, 'Select sender country'),
   amount: z.coerce.number({ invalid_type_error: 'Enter a valid amount' }).min(1, 'Minimum amount is 1').max(50000, 'Maximum amount is 50,000'),
   currency: z.string().min(1, 'Select sending currency'),
   recipientName: z.string().min(2, 'Recipient name must be at least 2 characters'),
-  recipientContact: z.string().min(5, 'Enter a valid email or phone number'),
+  // This is where the money actually needs to go — a bank account, a
+  // mobile money number, or a pickup ID — never an email address, which
+  // is not a payout destination in a card/account-to-account model.
+  recipientAccountDetails: z.string().min(4, 'Enter the recipient\'s account or mobile number'),
   recipientCountry: z.string().min(1, 'Select recipient country'),
   receivingCurrency: z.string().min(1, 'Select receiving currency'),
   payoutMethod: z.string().min(1, 'Select a payout method'),
@@ -33,6 +39,18 @@ const schema = z.object({
 const countryOptions = countries.map((c) => ({ value: c.code, label: `${c.flag} ${c.name}` }));
 const currencyOptions = currencies.map((c) => ({ value: c.code, label: `${c.flag} ${c.code} — ${c.name}` }));
 const payoutOptions = payoutMethods.map((m) => ({ value: m.id, label: m.label }));
+
+// The recipient identifier means something different per payout method —
+// a bank account number is not a mobile money number is not a pickup ID.
+// Labeling it generically as "contact info" (or worse, accepting an email)
+// hid this; the field now matches whichever method is actually selected.
+const recipientFieldByMethod = {
+  bank_transfer: { label: 'Bank Account Number / IBAN', placeholder: 'e.g. PT50 0002 0123 1234 5678 9015 4' },
+  mobile_money:  { label: 'Mobile Money Number',        placeholder: 'e.g. +234 801 234 5678' },
+  cash_pickup:   { label: 'Recipient ID Number',         placeholder: 'Government-issued ID for pickup verification' },
+  wallet:        { label: 'Wallet ID',                   placeholder: 'Recipient\'s digital wallet identifier' },
+};
+const defaultRecipientField = { label: 'Recipient Account / Mobile Number', placeholder: 'Select a payout method first' };
 const purposeOptions = transferPurposes.map((p) => ({ value: p, label: p }));
 
 export default function SendMoney() {
@@ -75,7 +93,7 @@ export default function SendMoney() {
                   </h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <FormInput id="senderName" label="Full Name" required placeholder="John Doe" error={errors.senderName?.message} {...register('senderName')} />
-                    <FormInput id="senderEmail" label="Email Address" type="email" required placeholder="john@example.com" error={errors.senderEmail?.message} {...register('senderEmail')} />
+                    <FormInput id="senderEmail" label="Email Address (optional — for your receipt)" type="email" placeholder="john@example.com" error={errors.senderEmail?.message} {...register('senderEmail')} />
                     <SelectInput id="senderCountry" label="Country" required options={countryOptions} error={errors.senderCountry?.message} {...register('senderCountry')} />
                   </div>
                 </div>
@@ -100,7 +118,11 @@ export default function SendMoney() {
                   </h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <FormInput id="recipientName" label="Full Name" required placeholder="Jane Doe" error={errors.recipientName?.message} {...register('recipientName')} />
-                    <FormInput id="recipientContact" label="Email or Phone Number" required placeholder="jane@example.com or +234..." error={errors.recipientContact?.message} {...register('recipientContact')} />
+                    <FormInput id="recipientAccountDetails"
+                      label={(recipientFieldByMethod[watchedPayoutMethod] || defaultRecipientField).label}
+                      required
+                      placeholder={(recipientFieldByMethod[watchedPayoutMethod] || defaultRecipientField).placeholder}
+                      error={errors.recipientAccountDetails?.message} {...register('recipientAccountDetails')} />
                     <SelectInput id="recipientCountry" label="Recipient Country" required options={countryOptions} error={errors.recipientCountry?.message} {...register('recipientCountry')} />
                     <SelectInput id="receivingCurrency" label="Receiving Currency" required options={currencyOptions} error={errors.receivingCurrency?.message} {...register('receivingCurrency')} />
                   </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Zap, Menu, X, Home } from 'lucide-react';
+import { Zap, Menu, X, Home, BookOpen, ExternalLink } from 'lucide-react';
 import MobileMenu from './MobileMenu';
 
 const navLinks = [
@@ -9,6 +9,10 @@ const navLinks = [
   { label: 'Track Transfer', to: '/track' },
   { label: 'Tamper Demo', to: '/tamper-demo' },
 ];
+
+// TODO: replace with your published GitBook URL once you've renamed
+// the space away from the default "untitled" slug.
+export const DOCS_URL = 'https://your-space.gitbook.io/f2f';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -63,6 +67,16 @@ export default function Navbar() {
                   </Link>
                 );
               })}
+              <a
+                href={DOCS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-sm font-medium text-white/70 hover:text-brand-400 transition-colors"
+              >
+                <BookOpen className="w-4 h-4" />
+                <span>Docs</span>
+                <ExternalLink className="w-3 h-3 opacity-50" />
+              </a>
             </div>
 
             <div className="hidden md:flex items-center gap-3">

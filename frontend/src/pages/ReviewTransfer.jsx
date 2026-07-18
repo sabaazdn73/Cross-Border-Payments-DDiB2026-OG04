@@ -65,7 +65,7 @@ export default function ReviewTransfer() {
                   <Mail className="w-4 h-4 text-brand-400" aria-hidden="true" />Recipient
                 </h2>
                 <InfoRow label="Full Name" value={formData.recipientName} />
-                <InfoRow label="Contact" value={formData.recipientContact} />
+                <InfoRow label="Payout Destination" value={formData.recipientAccountDetails} />
                 <InfoRow label="Country" value={recipientCountry ? `${recipientCountry.flag} ${recipientCountry.name}` : formData.recipientCountry} />
                 <InfoRow label="Payout Method" value={payoutMethod?.label || formData.payoutMethod} />
                 <InfoRow label="Purpose" value={formData.purpose} />
