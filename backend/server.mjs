@@ -63,6 +63,20 @@ try {
   isSimulationMode = true;
 }
 
+// Health check — reports whether real Hedera credentials loaded.
+// Hit this first after any deploy: if isSimulationMode is true, the
+// env vars are missing or wrong, and every "transaction" returned by
+// the API is fabricated, not real. Fix the env vars, don't ignore this.
+app.get('/api/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    hederaMode: isSimulationMode ? 'SIMULATION (fake data — check env vars)' : 'LIVE (real testnet)',
+    network: process.env.HEDERA_NETWORK || 'not set',
+    topicId: process.env.HEDERA_TOPIC_ID || 'not set',
+    timestamp: new Date().toISOString(),
+  });
+});
+
 // Financial Math Helpers matching frontend calculations
 const SERVICE_FEE_FIXED = 4.99;
 const SERVICE_FEE_PERCENT = 0.005;
