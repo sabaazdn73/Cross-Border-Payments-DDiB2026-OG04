@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test backend/services/hedera/__tests__/*.test.mjs backend/services/settlement/__tests__/*.test.mjs",
+    "demo:modular": "node demo-modular.mjs",
+    "demo:router": "node demo-router.mjs"
   },
   "keywords": [],
   "author": "",

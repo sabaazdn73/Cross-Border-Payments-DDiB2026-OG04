@@ -8,69 +8,84 @@ DDiB 2026 · University of Zurich · Online_Group 04
 ## What this proves
 
 The licensed parties move the money and perform the checks. We never hold
-funds. Our contribution is that each compliance decision is hashed and
-anchored with a consensus timestamp — so "the checks passed at this moment"
-becomes independently verifiable rather than asserted.
+funds. Our contribution is that each compliance decision — and now each
+settlement-routing decision — is hashed and anchored with a consensus
+timestamp, so "the checks passed at this moment" becomes independently
+verifiable rather than asserted.
 
-## Live evidence (Hedera testnet)
+## Live evidence (Hedera testnet, verified end to end)
 
 | | |
 |---|---|
 | Topic | [0.0.9617780](https://hashscan.io/testnet/topic/0.0.9617780) |
-| Message | #1 |
-| Consensus timestamp | 1784321571.834087104 |
-| Mirror Node | https://testnet.mirrornode.hedera.com/api/v1/topics/0.0.9617780/messages/1 |
+| Compliance anchor | sequence #2 |
+| Quote anchor | sequence #3 |
+| Routing decision anchor (small amount → hedera) | sequence #4 |
+| Routing decision anchor (large amount → ethereum, unexecuted) | sequence #5 |
+| Live liquidity check | $18,111,247 (real-time DeFiLlama read, not simulated) |
 
-Open the Mirror Node link. It returns the anchored hash without touching
-our server — that is the point.
+Every anchor above was independently verified via a public Mirror Node —
+not our own database — and the tamper test (edit a record, recompute,
+compare) correctly flips MATCH to MISMATCH.
 
 ## Run it
 
     npm install
     cp .env.example .env      # add your own testnet credentials
-    node step1-hedera.mjs
+    npm test                  # 14 unit tests, no network, ~1 second
+    node demo-modular.mjs     # compliance + quote anchoring, tamper proof
+    node demo-router.mjs 100      # routes to hedera, executes a real transfer
+    node demo-router.mjs 50000    # routes to ethereum, honestly unexecuted
 
-Six steps: create topic → hash a compliance record → anchor the hash →
-read it back from a public Mirror Node → verify MATCH → tamper → MISMATCH.
+## Architecture
+
+    backend/services/hedera/        the trust anchor — always Hedera
+      client.mjs      connection + key parsing (ED25519 or ECDSA)
+      hashing.mjs      canonical hashing + HMAC pseudonymous references
+      topic.mjs        HCS topic creation/reuse
+      anchor.mjs        compliance / quote / routing-decision anchoring
+      verify.mjs         Mirror Node read + tamper detection
+
+    backend/services/settlement/    which chain actually moves the value
+      corridorConfig.mjs   partner chain support, compliant stablecoins
+      liquidity.mjs         real Hedera stablecoin liquidity depth (DeFiLlama)
+      corridorRouter.mjs    the routing decision (Hedera preferred, falls
+                            back only when the partner needs it or the
+                            amount exceeds Hedera's safe depth)
+      execute.mjs            real execution on Hedera; honestly labeled
+                              non-execution elsewhere (see below)
+
+## Why the settlement chain isn't always Hedera
+
+Hedera is our trust layer — every compliance and routing decision is
+anchored there regardless of which chain actually settles the value.
+But Hedera's stablecoin liquidity is real but thin (tens of millions,
+not billions), so large transfers are routed to deeper liquidity
+(Ethereum, Solana) once the partner supports it. The decision itself is
+anchored too, so "why did this go to Ethereum?" is answerable by anyone,
+not just us.
+
+## What is genuinely executed vs. honestly not
+
+- **Hedera**: fully real. A genuine HTS token transfer on testnet, a real
+  transaction ID, verifiable on HashScan.
+- **Ethereum / Solana**: the routing *decision* is real and anchored, but
+  actual execution is deliberately left unexecuted and clearly labeled —
+  we have no funded testnet credentials for those chains yet. This is
+  intentional: fabricating a transaction reference for a chain we cannot
+  actually reach would be exactly the "fake blockchain demo" risk this
+  project is designed to avoid. Multi-chain execution is scoped as
+  future work (see ROADMAP.md), not simulated as if it already worked.
 
 ## What never goes on-chain
 
-Only a SHA-256 hash and a pseudonymous reference. No name, no IBAN,
-no amount, no KYC document. The plaintext stays off-chain with the
-licensed party.
+Only a SHA-256 hash and a pseudonymous (HMAC'd) reference. No name, no
+IBAN, no amount, no KYC document. The plaintext stays off-chain with the
+licensed party. See `docs/compliance-data.md` for the full privacy
+boundary and canonicalisation rules.
 
 ## Status
 
-Sandbox and testnet. Not a payment institution, not a CASP, not a custodian.
+Sandbox and testnet. Not a payment institution, not a CASP, not a
+custodian. See `docs/legal-and-compliance.md`.
 
-## What the anchored message actually contains
-
-Decoded from the Mirror Node response above:
-
-```json
-{
-  "v": 1,
-  "recordId": "cmp_1784321571353",
-  "transferRef": "txr_3eb047d9bd2f",
-  "recordHash": "sha256:5bdbcdf5…da9bc14c",
-  "appTimestamp": "2026-07-17T20:52:51.353Z"
-}
-```
-
-No name. No IBAN. No amount. No KYC document. A hash and a pseudonymous
-reference — nothing else leaves the machine.
-
-Two timestamps, and the difference is the whole argument:
-
-- `appTimestamp` — what **we** claim. Forgeable.
-- `consensus_timestamp` — what the **network** recorded. Not ours to move.
-
-Tamper with the record and the hash breaks. Tamper with `appTimestamp` and
-the hash breaks. The consensus timestamp was never ours to begin with.
-
-`payer_account_id` is protocol-level: it identifies the party that submitted
-the attestation, not any customer. Senders and recipients hold no Hedera
-account at all — that is what walletless means.
-
-`running_hash` chains every message on the topic, so ordering is
-tamper-evident too, not just individual records.
