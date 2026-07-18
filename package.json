@@ -6,7 +6,10 @@
   "scripts": {
     "test": "node --test backend/services/hedera/__tests__/*.test.mjs backend/services/settlement/__tests__/*.test.mjs",
     "demo:modular": "node demo-modular.mjs",
-    "demo:router": "node demo-router.mjs"
+    "demo:router": "node demo-router.mjs",
+    "server": "node backend/server.mjs",
+    "client": "npm --prefix frontend run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
@@ -14,6 +17,9 @@
   "type": "commonjs",
   "dependencies": {
     "@hashgraph/sdk": "^2.81.0",
-    "dotenv": "^17.4.2"
+    "concurrently": "^10.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
   }
 }
