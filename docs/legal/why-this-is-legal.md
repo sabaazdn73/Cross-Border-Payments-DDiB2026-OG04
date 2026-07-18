@@ -48,4 +48,3 @@ moving value on that customer's behalf. Each regulated party carries
 its own due-diligence obligation. What we do instead: record that a
 check was performed, by whom, and when, as a verifiable hash — see
 [The Trust Layer](../architecture/trust-layer.md).
-

@@ -52,4 +52,3 @@ by a party who trusts neither us nor the licensed partner.
 - Want to run it yourself? See [Running the Demo](get-started/running-the-demo.md).
 - Curious about the legal model? Start with [Why This Is Legal](legal/why-this-is-legal.md).
 - Looking for a specific function? See [Module Reference](reference/modules.md).
-

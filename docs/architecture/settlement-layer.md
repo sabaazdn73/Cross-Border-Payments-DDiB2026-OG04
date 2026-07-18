@@ -49,4 +49,3 @@ the design falls back to **Circle Mint redeem-and-reissue** —
 performed by the licensed partner, never by us, consistent with the
 non-custodial model throughout this project. This is a fast-moving
 detail; re-verify before relying on a specific bridge method.
-

@@ -56,4 +56,3 @@ node demo-router.mjs 50000    # large amount → routes to Ethereum, honestly un
 
 See [Live Testnet Evidence](../reference/testnet-evidence.md) for a
 real, captured run of both.
-

@@ -74,4 +74,3 @@ testnet.
 The $18,111,247 liquidity figure above is a **live** number read from
 DeFiLlama at the moment this ran — not a hardcoded or simulated value.
 {% endhint %}
-

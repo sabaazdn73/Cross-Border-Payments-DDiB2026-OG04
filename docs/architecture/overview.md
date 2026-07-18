@@ -43,4 +43,3 @@ backend/services/settlement/    — which chain moves the value
 ```
 
 Full function-level detail: [Module Reference](../reference/modules.md).
-

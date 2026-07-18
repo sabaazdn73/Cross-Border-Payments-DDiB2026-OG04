@@ -40,4 +40,3 @@ If they match, the record has not changed since it was anchored. If
 someone edited it — even us — the hashes diverge and the mismatch is
 immediate and undeniable. This is demonstrated live in
 [Running the Demo](running-the-demo.md).
-

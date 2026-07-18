@@ -29,4 +29,3 @@
   one. See [Why This Is Legal](../legal/why-this-is-legal.md).
 - Issuing our own stablecoin — EMT issuance is legally reserved to
   EMIs and credit institutions.
-

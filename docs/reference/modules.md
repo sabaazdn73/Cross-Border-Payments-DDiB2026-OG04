@@ -69,4 +69,3 @@ and HashScan links.
   structured non-execution for any chain without funded credentials.
 - `executeSettlement(decision, opts)` — the single entry point that
   dispatches between the two.
-

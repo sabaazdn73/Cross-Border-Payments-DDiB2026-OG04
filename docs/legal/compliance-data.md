@@ -37,4 +37,3 @@ erasure is achieved by destroying the off-chain record and its key.
 The anchor then verifies nothing and reveals nothing — the standard
 reconciliation between GDPR and an append-only ledger, adopted
 deliberately here.
-

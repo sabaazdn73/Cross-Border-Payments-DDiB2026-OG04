@@ -1,0 +1,16 @@
+# Risks & Mitigations
+
+| Risk | Impact | Mitigation |
+|---|---|---|
+| **Positioned as a payment institution** | The project is illegal as described | [this section](/legal/why-this-is-legal.md) — never hold funds; say "orchestrator" in every artefact |
+| **No testnet key by 17 Jul** | Everything is simulated | Do it on day one |
+| Sandbox approval delays | On-ramp blocked | Stripe test mode needs no approval; have a stub fallback |
+| Overclaiming coverage or capital efficiency | One caught claim discredits the rest | [this section](/business/business-model.md) and [this section](/legal/why-this-is-legal.md) — the retractions are *in the report* |
+| Examiner: "why not Solana?" | Looks unconsidered | [this section](/architecture/settlement-layer.md) — answered with numbers, including where Solana wins |
+| Examiner: "why not a database?" | Blockchain looks decorative | [this section](/architecture/overview.md) — mutually distrusting licensed parties |
+| Wrong stablecoin | EU leg non-compliant | [this section](/legal/regulatory-landscape.md) — USDC/EURC only |
+| Mirror Node lag in the demo | Dead air | Pre-anchored records + recording |
+| Working alone | Deliverables slip | [this section](/project/roadmap.md); raise with the organisers early, not on 23 Jul |
+| Presentation clash with other commitments | Miss the graded presentation | Resolve before 20 Jul |
+
+---

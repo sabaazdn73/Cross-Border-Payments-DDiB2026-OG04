@@ -32,4 +32,3 @@ deliberately not built yet.
 Only a hash and a pseudonymous, HMAC'd reference — never a name, an
 IBAN, an amount, or a document. See
 [Compliance Data & Privacy](../legal/compliance-data.md).
-

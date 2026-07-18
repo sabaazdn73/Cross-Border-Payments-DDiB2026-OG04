@@ -38,4 +38,3 @@ Verification never touches our API. Anyone — a regulator, an
 auditor, a teammate — can query a **public Hedera Mirror Node**
 directly, recompute the hash of the record as it exists now, and
 compare. See [`verify.mjs`](../reference/modules.md#verifymjs).
-

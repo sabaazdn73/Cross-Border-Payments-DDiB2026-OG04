@@ -36,4 +36,3 @@ end-2027. By the BIS's own assessment, jurisdictional implementation
 has been uneven and it's unlikely those targets will be met — which is
 the gap a private, non-custodial layer like this one occupies, not a
 competition with the public rails (Nexus, Agorá, Mandala) themselves.
-
