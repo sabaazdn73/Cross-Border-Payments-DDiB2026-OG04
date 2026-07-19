@@ -61,3 +61,20 @@ concentrated in a handful of DeFi pools (e.g. Aerodrome), not
 necessarily representative of liquidity available for payment
 settlement specifically. Base is ranked in `FALLBACK_CHAIN_PRIORITY`
 by its real, cited supply figure — not by headline transaction volume.
+
+## The four non-Hedera fallback chains, in priority order
+
+Hedera is preferred whenever it's viable (see above). When it isn't — the partner doesn't support it, or the amount exceeds Hedera's safe liquidity threshold — the router falls back to one of four chains, in this order:
+
+| Priority | Chain | USDC liquidity | Note |
+|---|---|---|---|
+| 1 | **Ethereum** | ~70% of global USDC supply | Deepest liquidity, highest gas cost |
+| 2 | **Solana** | ~$15-16B, fastest-growing | Leading stablecoin *payment volume* specifically |
+| 3 | **Base** | ~$4.1-4.3B (~5.8% of global USDC) | High transaction velocity, concentrated in a few DeFi pools |
+| 4 | **BNB Chain** | ~$14B total stablecoin supply, but only ~34-40% is USDC (rest is USDT, not MiCA-compliant) | The USDC-specific slice is roughly comparable to Base's total -- the headline $14B figure overstates what's usable for our EU leg |
+
+All four are first-class CCTP (Cross-Chain Transfer Protocol) chains, meaning native burn-and-mint transfer without a third-party bridge's wrap risk. All four carry natively-issued USDC (Circle mints directly on each), which is why they're viable candidates at all -- a bridged/wrapped USDC would carry the bridge's own risk on top of everything else.
+
+{% hint style="warning" %}
+BNB Chain's total stablecoin figure is dominated by USDT, which is excluded from this design (see [Regulatory Landscape](../legal/regulatory-landscape.md)). Citing the $14B headline number without this caveat would overstate the chain's relevant liquidity by roughly 2-3x.
+{% endhint %}
