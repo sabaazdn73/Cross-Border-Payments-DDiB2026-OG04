@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Zap, Menu, X, Home, BookOpen, ExternalLink } from 'lucide-react';
+import { Menu, X, Home, BookOpen, ExternalLink } from 'lucide-react';
+import brandIcon from '../../assets/brand/icon.svg';
 import ThemeToggle from '../ui/ThemeToggle';
 import MobileMenu from './MobileMenu';
 
@@ -33,22 +34,18 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? 'bg-canvas/90 backdrop-blur-md border-b border-hairline shadow-glass'
-            : 'bg-transparent'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-canvas ${
+          scrolled ? 'border-b border-hairline shadow-glass' : 'border-b border-hairline/50'
         }`}
         role="navigation"
         aria-label="Main navigation"
       >
         <div className="container-app">
           <div className="flex items-center justify-between h-16">
-            <Link to="/" className="flex items-center gap-2 group" aria-label="Borderless home">
-              <div className="w-8 h-8 rounded-lg bg-brand-gradient flex items-center justify-center shadow-glow">
-                <Zap className="w-4 h-4 text-white" />
-              </div>
-              <span className="font-bold text-lg text-white group-hover:text-brand-400 transition-colors">
-                Borderless Payment System
+            <Link to="/" className="flex items-center gap-2 group" aria-label="Cross-Border home">
+              <img src={brandIcon} alt="" className="w-8 h-8 rounded-lg shadow-glow" />
+              <span className="font-bold text-lg text-ink group-hover:text-brand-400 transition-colors">
+                Cross-Border
               </span>
             </Link>
 
@@ -60,7 +57,7 @@ export default function Navbar() {
                     key={link.to}
                     to={link.to}
                     className={`flex items-center gap-2 text-sm font-medium transition-colors hover:text-brand-400 ${
-                      location.pathname === link.to ? 'text-brand-400' : 'text-white/70'
+                      location.pathname === link.to ? 'text-brand-400' : 'text-ink-muted'
                     }`}
                   >
                     {Icon ? <Icon className="w-4 h-4" /> : null}
@@ -72,7 +69,7 @@ export default function Navbar() {
                 href={DOCS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-sm font-medium text-white/70 hover:text-brand-400 transition-colors"
+                className="flex items-center gap-1.5 text-sm font-medium text-ink-muted hover:text-brand-400 transition-colors"
               >
                 <BookOpen className="w-4 h-4" />
                 <span>Docs</span>
@@ -87,7 +84,7 @@ export default function Navbar() {
             </div>
 
             <button
-              className="md:hidden p-2 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+              className="md:hidden p-2 rounded-lg text-ink-muted hover:text-ink hover:bg-black/5 transition-colors"
               onClick={() => setIsOpen(!isOpen)}
               aria-expanded={isOpen}
               aria-controls="mobile-menu"

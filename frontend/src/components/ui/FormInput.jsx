@@ -4,7 +4,7 @@ const FormInput = forwardRef(function FormInput({ label, error, id, required, hi
   return (
     <div className="space-y-1.5">
       {label && (
-        <label htmlFor={id} className="block text-sm font-medium text-white/80">
+        <label htmlFor={id} className="block text-sm font-medium text-ink">
           {label}{required && <span className="text-danger-400 ml-1" aria-hidden="true">*</span>}
         </label>
       )}
@@ -12,7 +12,7 @@ const FormInput = forwardRef(function FormInput({ label, error, id, required, hi
         aria-invalid={error ? 'true' : 'false'}
         aria-describedby={error ? `${id}-error` : hint ? `${id}-hint` : undefined}
         required={required} {...props} />
-      {hint && !error && <p id={`${id}-hint`} className="text-xs text-white/40">{hint}</p>}
+      {hint && !error && <p id={`${id}-hint`} className="text-xs text-ink-muted">{hint}</p>}
       {error && (
         <p id={`${id}-error`} role="alert" className="text-xs text-danger-400 flex items-center gap-1">
           <span aria-hidden="true">⚠</span> {error}

@@ -53,11 +53,11 @@ export default function Payment() {
 
   if (!formData.senderName) {
     return (
-      <div className="min-h-screen bg-navy-950 flex flex-col">
+      <div className="min-h-screen bg-canvas flex flex-col">
         <Navbar />
         <main className="flex-1 flex items-center justify-center">
           <div className="text-center">
-            <p className="text-white/60 mb-4">No transfer data found.</p>
+            <p className="text-ink-muted mb-4">No transfer data found.</p>
             <button onClick={() => navigate('/send-money')} className="btn-primary">Start Transfer</button>
           </div>
         </main>
@@ -99,7 +99,7 @@ export default function Payment() {
   };
 
   return (
-    <div className="min-h-screen bg-navy-950 flex flex-col">
+    <div className="min-h-screen bg-canvas flex flex-col">
       <Navbar />
       <main className="flex-1 pt-24 pb-16 px-4">
         <div className="container-app max-w-2xl">
@@ -107,20 +107,20 @@ export default function Payment() {
             <Info className="w-5 h-5 text-warning-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
             <div>
               <p className="font-semibold text-warning-400 text-sm">Sandbox Payment Simulation</p>
-              <p className="text-white/60 text-xs mt-0.5">This is a demo environment. No real payment will be processed. Use the test card number below.</p>
+              <p className="text-ink-muted text-xs mt-0.5">This is a demo environment. No real payment will be processed. Use the test card number below.</p>
             </div>
           </div>
 
           <PageHeader
             badge="Step 3 of 3"
             title="Complete Payment"
-            subtitle={`Paying ${formData.currency} ${Number(summary.sendAmount).toFixed(2)} — Sandbox simulation`}
+            subtitle={`Paying ${formData.currency} ${Number(summary.sendAmount).toFixed(2)} (Sandbox simulation)`}
           />
 
           {paymentState === 'loading' && (
             <div className="glass p-12 text-center">
               <LoadingSpinner size="lg" message="Processing payment and initiating settlement..." className="mb-4" />
-              <p className="text-white/40 text-sm">Verifying compliance • Routing via Hedera • Initiating payout</p>
+              <p className="text-ink-muted text-sm">Verifying compliance • Routing via Hedera • Initiating payout</p>
             </div>
           )}
 
@@ -129,8 +129,8 @@ export default function Payment() {
               <div className="w-20 h-20 rounded-full bg-success-500/20 border border-success-500/30 flex items-center justify-center mx-auto mb-5">
                 <CheckCircle2 className="w-10 h-10 text-success-400" aria-hidden="true" />
               </div>
-              <h2 className="text-2xl font-bold text-white mb-2">Payment Successful!</h2>
-              <p className="text-white/60">Redirecting to your transaction status...</p>
+              <h2 className="text-2xl font-bold text-ink mb-2">Payment Successful!</h2>
+              <p className="text-ink-muted">Redirecting to your transaction status...</p>
             </div>
           )}
 
@@ -147,15 +147,15 @@ export default function Payment() {
             <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5">
               <div className="glass p-4 flex items-start gap-3 bg-accent-500/5 border-accent-500/20">
                 <Info className="w-4 h-4 text-accent-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                <div className="text-xs text-white/60">
+                <div className="text-xs text-ink-muted">
                   <p className="font-semibold text-accent-400 mb-1">Test Card Details</p>
-                  <p>Card Number: <span className="font-mono text-white">4242 4242 4242 4242</span></p>
-                  <p>Expiry: <span className="font-mono text-white">12/28</span> &nbsp; CVV: <span className="font-mono text-white">123</span></p>
+                  <p>Card Number: <span className="font-mono text-ink">4242 4242 4242 4242</span></p>
+                  <p>Expiry: <span className="font-mono text-ink">12/28</span> &nbsp; CVV: <span className="font-mono text-ink">123</span></p>
                 </div>
               </div>
 
               <div className="glass p-6 space-y-4">
-                <h2 className="font-bold text-white flex items-center gap-2">
+                <h2 className="font-bold text-ink flex items-center gap-2">
                   <CreditCard className="w-4 h-4 text-brand-400" aria-hidden="true" />Card Information
                 </h2>
 
@@ -163,7 +163,7 @@ export default function Payment() {
                   error={errors.cardholderName?.message} {...register('cardholderName')} />
 
                 <div>
-                  <label htmlFor="cardNumber" className="block text-sm font-medium text-white/80 mb-1.5">
+                  <label htmlFor="cardNumber" className="block text-sm font-medium text-ink mb-1.5">
                     Card Number <span className="text-danger-400" aria-hidden="true">*</span>
                   </label>
                   <input id="cardNumber" type="text" inputMode="numeric" placeholder="4242 4242 4242 4242"
@@ -182,7 +182,7 @@ export default function Payment() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="expiryDate" className="block text-sm font-medium text-white/80 mb-1.5">
+                    <label htmlFor="expiryDate" className="block text-sm font-medium text-ink mb-1.5">
                       Expiry Date <span className="text-danger-400" aria-hidden="true">*</span>
                     </label>
                     <input id="expiryDate" type="text" placeholder="MM/YY" value={expiryDate}
@@ -198,19 +198,19 @@ export default function Payment() {
 
               <div className="glass p-5">
                 <div className="flex items-center justify-between">
-                  <span className="text-white/60">Total Payment</span>
-                  <span className="text-2xl font-black text-white">{formData.currency} {Number(summary.sendAmount).toFixed(2)}</span>
+                  <span className="text-ink-muted">Total Payment</span>
+                  <span className="text-2xl font-black text-ink">{formData.currency} {Number(summary.sendAmount).toFixed(2)}</span>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 text-xs text-white/40 justify-center">
+              <div className="flex items-center gap-2 text-xs text-ink-muted justify-center">
                 <Lock className="w-3.5 h-3.5" aria-hidden="true" />
-                <span>256-bit SSL encryption — your card details are never stored</span>
+                <span>256-bit SSL encryption. Your card details are never stored</span>
               </div>
 
               <button type="submit" className="btn-primary w-full py-4 text-base justify-center">
                 <Lock className="w-4 h-4" aria-hidden="true" />
-                Pay Now — {formData.currency} {Number(summary.sendAmount).toFixed(2)}
+                Pay Now: {formData.currency} {Number(summary.sendAmount).toFixed(2)}
               </button>
             </form>
           )}

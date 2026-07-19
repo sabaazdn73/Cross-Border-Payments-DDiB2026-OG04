@@ -8,8 +8,8 @@ export default function TransactionCard({ transaction, className = '' }) {
     <div className={`glass p-5 hover:bg-white/8 transition-colors ${className}`}>
       <div className="flex items-start justify-between gap-3 mb-4">
         <div>
-          <p className="font-mono text-xs text-white/40 mb-1">{transaction.id}</p>
-          <h3 className="font-semibold text-white">
+          <p className="font-mono text-xs text-ink-muted mb-1">{transaction.id}</p>
+          <h3 className="font-semibold text-ink">
             {transaction.senderName} → {transaction.recipientName}
           </h3>
         </div>
@@ -18,19 +18,19 @@ export default function TransactionCard({ transaction, className = '' }) {
 
       <div className="grid grid-cols-2 gap-3 mb-4">
         <div>
-          <p className="text-xs text-white/40 mb-0.5">You sent</p>
-          <p className="font-semibold text-white">{formatAmount(transaction.amount, transaction.currency)}</p>
+          <p className="text-xs text-ink-muted mb-0.5">You sent</p>
+          <p className="font-semibold text-ink">{formatAmount(transaction.amount, transaction.currency)}</p>
         </div>
         <div className="text-right">
-          <p className="text-xs text-white/40 mb-0.5">Recipient gets</p>
+          <p className="text-xs text-ink-muted mb-0.5">Recipient gets</p>
           <p className="font-semibold text-success-400">
             {formatAmount(transaction.recipientAmount, transaction.receivingCurrency)}
           </p>
         </div>
       </div>
 
-      <div className="flex items-center justify-between pt-3 border-t border-white/10">
-        <div className="flex items-center gap-1 text-xs text-white/40">
+      <div className="flex items-center justify-between pt-3 border-t border-hairline">
+        <div className="flex items-center gap-1 text-xs text-ink-muted">
           <Calendar className="w-3 h-3" aria-hidden="true" />
           {formatDateShort(transaction.createdAt)}
         </div>

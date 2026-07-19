@@ -18,7 +18,7 @@ const benefits = [
 
 const steps = [
   { step: '01', title: 'Enter Transfer Details', description: 'Fill in the sender and recipient information, choose currencies and payout method.', color: 'from-brand-500 to-brand-600' },
-  { step: '02', title: 'Pay with Your Card', description: 'Make a standard card payment. No crypto, no wallets — just your normal payment method.', color: 'from-accent-500 to-accent-600' },
+  { step: '02', title: 'Pay with Your Card', description: 'Make a standard card payment. No crypto, no wallets. Just your normal payment method.', color: 'from-accent-500 to-accent-600' },
   { step: '03', title: 'Blockchain Settlement', description: 'Behind the scenes, funds are settled via stablecoin on Hedera. Compliance is anchored on HCS.', color: 'from-success-500 to-success-600' },
   { step: '04', title: 'Recipient Gets Paid', description: 'The recipient receives local currency via bank transfer, mobile money, or cash pickup.', color: 'from-brand-600 to-accent-500' },
 ];
@@ -40,9 +40,9 @@ const currencies = [
 
 const stats = [
   { value: '30+', label: 'Countries', icon: Globe },
-  { value: '25+', label: 'Currencies', icon: TrendingUp },
-  { value: '3s', label: 'Settlement', icon: Zap },
-  { value: '100%', label: 'Compliance', icon: Shield },
+  { value: '30+', label: 'Currencies', icon: TrendingUp },
+  { value: '3s', label: 'Blockchain settlement', icon: Zap },
+  { value: '100%', label: 'Verifiable', icon: Shield },
 ];
 
 export default function Home() {
@@ -74,7 +74,7 @@ export default function Home() {
 
             <p className="text-lg md:text-xl text-white/60 mb-10 max-w-2xl mx-auto leading-relaxed animate-slide-up">
               Walletless Cross-Border Settlement. You pay in your currency, your recipient gets
-              paid in theirs — blockchain settles everything behind the scenes.
+              paid in theirs. Blockchain settles everything behind the scenes.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up">
@@ -126,7 +126,7 @@ export default function Home() {
         <div className="container-app">
           <div className="text-center mb-14">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/20 text-brand-400 border border-brand-500/30 mb-4">
-              Why Choose Borderless
+              Why Choose Cross-Border
             </span>
             <h2 id="benefits-heading" className="text-3xl md:text-4xl font-bold text-ink">
               Everything you need,{' '}
@@ -189,7 +189,7 @@ export default function Home() {
               <p className="text-ink-muted leading-relaxed mb-6">
                 Every transaction generates a compliance record that's cryptographically hashed and
                 anchored on Hedera's Consensus Service. This creates an immutable, tamper-evident
-                audit trail — verifiable by anyone, anytime.
+                audit trail, verifiable by anyone, anytime.
               </p>
               <ul className="space-y-3">
                 {[
@@ -264,7 +264,7 @@ export default function Home() {
             <h2 id="currencies-heading" className="text-3xl md:text-4xl font-bold text-ink mb-3">
               Supported Currencies
             </h2>
-            <p className="text-ink-muted">Send and receive in 25+ currencies worldwide</p>
+            <p className="text-ink-muted">Send and receive in 30+ currencies worldwide</p>
           </div>
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
             {currencies.map((cur) => (

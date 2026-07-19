@@ -10,7 +10,7 @@ export default function VerificationResult({ isMatch, className = '' }) {
         </div>
         <div>
           <h3 className="font-bold text-success-400 mb-1">Record Verified</h3>
-          <p className="text-white/70 text-sm leading-relaxed">
+          <p className="text-ink-muted text-sm leading-relaxed">
             The compliance record matches the proof anchored on Hedera. No modification has been detected.
           </p>
         </div>
@@ -24,7 +24,7 @@ export default function VerificationResult({ isMatch, className = '' }) {
         </div>
         <div>
           <h3 className="font-bold text-danger-400 mb-1">Verification Failed</h3>
-          <p className="text-white/70 text-sm leading-relaxed">
+          <p className="text-ink-muted text-sm leading-relaxed">
             The current compliance record does not match the proof anchored on Hedera. The record may have been modified.
           </p>
         </div>

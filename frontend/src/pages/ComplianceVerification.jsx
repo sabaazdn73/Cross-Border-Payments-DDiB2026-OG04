@@ -84,7 +84,7 @@ export default function ComplianceVerification() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-navy-950 flex flex-col">
+      <div className="min-h-screen bg-canvas flex flex-col">
         <Navbar />
         <main className="flex-1 flex items-center justify-center pt-16">
           <LoadingSpinner size="lg" message="Loading compliance details..." />
@@ -95,7 +95,7 @@ export default function ComplianceVerification() {
 
   if (notFound || !transaction || !complianceRecord) {
     return (
-      <div className="min-h-screen bg-navy-950 flex flex-col">
+      <div className="min-h-screen bg-canvas flex flex-col">
         <Navbar />
         <main className="flex-1 flex items-center justify-center pt-16">
           <EmptyState
@@ -110,7 +110,7 @@ export default function ComplianceVerification() {
   }
 
   return (
-    <div className="min-h-screen bg-navy-950 flex flex-col">
+    <div className="min-h-screen bg-canvas flex flex-col">
       <Navbar />
       <main className="flex-1 pt-24 pb-16 px-4">
         <div className="container-app max-w-3xl">
@@ -122,15 +122,15 @@ export default function ComplianceVerification() {
 
           <div className="text-center mb-8">
             <div className="w-16 h-16 rounded-2xl bg-brand-gradient flex items-center justify-center mx-auto mb-4 shadow-glow">
-              <Shield className="w-8 h-8 text-white" aria-hidden="true" />
+              <Shield className="w-8 h-8 text-ink" aria-hidden="true" />
             </div>
-            <h1 className="text-3xl font-bold text-white mb-2">Compliance Verification</h1>
-            <p className="text-white/60">Verify the integrity of the compliance record anchored on Hedera HCS.</p>
+            <h1 className="text-3xl font-bold text-ink mb-2">Compliance Verification</h1>
+            <p className="text-ink-muted">Verify the integrity of the compliance record anchored on Hedera HCS.</p>
           </div>
 
           {/* Record info */}
           <div className="glass p-6 mb-5">
-            <h2 className="font-bold text-white mb-4 text-sm uppercase tracking-wider">Compliance Record</h2>
+            <h2 className="font-bold text-ink mb-4 text-sm uppercase tracking-wider">Compliance Record</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
               {[
                 { label: 'Record ID', value: complianceRecord.recordId },
@@ -143,8 +143,8 @@ export default function ComplianceVerification() {
                 { label: 'Reviewed By', value: complianceRecord.reviewedBy },
               ].map(({ label, value }) => (
                 <div key={label} className="flex flex-col gap-0.5">
-                  <span className="text-xs text-white/40">{label}</span>
-                  <span className="text-white/90 font-medium">{value}</span>
+                  <span className="text-xs text-ink-muted">{label}</span>
+                  <span className="text-ink font-medium">{value}</span>
                 </div>
               ))}
             </div>
@@ -152,18 +152,18 @@ export default function ComplianceVerification() {
 
           {/* Hedera references */}
           <div className="glass p-6 mb-5">
-            <h2 className="font-bold text-white mb-4 text-sm uppercase tracking-wider">Hedera HCS Reference</h2>
+            <h2 className="font-bold text-ink mb-4 text-sm uppercase tracking-wider">Hedera HCS Reference</h2>
             <div className="space-y-3 text-sm">
-              <div className="flex justify-between"><span className="text-white/40">Topic ID</span><span className="font-mono text-accent-400">{transaction.hederaTopicId}</span></div>
-              <div className="flex justify-between"><span className="text-white/40">Sequence #</span><span className="font-mono text-accent-400">{transaction.hederaSequenceNumber}</span></div>
-              <div className="flex justify-between flex-wrap gap-2"><span className="text-white/40">Consensus Timestamp</span><span className="font-mono text-xs text-accent-400">{transaction.hederaConsensusTimestamp}</span></div>
-              <div className="flex justify-between"><span className="text-white/40">Mirror Node Status</span><span className="text-success-400 font-medium">✓ Anchored</span></div>
+              <div className="flex justify-between"><span className="text-ink-muted">Topic ID</span><span className="font-mono text-accent-400">{transaction.hederaTopicId}</span></div>
+              <div className="flex justify-between"><span className="text-ink-muted">Sequence #</span><span className="font-mono text-accent-400">{transaction.hederaSequenceNumber}</span></div>
+              <div className="flex justify-between flex-wrap gap-2"><span className="text-ink-muted">Consensus Timestamp</span><span className="font-mono text-xs text-accent-400">{transaction.hederaConsensusTimestamp}</span></div>
+              <div className="flex justify-between"><span className="text-ink-muted">Mirror Node Status</span><span className="text-success-400 font-medium">✓ Anchored</span></div>
             </div>
           </div>
 
           {/* Hash comparison */}
           <div className="glass p-6 mb-5 space-y-4">
-            <h2 className="font-bold text-white mb-2 text-sm uppercase tracking-wider">Hash Verification</h2>
+            <h2 className="font-bold text-ink mb-2 text-sm uppercase tracking-wider">Hash Verification</h2>
             <HashDisplay label="Stored Blockchain Hash (Anchored on HCS)" hash={storedHash} />
             <HashDisplay label="Current Calculated Hash" hash={currentHash} />
           </div>

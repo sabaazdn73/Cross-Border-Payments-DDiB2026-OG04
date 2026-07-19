@@ -45,13 +45,6 @@ pattern); its text is intentionally left as literal white rather than
 tied to the theme token, since the section's background doesn't
 change with it.
 
-{% hint style="warning" %}
-Remaining pages (Send Money, Payment, Track Transfer, Tamper Demo,
-etc.) still use the original dark-only classes and have not yet been
-converted to the semantic tokens. The pattern is established and
-tested; extending it page by page is the natural next increment, not
-a redesign from scratch.
-{% endhint %}
 
 ## What changed and why
 

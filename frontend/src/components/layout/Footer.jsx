@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Zap, Shield, Globe, Lock } from 'lucide-react';
+import { Shield, Globe, Lock } from 'lucide-react';
+import brandIcon from '../../assets/brand/icon.svg';
 import SiteQRCode from '../ui/SiteQRCode';
 
 import { DOCS_URL } from './Navbar';
@@ -12,13 +13,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-8">
           <div className="md:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-brand-gradient flex items-center justify-center shadow-glow">
-                <Zap className="w-4 h-4 text-ink" />
-              </div>
-              <span className="font-bold text-ink">Borderless</span>
+              <img src={brandIcon} alt="" className="w-8 h-8 rounded-lg shadow-glow" />
+              <span className="font-bold text-ink">Cross-Border</span>
             </Link>
             <p className="text-ink-muted text-sm leading-relaxed">
-              Walletless cross-border settlement powered by Hedera blockchain.
+              Walletless, fiat-to-fiat cross-border settlement powered by Hedera blockchain.
             </p>
             <div className="flex items-center gap-4 mt-4">
               <div className="flex items-center gap-1 text-xs text-success-400">
@@ -83,7 +82,7 @@ export default function Footer() {
 
         <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-ink-muted/60 text-xs">
-            &copy; {currentYear} Borderless. Sandbox demonstration only. Not a real financial service.
+            &copy; {currentYear} Cross-Border. Sandbox demonstration only. Not a real financial service.
           </p>
           <div className="flex items-center gap-1 text-xs text-ink-muted/60">
             <Shield className="w-3 h-3" />

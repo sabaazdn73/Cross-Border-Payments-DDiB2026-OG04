@@ -24,10 +24,10 @@ const stepStatusConfig = {
     label: 'text-brand-400',
   },
   pending: {
-    ring: 'border-white/20 bg-white/5',
-    icon: 'text-white/30',
+    ring: 'border-hairline bg-white/5',
+    icon: 'text-ink-muted/70',
     connector: 'bg-white/10',
-    label: 'text-white/40',
+    label: 'text-ink-muted',
   },
   failed: {
     ring: 'border-danger-500 bg-danger-500/20',
@@ -109,13 +109,13 @@ export default function TransactionStepper({ steps, className = '' }) {
               <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
                 <h4 className={`font-semibold text-sm ${config.label}`}>{step.title}</h4>
                 {step.completedAt && (
-                  <span className="text-xs text-white/40">{formatDate(step.completedAt)}</span>
+                  <span className="text-xs text-ink-muted">{formatDate(step.completedAt)}</span>
                 )}
                 {step.status === 'active' && (
                   <span className="text-xs text-brand-400 animate-pulse">In progress...</span>
                 )}
               </div>
-              <p className="text-white/50 text-sm leading-relaxed">{step.description}</p>
+              <p className="text-ink-muted text-sm leading-relaxed">{step.description}</p>
             </div>
           </div>
         );

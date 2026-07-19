@@ -95,7 +95,7 @@ export default function TransactionStatus() {
 
   if (notFound) {
     return (
-      <div className="min-h-screen bg-navy-950 flex flex-col">
+      <div className="min-h-screen bg-canvas flex flex-col">
         <Navbar />
         <main className="flex-1 flex items-center justify-center pt-16">
           <EmptyState
@@ -111,7 +111,7 @@ export default function TransactionStatus() {
 
   if (!transaction) {
     return (
-      <div className="min-h-screen bg-navy-950 flex flex-col">
+      <div className="min-h-screen bg-canvas flex flex-col">
         <Navbar />
         <main className="flex-1 flex items-center justify-center pt-16">
           <LoadingSpinner size="lg" message="Loading transaction..." />
@@ -121,7 +121,7 @@ export default function TransactionStatus() {
   }
 
   return (
-    <div className="min-h-screen bg-navy-950 flex flex-col">
+    <div className="min-h-screen bg-canvas flex flex-col">
       <Navbar />
       <main className="flex-1 pt-24 pb-16 px-4">
         <div className="container-app max-w-4xl">
@@ -130,25 +130,25 @@ export default function TransactionStatus() {
           <div className="glass p-6 mb-6">
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div>
-                <p className="text-xs text-white/40 mb-1">Transaction ID</p>
+                <p className="text-xs text-ink-muted mb-1">Transaction ID</p>
                 <p className="font-mono text-sm text-accent-400 mb-2">{transaction.id}</p>
                 <div className="flex flex-wrap items-center gap-3">
                   <StatusBadge status={currentStatus} />
-                  <span className="text-white/40 text-xs">{formatDate(transaction.createdAt)}</span>
+                  <span className="text-ink-muted text-xs">{formatDate(transaction.createdAt)}</span>
                 </div>
               </div>
               <div className="text-right">
-                <p className="text-xs text-white/40 mb-1">Amount</p>
-                <p className="text-2xl font-black text-white">{formatAmount(transaction.amount, transaction.currency)}</p>
+                <p className="text-xs text-ink-muted mb-1">Amount</p>
+                <p className="text-2xl font-black text-ink">{formatAmount(transaction.amount, transaction.currency)}</p>
                 <p className="text-sm text-success-400">→ {formatAmount(transaction.recipientAmount, transaction.receivingCurrency)}</p>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-5 pt-5 border-t border-white/10">
-              <div><p className="text-xs text-white/40 mb-1">Sender</p><p className="text-sm text-white font-medium">{transaction.senderName}</p></div>
-              <div><p className="text-xs text-white/40 mb-1">Recipient</p><p className="text-sm text-white font-medium">{transaction.recipientName}</p></div>
-              <div><p className="text-xs text-white/40 mb-1">Est. Delivery</p><p className="text-sm text-white font-medium">{transaction.estimatedDelivery}</p></div>
-              <div><p className="text-xs text-white/40 mb-1">Payout Method</p><p className="text-sm text-white font-medium capitalize">{transaction.payoutMethod?.replace('_', ' ')}</p></div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-5 pt-5 border-t border-hairline">
+              <div><p className="text-xs text-ink-muted mb-1">Sender</p><p className="text-sm text-ink font-medium">{transaction.senderName}</p></div>
+              <div><p className="text-xs text-ink-muted mb-1">Recipient</p><p className="text-sm text-ink font-medium">{transaction.recipientName}</p></div>
+              <div><p className="text-xs text-ink-muted mb-1">Est. Delivery</p><p className="text-sm text-ink font-medium">{transaction.estimatedDelivery}</p></div>
+              <div><p className="text-xs text-ink-muted mb-1">Payout Method</p><p className="text-sm text-ink font-medium capitalize">{transaction.payoutMethod?.replace('_', ' ')}</p></div>
             </div>
           </div>
 
@@ -156,7 +156,7 @@ export default function TransactionStatus() {
             {/* Stepper */}
             <div className="lg:col-span-2 glass p-6">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="font-bold text-white">Settlement Progress</h2>
+                <h2 className="font-bold text-ink">Settlement Progress</h2>
                 {!simDone && (
                   <button onClick={handleSkip} className="btn-secondary text-xs py-1.5 px-3 flex items-center gap-1.5">
                     <SkipForward className="w-3.5 h-3.5" aria-hidden="true" />
@@ -176,7 +176,7 @@ export default function TransactionStatus() {
             {/* Side actions */}
             <div className="space-y-4">
               <div className="glass p-5">
-                <h3 className="font-semibold text-white mb-3 text-sm">Transaction Actions</h3>
+                <h3 className="font-semibold text-ink mb-3 text-sm">Transaction Actions</h3>
                 <div className="space-y-2">
                   <Link to={`/transaction/${transaction.id}/receipt`} className="btn-secondary w-full justify-center text-sm py-2.5">
                     <FileText className="w-4 h-4" aria-hidden="true" />
@@ -189,8 +189,8 @@ export default function TransactionStatus() {
                 </div>
               </div>
 
-              <div className="glass p-5 text-xs text-white/50 space-y-2">
-                <p className="font-semibold text-white/70">Hedera Settlement</p>
+              <div className="glass p-5 text-xs text-ink-muted space-y-2">
+                <p className="font-semibold text-ink-muted">Hedera Settlement</p>
                 <div className="space-y-1">
                   <div className="flex justify-between"><span>Topic ID</span><span className="text-accent-400 font-mono truncate ml-2">{transaction.hederaTopicId}</span></div>
                   <div className="flex justify-between"><span>Seq #</span><span className="text-accent-400 font-mono">{transaction.hederaSequenceNumber}</span></div>
@@ -202,10 +202,10 @@ export default function TransactionStatus() {
                   )}
                 </div>
                 {transaction.settlementReason && (
-                  <p className="text-[10px] text-white/50 border-t border-white/5 pt-1.5 mt-1.5 leading-relaxed">{transaction.settlementReason}</p>
+                  <p className="text-[10px] text-ink-muted border-t border-hairline pt-1.5 mt-1.5 leading-relaxed">{transaction.settlementReason}</p>
                 )}
                 {transaction.settlementNote && (
-                  <p className="text-[10px] text-warning-400/80 border-t border-white/5 pt-1.5 mt-1.5 leading-relaxed">⚠️ {transaction.settlementNote}</p>
+                  <p className="text-[10px] text-warning-400/80 border-t border-hairline pt-1.5 mt-1.5 leading-relaxed">⚠️ {transaction.settlementNote}</p>
                 )}
               </div>
             </div>

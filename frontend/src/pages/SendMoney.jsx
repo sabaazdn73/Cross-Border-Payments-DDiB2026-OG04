@@ -37,7 +37,7 @@ const schema = z.object({
 });
 
 const countryOptions = countries.map((c) => ({ value: c.code, label: `${c.flag} ${c.name}` }));
-const currencyOptions = currencies.map((c) => ({ value: c.code, label: `${c.flag} ${c.code} — ${c.name}` }));
+const currencyOptions = currencies.map((c) => ({ value: c.code, label: `${c.flag} ${c.code} (${c.name})` }));
 const payoutOptions = payoutMethods.map((m) => ({ value: m.id, label: m.label }));
 
 // The recipient identifier means something different per payout method —
@@ -57,7 +57,7 @@ export default function SendMoney() {
   const navigate = useNavigate();
   const { formData, updateFormData } = useTransaction();
 
-  const { register, handleSubmit, watch, formState: { errors } } = useForm({
+  const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm({
     resolver: zodResolver(schema),
     defaultValues: { ...formData, amount: formData.amount || '' },
   });
@@ -67,6 +67,29 @@ export default function SendMoney() {
   const watchedReceivingCurrency = watch('receivingCurrency');
   const watchedPayoutMethod = watch('payoutMethod');
 
+  // Fills every field with a realistic, internally-consistent example
+  // so the whole flow can be demonstrated by clicking through screens
+  // rather than typing — a corridor that also matches a verified fast
+  // settlement rail (SEPA Instant), so the demo shows a real number,
+  // not a placeholder.
+  const fillDemoData = () => {
+    const demo = {
+      senderName: 'Ana Costa',
+      senderEmail: 'ana.costa@example.com',
+      senderCountry: 'EU',
+      amount: '250',
+      currency: 'EUR',
+      recipientName: 'Amaka Obi',
+      recipientAccountDetails: '+234 801 234 5678',
+      recipientCountry: 'NG',
+      receivingCurrency: 'NGN',
+      payoutMethod: 'mobile_money',
+      purpose: 'Family Support',
+      termsAccepted: true,
+    };
+    Object.entries(demo).forEach(([field, value]) => setValue(field, value, { shouldValidate: true }));
+  };
+
   const summary = useTransferCalculator(watchedAmount, watchedCurrency, watchedReceivingCurrency, watchedPayoutMethod);
 
   const onSubmit = (data) => {
@@ -75,11 +98,21 @@ export default function SendMoney() {
   };
 
   return (
-    <div className="min-h-screen bg-navy-950 flex flex-col">
+    <div className="min-h-screen bg-canvas flex flex-col">
       <Navbar />
       <main className="flex-1 pt-24 pb-16 px-4">
         <div className="container-app max-w-6xl">
           <PageHeader badge="Step 1 of 3" title="Send Money" subtitle="Fill in the transfer details below. No crypto wallet required." />
+
+          <div className="flex justify-center mb-6">
+            <button
+              type="button"
+              onClick={fillDemoData}
+              className="text-sm font-medium text-brand-500 hover:text-brand-600 border border-brand-500/30 hover:border-brand-500/50 rounded-lg px-4 py-2 transition-colors"
+            >
+              Fill demo data
+            </button>
+          </div>
 
           <form onSubmit={handleSubmit(onSubmit)} noValidate>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -87,20 +120,20 @@ export default function SendMoney() {
 
                 {/* Sender Info */}
                 <div className="glass p-6">
-                  <h2 className="font-bold text-white mb-5 flex items-center gap-2">
+                  <h2 className="font-bold text-ink mb-5 flex items-center gap-2">
                     <User className="w-4 h-4 text-brand-400" aria-hidden="true" />
                     Sender Information
                   </h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <FormInput id="senderName" label="Full Name" required placeholder="John Doe" error={errors.senderName?.message} {...register('senderName')} />
-                    <FormInput id="senderEmail" label="Email Address (optional — for your receipt)" type="email" placeholder="john@example.com" error={errors.senderEmail?.message} {...register('senderEmail')} />
+                    <FormInput id="senderEmail" label="Email Address (optional, for your receipt)" type="email" placeholder="john@example.com" error={errors.senderEmail?.message} {...register('senderEmail')} />
                     <SelectInput id="senderCountry" label="Country" required options={countryOptions} error={errors.senderCountry?.message} {...register('senderCountry')} />
                   </div>
                 </div>
 
                 {/* Transfer Amount */}
                 <div className="glass p-6">
-                  <h2 className="font-bold text-white mb-5 flex items-center gap-2">
+                  <h2 className="font-bold text-ink mb-5 flex items-center gap-2">
                     <DollarSign className="w-4 h-4 text-brand-400" aria-hidden="true" />
                     Transfer Amount
                   </h2>
@@ -112,7 +145,7 @@ export default function SendMoney() {
 
                 {/* Recipient Info */}
                 <div className="glass p-6">
-                  <h2 className="font-bold text-white mb-5 flex items-center gap-2">
+                  <h2 className="font-bold text-ink mb-5 flex items-center gap-2">
                     <Mail className="w-4 h-4 text-brand-400" aria-hidden="true" />
                     Recipient Information
                   </h2>
@@ -130,7 +163,7 @@ export default function SendMoney() {
 
                 {/* Payout & Purpose */}
                 <div className="glass p-6">
-                  <h2 className="font-bold text-white mb-5 flex items-center gap-2">
+                  <h2 className="font-bold text-ink mb-5 flex items-center gap-2">
                     <CreditCard className="w-4 h-4 text-brand-400" aria-hidden="true" />
                     Payout & Purpose
                   </h2>
@@ -144,7 +177,7 @@ export default function SendMoney() {
                 <div className="glass p-5">
                   <label className="flex items-start gap-3 cursor-pointer">
                     <input type="checkbox" id="termsAccepted" className="mt-0.5 w-4 h-4 rounded accent-brand-500 cursor-pointer flex-shrink-0" {...register('termsAccepted')} />
-                    <span className="text-sm text-white/70 leading-relaxed">
+                    <span className="text-sm text-ink-muted leading-relaxed">
                       I agree to the <span className="text-brand-400">Terms of Service</span> and{' '}
                       <span className="text-brand-400">Privacy Policy</span>. I confirm this is a
                       legitimate transfer and the information provided is accurate.
@@ -167,7 +200,7 @@ export default function SendMoney() {
                 <div className="sticky top-24">
                   <TransferSummaryCard {...summary} />
                   <div className="mt-4 glass p-4">
-                    <p className="text-xs text-white/40 leading-relaxed">
+                    <p className="text-xs text-ink-muted leading-relaxed">
                       🔒 Your payment is processed securely. Blockchain settlement happens automatically —
                       no crypto wallet interaction required.
                     </p>

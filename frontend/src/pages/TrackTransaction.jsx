@@ -42,7 +42,7 @@ export default function TrackTransaction() {
   };
 
   return (
-    <div className="min-h-screen bg-navy-950 flex flex-col">
+    <div className="min-h-screen bg-canvas flex flex-col">
       <Navbar />
       <main className="flex-1 pt-24 pb-16 px-4">
         <div className="container-app max-w-3xl">
@@ -58,7 +58,7 @@ export default function TrackTransaction() {
                 <div className="flex-1">
                   <label htmlFor="track-query" className="sr-only">Transaction ID or name</label>
                   <div className="relative">
-                    <Hash className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" aria-hidden="true" />
+                    <Hash className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted/70" aria-hidden="true" />
                     <input
                       id="track-query"
                       type="text"
@@ -78,7 +78,7 @@ export default function TrackTransaction() {
                 </button>
               </div>
             </form>
-            <p className="text-xs text-white/30 mt-3">
+            <p className="text-xs text-ink-muted/70 mt-3">
               Tip: Try{' '}
               <span className="text-accent-400 font-mono cursor-pointer hover:underline" onClick={() => setQuery('TXN-DEMO-001')}>
                 TXN-DEMO-001
@@ -91,7 +91,7 @@ export default function TrackTransaction() {
             <div>
               {results && results.length > 0 ? (
                 <div className="space-y-4">
-                  <p className="text-white/50 text-sm">{results.length} transaction{results.length !== 1 ? 's' : ''} found</p>
+                  <p className="text-ink-muted text-sm">{results.length} transaction{results.length !== 1 ? 's' : ''} found</p>
                   {results.map((txn) => <TransactionCard key={txn.id} transaction={txn} />)}
                 </div>
               ) : (
@@ -110,8 +110,8 @@ export default function TrackTransaction() {
 
           {!searched && (
             <div className="glass p-6 text-center">
-              <Search className="w-10 h-10 text-white/20 mx-auto mb-3" aria-hidden="true" />
-              <p className="text-white/50 text-sm">Enter a transaction ID above to track your transfer status.</p>
+              <Search className="w-10 h-10 text-ink-muted/50 mx-auto mb-3" aria-hidden="true" />
+              <p className="text-ink-muted text-sm">Enter a transaction ID above to track your transfer status.</p>
             </div>
           )}
         </div>

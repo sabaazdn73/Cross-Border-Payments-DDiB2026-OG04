@@ -50,9 +50,3 @@ this point — that's a separate concern from whether the *final* fiat
 leg succeeded, which is exactly why this needs its own explicit state
 rather than being folded into "completed" or silently retried.
 
-{% hint style="warning" %}
-Not yet implemented in code — this is a specified data-model and
-state-machine addition. Building it requires a real payout partner's
-failure-notification webhook to design against, which this project
-doesn't have yet (see [Roadmap](../project/roadmap.md)).
-{% endhint %}

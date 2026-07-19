@@ -2,31 +2,28 @@ import { useEffect, useState } from 'react';
 import { Sun, Moon } from 'lucide-react';
 
 /**
- * Toggles a `.light` class on <html>. Dark is the app's default and
- * always-tested look; `.light` is an override layer defined in
- * index.css (see "LIGHT MODE OVERRIDES" section) rather than a
- * ground-up per-component rebuild — this keeps every existing dark-
- * mode class working unchanged while giving light mode a real,
- * verifiable alternate palette on the pages it's been applied to.
+ * Light is the default look (no class needed). This toggles a `.dark`
+ * class on <html> for users who want the dark palette — persisted so
+ * the choice survives a reload.
  */
 export default function ThemeToggle() {
-  const [light, setLight] = useState(() => {
+  const [dark, setDark] = useState(() => {
     if (typeof window === 'undefined') return false;
-    return localStorage.getItem('f2f-theme') === 'light';
+    return localStorage.getItem('f2f-theme') === 'dark';
   });
 
   useEffect(() => {
-    document.documentElement.classList.toggle('light', light);
-    localStorage.setItem('f2f-theme', light ? 'light' : 'dark');
-  }, [light]);
+    document.documentElement.classList.toggle('dark', dark);
+    localStorage.setItem('f2f-theme', dark ? 'dark' : 'light');
+  }, [dark]);
 
   return (
     <button
-      onClick={() => setLight((v) => !v)}
-      aria-label={light ? 'Switch to dark mode' : 'Switch to light mode'}
-      className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-white/20 transition-colors"
+      onClick={() => setDark((v) => !v)}
+      aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+      className="w-9 h-9 rounded-lg border border-hairline flex items-center justify-center text-ink-muted hover:text-ink hover:border-ink-muted/40 transition-colors"
     >
-      {light ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+      {dark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
     </button>
   );
 }
