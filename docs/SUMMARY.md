@@ -23,6 +23,7 @@
 * [Stablecoin Market Share by Chain](architecture/stablecoin-market-share.md)
 * [Payee Verification & Failed Settlement](architecture/payee-verification.md)
 * [Design System](architecture/design-system.md)
+* [Security & Privacy](architecture/security-privacy.md)
 
 ## Business
 * [Market Analysis](business/market-analysis.md)

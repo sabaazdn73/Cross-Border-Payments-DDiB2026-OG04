@@ -4,7 +4,7 @@ import {
   SendHorizonal, Search, ChevronRight, Star, TrendingUp,
   Banknote, Smartphone, Building2
 } from 'lucide-react';
-import Navbar from '../components/layout/Navbar';
+import Navbar, { DOCS_URL } from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 
 const benefits = [
@@ -39,6 +39,23 @@ const currencies = [
   { countryCode: 'SG', code: 'SGD', name: 'S. Dollar' },
 ];
 
+// Researched candidates, not confirmed integrations -- see
+// docs/business/potential-partners.md for the sourced detail behind
+// each one (coverage, licensing, named caveats).
+const partners = [
+  { name: 'BVNK', region: 'US · UK · EU' },
+  { name: 'Yellow Card', region: 'Africa' },
+  { name: 'Conduit', region: 'Africa' },
+  { name: 'MTN MoMo', region: 'Africa' },
+  { name: 'Airtel Money', region: 'Africa' },
+  { name: 'Bitso', region: 'Latin America' },
+  { name: 'AstroPay', region: 'Latin America' },
+  { name: 'Tazapay', region: 'Asia-Pacific' },
+  { name: 'TransFi', region: 'MENA · South Asia' },
+  { name: 'Due', region: 'APAC · Africa · LatAm' },
+  { name: 'Circle', region: 'Global (USDC issuer)' },
+];
+
 const stats = [
   { value: '30+', label: 'Countries', icon: Globe },
   { value: '30+', label: 'Currencies', icon: TrendingUp },
@@ -60,11 +77,37 @@ export default function Home() {
         </div>
 
         <div className="container-app relative z-10 py-20">
-          <div className="max-w-4xl mx-auto text-center hero-glass rounded-[2.5rem] px-8 py-14 md:px-16 md:py-16 relative overflow-hidden">
-            <Globe
-              className="hidden md:block absolute top-8 right-8 w-14 h-14 text-blue-300/40 animate-spin-slow"
+          <div className="max-w-4xl mx-auto text-center relative">
+            <svg
+              className="hidden md:block absolute -top-4 right-0 w-14 h-14 animate-spin-slow opacity-70"
+              viewBox="0 0 100 100"
               aria-hidden="true"
-            />
+            >
+              <defs>
+                <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="2.2" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <g filter="url(#neonGlow)" stroke="#5ee6ff" fill="none" strokeWidth="1">
+                <circle cx="50" cy="50" r="38" opacity="0.9" />
+                <ellipse cx="50" cy="50" rx="16" ry="38" opacity="0.6" />
+                <ellipse cx="50" cy="50" rx="38" ry="16" opacity="0.6" />
+                <ellipse cx="50" cy="50" rx="30" ry="38" opacity="0.4" />
+                <line x1="12" y1="50" x2="88" y2="50" opacity="0.4" />
+              </g>
+              <g fill="#a6f3ff">
+                <circle className="star-twinkle" cx="34" cy="30" r="1.6" style={{ animationDelay: '0s' }} />
+                <circle className="star-twinkle" cx="62" cy="24" r="1.2" style={{ animationDelay: '0.5s' }} />
+                <circle className="star-twinkle" cx="70" cy="46" r="1.4" style={{ animationDelay: '1s' }} />
+                <circle className="star-twinkle" cx="40" cy="66" r="1.3" style={{ animationDelay: '1.5s' }} />
+                <circle className="star-twinkle" cx="58" cy="72" r="1.1" style={{ animationDelay: '0.8s' }} />
+                <circle className="star-twinkle" cx="26" cy="52" r="1.2" style={{ animationDelay: '1.8s' }} />
+              </g>
+            </svg>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-500/20 border border-brand-500/30 text-brand-400 text-sm font-medium mb-8 animate-fade-in">
               <Zap className="w-4 h-4" aria-hidden="true" />
               Powered by Hedera Blockchain
@@ -278,6 +321,22 @@ export default function Home() {
                   <span className={`fi fi-${cur.countryCode.toLowerCase()} rounded-sm block mx-auto mb-1 w-8 h-6`} aria-hidden="true" />
                   <p className="text-xs font-bold text-ink">{cur.code}</p>
                   <p className="text-xs text-ink-muted truncate">{cur.name}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="text-center mt-14 mb-8">
+            <p className="text-sm font-semibold text-ink-muted uppercase tracking-wider">Potential Settlement Partners</p>
+            <p className="text-xs text-ink-muted mt-1">Researched candidates by region — see <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">full docs</a> for coverage detail</p>
+          </div>
+          <div className="ticker-mask overflow-hidden">
+            <div className="ticker-track gap-3" style={{ animationDirection: 'reverse', animationDuration: '32s' }}>
+              {[...partners, ...partners].map((p, i) => (
+                <div key={`${p.name}-${i}`} className="glass px-5 py-3 flex items-center gap-2.5 hover:bg-brand-500/5 transition-all cursor-default shrink-0">
+                  <Building2 className="w-4 h-4 text-brand-500 shrink-0" aria-hidden="true" />
+                  <span className="text-sm font-semibold text-ink whitespace-nowrap">{p.name}</span>
+                  <span className="text-xs text-ink-muted whitespace-nowrap">{p.region}</span>
                 </div>
               ))}
             </div>
