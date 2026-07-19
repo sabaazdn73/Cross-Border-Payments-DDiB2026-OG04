@@ -16,7 +16,7 @@
 
 | Item | Why it's future work, not a shortcut taken now |
 |---|---|
-| **Solana / Ethereum execution** | Requires funded testnet accounts and a second/third chain SDK — real integration work, not a coding shortcut. The *routing decision* already accounts for these chains; only execution is pending. |
+| **Ethereum / Solana / Base / BNB Chain execution** | Requires funded testnet accounts and SDKs for four chains — real integration work, not a coding shortcut. The *routing decision* already accounts for all four (see [Settlement Layer](../architecture/settlement-layer.md)); only execution is pending. |
 | **Full CCTP / Circle Mint bridging** | Depends on which CCTP version supports which chain at a given time — a fast-moving external dependency, verified at build time rather than hardcoded. |
 | **Real partner integration** | `PARTNER_CHAIN_SUPPORT` is illustrative scaffolding. Onboarding an actual sandbox payout partner is a business/legal step, not an engineering one. |
 | **Production licensing** | This project is legal *as designed* — non-custodial, orchestration-only. Any future step toward holding funds (e.g., our own stablecoin issuance, direct custody) would require CASP/PI/EMI authorisation and is explicitly out of scope. |

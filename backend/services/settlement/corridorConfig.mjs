@@ -25,7 +25,7 @@
  *  chosen — this is illustrative scaffolding, not a claim that these
  *  specific partners are integrated. */
 export const PARTNER_CHAIN_SUPPORT = {
-  payout_partner_default: ["hedera", "solana", "ethereum", "base"],
+  payout_partner_default: ["hedera", "solana", "ethereum", "base", "bnb"],
   // Add more partners here as they're onboarded:
   // payout_partner_africa: ["solana", "ethereum"],
 };
@@ -45,6 +45,12 @@ export const COMPLIANT_STABLECOIN_CHAINS = {
   // representative of available payment-settlement liquidity. Included
   // as a fallback option, ranked by real supply, not headline volume.
   base:     { stablecoin: "USDC", native: true },
+  // BNB Chain: ~$14B total stablecoin supply (larger headline number than
+  // Base), but ~60-66% of that is USDT, which is NOT MiCA-compliant. The
+  // USDC-specific portion (Circle issues natively on BNB Chain) is the
+  // only relevant slice for our EU leg -- roughly comparable to Base's
+  // total, not to BNB Chain's full $14B figure. Cited, not assumed.
+  bnb:      { stablecoin: "USDC", native: true },
   // EURC has a much smaller native footprint; add chains here only
   // once you've confirmed Circle issues EURC natively on them.
 };
@@ -61,7 +67,7 @@ export const HEDERA_SAFE_AMOUNT_USD = 20_000;
  *  first, per the researched USDC-supply-by-chain figures (Ethereum
  *  ≈ 70% of global USDC supply, Solana second and fastest-growing,
  *  sub-cent fees). */
-export const FALLBACK_CHAIN_PRIORITY = ["ethereum", "solana", "base"];
+export const FALLBACK_CHAIN_PRIORITY = ["ethereum", "solana", "base", "bnb"];
 
 /** How value would move onto a non-Hedera chain, given today's state
  *  of Circle's Cross-Chain Transfer Protocol (CCTP):
@@ -78,5 +84,6 @@ export const BRIDGE_METHOD_BY_CHAIN = {
   ethereum: "cctp",
   solana: "cctp",
   base: "cctp",                  // Base is a first-class CCTP chain
+  bnb: "cctp",                    // BNB Chain is also a first-class CCTP chain
 };
 
