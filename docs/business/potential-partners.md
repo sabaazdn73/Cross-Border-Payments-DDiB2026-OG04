@@ -4,9 +4,19 @@ A researched, named candidate list per region — not aspirational coverage clai
 
 ## Africa
 
+{% hint style="info" %}
+African mobile money providers (MTN, Airtel, and generally M-Pesa's
+ecosystem too) require a **signed partnership agreement before**
+releasing API documentation — a real operational friction point, not
+a paperwork formality. Budget for a business-development cycle before
+any technical integration work can start, not just an API key request.
+{% endhint %}
+
 | Candidate | Coverage | Notes |
 |---|---|---|
 | **Yellow Card** | 35+ countries, 50+ currencies | Visa/Mastercard institutional partnerships; May 2026 Mastercard deal extending into Eastern Europe, Middle East and Africa (initial focus: Ghana, Kenya, Nigeria, South Africa, UAE). Decade of licensed operations across Africa — a geographic compliance moat generalist platforms can't replicate quickly. |
+| **MTN Mobile Money (MoMo)** | 16-17 African countries | Africa's largest mobile money service: 69.1M active users, 1.3M agents, 1.5M merchants. Runs an **Open API platform** specifically for third-party fintech integration. Mastercard partnership already covers 13 markets (Benin, Cameroon, Cote d'Ivoire, Eswatini, Ghana, Liberia, Nigeria, Congo, Guinea, Rwanda, South Africa, Uganda, Zambia) — overlaps directly with this platform's existing "Mobile Money" payout method. Weaker in Northern Africa (Egypt, Morocco). |
+| **Airtel Money** | 14 African countries | Multicurrency functionality (useful in volatile-currency corridors); business-focused features beyond MTN's consumer focus (supply-chain payments, agricultural payment rails). Competes directly with MTN in West/Central Africa rather than covering different ground. |
 | **Conduit** | 23 African countries, direct local rails | Backed by Circle, Dragonfly, Altos Ventures; $53M raised; $10B+ annualised volume. Widely cited as the deepest Africa-specific coverage in the category. |
 
 ## Latin America

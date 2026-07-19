@@ -153,13 +153,13 @@ This is a sandbox demonstration receipt. Not a real financial document.
               <div>
                 <h3 className="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-3">Sender</h3>
                 <ReceiptRow label="Name" value={transaction.senderName} />
-                <ReceiptRow label="Country" value={senderCountry ? `${senderCountry.flag} ${senderCountry.name}` : transaction.senderCountry} />
+                <ReceiptRow label="Country" value={senderCountry ? (<span className="inline-flex items-center gap-1.5"><span className={`fi fi-${senderCountry.code.toLowerCase()} rounded-sm`} aria-hidden="true" />{senderCountry.name}</span>) : transaction.senderCountry} />
               </div>
 
               <div>
                 <h3 className="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-3">Recipient</h3>
                 <ReceiptRow label="Name" value={transaction.recipientName} />
-                <ReceiptRow label="Country" value={recipientCountry ? `${recipientCountry.flag} ${recipientCountry.name}` : transaction.recipientCountry} />
+                <ReceiptRow label="Country" value={recipientCountry ? (<span className="inline-flex items-center gap-1.5"><span className={`fi fi-${recipientCountry.code.toLowerCase()} rounded-sm`} aria-hidden="true" />{recipientCountry.name}</span>) : transaction.recipientCountry} />
                 <ReceiptRow label="Payout Method" value={payoutMethod?.label || transaction.payoutMethod} />
               </div>
 

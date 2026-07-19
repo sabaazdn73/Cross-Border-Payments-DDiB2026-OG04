@@ -51,6 +51,20 @@ export default function Payment() {
 
   const { register, handleSubmit, setValue, formState: { errors } } = useForm({ resolver: zodResolver(schema) });
 
+  // Fills the standard Stripe test card so the payment step can be
+  // demonstrated by clicking through, not by typing a card number
+  // that has to be remembered or copy-pasted from the docs.
+  const fillTestCard = () => {
+    setValue('cardholderName', formData.senderName || 'Ana Costa', { shouldValidate: true });
+    const testCardNumber = '4242 4242 4242 4242';
+    setCardNumber(testCardNumber);
+    setValue('cardNumber', testCardNumber, { shouldValidate: true });
+    const testExpiry = '12/28';
+    setExpiryDate(testExpiry);
+    setValue('expiryDate', testExpiry, { shouldValidate: true });
+    setValue('cvv', '123', { shouldValidate: true });
+  };
+
   if (!formData.senderName) {
     return (
       <div className="min-h-screen bg-canvas flex flex-col">
@@ -107,7 +121,7 @@ export default function Payment() {
             <Info className="w-5 h-5 text-warning-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
             <div>
               <p className="font-semibold text-warning-400 text-sm">Sandbox Payment Simulation</p>
-              <p className="text-ink-muted text-xs mt-0.5">This is a demo environment. No real payment will be processed. Use the test card number below.</p>
+              <p className="text-ink-muted text-xs mt-0.5">This is a demo environment. No real payment will be processed. Click "Fill test card" below to populate a standard test card automatically.</p>
             </div>
           </div>
 
@@ -116,6 +130,16 @@ export default function Payment() {
             title="Complete Payment"
             subtitle={`Paying ${formData.currency} ${Number(summary.sendAmount).toFixed(2)} (Sandbox simulation)`}
           />
+
+          <div className="flex justify-center mb-6">
+            <button
+              type="button"
+              onClick={fillTestCard}
+              className="text-sm font-medium text-brand-500 hover:text-brand-600 border border-brand-500/30 hover:border-brand-500/50 rounded-lg px-4 py-2 transition-colors"
+            >
+              Fill test card
+            </button>
+          </div>
 
           {paymentState === 'loading' && (
             <div className="glass p-12 text-center">

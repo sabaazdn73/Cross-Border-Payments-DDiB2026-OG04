@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { User, Mail, DollarSign, CreditCard, ChevronRight } from 'lucide-react';
@@ -7,6 +7,7 @@ import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import FormInput from '../components/ui/FormInput';
 import SelectInput from '../components/ui/SelectInput';
+import FlagSelectInput from '../components/ui/FlagSelectInput';
 import TransferSummaryCard from '../components/transaction/TransferSummaryCard';
 import PageHeader from '../components/ui/PageHeader';
 import { useTransaction } from '../hooks/useTransaction';
@@ -36,8 +37,18 @@ const schema = z.object({
   termsAccepted: z.boolean().refine((val) => val === true, 'You must accept the terms to continue'),
 });
 
-const countryOptions = countries.map((c) => ({ value: c.code, label: `${c.flag} ${c.name}` }));
-const currencyOptions = currencies.map((c) => ({ value: c.code, label: `${c.flag} ${c.code} (${c.name})` }));
+// flagCode carries the ISO country code used to render a real SVG
+// flag icon (see FlagSelectInput) rather than an emoji, which some
+// operating systems (Windows, some Android builds) render as plain
+// text instead of a flag.
+const countryOptions = countries.map((c) => ({ value: c.code, label: c.name, flagCode: c.code }));
+const currencyOptions = currencies.map((c) => {
+  // Represent each currency with one country that uses it (first match
+  // in the shared countries list) so both selectors draw flags from
+  // the same single source of truth.
+  const rep = countries.find((co) => co.currency === c.code);
+  return { value: c.code, label: `${c.code} (${c.name})`, flagCode: rep?.code };
+});
 const payoutOptions = payoutMethods.map((m) => ({ value: m.id, label: m.label }));
 
 // The recipient identifier means something different per payout method —
@@ -57,7 +68,7 @@ export default function SendMoney() {
   const navigate = useNavigate();
   const { formData, updateFormData } = useTransaction();
 
-  const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm({
+  const { register, handleSubmit, watch, setValue, control, formState: { errors } } = useForm({
     resolver: zodResolver(schema),
     defaultValues: { ...formData, amount: formData.amount || '' },
   });
@@ -127,7 +138,10 @@ export default function SendMoney() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <FormInput id="senderName" label="Full Name" required placeholder="John Doe" error={errors.senderName?.message} {...register('senderName')} />
                     <FormInput id="senderEmail" label="Email Address (optional, for your receipt)" type="email" placeholder="john@example.com" error={errors.senderEmail?.message} {...register('senderEmail')} />
-                    <SelectInput id="senderCountry" label="Country" required options={countryOptions} error={errors.senderCountry?.message} {...register('senderCountry')} />
+                    <Controller name="senderCountry" control={control} render={({ field }) => (
+                      <FlagSelectInput id="senderCountry" label="Country" required options={countryOptions}
+                        placeholder="Select country" error={errors.senderCountry?.message} {...field} />
+                    )} />
                   </div>
                 </div>
 
@@ -139,7 +153,10 @@ export default function SendMoney() {
                   </h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <FormInput id="amount" label="Amount to Send" type="number" required min="1" step="0.01" placeholder="500.00" error={errors.amount?.message} {...register('amount')} />
-                    <SelectInput id="currency" label="Sending Currency" required options={currencyOptions} error={errors.currency?.message} {...register('currency')} />
+                    <Controller name="currency" control={control} render={({ field }) => (
+                      <FlagSelectInput id="currency" label="Sending Currency" required options={currencyOptions}
+                        placeholder="Select currency" error={errors.currency?.message} {...field} />
+                    )} />
                   </div>
                 </div>
 
@@ -156,8 +173,14 @@ export default function SendMoney() {
                       required
                       placeholder={(recipientFieldByMethod[watchedPayoutMethod] || defaultRecipientField).placeholder}
                       error={errors.recipientAccountDetails?.message} {...register('recipientAccountDetails')} />
-                    <SelectInput id="recipientCountry" label="Recipient Country" required options={countryOptions} error={errors.recipientCountry?.message} {...register('recipientCountry')} />
-                    <SelectInput id="receivingCurrency" label="Receiving Currency" required options={currencyOptions} error={errors.receivingCurrency?.message} {...register('receivingCurrency')} />
+                    <Controller name="recipientCountry" control={control} render={({ field }) => (
+                      <FlagSelectInput id="recipientCountry" label="Recipient Country" required options={countryOptions}
+                        placeholder="Select country" error={errors.recipientCountry?.message} {...field} />
+                    )} />
+                    <Controller name="receivingCurrency" control={control} render={({ field }) => (
+                      <FlagSelectInput id="receivingCurrency" label="Receiving Currency" required options={currencyOptions}
+                        placeholder="Select currency" error={errors.receivingCurrency?.message} {...field} />
+                    )} />
                   </div>
                 </div>
 

@@ -57,7 +57,7 @@ export default function ReviewTransfer() {
                 </h2>
                 <InfoRow label="Full Name" value={formData.senderName} />
                 <InfoRow label="Email" value={formData.senderEmail} />
-                <InfoRow label="Country" value={senderCountry ? `${senderCountry.flag} ${senderCountry.name}` : formData.senderCountry} />
+                <InfoRow label="Country" value={senderCountry ? (<span className="inline-flex items-center gap-1.5"><span className={`fi fi-${senderCountry.code.toLowerCase()} rounded-sm`} aria-hidden="true" />{senderCountry.name}</span>) : formData.senderCountry} />
               </div>
 
               <div className="glass p-6">
@@ -66,7 +66,7 @@ export default function ReviewTransfer() {
                 </h2>
                 <InfoRow label="Full Name" value={formData.recipientName} />
                 <InfoRow label="Payout Destination" value={formData.recipientAccountDetails} />
-                <InfoRow label="Country" value={recipientCountry ? `${recipientCountry.flag} ${recipientCountry.name}` : formData.recipientCountry} />
+                <InfoRow label="Country" value={recipientCountry ? (<span className="inline-flex items-center gap-1.5"><span className={`fi fi-${recipientCountry.code.toLowerCase()} rounded-sm`} aria-hidden="true" />{recipientCountry.name}</span>) : formData.recipientCountry} />
                 <InfoRow label="Payout Method" value={payoutMethod?.label || formData.payoutMethod} />
                 <InfoRow label="Purpose" value={formData.purpose} />
               </div>

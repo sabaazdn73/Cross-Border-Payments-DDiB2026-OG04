@@ -20,6 +20,7 @@
 * [API Design](architecture/api-design.md)
 * [Functional Requirements](architecture/functional-requirements.md)
 * [Settlement Speed by Corridor](architecture/settlement-speed.md)
+* [Stablecoin Market Share by Chain](architecture/stablecoin-market-share.md)
 * [Payee Verification & Failed Settlement](architecture/payee-verification.md)
 * [Design System](architecture/design-system.md)
 

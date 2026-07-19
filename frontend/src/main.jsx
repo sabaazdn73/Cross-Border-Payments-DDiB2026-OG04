@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { TransactionProvider } from './context/TransactionContext';
 import App from './App';
 import './index.css';
+import 'flag-icons/css/flag-icons.min.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

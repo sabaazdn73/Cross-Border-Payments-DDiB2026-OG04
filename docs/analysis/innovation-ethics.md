@@ -2,14 +2,14 @@
 
 ### 23.1 Innovation
 1. **Walletless on both sides.** Not "abstracted for the business" — genuinely absent for sender and recipient.
-2. **Verifiable compliance evidence** across independently licensed parties — the gap left by every player in [this section](/business/market-analysis.md).
+2. **Verifiable compliance evidence** across independently licensed parties — the gap left by every player in [this section](../business/market-analysis.md).
 3. **A legal architecture as a design constraint**, not an afterthought: the orchestrator model is what makes the system buildable without two licences.
 4. **Separating the decision from the proof** — the licensed party decides; the unlicensed party makes it provable.
 
 ### 23.2 Limitations — first, not last
 - **We own no licence, no corridor and no liquidity.** Every part of the actual service is someone else's.
-- **We do not remove capital lock-up.** We relocate it ([this section](/business/business-model.md)).
-- **We do not open closed corridors.** Coverage is licensing ([this section](/legal/why-this-is-legal.md)).
+- **We do not remove capital lock-up.** We relocate it ([this section](../business/business-model.md)).
+- **We do not open closed corridors.** Coverage is licensing ([this section](../legal/why-this-is-legal.md)).
 - **We are trivially copyable** by a licensed CASP that adds an anchor.
 - **Sandbox, not production.** Real corridors need real licences, real partners, real liquidity.
 - **Hedera has thin stablecoin liquidity.** A production version would face this immediately.
