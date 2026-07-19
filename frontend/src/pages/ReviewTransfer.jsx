@@ -10,10 +10,10 @@ import { payoutMethods } from '../data/payoutMethods';
 
 function InfoRow({ label, value, mono = false }) {
   return (
-    <div className="flex items-start justify-between gap-4 py-2.5 border-b border-white/5 last:border-0">
-      <span className="text-white/50 text-sm flex-shrink-0">{label}</span>
-      <span className={`text-white text-sm text-right ${mono ? 'font-mono text-xs text-accent-400' : 'font-medium'}`}>
-        {value || '—'}
+    <div className="flex items-start justify-between gap-4 py-2.5 border-b border-hairline last:border-0">
+      <span className="text-ink-muted text-sm flex-shrink-0">{label}</span>
+      <span className={`text-ink text-sm text-right ${mono ? 'font-mono text-xs text-accent-400' : 'font-medium'}`}>
+        {value || 'N/A'}
       </span>
     </div>
   );
@@ -30,11 +30,11 @@ export default function ReviewTransfer() {
 
   if (!formData.senderName) {
     return (
-      <div className="min-h-screen bg-navy-950 flex flex-col">
+      <div className="min-h-screen bg-canvas flex flex-col">
         <Navbar />
         <main className="flex-1 flex items-center justify-center">
           <div className="text-center">
-            <p className="text-white/60 mb-4">No transfer data found. Please start a new transfer.</p>
+            <p className="text-ink-muted mb-4">No transfer data found. Please start a new transfer.</p>
             <button onClick={() => navigate('/send-money')} className="btn-primary">Start Transfer</button>
           </div>
         </main>
@@ -43,7 +43,7 @@ export default function ReviewTransfer() {
   }
 
   return (
-    <div className="min-h-screen bg-navy-950 flex flex-col">
+    <div className="min-h-screen bg-canvas flex flex-col">
       <Navbar />
       <main className="flex-1 pt-24 pb-16 px-4">
         <div className="container-app max-w-5xl">
@@ -52,7 +52,7 @@ export default function ReviewTransfer() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2 space-y-5">
               <div className="glass p-6">
-                <h2 className="font-bold text-white mb-4 flex items-center gap-2">
+                <h2 className="font-bold text-ink mb-4 flex items-center gap-2">
                   <User className="w-4 h-4 text-brand-400" aria-hidden="true" />Sender
                 </h2>
                 <InfoRow label="Full Name" value={formData.senderName} />
@@ -61,7 +61,7 @@ export default function ReviewTransfer() {
               </div>
 
               <div className="glass p-6">
-                <h2 className="font-bold text-white mb-4 flex items-center gap-2">
+                <h2 className="font-bold text-ink mb-4 flex items-center gap-2">
                   <Mail className="w-4 h-4 text-brand-400" aria-hidden="true" />Recipient
                 </h2>
                 <InfoRow label="Full Name" value={formData.recipientName} />
@@ -72,7 +72,7 @@ export default function ReviewTransfer() {
               </div>
 
               <div className="glass p-6">
-                <h2 className="font-bold text-white mb-4 flex items-center gap-2">
+                <h2 className="font-bold text-ink mb-4 flex items-center gap-2">
                   <DollarSign className="w-4 h-4 text-brand-400" aria-hidden="true" />Transfer Details
                 </h2>
                 <InfoRow label="You send" value={`${Number(summary.sendAmount).toLocaleString()} ${formData.currency}`} />
@@ -84,7 +84,7 @@ export default function ReviewTransfer() {
 
               <div className="glass p-4 flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-success-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                <p className="text-sm text-white/60 leading-relaxed">
+                <p className="text-sm text-ink-muted leading-relaxed">
                   By confirming, you authorize this transfer. Compliance verification and blockchain
                   settlement will occur automatically. No crypto wallet interaction is required.
                 </p>

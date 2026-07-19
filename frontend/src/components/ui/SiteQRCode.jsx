@@ -35,7 +35,7 @@ export default function SiteQRCode({ size = 160, caption = 'Scan to open on your
           <canvas ref={canvasRef} />
         )}
       </div>
-      {caption && <p className="text-xs text-white/50 text-center max-w-[160px]">{caption}</p>}
+      {caption && <p className="text-xs text-ink-muted text-center max-w-[160px]">{caption}</p>}
     </div>
   );
 }

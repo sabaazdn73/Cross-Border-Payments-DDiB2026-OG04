@@ -5,7 +5,7 @@ export default function LoadingSpinner({ size = 'md', message, className = '' })
   return (
     <div className={`flex flex-col items-center justify-center gap-3 ${className}`} role="status">
       <Loader2 className={`animate-spin text-brand-400 ${sizeClasses[size]}`} aria-hidden="true" />
-      {message && <p className="text-white/60 text-sm">{message}</p>}
+      {message && <p className="text-ink-muted text-sm">{message}</p>}
       <span className="sr-only">{message || 'Loading...'}</span>
     </div>
   );

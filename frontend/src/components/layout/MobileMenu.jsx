@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { X, Zap, SendHorizonal, Search } from 'lucide-react';
+import { X, SendHorizonal, Search } from 'lucide-react';
+import brandIcon from '../../assets/brand/icon.svg';
 
 import { DOCS_URL } from './Navbar';
 
@@ -14,20 +15,18 @@ export default function MobileMenu({ isOpen, onClose, navLinks }) {
     >
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} aria-hidden="true" />
       <div
-        className={`absolute right-0 top-0 h-full w-72 bg-navy-900 border-l border-white/10 shadow-2xl transition-transform duration-300 ${
+        className={`absolute right-0 top-0 h-full w-72 bg-surface border-l border-hairline shadow-2xl transition-transform duration-300 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="flex items-center justify-between p-4 border-b border-white/10">
+        <div className="flex items-center justify-between p-4 border-b border-hairline">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-brand-gradient flex items-center justify-center">
-              <Zap className="w-3.5 h-3.5 text-white" />
-            </div>
-            <span className="font-bold text-white">Borderless</span>
+            <img src={brandIcon} alt="" className="w-7 h-7 rounded-lg" />
+            <span className="font-bold text-ink">Cross-Border</span>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+            className="p-1.5 rounded-lg text-ink-muted hover:text-ink hover:bg-black/5 transition-colors"
             aria-label="Close menu"
           >
             <X className="w-5 h-5" />
@@ -42,7 +41,7 @@ export default function MobileMenu({ isOpen, onClose, navLinks }) {
                 key={link.to}
                 to={link.to}
                 onClick={onClose}
-                className="flex items-center gap-3 px-3 py-3 rounded-xl text-white/70 hover:text-white hover:bg-white/5 transition-all"
+                className="flex items-center gap-3 px-3 py-3 rounded-xl text-ink-muted hover:text-ink hover:bg-black/5 transition-all"
               >
                 {Icon ? <Icon className="w-4 h-4" /> : null}
                 <span>{link.label}</span>
@@ -54,13 +53,13 @@ export default function MobileMenu({ isOpen, onClose, navLinks }) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={onClose}
-            className="flex items-center gap-3 px-3 py-3 rounded-xl text-white/70 hover:text-white hover:bg-white/5 transition-all"
+            className="flex items-center gap-3 px-3 py-3 rounded-xl text-ink-muted hover:text-ink hover:bg-black/5 transition-all"
           >
             <span>Docs ↗</span>
           </a>
         </nav>
 
-        <div className="p-4 space-y-2 border-t border-white/10">
+        <div className="p-4 space-y-2 border-t border-hairline">
           <Link to="/send-money" onClick={onClose} className="btn-primary w-full text-sm py-3 justify-center">
             <SendHorizonal className="w-4 h-4" />
             Start Transfer

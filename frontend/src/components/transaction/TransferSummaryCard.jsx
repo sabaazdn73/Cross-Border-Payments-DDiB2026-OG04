@@ -17,7 +17,7 @@ export default function TransferSummaryCard({
 
   return (
     <div className={`glass p-5 space-y-4 ${className}`}>
-      <h3 className="font-semibold text-white flex items-center gap-2">
+      <h3 className="font-semibold text-ink flex items-center gap-2">
         <Globe className="w-4 h-4 text-brand-400" aria-hidden="true" />
         Transfer Summary
       </h3>
@@ -25,8 +25,8 @@ export default function TransferSummaryCard({
       <div className="space-y-3">
         {/* You send */}
         <div className="flex items-center justify-between">
-          <span className="text-white/60 text-sm">You send</span>
-          <span className="text-white font-semibold">
+          <span className="text-ink-muted text-sm">You send</span>
+          <span className="text-ink font-semibold">
             {sendAmount > 0
               ? formatAmount(sendAmount, fromCurrency)
               : `${fromCur?.symbol || fromCurrency}0.00`}
@@ -35,7 +35,7 @@ export default function TransferSummaryCard({
 
         {/* Service fee */}
         <div className="flex items-center justify-between">
-          <span className="text-white/60 text-sm flex items-center gap-1">
+          <span className="text-ink-muted text-sm flex items-center gap-1">
             <DollarSign className="w-3 h-3" aria-hidden="true" />
             Service fee
           </span>
@@ -44,11 +44,11 @@ export default function TransferSummaryCard({
           </span>
         </div>
 
-        <div className="border-t border-white/10" />
+        <div className="border-t border-hairline" />
 
         {/* Exchange rate */}
         <div className="flex items-center justify-between">
-          <span className="text-white/60 text-sm flex items-center gap-1">
+          <span className="text-ink-muted text-sm flex items-center gap-1">
             <ArrowRight className="w-3 h-3" aria-hidden="true" />
             Exchange rate
           </span>
@@ -59,35 +59,35 @@ export default function TransferSummaryCard({
           </span>
         </div>
 
-        <div className="border-t border-white/10" />
+        <div className="border-t border-hairline" />
 
         {/* Recipient gets */}
         <div className="flex items-center justify-between">
-          <span className="text-white/60 text-sm">Recipient gets</span>
+          <span className="text-ink-muted text-sm">Recipient gets</span>
           <div className="text-right">
             <span className="text-success-400 font-bold text-lg">
               {recipientAmount > 0
                 ? formatAmount(recipientAmount, toCurrency)
                 : `${toCur?.symbol || toCurrency}0.00`}
             </span>
-            <p className="text-white/40 text-xs">{toCur?.name}</p>
+            <p className="text-ink-muted text-xs">{toCur?.name}</p>
           </div>
         </div>
 
         {/* Delivery time */}
         <div className="flex items-center justify-between pt-1">
-          <span className="text-white/60 text-sm flex items-center gap-1">
+          <span className="text-ink-muted text-sm flex items-center gap-1">
             <Clock className="w-3 h-3" aria-hidden="true" />
             Estimated delivery
           </span>
-          <span className="text-white/80 text-sm">{deliveryTime || '--'}</span>
+          <span className="text-ink text-sm">{deliveryTime || '--'}</span>
         </div>
       </div>
 
       {/* Bottom badge */}
-      <div className="pt-2 border-t border-white/10">
-        <p className="text-xs text-white/40 text-center">
-          🔒 Settlement via Hedera blockchain — no wallet required
+      <div className="pt-2 border-t border-hairline">
+        <p className="text-xs text-ink-muted text-center">
+          🔒 Settlement via Hedera blockchain. No wallet required
         </p>
       </div>
     </div>

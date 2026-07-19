@@ -83,7 +83,7 @@ export default function TamperDemo() {
   ];
 
   return (
-    <div className="min-h-screen bg-navy-950 flex flex-col">
+    <div className="min-h-screen bg-canvas flex flex-col">
       <Navbar />
       <main className="flex-1 pt-24 pb-16 px-4">
         <div className="container-app max-w-4xl">
@@ -96,7 +96,7 @@ export default function TamperDemo() {
           {/* Info banner */}
           <div className="glass p-4 mb-6 flex items-start gap-3 bg-brand-500/5 border-brand-500/20">
             <Shield className="w-5 h-5 text-brand-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
-            <div className="text-sm text-white/70">
+            <div className="text-sm text-ink-muted">
               <p className="font-semibold text-brand-400 mb-1">How This Works</p>
               <p>The compliance record's cryptographic hash was anchored on Hedera HCS at the time of the transaction.
                 Any modification to the off-chain record will produce a different hash, revealing the tampering.</p>
@@ -107,7 +107,7 @@ export default function TamperDemo() {
             {/* Current record state */}
             <div className="glass p-6">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="font-bold text-white text-sm uppercase tracking-wider">
+                <h2 className="font-bold text-ink text-sm uppercase tracking-wider">
                   {isTampered ? 'Modified Record' : 'Original Record'}
                 </h2>
                 {isTampered && (
@@ -123,8 +123,8 @@ export default function TamperDemo() {
                   const changed = isTampered && original !== current;
                   return (
                     <div key={key} className={`flex justify-between py-1.5 px-2 rounded-lg text-sm ${changed ? 'bg-danger-500/10 border border-danger-500/20' : ''}`}>
-                      <span className="text-white/50">{label}</span>
-                      <span className={`font-medium ${changed ? 'text-danger-400 line-through mr-2' : 'text-white'}`}>
+                      <span className="text-ink-muted">{label}</span>
+                      <span className={`font-medium ${changed ? 'text-danger-400 line-through mr-2' : 'text-ink'}`}>
                         {changed ? String(original) : String(current)}
                       </span>
                       {changed && <span className="text-danger-300 font-bold">{String(current)}</span>}
@@ -137,23 +137,23 @@ export default function TamperDemo() {
             {/* Hash comparison */}
             <div className="space-y-4">
               <div className="glass p-5">
-                <h2 className="font-bold text-white text-sm uppercase tracking-wider mb-4">Hash Comparison</h2>
+                <h2 className="font-bold text-ink text-sm uppercase tracking-wider mb-4">Hash Comparison</h2>
                 <HashDisplay label="Anchored Blockchain Hash (HCS)" hash={anchoredHash} className="mb-4" />
                 <HashDisplay
-                  label={isTampered ? 'Current Hash — MISMATCH ⚠' : 'Current Hash — Match ✓'}
+                  label={isTampered ? 'Current Hash: MISMATCH ⚠' : 'Current Hash: Match ✓'}
                   hash={currentHash}
                 />
                 {isTampered && currentHash !== anchoredHash && (
                   <div className="mt-4 p-3 rounded-xl bg-danger-500/10 border border-danger-500/20">
                     <p className="text-xs text-danger-400 font-semibold">
-                      ⚠ Hashes do not match — tampering detected
+                      ⚠ Hashes do not match. Tampering detected
                     </p>
                   </div>
                 )}
                 {!isTampered && (
                   <div className="mt-4 p-3 rounded-xl bg-success-500/10 border border-success-500/20">
                     <p className="text-xs text-success-400 font-semibold">
-                      ✓ Hashes match — record is authentic
+                      ✓ Hashes match. Record is authentic
                     </p>
                   </div>
                 )}
@@ -161,7 +161,7 @@ export default function TamperDemo() {
 
               {/* Action buttons */}
               <div className="glass p-5 space-y-2">
-                <h3 className="font-semibold text-white text-sm mb-3">Demo Controls</h3>
+                <h3 className="font-semibold text-ink text-sm mb-3">Demo Controls</h3>
                 <button onClick={handleVerify} disabled={verifying} className="btn-primary w-full justify-center text-sm py-2.5">
                   <Shield className="w-4 h-4" aria-hidden="true" />
                   {isTampered ? 'Verify Modified Record' : 'Verify Original Record'}

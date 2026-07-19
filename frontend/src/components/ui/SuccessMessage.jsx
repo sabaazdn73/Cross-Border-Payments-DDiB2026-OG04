@@ -6,7 +6,7 @@ export default function SuccessMessage({ title = 'Success', message, className =
       <CheckCircle className="w-5 h-5 text-success-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
       <div>
         <p className="font-semibold text-success-400 text-sm">{title}</p>
-        {message && <p className="text-white/70 text-sm mt-0.5">{message}</p>}
+        {message && <p className="text-ink-muted text-sm mt-0.5">{message}</p>}
       </div>
     </div>
   );

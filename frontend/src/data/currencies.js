@@ -24,6 +24,11 @@ export const currencies = [
   { code: 'AED', name: 'UAE Dirham', symbol: 'AED', flag: '🇦🇪' },
   { code: 'PKR', name: 'Pakistani Rupee', symbol: '₨', flag: '🇵🇰' },
   { code: 'IDR', name: 'Indonesian Rupiah', symbol: 'Rp', flag: '🇮🇩' },
+  { code: 'ARS', name: 'Argentine Peso', symbol: 'ARS$', flag: '🇦🇷' },
+  { code: 'KRW', name: 'South Korean Won', symbol: '₩', flag: '🇰🇷' },
+  { code: 'SAR', name: 'Saudi Riyal', symbol: 'SAR', flag: '🇸🇦' },
+  { code: 'BDT', name: 'Bangladeshi Taka', symbol: '৳', flag: '🇧🇩' },
+  { code: 'VND', name: 'Vietnamese Dong', symbol: '₫', flag: '🇻🇳' },
 ];
 
 export const getCurrencyByCode = (code) => currencies.find((c) => c.code === code);

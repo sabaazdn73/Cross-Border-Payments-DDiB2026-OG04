@@ -13,9 +13,9 @@ import { payoutMethods } from '../data/payoutMethods';
 function ReceiptRow({ label, value, mono = false, highlight = false }) {
   return (
     <div className="flex items-start justify-between gap-4 py-2.5 border-b border-gray-100/10 last:border-0">
-      <span className="text-sm text-white/50 flex-shrink-0">{label}</span>
-      <span className={`text-sm text-right break-all ${mono ? 'font-mono text-xs text-accent-400' : highlight ? 'font-semibold text-success-400' : 'text-white font-medium'}`}>
-        {value || '—'}
+      <span className="text-sm text-ink-muted flex-shrink-0">{label}</span>
+      <span className={`text-sm text-right break-all ${mono ? 'font-mono text-xs text-accent-400' : highlight ? 'font-semibold text-success-400' : 'text-ink font-medium'}`}>
+        {value || 'N/A'}
       </span>
     </div>
   );
@@ -32,7 +32,7 @@ export default function TransactionReceipt() {
 
   if (!transaction) {
     return (
-      <div className="min-h-screen bg-navy-950 flex flex-col">
+      <div className="min-h-screen bg-canvas flex flex-col">
         <Navbar />
         <main className="flex-1 flex items-center justify-center pt-16">
           <EmptyState
@@ -50,7 +50,7 @@ export default function TransactionReceipt() {
 
   const handleDownload = () => {
     const content = `
-BORDERLESS — TRANSACTION RECEIPT
+BORDERLESS · TRANSACTION RECEIPT
 ================================
 Transaction ID: ${transaction.id}
 Date: ${formatDate(transaction.createdAt)}
@@ -97,7 +97,7 @@ This is a sandbox demonstration receipt. Not a real financial document.
   };
 
   return (
-    <div className="min-h-screen bg-navy-950 flex flex-col">
+    <div className="min-h-screen bg-canvas flex flex-col">
       <Navbar />
       <main className="flex-1 pt-24 pb-16 px-4">
         <div className="container-app max-w-3xl">
@@ -122,14 +122,14 @@ This is a sandbox demonstration receipt. Not a real financial document.
           {/* Receipt card */}
           <div className="glass p-8 print-receipt">
             {/* Header */}
-            <div className="text-center mb-8 pb-6 border-b border-white/10">
+            <div className="text-center mb-8 pb-6 border-b border-hairline">
               <div className="inline-flex items-center gap-2 mb-3">
                 <div className="w-8 h-8 rounded-lg bg-brand-gradient flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">B</span>
+                  <span className="text-ink font-bold text-sm">B</span>
                 </div>
-                <span className="font-black text-xl text-white">Borderless</span>
+                <span className="font-black text-xl text-ink">Cross-Border</span>
               </div>
-              <p className="text-white/50 text-sm">Transaction Receipt</p>
+              <p className="text-ink-muted text-sm">Transaction Receipt</p>
               <p className="font-mono text-xs text-accent-400 mt-1">{transaction.id}</p>
               <div className="flex justify-center mt-3">
                 <StatusBadge status={transaction.status} />
@@ -139,11 +139,11 @@ This is a sandbox demonstration receipt. Not a real financial document.
             {/* Summary amounts */}
             <div className="grid grid-cols-2 gap-4 mb-6 p-4 rounded-xl bg-white/3">
               <div className="text-center">
-                <p className="text-xs text-white/40 mb-1">Amount Sent</p>
-                <p className="text-xl font-black text-white">{formatAmount(transaction.amount, transaction.currency)}</p>
+                <p className="text-xs text-ink-muted mb-1">Amount Sent</p>
+                <p className="text-xl font-black text-ink">{formatAmount(transaction.amount, transaction.currency)}</p>
               </div>
               <div className="text-center">
-                <p className="text-xs text-white/40 mb-1">Recipient Gets</p>
+                <p className="text-xs text-ink-muted mb-1">Recipient Gets</p>
                 <p className="text-xl font-black text-success-400">{formatAmount(transaction.recipientAmount, transaction.receivingCurrency)}</p>
               </div>
             </div>
@@ -151,20 +151,20 @@ This is a sandbox demonstration receipt. Not a real financial document.
             {/* Sections */}
             <div className="space-y-6">
               <div>
-                <h3 className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Sender</h3>
+                <h3 className="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-3">Sender</h3>
                 <ReceiptRow label="Name" value={transaction.senderName} />
                 <ReceiptRow label="Country" value={senderCountry ? `${senderCountry.flag} ${senderCountry.name}` : transaction.senderCountry} />
               </div>
 
               <div>
-                <h3 className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Recipient</h3>
+                <h3 className="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-3">Recipient</h3>
                 <ReceiptRow label="Name" value={transaction.recipientName} />
                 <ReceiptRow label="Country" value={recipientCountry ? `${recipientCountry.flag} ${recipientCountry.name}` : transaction.recipientCountry} />
                 <ReceiptRow label="Payout Method" value={payoutMethod?.label || transaction.payoutMethod} />
               </div>
 
               <div>
-                <h3 className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Transfer Details</h3>
+                <h3 className="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-3">Transfer Details</h3>
                 <ReceiptRow label="Sending Currency" value={transaction.currency} />
                 <ReceiptRow label="Receiving Currency" value={transaction.receivingCurrency} />
                 <ReceiptRow label="Service Fee" value={formatAmount(transaction.fee, transaction.currency)} />
@@ -173,14 +173,14 @@ This is a sandbox demonstration receipt. Not a real financial document.
               </div>
 
               <div>
-                <h3 className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Compliance & Settlement</h3>
+                <h3 className="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-3">Compliance & Settlement</h3>
                 <ReceiptRow label="Compliance Status" value={transaction.complianceStatus} highlight />
                 <ReceiptRow label="Settlement Status" value={transaction.settlementStatus} highlight />
                 <ReceiptRow label="Payout Status" value={transaction.payoutStatus} highlight />
               </div>
 
               <div>
-                <h3 className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Hedera Blockchain Record</h3>
+                <h3 className="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-3">Hedera Blockchain Record</h3>
                 <ReceiptRow label="TX Reference" value={transaction.hederaTxRef} mono />
                 <ReceiptRow label="HCS Topic ID" value={transaction.hederaTopicId} mono />
                 <ReceiptRow label="Sequence #" value={transaction.hederaSequenceNumber} mono />
@@ -188,8 +188,8 @@ This is a sandbox demonstration receipt. Not a real financial document.
               </div>
             </div>
 
-            <div className="mt-6 pt-6 border-t border-white/10 text-center">
-              <p className="text-xs text-white/30">
+            <div className="mt-6 pt-6 border-t border-hairline text-center">
+              <p className="text-xs text-ink-muted/70">
                 Sandbox demonstration only. Not a real financial document.
               </p>
             </div>

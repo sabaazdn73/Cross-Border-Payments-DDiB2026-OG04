@@ -5,7 +5,7 @@ import Footer from '../components/layout/Footer';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-navy-950 flex flex-col">
+    <div className="min-h-screen bg-canvas flex flex-col">
       <Navbar />
       <main className="flex-1 flex items-center justify-center pt-16 px-4">
         <div className="text-center max-w-lg">
@@ -18,12 +18,12 @@ export default function NotFound() {
             </div>
           </div>
 
-          <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-6">
-            <MapPin className="w-8 h-8 text-white/30" aria-hidden="true" />
+          <div className="w-16 h-16 rounded-2xl bg-white/5 border border-hairline flex items-center justify-center mx-auto mb-6">
+            <MapPin className="w-8 h-8 text-ink-muted/70" aria-hidden="true" />
           </div>
 
-          <h1 className="text-2xl md:text-3xl font-bold text-white mb-3">Page Not Found</h1>
-          <p className="text-white/60 mb-8 leading-relaxed">
+          <h1 className="text-2xl md:text-3xl font-bold text-ink mb-3">Page Not Found</h1>
+          <p className="text-ink-muted mb-8 leading-relaxed">
             The page you're looking for doesn't exist or has been moved. Let's get you back on track.
           </p>
 
@@ -37,7 +37,7 @@ export default function NotFound() {
           </div>
 
           <button onClick={() => window.history.back()}
-            className="flex items-center gap-2 text-white/40 hover:text-white/60 text-sm mx-auto mt-6 transition-colors">
+            className="flex items-center gap-2 text-ink-muted hover:text-ink-muted text-sm mx-auto mt-6 transition-colors">
             <ArrowLeft className="w-4 h-4" aria-hidden="true" />Go back
           </button>
         </div>

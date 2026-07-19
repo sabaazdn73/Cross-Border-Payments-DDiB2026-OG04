@@ -13,7 +13,7 @@ const statusConfig = {
 export default function StatusBadge({ status, className = '' }) {
   const config = statusConfig[status?.toLowerCase()] || {
     label: status || 'Unknown',
-    classes: 'bg-white/10 text-white/60 border-white/20',
+    classes: 'bg-white/10 text-ink-muted border-hairline',
   };
   return (
     <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold border ${config.classes} ${className}`}>
