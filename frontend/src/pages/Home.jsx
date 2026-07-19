@@ -4,7 +4,7 @@ import {
   SendHorizonal, Search, ChevronRight, Star, TrendingUp,
   Banknote, Smartphone, Building2
 } from 'lucide-react';
-import Navbar from '../components/layout/Navbar';
+import Navbar, { DOCS_URL } from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 
 const benefits = [
@@ -39,6 +39,23 @@ const currencies = [
   { countryCode: 'SG', code: 'SGD', name: 'S. Dollar' },
 ];
 
+// Researched candidates, not confirmed integrations -- see
+// docs/business/potential-partners.md for the sourced detail behind
+// each one (coverage, licensing, named caveats).
+const partners = [
+  { name: 'BVNK', region: 'US · UK · EU' },
+  { name: 'Yellow Card', region: 'Africa' },
+  { name: 'Conduit', region: 'Africa' },
+  { name: 'MTN MoMo', region: 'Africa' },
+  { name: 'Airtel Money', region: 'Africa' },
+  { name: 'Bitso', region: 'Latin America' },
+  { name: 'AstroPay', region: 'Latin America' },
+  { name: 'Tazapay', region: 'Asia-Pacific' },
+  { name: 'TransFi', region: 'MENA · South Asia' },
+  { name: 'Due', region: 'APAC · Africa · LatAm' },
+  { name: 'Circle', region: 'Global (USDC issuer)' },
+];
+
 const stats = [
   { value: '30+', label: 'Countries', icon: Globe },
   { value: '30+', label: 'Currencies', icon: TrendingUp },
@@ -60,9 +77,9 @@ export default function Home() {
         </div>
 
         <div className="container-app relative z-10 py-20">
-          <div className="max-w-4xl mx-auto text-center hero-glass rounded-[2.5rem] px-8 py-14 md:px-16 md:py-16 relative overflow-hidden">
+          <div className="max-w-4xl mx-auto text-center relative">
             <svg
-              className="hidden md:block absolute top-8 right-8 w-16 h-16 animate-spin-slow"
+              className="hidden md:block absolute -top-4 right-0 w-14 h-14 animate-spin-slow opacity-70"
               viewBox="0 0 100 100"
               aria-hidden="true"
             >
@@ -304,6 +321,22 @@ export default function Home() {
                   <span className={`fi fi-${cur.countryCode.toLowerCase()} rounded-sm block mx-auto mb-1 w-8 h-6`} aria-hidden="true" />
                   <p className="text-xs font-bold text-ink">{cur.code}</p>
                   <p className="text-xs text-ink-muted truncate">{cur.name}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="text-center mt-14 mb-8">
+            <p className="text-sm font-semibold text-ink-muted uppercase tracking-wider">Potential Settlement Partners</p>
+            <p className="text-xs text-ink-muted mt-1">Researched candidates by region — see <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">full docs</a> for coverage detail</p>
+          </div>
+          <div className="ticker-mask overflow-hidden">
+            <div className="ticker-track gap-3" style={{ animationDirection: 'reverse', animationDuration: '32s' }}>
+              {[...partners, ...partners].map((p, i) => (
+                <div key={`${p.name}-${i}`} className="glass px-5 py-3 flex items-center gap-2.5 hover:bg-brand-500/5 transition-all cursor-default shrink-0">
+                  <Building2 className="w-4 h-4 text-brand-500 shrink-0" aria-hidden="true" />
+                  <span className="text-sm font-semibold text-ink whitespace-nowrap">{p.name}</span>
+                  <span className="text-xs text-ink-muted whitespace-nowrap">{p.region}</span>
                 </div>
               ))}
             </div>
