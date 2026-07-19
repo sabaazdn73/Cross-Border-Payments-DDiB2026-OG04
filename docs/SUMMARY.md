@@ -19,11 +19,15 @@
 * [Data Model](architecture/data-model.md)
 * [API Design](architecture/api-design.md)
 * [Functional Requirements](architecture/functional-requirements.md)
+* [Settlement Speed by Corridor](architecture/settlement-speed.md)
+* [Payee Verification & Failed Settlement](architecture/payee-verification.md)
+* [Design System](architecture/design-system.md)
 
 ## Business
 * [Market Analysis](business/market-analysis.md)
 * [Business Model](business/business-model.md)
 * [SWOT Analysis](business/swot.md)
+* [Partner Coverage by Corridor](business/partner-coverage.md)
 
 ## Compliance & Legal
 * [Regulatory Landscape](legal/regulatory-landscape.md)

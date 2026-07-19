@@ -13,7 +13,7 @@ export const useTransferCalculator = (amount, fromCurrency, toCurrency, payoutMe
         fee: 0,
         exchangeRate: rate,
         recipientAmount: 0,
-        deliveryTime: getDeliveryTime(payoutMethod),
+        deliveryTime: getDeliveryTime(payoutMethod, toCurrency),
         fromCurrency,
         toCurrency,
       };
@@ -21,7 +21,7 @@ export const useTransferCalculator = (amount, fromCurrency, toCurrency, payoutMe
 
     const fee = calculateServiceFee(numAmount);
     const recipientAmount = calculateRecipientAmount(numAmount, fromCurrency, toCurrency, payoutMethod);
-    const deliveryTime = getDeliveryTime(payoutMethod);
+    const deliveryTime = getDeliveryTime(payoutMethod, toCurrency);
 
     return {
       sendAmount: numAmount,

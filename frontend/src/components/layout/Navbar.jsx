@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Zap, Menu, X, Home, BookOpen, ExternalLink } from 'lucide-react';
+import ThemeToggle from '../ui/ThemeToggle';
 import MobileMenu from './MobileMenu';
 
 const navLinks = [
@@ -12,7 +13,7 @@ const navLinks = [
 
 // TODO: replace with your published GitBook URL once you've renamed
 // the space away from the default "untitled" slug.
-export const DOCS_URL = 'https://your-space.gitbook.io/f2f';
+export const DOCS_URL = 'https://deep-dive-into-blockchain.gitbook.io/untitled/';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +35,7 @@ export default function Navbar() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-navy-900/90 backdrop-blur-md border-b border-white/10 shadow-glass'
+            ? 'bg-canvas/90 backdrop-blur-md border-b border-hairline shadow-glass'
             : 'bg-transparent'
         }`}
         role="navigation"
@@ -80,6 +81,7 @@ export default function Navbar() {
             </div>
 
             <div className="hidden md:flex items-center gap-3">
+              <ThemeToggle />
               <Link to="/track" className="btn-secondary text-sm py-2 px-4">Track Transfer</Link>
               <Link to="/send-money" className="btn-primary text-sm py-2 px-4">Start Transfer</Link>
             </div>

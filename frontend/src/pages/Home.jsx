@@ -47,7 +47,7 @@ const stats = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-navy-950">
+    <div className="min-h-screen bg-canvas">
       <Navbar />
 
       {/* Hero */}
@@ -108,13 +108,13 @@ export default function Home() {
       </section>
 
       {/* Stats */}
-      <section className="py-12 border-y border-white/10 bg-navy-900/50" aria-label="Statistics">
+      <section className="py-12 border-y border-hairline bg-surface" aria-label="Statistics">
         <div className="container-app">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
                 <p className="text-3xl md:text-4xl font-black gradient-text mb-1">{stat.value}</p>
-                <p className="text-white/50 text-sm">{stat.label}</p>
+                <p className="text-ink-muted text-sm">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -128,7 +128,7 @@ export default function Home() {
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/20 text-brand-400 border border-brand-500/30 mb-4">
               Why Choose Borderless
             </span>
-            <h2 id="benefits-heading" className="text-3xl md:text-4xl font-bold text-white">
+            <h2 id="benefits-heading" className="text-3xl md:text-4xl font-bold text-ink">
               Everything you need,{' '}
               <span className="gradient-text">nothing you don't</span>
             </h2>
@@ -137,10 +137,10 @@ export default function Home() {
             {benefits.map((b, i) => (
               <div key={i} className="glass p-6 hover:bg-white/8 transition-all duration-300 group">
                 <div className="w-12 h-12 rounded-xl bg-brand-gradient flex items-center justify-center mb-4 group-hover:shadow-glow transition-shadow">
-                  <b.icon className="w-6 h-6 text-white" aria-hidden="true" />
+                  <b.icon className="w-6 h-6 text-ink" aria-hidden="true" />
                 </div>
-                <h3 className="font-bold text-white mb-2">{b.title}</h3>
-                <p className="text-white/60 text-sm leading-relaxed">{b.description}</p>
+                <h3 className="font-bold text-ink mb-2">{b.title}</h3>
+                <p className="text-ink-muted text-sm leading-relaxed">{b.description}</p>
               </div>
             ))}
           </div>
@@ -148,13 +148,13 @@ export default function Home() {
       </section>
 
       {/* How It Works */}
-      <section className="section bg-navy-900/30" aria-labelledby="how-it-works-heading">
+      <section className="section bg-surface" aria-labelledby="how-it-works-heading">
         <div className="container-app">
           <div className="text-center mb-14">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-accent-500/20 text-accent-400 border border-accent-500/30 mb-4">
               Simple Process
             </span>
-            <h2 id="how-it-works-heading" className="text-3xl md:text-4xl font-bold text-white">
+            <h2 id="how-it-works-heading" className="text-3xl md:text-4xl font-bold text-ink">
               How it <span className="gradient-text">works</span>
             </h2>
           </div>
@@ -164,10 +164,10 @@ export default function Home() {
                 <div className={`text-5xl font-black bg-gradient-to-r ${step.color} bg-clip-text text-transparent mb-4`}>
                   {step.step}
                 </div>
-                <h3 className="font-bold text-white mb-2">{step.title}</h3>
-                <p className="text-white/60 text-sm leading-relaxed">{step.description}</p>
+                <h3 className="font-bold text-ink mb-2">{step.title}</h3>
+                <p className="text-ink-muted text-sm leading-relaxed">{step.description}</p>
                 {i < steps.length - 1 && (
-                  <ChevronRight className="hidden lg:block absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 text-white/20 z-10" aria-hidden="true" />
+                  <ChevronRight className="hidden lg:block absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 text-ink-muted/40 z-10" aria-hidden="true" />
                 )}
               </div>
             ))}
@@ -183,10 +183,10 @@ export default function Home() {
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-success-500/20 text-success-400 border border-success-500/30 mb-4">
                 Enterprise Security
               </span>
-              <h2 id="security-heading" className="text-3xl md:text-4xl font-bold text-white mb-4">
+              <h2 id="security-heading" className="text-3xl md:text-4xl font-bold text-ink mb-4">
                 Compliance you can<span className="gradient-text-success"> verify</span>
               </h2>
-              <p className="text-white/60 leading-relaxed mb-6">
+              <p className="text-ink-muted leading-relaxed mb-6">
                 Every transaction generates a compliance record that's cryptographically hashed and
                 anchored on Hedera's Consensus Service. This creates an immutable, tamper-evident
                 audit trail — verifiable by anyone, anytime.
@@ -199,7 +199,7 @@ export default function Home() {
                   'Immutable Hedera HCS anchoring',
                   'Hash-based tamper detection',
                 ].map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-white/70 text-sm">
+                  <li key={item} className="flex items-center gap-3 text-ink-muted text-sm">
                     <CheckCircle2 className="w-4 h-4 text-success-400 flex-shrink-0" aria-hidden="true" />
                     {item}
                   </li>
@@ -217,20 +217,20 @@ export default function Home() {
                   <div className="w-8 h-8 rounded-lg bg-success-500/20 flex items-center justify-center">
                     <Shield className="w-4 h-4 text-success-400" aria-hidden="true" />
                   </div>
-                  <span className="font-semibold text-white text-sm">Compliance Record Verified</span>
+                  <span className="font-semibold text-ink text-sm">Compliance Record Verified</span>
                   <span className="ml-auto text-xs text-success-400 bg-success-500/10 border border-success-500/20 px-2 py-0.5 rounded-full">✓ Passed</span>
                 </div>
                 <div className="space-y-1.5 text-xs">
                   <div className="flex justify-between">
-                    <span className="text-white/40">HCS Topic ID</span>
+                    <span className="text-ink-muted">HCS Topic ID</span>
                     <span className="text-accent-400 font-mono">0.0.4891234</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-white/40">Sequence #</span>
+                    <span className="text-ink-muted">Sequence #</span>
                     <span className="text-accent-400 font-mono">847</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-white/40">Verification</span>
+                    <span className="text-ink-muted">Verification</span>
                     <span className="text-success-400">Hash match ✓</span>
                   </div>
                 </div>
@@ -246,8 +246,8 @@ export default function Home() {
                     <Icon className="w-4 h-4 text-brand-400" aria-hidden="true" />
                   </div>
                   <div>
-                    <p className="text-white/80 text-sm font-medium">{label}</p>
-                    <p className="text-white/40 text-xs">{desc}</p>
+                    <p className="text-ink text-sm font-medium">{label}</p>
+                    <p className="text-ink-muted text-xs">{desc}</p>
                   </div>
                   <CheckCircle2 className="w-4 h-4 text-success-400 ml-auto" aria-hidden="true" />
                 </div>
@@ -258,20 +258,20 @@ export default function Home() {
       </section>
 
       {/* Supported Currencies */}
-      <section className="section bg-navy-900/30" aria-labelledby="currencies-heading">
+      <section className="section bg-surface" aria-labelledby="currencies-heading">
         <div className="container-app">
           <div className="text-center mb-10">
-            <h2 id="currencies-heading" className="text-3xl md:text-4xl font-bold text-white mb-3">
+            <h2 id="currencies-heading" className="text-3xl md:text-4xl font-bold text-ink mb-3">
               Supported Currencies
             </h2>
-            <p className="text-white/60">Send and receive in 25+ currencies worldwide</p>
+            <p className="text-ink-muted">Send and receive in 25+ currencies worldwide</p>
           </div>
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
             {currencies.map((cur) => (
               <div key={cur.code} className="glass p-3 text-center hover:bg-white/8 transition-all group cursor-default">
                 <div className="text-2xl mb-1" aria-hidden="true">{cur.flag}</div>
-                <p className="text-xs font-bold text-white">{cur.code}</p>
-                <p className="text-xs text-white/40 truncate">{cur.name}</p>
+                <p className="text-xs font-bold text-ink">{cur.code}</p>
+                <p className="text-xs text-ink-muted truncate">{cur.name}</p>
               </div>
             ))}
           </div>
@@ -287,10 +287,10 @@ export default function Home() {
               <div className="absolute bottom-0 right-1/4 w-64 h-64 rounded-full bg-accent-500/10 blur-3xl" />
             </div>
             <div className="relative z-10">
-              <h2 id="cta-heading" className="text-3xl md:text-4xl font-black text-white mb-4">
+              <h2 id="cta-heading" className="text-3xl md:text-4xl font-black text-ink mb-4">
                 Ready to send money <span className="gradient-text">globally?</span>
               </h2>
-              <p className="text-white/60 mb-8 max-w-xl mx-auto">
+              <p className="text-ink-muted mb-8 max-w-xl mx-auto">
                 Start your first transfer in minutes. No crypto experience required.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

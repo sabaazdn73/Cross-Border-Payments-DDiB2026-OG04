@@ -11,7 +11,29 @@
     --color-text: #f0f4ff;
     --color-text-muted: #8b9cc8;
     --color-brand: #6c56e3;
+
     --color-accent: #8874ee;
+  }
+
+  /* ─── Semantic theme tokens ───────────────────────────────────────
+     Dark is the default, always-tested look (no class needed).
+     .light overrides these on <html> for a real, verifiable light
+     mode — applied so far to Navbar, Footer and Home; the same
+     pattern (bg-canvas / text-ink / text-ink-muted / bg-surface)
+     extends cleanly to remaining pages as a follow-up pass. */
+  html.light {
+    --canvas: #f7f7fb;
+    --surface: #ffffff;
+    --ink: #14161b;
+    --ink-muted: #5b6270;
+    --hairline: rgba(10, 11, 16, 0.1);
+  }
+  :root {
+    --canvas: #0a0b10;
+    --surface: #12141b;
+    --ink: #f4f4f2;
+    --ink-muted: #9ca3af;
+    --hairline: rgba(255, 255, 255, 0.1);
   }
 
   * {
@@ -208,3 +230,9 @@
     border: 1px solid #ddd !important;
   }
 }
+
+.bg-canvas  { background-color: var(--canvas); }
+.bg-surface { background-color: var(--surface); }
+.text-ink   { color: var(--ink); }
+.text-ink-muted { color: var(--ink-muted); }
+.border-hairline { border-color: var(--hairline); }
