@@ -267,14 +267,16 @@ export default function Home() {
             </h2>
             <p className="text-ink-muted">Send and receive in 30+ currencies worldwide</p>
           </div>
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-            {currencies.map((cur) => (
-              <div key={cur.code} className="glass p-3 text-center hover:bg-white/8 transition-all group cursor-default">
-                <div className="text-2xl mb-1" aria-hidden="true">{cur.flag}</div>
-                <p className="text-xs font-bold text-ink">{cur.code}</p>
-                <p className="text-xs text-ink-muted truncate">{cur.name}</p>
-              </div>
-            ))}
+          <div className="ticker-mask overflow-hidden">
+            <div className="ticker-track gap-3">
+              {[...currencies, ...currencies].map((cur, i) => (
+                <div key={`${cur.code}-${i}`} className="glass p-3 text-center hover:bg-brand-500/5 transition-all group cursor-default w-28 shrink-0">
+                  <div className="text-2xl mb-1" aria-hidden="true">{cur.flag}</div>
+                  <p className="text-xs font-bold text-ink">{cur.code}</p>
+                  <p className="text-xs text-ink-muted truncate">{cur.name}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

@@ -27,9 +27,9 @@ export const currencies = [
   { code: 'ARS', name: 'Argentine Peso', symbol: 'ARS$', flag: '🇦🇷' },
   { code: 'KRW', name: 'South Korean Won', symbol: '₩', flag: '🇰🇷' },
   { code: 'SAR', name: 'Saudi Riyal', symbol: 'SAR', flag: '🇸🇦' },
-  { code: 'BDT', name: 'Bangladeshi Taka', symbol: '৳', flag: '🇧🇩' },
+  { code: 'BDT', name: 'Bangladeshi Taka', symbol: 'BDT ', flag: '🇧🇩' },
   { code: 'VND', name: 'Vietnamese Dong', symbol: '₫', flag: '🇻🇳' },
-  { code: 'AMD', name: 'Armenian Dram', symbol: '֏', flag: '🇦🇲' },
+  { code: 'AMD', name: 'Armenian Dram', symbol: 'AMD ', flag: '🇦🇲' },
 ];
 
 export const getCurrencyByCode = (code) => currencies.find((c) => c.code === code);
