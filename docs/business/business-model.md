@@ -72,7 +72,7 @@ Neither is required to start. Both improve the product later. That is the distin
 | Where does revenue come from? | FX spread + flat fee per transfer + the compliance-evidence API |
 | Is the margin defensible? | Thin on the payment leg — the licensed parties take most of it. **The defensible margin is the evidence layer**, which costs us fractions of a cent and no one else offers. |
 | What are the fixed costs? | Engineering and partner management. **No float, no capital lock-up, no licence capital** — because we hold nothing. |
-| What would kill it? | A licensed CASP (Due, BVNK) adding an anchoring layer. We are copyable, and [this section](/analysis/innovation-ethics.md) says so. |
+| What would kill it? | A licensed CASP (Due, BVNK) adding an anchoring layer. We are copyable, and [this section](../analysis/innovation-ethics.md) says so. |
 | Why would it survive anyway? | Because they are optimising for corridors with volume. The corridors we target are the ones they have not judged worth the partner work. |
 
 

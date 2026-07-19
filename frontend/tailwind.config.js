@@ -57,7 +57,7 @@ export default {
         mono: ['JetBrains Mono', 'monospace'],
       },
       backgroundImage: {
-        'hero-gradient': 'linear-gradient(135deg, #0a0b10 0%, #16102f 55%, #050609 100%)',
+        'hero-gradient': 'linear-gradient(150deg, #060a17 0%, #0d1b3d 45%, #0a1230 75%, #050609 100%)',
         'card-gradient': 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
         'brand-gradient': 'linear-gradient(135deg, #6c56e3 0%, #8874ee 100%)',
         'success-gradient': 'linear-gradient(135deg, #3d7ee8 0%, #6fa8f5 100%)',

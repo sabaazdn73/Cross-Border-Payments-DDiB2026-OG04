@@ -13,7 +13,9 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
+    "@radix-ui/react-select": "^2.3.3",
     "axios": "^1.18.1",
+    "flag-icons": "^7.5.0",
     "jspdf": "^4.2.1",
     "lucide-react": "^1.25.0",
     "qrcode": "^1.5.4",

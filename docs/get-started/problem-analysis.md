@@ -22,8 +22,8 @@ Every regulated party in a cross-border chain runs its own checks. But when a re
 
 Stated here rather than discovered by an examiner:
 
-- **We do not open new corridors.** Coverage is a licensing and partner problem, not a technical one ([this section](/legal/why-this-is-legal.md)).
-- **We do not eliminate capital lock-up.** We relocate it ([this section](/business/business-model.md)).
-- **We do not remove the need for KYC.** We make its result provable ([this section](/legal/why-this-is-legal.md)).
+- **We do not open new corridors.** Coverage is a licensing and partner problem, not a technical one ([this section](../legal/why-this-is-legal.md)).
+- **We do not eliminate capital lock-up.** We relocate it ([this section](../business/business-model.md)).
+- **We do not remove the need for KYC.** We make its result provable ([this section](../legal/why-this-is-legal.md)).
 
 ---

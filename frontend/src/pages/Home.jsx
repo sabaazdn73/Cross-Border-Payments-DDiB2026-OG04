@@ -25,18 +25,18 @@ const steps = [
 ];
 
 const currencies = [
-  { flag: '🇺🇸', code: 'USD', name: 'US Dollar' },
-  { flag: '🇬🇧', code: 'GBP', name: 'Brit. Pound' },
-  { flag: '🇪🇺', code: 'EUR', name: 'Euro' },
-  { flag: '🇳🇬', code: 'NGN', name: 'Naira' },
-  { flag: '🇰🇪', code: 'KES', name: 'K. Shilling' },
-  { flag: '🇬🇭', code: 'GHS', name: 'Ghanaian Cedi' },
-  { flag: '🇮🇳', code: 'INR', name: 'Indian Rupee' },
-  { flag: '🇵🇭', code: 'PHP', name: 'Phil. Peso' },
-  { flag: '🇲🇽', code: 'MXN', name: 'Mex. Peso' },
-  { flag: '🇧🇷', code: 'BRL', name: 'Brazilian Real' },
-  { flag: '🇦🇪', code: 'AED', name: 'UAE Dirham' },
-  { flag: '🇸🇬', code: 'SGD', name: 'S. Dollar' },
+  { countryCode: 'US', code: 'USD', name: 'US Dollar' },
+  { countryCode: 'GB', code: 'GBP', name: 'Brit. Pound' },
+  { countryCode: 'EU', code: 'EUR', name: 'Euro' },
+  { countryCode: 'NG', code: 'NGN', name: 'Naira' },
+  { countryCode: 'KE', code: 'KES', name: 'K. Shilling' },
+  { countryCode: 'GH', code: 'GHS', name: 'Ghanaian Cedi' },
+  { countryCode: 'IN', code: 'INR', name: 'Indian Rupee' },
+  { countryCode: 'PH', code: 'PHP', name: 'Phil. Peso' },
+  { countryCode: 'MX', code: 'MXN', name: 'Mex. Peso' },
+  { countryCode: 'BR', code: 'BRL', name: 'Brazilian Real' },
+  { countryCode: 'AE', code: 'AED', name: 'UAE Dirham' },
+  { countryCode: 'SG', code: 'SGD', name: 'S. Dollar' },
 ];
 
 const stats = [
@@ -55,12 +55,16 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center pt-16 overflow-hidden" aria-label="Hero section">
         <div className="absolute inset-0 bg-hero-gradient" aria-hidden="true" />
         <div className="absolute inset-0" aria-hidden="true">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-brand-500/10 blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-accent-500/10 blur-3xl" />
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-blue-500/10 blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-brand-500/10 blur-3xl" />
         </div>
 
         <div className="container-app relative z-10 py-20">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-center hero-glass rounded-[2.5rem] px-8 py-14 md:px-16 md:py-16 relative overflow-hidden">
+            <Globe
+              className="hidden md:block absolute top-8 right-8 w-14 h-14 text-blue-300/40 animate-spin-slow"
+              aria-hidden="true"
+            />
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-500/20 border border-brand-500/30 text-brand-400 text-sm font-medium mb-8 animate-fade-in">
               <Zap className="w-4 h-4" aria-hidden="true" />
               Powered by Hedera Blockchain
@@ -271,7 +275,7 @@ export default function Home() {
             <div className="ticker-track gap-3">
               {[...currencies, ...currencies].map((cur, i) => (
                 <div key={`${cur.code}-${i}`} className="glass p-3 text-center hover:bg-brand-500/5 transition-all group cursor-default w-28 shrink-0">
-                  <div className="text-2xl mb-1" aria-hidden="true">{cur.flag}</div>
+                  <span className={`fi fi-${cur.countryCode.toLowerCase()} rounded-sm block mx-auto mb-1 w-8 h-6`} aria-hidden="true" />
                   <p className="text-xs font-bold text-ink">{cur.code}</p>
                   <p className="text-xs text-ink-muted truncate">{cur.name}</p>
                 </div>
