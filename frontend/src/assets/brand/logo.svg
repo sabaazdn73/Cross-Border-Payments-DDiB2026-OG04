@@ -47,7 +47,7 @@
   <rect x="0" y="0" width="640" height="640" rx="140" fill="url(#bg)"/>
   <rect x="0" y="0" width="640" height="640" rx="140" fill="url(#innerVignette)"/>
 
-  <g transform="translate(64,0)" filter="url(#bigShadow)">
+  <g transform="translate(64,0)">
     <path d="M 120 384 C 120 302, 120 222, 168 170 C 196 140, 232 130, 232 130 L 232 178
              C 232 178, 208 186, 190 208 C 168 234, 168 302, 168 384 Z" fill="url(#bandLeft)"/>
     <path d="M 392 384 C 392 302, 392 222, 344 170 C 316 140, 280 130, 280 130 L 280 178
@@ -59,18 +59,18 @@
   </g>
 
   <g transform="translate(320,274)">
-    <g filter="url(#dropShadow)"><polygon points="0,-84 20,-96 40,-84 40,-60 20,-48 0,-60" fill="url(#hexOuter)"/></g>
-    <g filter="url(#dropShadow)" transform="rotate(60)"><polygon points="0,-84 20,-96 40,-84 40,-60 20,-48 0,-60" fill="url(#hexOuter)"/></g>
-    <g filter="url(#dropShadow)" transform="rotate(120)"><polygon points="0,-84 20,-96 40,-84 40,-60 20,-48 0,-60" fill="url(#hexOuter)"/></g>
-    <g filter="url(#dropShadow)" transform="rotate(180)"><polygon points="0,-84 20,-96 40,-84 40,-60 20,-48 0,-60" fill="url(#hexOuter)"/></g>
-    <g filter="url(#dropShadow)" transform="rotate(240)"><polygon points="0,-84 20,-96 40,-84 40,-60 20,-48 0,-60" fill="url(#hexOuter)"/></g>
-    <g filter="url(#dropShadow)" transform="rotate(300)"><polygon points="0,-84 20,-96 40,-84 40,-60 20,-48 0,-60" fill="url(#hexOuter)"/></g>
+    <g><polygon points="0,-84 20,-96 40,-84 40,-60 20,-48 0,-60" fill="url(#hexOuter)"/></g>
+    <g transform="rotate(60)"><polygon points="0,-84 20,-96 40,-84 40,-60 20,-48 0,-60" fill="url(#hexOuter)"/></g>
+    <g transform="rotate(120)"><polygon points="0,-84 20,-96 40,-84 40,-60 20,-48 0,-60" fill="url(#hexOuter)"/></g>
+    <g transform="rotate(180)"><polygon points="0,-84 20,-96 40,-84 40,-60 20,-48 0,-60" fill="url(#hexOuter)"/></g>
+    <g transform="rotate(240)"><polygon points="0,-84 20,-96 40,-84 40,-60 20,-48 0,-60" fill="url(#hexOuter)"/></g>
+    <g transform="rotate(300)"><polygon points="0,-84 20,-96 40,-84 40,-60 20,-48 0,-60" fill="url(#hexOuter)"/></g>
     <g stroke="#EAF0FF" stroke-width="3" opacity="0.7">
       <line x1="0" y1="0" x2="0" y2="-62"/><line x1="0" y1="0" x2="54" y2="-31"/>
       <line x1="0" y1="0" x2="54" y2="31"/><line x1="0" y1="0" x2="0" y2="62"/>
       <line x1="0" y1="0" x2="-54" y2="31"/><line x1="0" y1="0" x2="-54" y2="-31"/>
     </g>
-    <g filter="url(#dropShadow)"><polygon points="0,-42 36,-21 36,21 0,42 -36,21 -36,-21" fill="url(#hexCenter)"/></g>
+    <g><polygon points="0,-42 36,-21 36,21 0,42 -36,21 -36,-21" fill="url(#hexCenter)"/></g>
     <polygon points="0,-42 36,-21 20,-14 0,-24 -20,-14 -36,-21" fill="#FFFFFF" opacity="0.35"/>
   </g>
 

@@ -69,21 +69,21 @@ export default function SendMoney() {
 
   // Fills every field with a realistic, internally-consistent example
   // so the whole flow can be demonstrated by clicking through screens
-  // rather than typing — a corridor that also matches a verified fast
-  // settlement rail (SEPA Instant), so the demo shows a real number,
-  // not a placeholder.
+  // rather than typing — Portugal to Armenia, a corridor with a real
+  // named partner (TransFi handles AMD conversion and local payout)
+  // and an active regulatory push from the Central Bank of Armenia.
   const fillDemoData = () => {
     const demo = {
       senderName: 'Ana Costa',
       senderEmail: 'ana.costa@example.com',
-      senderCountry: 'EU',
+      senderCountry: 'PT',
       amount: '250',
       currency: 'EUR',
-      recipientName: 'Amaka Obi',
-      recipientAccountDetails: '+234 801 234 5678',
-      recipientCountry: 'NG',
-      receivingCurrency: 'NGN',
-      payoutMethod: 'mobile_money',
+      recipientName: 'Davit Sargsyan',
+      recipientAccountDetails: 'AM23 AABC 1010 0000 0012 3456',
+      recipientCountry: 'AM',
+      receivingCurrency: 'AMD',
+      payoutMethod: 'bank_transfer',
       purpose: 'Family Support',
       termsAccepted: true,
     };

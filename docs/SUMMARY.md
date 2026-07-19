@@ -28,6 +28,8 @@
 * [Business Model](business/business-model.md)
 * [SWOT Analysis](business/swot.md)
 * [Partner Coverage by Corridor](business/partner-coverage.md)
+* [Potential Partners for Collaboration](business/potential-partners.md)
+* [Why a Local Bank Is Required](business/local-bank-requirement.md)
 
 ## Compliance & Legal
 * [Regulatory Landscape](legal/regulatory-landscape.md)
@@ -38,6 +40,7 @@
 * [Testing & Validation](analysis/testing-validation.md)
 * [Risks & Mitigations](analysis/risks-mitigations.md)
 * [Innovation, Limitations & Ethics](analysis/innovation-ethics.md)
+* [Known Limitations](analysis/known-limitations.md)
 
 ## Reference
 * [Module Reference](reference/modules.md)
