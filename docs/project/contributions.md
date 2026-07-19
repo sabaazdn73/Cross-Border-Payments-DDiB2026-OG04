@@ -4,8 +4,8 @@ DDiB 2026 · University of Zurich · Online_Group 04
 
 | Area | Owner |
 |---|---|
-| Project lead, product/compliance analysis, report | Ariana Osuna |
-| Backend & Stripe integration | Arowolo Kehinde |
+| Report preparation | Ariana Osuna |
+| Report preparation | Arowolo Kehinde |
 | UI/UX & frontend | Muhammad Usman |
-| Hedera, HCS & Mirror Node | Saba Azadegan |
-| QA, payout simulation, DevOps | Mohamed Mama |
+| Technical Lead — Hedera architecture, settlement routing & regulatory analysis | Saba Azadegan |
+| Report preparation | Mohamed Mama |

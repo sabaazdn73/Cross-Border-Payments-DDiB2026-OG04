@@ -14,6 +14,7 @@ const benefits = [
   { icon: Lock, title: 'Compliance Built In', description: 'Automated KYC/AML screening with tamper-proof compliance records anchored on Hedera HCS.' },
   { icon: Clock, title: 'Real-Time Tracking', description: 'Monitor every step of your transfer from payment received to local payout completion.' },
   { icon: CheckCircle2, title: 'Transparent Fees', description: 'No hidden charges. See the exact fee and exchange rate before you confirm your transfer.' },
+  { icon: TrendingUp, title: 'DeFi-Aware Routing', description: 'Settlement checks real-time DeFi liquidity depth (e.g. Hedera DEX pools) before choosing a chain, so large transfers route to deeper liquidity automatically.' },
 ];
 
 const steps = [

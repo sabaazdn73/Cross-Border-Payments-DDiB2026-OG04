@@ -29,6 +29,7 @@ export const currencies = [
   { code: 'SAR', name: 'Saudi Riyal', symbol: 'SAR', flag: '🇸🇦' },
   { code: 'BDT', name: 'Bangladeshi Taka', symbol: '৳', flag: '🇧🇩' },
   { code: 'VND', name: 'Vietnamese Dong', symbol: '₫', flag: '🇻🇳' },
+  { code: 'AMD', name: 'Armenian Dram', symbol: '֏', flag: '🇦🇲' },
 ];
 
 export const getCurrencyByCode = (code) => currencies.find((c) => c.code === code);

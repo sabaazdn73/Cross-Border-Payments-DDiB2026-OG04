@@ -29,6 +29,8 @@ export const countries = [
   { code: 'BD', name: 'Bangladesh', flag: '🇧🇩', currency: 'BDT', dialCode: '+880' },
   { code: 'ID', name: 'Indonesia', flag: '🇮🇩', currency: 'IDR', dialCode: '+62' },
   { code: 'VN', name: 'Vietnam', flag: '🇻🇳', currency: 'VND', dialCode: '+84' },
+  { code: 'PT', name: 'Portugal', flag: '🇵🇹', currency: 'EUR', dialCode: '+351' },
+  { code: 'AM', name: 'Armenia', flag: '🇦🇲', currency: 'AMD', dialCode: '+374' },
 ];
 
 export const getCountryByCode = (code) => countries.find((c) => c.code === code);
