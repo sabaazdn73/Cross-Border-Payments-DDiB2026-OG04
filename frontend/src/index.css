@@ -309,3 +309,12 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 8px 32px rgba(5, 10, 25, 0.35);
 }
+
+/* Twinkling stars on the neon globe decoration */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+.star-twinkle {
+  animation: twinkle 2.4s ease-in-out infinite;
+}

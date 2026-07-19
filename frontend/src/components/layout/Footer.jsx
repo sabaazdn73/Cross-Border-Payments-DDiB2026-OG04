@@ -13,7 +13,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-8">
           <div className="md:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-3">
-              <img src={brandIcon} alt="" className="w-8 h-8 rounded-lg shadow-glow" />
+              <img src={brandIcon} alt="" className="w-10 h-10 rounded-lg shadow-glow" />
               <span className="font-bold text-ink">Cross-Border</span>
             </Link>
             <p className="text-ink-muted text-sm leading-relaxed">

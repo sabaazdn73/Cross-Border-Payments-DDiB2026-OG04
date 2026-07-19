@@ -260,9 +260,26 @@ app.post('/api/transfers', async (req, res) => {
   const toCurrency = body.receivingCurrency;
   const payoutMethodId = body.payoutMethod;
 
+  // transferRef must be computed before building complianceRecord --
+  // anchorComplianceRecord() requires it, and the previous ordering
+  // computed it AFTER the record was built, so it was never included.
+  const pepper = process.env.HEDERA_PSEUDO_PEPPER || "demo_pseudo_pepper_for_cross_border";
+  const transferRef = pseudoRef(txnId, pepper);
+
   // Build compliance check data
+  const kycStatus = 'VERIFIED';
+  const amlStatus = 'CLEARED';
+  const sanctionsCheck = 'PASSED';
   const complianceRecord = {
     recordId: `CMP-${txnId}`,
+    transferRef,
+    provider: 'AUTOMATED_SYSTEM',
+    checkType: 'KYC_AML_SANCTIONS',
+    // anchorComplianceRecord requires a single `outcome` -- derived
+    // from the three individual checks rather than hardcoded
+    // separately, so it can't silently drift out of sync with them.
+    outcome: (kycStatus === 'VERIFIED' && amlStatus === 'CLEARED' && sanctionsCheck === 'PASSED') ? 'PASSED' : 'FAILED',
+    checkedAt: new Date().toISOString(),
     transactionId: txnId,
     senderName: body.senderName,
     senderEmail: body.senderEmail,
@@ -272,16 +289,13 @@ app.post('/api/transfers', async (req, res) => {
     amount: amountUsd,
     currency: fromCurrency,
     purpose: body.purpose || 'Family Support',
-    kycStatus: 'VERIFIED',
-    amlStatus: 'CLEARED',
-    sanctionsCheck: 'PASSED',
+    kycStatus,
+    amlStatus,
+    sanctionsCheck,
     riskScore: 'LOW',
     reviewedAt: new Date().toISOString(),
     reviewedBy: 'AUTOMATED_SYSTEM',
   };
-
-  const pepper = process.env.HEDERA_PSEUDO_PEPPER || "demo_pseudo_pepper_for_cross_border";
-  const transferRef = pseudoRef(txnId, pepper);
 
   let topicId = "0.0.9617780"; // Default HCS demo topic
   let compAnchor, quoteAnchor, routingAnchor, decision, execution;

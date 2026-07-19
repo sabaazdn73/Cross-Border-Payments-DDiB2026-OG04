@@ -21,7 +21,7 @@ export default function MobileMenu({ isOpen, onClose, navLinks }) {
       >
         <div className="flex items-center justify-between p-4 border-b border-hairline">
           <div className="flex items-center gap-2">
-            <img src={brandIcon} alt="" className="w-7 h-7 rounded-lg" />
+            <img src={brandIcon} alt="" className="w-9 h-9 rounded-lg" />
             <span className="font-bold text-ink">Cross-Border</span>
           </div>
           <button
