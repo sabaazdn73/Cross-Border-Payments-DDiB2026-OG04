@@ -120,16 +120,13 @@ export default function Home() {
               Powered by Hedera Network
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight animate-slide-up">
-              Send money{' '}
-              <span className="gradient-text">across borders</span>
-              <br />
-              without a crypto wallet.
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-[1.15] tracking-tight animate-slide-up">
+              Send money <span className="gradient-text font-extrabold">across borders</span> without a crypto wallet.
             </h1>
 
             <p className="text-lg md:text-xl text-white/60 mb-10 max-w-2xl mx-auto leading-relaxed animate-slide-up">
-              Walletless Cross-Border Settlement. You pay in your currency, your recipient gets
-              paid in theirs. Blockchain settles everything behind the scenes.
+              Walletless cross-border settlement. You pay in your currency, your recipient gets
+              paid in theirs. The Hedera network settles everything behind the scenes.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up">

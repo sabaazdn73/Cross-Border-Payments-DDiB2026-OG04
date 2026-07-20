@@ -10,6 +10,7 @@ const navLinks = [
   { label: 'Send Money', to: '/send-money' },
   { label: 'Track Transfer', to: '/track' },
   { label: 'Tamper Demo', to: '/tamper-demo' },
+  { label: 'Landing', to: '/landing' },
 ];
 
 // TODO: replace with your published GitBook URL once you've renamed
