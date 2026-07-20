@@ -67,6 +67,18 @@ const partners = [
   { name: 'Circle', region: 'Global (USDC issuer)' },
 ];
 
+// Hedera is where we anchor (fixed, see the on-page explanation).
+// The rest are potential execution networks for the stablecoin leg,
+// ordered by USDC liquidity share -- see docs/architecture/
+// stablecoin-market-share.md for the sourced breakdown.
+const settlementNetworks = [
+  { name: 'Hedera', share: 'Anchor network', live: true },
+  { name: 'Ethereum', share: '~67% USDC share', live: false },
+  { name: 'Solana', share: '~17% USDC share', live: false },
+  { name: 'BNB Chain', share: '~8% USDC share', live: false },
+  { name: 'Base', share: '~7% USDC share', live: false },
+];
+
 const stats = [
   { value: '42+', label: 'Countries', icon: Globe },
   { value: '41+', label: 'Currencies', icon: TrendingUp },
@@ -313,7 +325,7 @@ export default function Home() {
 
           <div className="text-center mt-14 mb-8">
             <p className="text-sm font-semibold text-ink-muted uppercase tracking-wider">Potential Settlement Partners</p>
-            <p className="text-xs text-ink-muted mt-1">Researched candidates by region — see <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">full docs</a> for coverage detail</p>
+            <p className="text-xs text-ink-muted mt-1">Researched candidates by region, see <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">full docs</a> for coverage detail</p>
           </div>
           <div className="ticker-mask overflow-hidden">
             <div className="ticker-track gap-3" style={{ animationDirection: 'reverse', animationDuration: '65s' }}>
@@ -325,6 +337,38 @@ export default function Home() {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* The heart of the project: anchor vs execution */}
+          <div className="mt-20 max-w-4xl mx-auto">
+            <div className="text-center mb-10">
+              <span className="inline-block px-3 py-1 rounded-full bg-brand-500/10 text-brand-500 text-xs font-semibold uppercase tracking-wider mb-3">The Core Idea</span>
+              <h3 className="text-2xl md:text-3xl font-bold text-ink">One ledger to trust. Any network to move on.</h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
+              <div className="glass p-6">
+                <h4 className="font-bold text-ink mb-2">Where we anchor: always Hedera</h4>
+                <p className="text-sm text-ink-muted leading-relaxed">Every compliance check, quote, and routing decision is hashed and anchored on Hedera Consensus Service, fixed and non-negotiable. Not because it has the deepest liquidity (it doesn't), but because of what a compliance trail actually needs: fixed, predictable fees, deterministic aBFT finality, and a consensus timestamp neither party controls. This is enterprise-grade record-keeping, not a trading venue choice.</p>
+              </div>
+              <div className="glass p-6">
+                <h4 className="font-bold text-ink mb-2">Where we execute: whichever network fits the transfer</h4>
+                <p className="text-sm text-ink-muted leading-relaxed">The actual stablecoin leg can settle on Hedera or route to a deeper-liquidity chain, decided per transfer by real parameters: transaction size, which network the destination partner supports, and live liquidity depth. This is an optimization problem, solved fresh for every transfer, not a fixed choice.</p>
+              </div>
+            </div>
+
+            <p className="text-center text-sm font-semibold text-ink-muted uppercase tracking-wider mb-6">Settlement Networks</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+              {settlementNetworks.map((n) => (
+                <div key={n.name} className={`glass p-4 text-center ${n.live ? 'ring-2 ring-brand-500/40' : ''}`}>
+                  <p className="font-bold text-ink text-sm">{n.name}</p>
+                  <p className="text-xs text-ink-muted mt-1">{n.share}</p>
+                  <span className={`inline-block mt-2 px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wide ${n.live ? 'bg-success-500/15 text-success-400' : 'bg-ink-muted/10 text-ink-muted'}`}>
+                    {n.live ? 'Live' : 'Planned'}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <p className="text-center text-xs text-ink-muted mt-4">Ordered by USDC liquidity share among these five chains, mid-2026. See <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">the sourced breakdown</a> for the full picture, including why Hedera's thin slice is the point, not a gap.</p>
           </div>
         </div>
       </section>
