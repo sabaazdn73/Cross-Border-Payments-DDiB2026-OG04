@@ -87,7 +87,7 @@ export default function TransferSummaryCard({
       {/* Bottom badge */}
       <div className="pt-2 border-t border-hairline">
         <p className="text-xs text-ink-muted text-center">
-          🔒 Settlement via Hedera blockchain. No wallet required
+          🔒 Settlement via Hedera network. No wallet required
         </p>
       </div>
     </div>

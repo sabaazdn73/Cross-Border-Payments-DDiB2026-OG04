@@ -17,7 +17,7 @@ export default function Footer() {
               <span className="font-bold text-ink">Cross-Border</span>
             </Link>
             <p className="text-ink-muted text-sm leading-relaxed">
-              Walletless, fiat-to-fiat cross-border settlement powered by Hedera blockchain.
+              Walletless, fiat-to-fiat cross-border settlement powered by Hedera network.
             </p>
             <div className="flex items-center gap-4 mt-4">
               <div className="flex items-center gap-1 text-xs text-success-400">

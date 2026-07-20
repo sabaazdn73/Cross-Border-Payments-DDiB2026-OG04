@@ -16,7 +16,7 @@ import Footer from '../components/layout/Footer';
 
 const benefits = [
   { iconSrc: noWalletIcon, title: 'No Wallet Required', description: 'Send money internationally without ever touching a crypto wallet, seed phrase, or private key.' },
-  { iconSrc: lightningIcon, title: 'Lightning Fast Settlement', description: 'Hedera blockchain finalizes transactions in 3-5 seconds, far faster than traditional wire transfers.' },
+  { iconSrc: lightningIcon, title: 'Lightning Fast Settlement', description: 'Hedera network finalizes transactions in 3-5 seconds, far faster than traditional wire transfers.' },
   { iconSrc: countriesIcon, title: '30+ Countries Supported', description: 'Send to recipients across Africa, Asia, Latin America, and beyond with competitive exchange rates.' },
   { iconSrc: complianceIcon, title: 'Compliance Built In', description: 'Automated KYC/AML screening with tamper-proof compliance records anchored on Hedera HCS.' },
   { iconSrc: trackingIcon, title: 'Real-Time Tracking', description: 'Monitor every step of your transfer from payment received to local payout completion.' },
@@ -117,7 +117,7 @@ export default function Home() {
             </svg>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-500/20 border border-brand-500/30 text-brand-400 text-sm font-medium mb-8 animate-fade-in">
               <Zap className="w-4 h-4" aria-hidden="true" />
-              Powered by Hedera Blockchain
+              Powered by Hedera Network
             </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight animate-slide-up">
