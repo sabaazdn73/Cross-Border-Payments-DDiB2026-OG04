@@ -17,17 +17,18 @@
     <filter id="sh" x="-40%" y="-40%" width="180%" height="180%">
       <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#04102E" flood-opacity="0.35"/>
     </filter>
-  <linearGradient id="routeGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1F8A8C"/><stop offset="100%" stop-color="#8F6FE8"/></linearGradient></defs>
+  </defs>
   <rect x="0" y="0" width="160" height="160" rx="34" fill="url(#bg)"/>
   <rect x="0" y="0" width="160" height="160" rx="34" fill="url(#vig)"/>
   <g fill="none" stroke="#F4F1EA" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
 
-    <path d="M50,38 H98 V108 L91,101 L84,108 L77,101 L70,108 L63,101 L56,108 L50,101 Z" stroke-width="5.5"/>
-    <line x1="60" y1="56" x2="88" y2="56" stroke-width="4.5" stroke-dasharray="1 7"/>
-    <line x1="60" y1="70" x2="88" y2="70" stroke-width="4.5" stroke-dasharray="1 7"/>
-    <line x1="60" y1="84" x2="80" y2="84" stroke-width="4.5" stroke-dasharray="1 7"/>
-    <circle cx="106" cy="94" r="16" stroke="#C1633A" stroke-width="5.5"/>
-    <line x1="117" y1="105" x2="128" y2="116" stroke="#C1633A" stroke-width="6"/>
+    <path d="M36,80 C52,52 108,52 124,80 C108,108 52,108 36,80 Z" stroke-width="6"/>
+    <circle cx="80" cy="80" r="15" stroke-width="4.5"/>
+    <g stroke="#C1633A" stroke-width="4" fill="none">
+      <circle cx="75" cy="75" r="2.6" fill="#C1633A"/>
+      <circle cx="85" cy="85" r="2.6" fill="#C1633A"/>
+      <line x1="74" y1="86" x2="86" y2="74"/>
+    </g>
   </g>
   <rect x="0" y="0" width="160" height="160" rx="34" fill="url(#gloss)"/>
 </svg>
