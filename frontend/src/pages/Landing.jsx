@@ -61,7 +61,7 @@ export default function Landing() {
         <div className="container-app max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <span className="inline-block px-3 py-1 rounded-full bg-success-500/10 text-success-400 text-xs font-semibold uppercase tracking-wider mb-3">The Solution</span>
-            <h2 className="text-2xl md:text-3xl font-bold text-ink">We break the route apart, then ride the stablecoin trail</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-ink">We break the route apart, then ride the stablecoin rail</h2>
             <p className="text-ink-muted max-w-2xl mx-auto mt-3">Instead of one long correspondent-banking chain, we decompose each transfer and route it through the fastest available licensed partner for that corridor. A stablecoin leg, anchored on the Hedera network, carries the value between them, so the outcome is a fiat-to-fiat transfer even though neither side ever touches crypto.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -103,14 +103,6 @@ export default function Landing() {
           <Link to="/send-money" className="btn-primary inline-flex items-center gap-2 mt-8">
             Try the demo flow <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </Link>
-        </div>
-      </section>
-
-      <section className="py-8 bg-canvas border-t border-hairline">
-        <div className="container-app max-w-3xl mx-auto">
-          <p className="text-xs text-ink-muted leading-relaxed">
-            Sources: Bank for International Settlements, correspondent banking relationship data (2026); FATF, updated de-risking guidance (2025); industry nostro/vostro capital estimates (~$10T, 2025); Jobbers.io, Global Freelance Payment Methods Report (Jan 2026). Figures are dated and should be re-verified before citing in a final report.
-          </p>
         </div>
       </section>
 

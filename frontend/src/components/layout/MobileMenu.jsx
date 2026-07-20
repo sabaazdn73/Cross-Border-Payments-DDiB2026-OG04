@@ -57,6 +57,13 @@ export default function MobileMenu({ isOpen, onClose, navLinks }) {
           >
             <span>Docs ↗</span>
           </a>
+          <a
+            href="mailto:sabaazad93@gmail.com?subject=Cross-Border%20Feedback"
+            onClick={onClose}
+            className="flex items-center gap-3 px-3 py-3 rounded-xl text-ink-muted hover:text-ink hover:bg-black/5 transition-all"
+          >
+            <span>Send Feedback</span>
+          </a>
         </nav>
 
         <div className="p-4 space-y-2 border-t border-hairline">
