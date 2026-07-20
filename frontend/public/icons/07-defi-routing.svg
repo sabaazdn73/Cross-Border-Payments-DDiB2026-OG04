@@ -1,0 +1,47 @@
+<svg width="320" height="320" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B1E4D"/>
+      <stop offset="55%" stop-color="#173C8A"/>
+      <stop offset="100%" stop-color="#2E63C7"/>
+    </linearGradient>
+    <linearGradient id="gloss" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.20"/>
+      <stop offset="45%" stop-color="#FFFFFF" stop-opacity="0.03"/>
+      <stop offset="46%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="vig" cx="50%" cy="100%" r="75%">
+      <stop offset="0%" stop-color="#04102E" stop-opacity="0.38"/>
+      <stop offset="60%" stop-color="#04102E" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="sh" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#04102E" flood-opacity="0.35"/>
+    </filter>
+  <linearGradient id="routeGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1F8A8C"/><stop offset="100%" stop-color="#8F6FE8"/></linearGradient></defs>
+  <rect x="0" y="0" width="160" height="160" rx="34" fill="url(#bg)"/>
+  <rect x="0" y="0" width="160" height="160" rx="34" fill="url(#vig)"/>
+  <g filter="url(#sh)" fill="none" stroke="#F4F1EA" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+
+    <g transform="translate(80,84)" stroke="#F4F1EA" stroke-width="3" opacity="0.28">
+      <line x1="0" y1="-34" x2="29" y2="-17"/>
+      <line x1="29" y1="-17" x2="29" y2="17"/>
+      <line x1="29" y1="17" x2="0" y2="34"/>
+      <line x1="0" y1="34" x2="-29" y2="17"/>
+      <line x1="-29" y1="17" x2="-29" y2="-17"/>
+      <line x1="-29" y1="-17" x2="0" y2="-34"/>
+    </g>
+    <g stroke="none" opacity="0.35">
+      <circle cx="80" cy="50" r="5" fill="#F4F1EA"/>
+      <circle cx="109" cy="101" r="5" fill="#F4F1EA"/>
+      <circle cx="51" cy="101" r="5" fill="#F4F1EA"/>
+    </g>
+    <path d="M51,67 L80,84 L109,67" stroke="url(#routeGrad)" stroke-width="7"/>
+    <g stroke="none">
+      <circle cx="51" cy="67" r="7" fill="#1F8A8C"/>
+      <circle cx="80" cy="84" r="8" fill="#8F6FE8"/>
+      <circle cx="109" cy="67" r="7" fill="#1F8A8C"/>
+    </g>
+    <path d="M109,67 L122,60 M122,60 L118,72 M122,60 L110,57" stroke="#1F8A8C" stroke-width="5"/>
+  </g>
+  <rect x="0" y="0" width="160" height="160" rx="34" fill="url(#gloss)"/>
+</svg>
