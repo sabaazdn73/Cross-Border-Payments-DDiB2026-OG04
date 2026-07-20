@@ -13,6 +13,25 @@ import complianceIcon from '../assets/icons/04-compliance.svg';
 import trackingIcon from '../assets/icons/05-tracking.svg';
 import feesIcon from '../assets/icons/06-fees.svg';
 import defiRoutingIcon from '../assets/icons/07-defi-routing.svg';
+import logoHedera from '../assets/logos/networks/hedera.png';
+import logoEthereum from '../assets/logos/networks/ethereum.png';
+import logoSolana from '../assets/logos/networks/solana.png';
+import logoBnbChain from '../assets/logos/networks/bnb-chain.png';
+import logoBase from '../assets/logos/networks/base.png';
+import logoBvnk from '../assets/logos/partners/bvnk.png';
+import logoYellowCard from '../assets/logos/partners/yellow-card.png';
+import logoConduit from '../assets/logos/partners/conduit.png';
+import logoMtnMomo from '../assets/logos/partners/mtn-momo.png';
+import logoAirtel from '../assets/logos/partners/airtel.png';
+import logoBitso from '../assets/logos/partners/bitso.png';
+import logoAstropay from '../assets/logos/partners/astropay.png';
+import logoTazapay from '../assets/logos/partners/tazapay.png';
+import logoTransfi from '../assets/logos/partners/transfi.png';
+import logoDue from '../assets/logos/partners/due.png';
+import logoStraitsx from '../assets/logos/partners/straitsx.png';
+import logoPaxos from '../assets/logos/partners/paxos.png';
+import logoRipple from '../assets/logos/partners/ripple.png';
+import logoCircle from '../assets/logos/partners/circle.png';
 import Footer from '../components/layout/Footer';
 
 const benefits = [
@@ -51,20 +70,20 @@ const currencies = [
 // docs/business/potential-partners.md for the sourced detail behind
 // each one (coverage, licensing, named caveats).
 const partners = [
-  { name: 'BVNK', region: 'US · UK · EU' },
-  { name: 'Yellow Card', region: 'Africa' },
-  { name: 'Conduit', region: 'Africa' },
-  { name: 'MTN MoMo', region: 'Africa' },
-  { name: 'Airtel Money', region: 'Africa' },
-  { name: 'Bitso', region: 'Latin America' },
-  { name: 'AstroPay', region: 'Latin America' },
-  { name: 'Tazapay', region: 'Asia-Pacific' },
-  { name: 'TransFi', region: 'West Asia · South Asia' },
-  { name: 'Due', region: 'APAC · Africa · LatAm' },
-  { name: 'StraitsX', region: 'Singapore' },
-  { name: 'Paxos', region: 'Singapore' },
-  { name: 'Ripple', region: 'Asia · West Asia' },
-  { name: 'Circle', region: 'Global (USDC issuer)' },
+  { name: 'BVNK', region: 'US · UK · EU', logoSrc: logoBvnk },
+  { name: 'Yellow Card', region: 'Africa', logoSrc: logoYellowCard },
+  { name: 'Conduit', region: 'Africa', logoSrc: logoConduit },
+  { name: 'MTN MoMo', region: 'Africa', logoSrc: logoMtnMomo },
+  { name: 'Airtel Money', region: 'Africa', logoSrc: logoAirtel },
+  { name: 'Bitso', region: 'Latin America', logoSrc: logoBitso },
+  { name: 'AstroPay', region: 'Latin America', logoSrc: logoAstropay },
+  { name: 'Tazapay', region: 'Asia-Pacific', logoSrc: logoTazapay },
+  { name: 'TransFi', region: 'West Asia · South Asia', logoSrc: logoTransfi },
+  { name: 'Due', region: 'APAC · Africa · LatAm', logoSrc: logoDue },
+  { name: 'StraitsX', region: 'Singapore', logoSrc: logoStraitsx },
+  { name: 'Paxos', region: 'Singapore', logoSrc: logoPaxos },
+  { name: 'Ripple', region: 'Asia · West Asia', logoSrc: logoRipple },
+  { name: 'Circle', region: 'Global (USDC issuer)', logoSrc: logoCircle },
 ];
 
 // Hedera is where we anchor (fixed, see the on-page explanation).
@@ -72,11 +91,11 @@ const partners = [
 // ordered by USDC liquidity share -- see docs/architecture/
 // stablecoin-market-share.md for the sourced breakdown.
 const settlementNetworks = [
-  { name: 'Hedera', share: 'Anchor network', live: true },
-  { name: 'Ethereum', share: '~67% USDC share', live: false },
-  { name: 'Solana', share: '~17% USDC share', live: false },
-  { name: 'BNB Chain', share: '~8% USDC share', live: false },
-  { name: 'Base', share: '~7% USDC share', live: false },
+  { name: 'Hedera', share: 'Anchor network', live: true, logoSrc: logoHedera },
+  { name: 'Ethereum', share: '~67% USDC share', live: false, logoSrc: logoEthereum },
+  { name: 'Solana', share: '~17% USDC share', live: false, logoSrc: logoSolana },
+  { name: 'BNB Chain', share: '~8% USDC share', live: false, logoSrc: logoBnbChain },
+  { name: 'Base', share: '~7% USDC share', live: false, logoSrc: logoBase },
 ];
 
 const stats = [
@@ -330,10 +349,9 @@ export default function Home() {
           <div className="ticker-mask overflow-hidden">
             <div className="ticker-track gap-3" style={{ animationDirection: 'reverse', animationDuration: '65s' }}>
               {[...partners, ...partners].map((p, i) => (
-                <div key={`${p.name}-${i}`} className="glass px-5 py-3 flex items-center gap-2.5 hover:bg-brand-500/5 transition-all cursor-default shrink-0">
-                  <Building2 className="w-4 h-4 text-brand-500 shrink-0" aria-hidden="true" />
-                  <span className="text-sm font-semibold text-ink whitespace-nowrap">{p.name}</span>
-                  <span className="text-xs text-ink-muted whitespace-nowrap">{p.region}</span>
+                <div key={`${p.name}-${i}`} className="glass p-3 flex items-center gap-3 hover:bg-brand-500/5 transition-all cursor-default shrink-0">
+                  <img src={p.logoSrc} alt={p.name} className="h-8 w-auto max-w-[110px] object-contain rounded" />
+                  <span className="text-xs text-ink-muted whitespace-nowrap border-l border-hairline pl-3">{p.region}</span>
                 </div>
               ))}
             </div>
@@ -360,8 +378,8 @@ export default function Home() {
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
               {settlementNetworks.map((n) => (
                 <div key={n.name} className={`glass p-4 text-center ${n.live ? 'ring-2 ring-brand-500/40' : ''}`}>
-                  <p className="font-bold text-ink text-sm">{n.name}</p>
-                  <p className="text-xs text-ink-muted mt-1">{n.share}</p>
+                  <img src={n.logoSrc} alt={n.name} className="h-9 w-auto max-w-full object-contain mx-auto mb-2 rounded" />
+                  <p className="text-xs text-ink-muted">{n.share}</p>
                   <span className={`inline-block mt-2 px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wide ${n.live ? 'bg-success-500/15 text-success-400' : 'bg-ink-muted/10 text-ink-muted'}`}>
                     {n.live ? 'Live' : 'Planned'}
                   </span>
