@@ -65,7 +65,7 @@ export default function TransferSummaryCard({
         <div className="flex items-center justify-between">
           <span className="text-ink-muted text-sm">Recipient gets</span>
           <div className="text-right">
-            <span className="text-success-400 font-bold text-lg">
+            <span className="text-success-400 font-mono font-bold text-lg">
               {recipientAmount > 0
                 ? formatAmount(recipientAmount, toCurrency)
                 : `${toCur?.symbol || toCurrency}0.00`}

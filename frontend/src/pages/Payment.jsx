@@ -223,7 +223,7 @@ export default function Payment() {
               <div className="glass p-5">
                 <div className="flex items-center justify-between">
                   <span className="text-ink-muted">Total Payment</span>
-                  <span className="text-2xl font-black text-ink">{formData.currency} {Number(summary.sendAmount).toFixed(2)}</span>
+                  <span className="text-2xl font-mono font-bold text-ink tracking-tight">{formData.currency} {Number(summary.sendAmount).toFixed(2)}</span>
                 </div>
               </div>
 

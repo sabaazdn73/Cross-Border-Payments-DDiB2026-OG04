@@ -86,7 +86,7 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-1 text-xs text-ink-muted/60">
             <Shield className="w-3 h-3" />
-            <span>Blockchain-secured compliance records</span>
+            <span>Network-secured compliance records</span>
           </div>
         </div>
       </div>

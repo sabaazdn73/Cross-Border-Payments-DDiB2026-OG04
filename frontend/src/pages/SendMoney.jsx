@@ -224,7 +224,7 @@ export default function SendMoney() {
                   <TransferSummaryCard {...summary} />
                   <div className="mt-4 glass p-4">
                     <p className="text-xs text-ink-muted leading-relaxed">
-                      🔒 Your payment is processed securely. Blockchain settlement happens automatically —
+                      🔒 Your payment is processed securely. Network settlement happens automatically —
                       no crypto wallet interaction required.
                     </p>
                   </div>
