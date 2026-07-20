@@ -5,16 +5,23 @@ import {
   Banknote, Smartphone, Building2
 } from 'lucide-react';
 import Navbar, { DOCS_URL } from '../components/layout/Navbar';
+import noWalletIcon from '../assets/icons/01-no-wallet.svg';
+import lightningIcon from '../assets/icons/02-lightning-settlement.svg';
+import countriesIcon from '../assets/icons/03-countries.svg';
+import complianceIcon from '../assets/icons/04-compliance.svg';
+import trackingIcon from '../assets/icons/05-tracking.svg';
+import feesIcon from '../assets/icons/06-fees.svg';
+import defiRoutingIcon from '../assets/icons/07-defi-routing.svg';
 import Footer from '../components/layout/Footer';
 
 const benefits = [
-  { icon: Shield, title: 'No Wallet Required', description: 'Send money internationally without ever touching a crypto wallet, seed phrase, or private key.' },
-  { icon: Zap, title: 'Lightning Fast Settlement', description: 'Hedera blockchain finalizes transactions in 3-5 seconds, far faster than traditional wire transfers.' },
-  { icon: Globe, title: '30+ Countries Supported', description: 'Send to recipients across Africa, Asia, Latin America, and beyond with competitive exchange rates.' },
-  { icon: Lock, title: 'Compliance Built In', description: 'Automated KYC/AML screening with tamper-proof compliance records anchored on Hedera HCS.' },
-  { icon: Clock, title: 'Real-Time Tracking', description: 'Monitor every step of your transfer from payment received to local payout completion.' },
-  { icon: CheckCircle2, title: 'Transparent Fees', description: 'No hidden charges. See the exact fee and exchange rate before you confirm your transfer.' },
-  { icon: TrendingUp, title: 'DeFi-Aware Routing', description: 'Settlement checks real-time DeFi liquidity depth (e.g. Hedera DEX pools) before choosing a chain, so large transfers route to deeper liquidity automatically.' },
+  { iconSrc: noWalletIcon, title: 'No Wallet Required', description: 'Send money internationally without ever touching a crypto wallet, seed phrase, or private key.' },
+  { iconSrc: lightningIcon, title: 'Lightning Fast Settlement', description: 'Hedera blockchain finalizes transactions in 3-5 seconds, far faster than traditional wire transfers.' },
+  { iconSrc: countriesIcon, title: '30+ Countries Supported', description: 'Send to recipients across Africa, Asia, Latin America, and beyond with competitive exchange rates.' },
+  { iconSrc: complianceIcon, title: 'Compliance Built In', description: 'Automated KYC/AML screening with tamper-proof compliance records anchored on Hedera HCS.' },
+  { iconSrc: trackingIcon, title: 'Real-Time Tracking', description: 'Monitor every step of your transfer from payment received to local payout completion.' },
+  { iconSrc: feesIcon, title: 'Transparent Fees', description: 'No hidden charges. See the exact fee and exchange rate before you confirm your transfer.' },
+  { iconSrc: defiRoutingIcon, title: 'DeFi-Aware Routing', description: 'Settlement checks real-time DeFi liquidity depth (e.g. Hedera DEX pools) before choosing a chain, so large transfers route to deeper liquidity automatically.' },
 ];
 
 const steps = [
@@ -183,10 +190,12 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {benefits.map((b, i) => (
-              <div key={i} className="glass p-6 hover:bg-white/8 transition-all duration-300 group">
-                <div className="w-12 h-12 rounded-xl bg-brand-gradient flex items-center justify-center mb-4 group-hover:shadow-glow transition-shadow">
-                  <b.icon className="w-6 h-6 text-ink" aria-hidden="true" />
-                </div>
+              <div key={i} className="glass p-6 hover:bg-brand-500/5 transition-all duration-300 group">
+                <img
+                  src={b.iconSrc}
+                  alt=""
+                  className="w-12 h-12 rounded-xl mb-4 group-hover:shadow-glow transition-shadow"
+                />
                 <h3 className="font-bold text-ink mb-2">{b.title}</h3>
                 <p className="text-ink-muted text-sm leading-relaxed">{b.description}</p>
               </div>
