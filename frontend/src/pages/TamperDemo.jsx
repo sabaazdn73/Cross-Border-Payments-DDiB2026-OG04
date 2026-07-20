@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Shield, AlertTriangle, RefreshCw, Edit3 } from 'lucide-react';
+import { Shield, AlertTriangle, RefreshCw, Edit3, ExternalLink } from 'lucide-react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import PageHeader from '../components/ui/PageHeader';
@@ -99,7 +99,19 @@ export default function TamperDemo() {
             <div className="text-sm text-ink-muted">
               <p className="font-semibold text-brand-400 mb-1">How This Works</p>
               <p>The compliance record's cryptographic hash was anchored on Hedera HCS at the time of the transaction.
-                Any modification to the off-chain record will produce a different hash, revealing the tampering.</p>
+                Any modification to the off-chain record will produce a different hash, revealing the tampering.
+                The hash below is generated live from this demo's own record, in your browser, so it's real math,
+                not a fixed value. To see actual anchored messages on Hedera's public testnet from this project,
+                not a simulation, use the link below.</p>
+              <a
+                href="https://hashscan.io/testnet/topic/0.0.9617780"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 mt-3 text-brand-400 font-medium hover:underline"
+              >
+                View real anchored records on HashScan (Hedera testnet)
+                <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+              </a>
             </div>
           </div>
 

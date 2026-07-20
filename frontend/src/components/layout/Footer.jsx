@@ -68,8 +68,8 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-ink mb-3 text-sm">Supported</h3>
             <ul className="space-y-2 text-ink-muted text-sm">
-              <li>30+ Countries</li>
-              <li>25+ Currencies</li>
+              <li>37+ Countries</li>
+              <li>36+ Currencies</li>
               <li>Bank Transfer</li>
               <li>Mobile Money</li>
             </ul>

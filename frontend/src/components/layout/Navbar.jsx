@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Home, BookOpen, ExternalLink } from 'lucide-react';
+import { Menu, X, Home, BookOpen, ExternalLink, Mail } from 'lucide-react';
 import brandIcon from '../../assets/brand/icon.svg';
 import ThemeToggle from '../ui/ThemeToggle';
 import MobileMenu from './MobileMenu';
@@ -8,7 +8,6 @@ import MobileMenu from './MobileMenu';
 const navLinks = [
   { label: 'Home', to: '/', },
   { label: 'Send Money', to: '/send-money' },
-  { label: 'Track Transfer', to: '/track' },
   { label: 'Tamper Demo', to: '/tamper-demo' },
   { label: 'Landing', to: '/landing' },
 ];
@@ -75,6 +74,13 @@ export default function Navbar() {
                 <BookOpen className="w-4 h-4" />
                 <span>Docs</span>
                 <ExternalLink className="w-3 h-3 opacity-50" />
+              </a>
+              <a
+                href="mailto:sabaazad93@gmail.com?subject=Cross-Border%20Feedback"
+                className="flex items-center gap-1.5 text-sm font-medium text-ink-muted hover:text-brand-400 transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+                <span>Send Feedback</span>
               </a>
             </div>
 

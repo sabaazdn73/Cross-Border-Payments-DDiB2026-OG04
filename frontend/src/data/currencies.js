@@ -30,6 +30,11 @@ export const currencies = [
   { code: 'BDT', name: 'Bangladeshi Taka', symbol: 'BDT ', flag: '🇧🇩' },
   { code: 'VND', name: 'Vietnamese Dong', symbol: '₫', flag: '🇻🇳' },
   { code: 'AMD', name: 'Armenian Dram', symbol: 'AMD ', flag: '🇦🇲' },
+  { code: 'THB', name: 'Thai Baht', symbol: '฿', flag: '🇹🇭' },
+  { code: 'MYR', name: 'Malaysian Ringgit', symbol: 'RM', flag: '🇲🇾' },
+  { code: 'HKD', name: 'Hong Kong Dollar', symbol: 'HK$', flag: '🇭🇰' },
+  { code: 'KZT', name: 'Kazakhstani Tenge', symbol: 'KZT ', flag: '🇰🇿' },
+  { code: 'UZS', name: 'Uzbekistani Som', symbol: 'UZS ', flag: '🇺🇿' },
 ];
 
 export const getCurrencyByCode = (code) => currencies.find((c) => c.code === code);

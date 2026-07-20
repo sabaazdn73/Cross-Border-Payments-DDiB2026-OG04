@@ -41,14 +41,18 @@ const schema = z.object({
 // flag icon (see FlagSelectInput) rather than an emoji, which some
 // operating systems (Windows, some Android builds) render as plain
 // text instead of a flag.
-const countryOptions = countries.map((c) => ({ value: c.code, label: c.name, flagCode: c.code }));
-const currencyOptions = currencies.map((c) => {
-  // Represent each currency with one country that uses it (first match
-  // in the shared countries list) so both selectors draw flags from
-  // the same single source of truth.
-  const rep = countries.find((co) => co.currency === c.code);
-  return { value: c.code, label: `${c.code} (${c.name})`, flagCode: rep?.code };
-});
+const countryOptions = [...countries]
+  .sort((a, b) => a.name.localeCompare(b.name))
+  .map((c) => ({ value: c.code, label: c.name, flagCode: c.code }));
+const currencyOptions = [...currencies]
+  .sort((a, b) => a.code.localeCompare(b.code))
+  .map((c) => {
+    // Represent each currency with one country that uses it (first match
+    // in the shared countries list) so both selectors draw flags from
+    // the same single source of truth.
+    const rep = countries.find((co) => co.currency === c.code);
+    return { value: c.code, label: `${c.code} (${c.name})`, flagCode: rep?.code };
+  });
 const payoutOptions = payoutMethods.map((m) => ({ value: m.id, label: m.label }));
 
 // The recipient identifier means something different per payout method —

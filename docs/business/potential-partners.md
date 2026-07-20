@@ -14,7 +14,7 @@ any technical integration work can start, not just an API key request.
 
 | Candidate | Coverage | Notes |
 |---|---|---|
-| **Yellow Card** | 35+ countries, 50+ currencies | Visa/Mastercard institutional partnerships; May 2026 Mastercard deal extending into Eastern Europe, Middle East and Africa (initial focus: Ghana, Kenya, Nigeria, South Africa, UAE). Decade of licensed operations across Africa — a geographic compliance moat generalist platforms can't replicate quickly. |
+| **Yellow Card** | 35+ countries, 50+ currencies | Visa/Mastercard institutional partnerships; May 2026 Mastercard deal extending into Eastern Europe, West Asia and Africa (initial focus: Ghana, Kenya, Nigeria, South Africa, UAE). Decade of licensed operations across Africa — a geographic compliance moat generalist platforms can't replicate quickly. |
 | **MTN Mobile Money (MoMo)** | 16-17 African countries | Africa's largest mobile money service: 69.1M active users, 1.3M agents, 1.5M merchants. Runs an **Open API platform** specifically for third-party fintech integration. Mastercard partnership already covers 13 markets (Benin, Cameroon, Cote d'Ivoire, Eswatini, Ghana, Liberia, Nigeria, Congo, Guinea, Rwanda, South Africa, Uganda, Zambia) — overlaps directly with this platform's existing "Mobile Money" payout method. Weaker in Northern Africa (Egypt, Morocco). |
 | **Airtel Money** | 14 African countries | Multicurrency functionality (useful in volatile-currency corridors); business-focused features beyond MTN's consumer focus (supply-chain payments, agricultural payment rails). Competes directly with MTN in West/Central Africa rather than covering different ground. |
 | **Conduit** | 23 African countries, direct local rails | Backed by Circle, Dragonfly, Altos Ventures; $53M raised; $10B+ annualised volume. Widely cited as the deepest Africa-specific coverage in the category. |
@@ -31,16 +31,23 @@ any technical integration work can start, not just an API key request.
 
 | Candidate | Coverage | Notes |
 |---|---|---|
-| **Tazapay** | 100+ countries, same-day payouts | Licensed: Singapore (MAS MPI), Canada (FINTRAC), Australia (AUSTRAC), United States. Pursuing further licenses across Asia, LATAM, Middle East and the Americas. |
-| **TransFi** | 53 countries, deep Southeast Asia / South Asia | Dubai-based; $19.2M raised March 2026. **Explicitly serves Armenia** — converts stablecoins to AMD via regulated channels with local bank withdrawal, which is directly relevant to the Portugal-to-Armenia corridor this project uses as its working example. |
-| **Due** | APAC, Africa, LATAM from one integration | Widest local-rail access among independent providers per comparative industry reviews; Americas (7 countries incl. US, Brazil, Mexico), APAC (6 countries incl. India, Philippines, Singapore). |
+| **Tazapay** | 100+ countries, same-day payouts | Licensed: Singapore (MAS MPI), Canada (FINTRAC), Australia (AUSTRAC), United States. Pursuing further licenses across Asia, LATAM, West Asia and the Americas. |
+| **TransFi** | 53 countries, deep Southeast Asia / South Asia | Dubai-based, $19.2M raised March 2026. Explicitly serves Armenia: converts stablecoins to AMD via regulated channels with local bank withdrawal, directly relevant to the Portugal-to-Armenia corridor this project uses as its working example. |
+| **Due** | APAC, Africa, LATAM from one integration | Widest local-rail access among independent providers per comparative industry reviews; APAC coverage names India, Indonesia, Philippines, Singapore, Thailand, Vietnam specifically. |
+| **StraitsX** | Singapore, XSGD issuer | MAS MPI-licensed; XSGD integrated onto XRP Ledger via a Ripple partnership (May 2025). |
+| **Paxos** | Singapore (third issuance hub after US/UAE) | First foreign MPI-licensed stablecoin issuer in Singapore; Singapore-issued USD stablecoin planned for 2026, DBS Bank as reserve custodian. |
+| **Ripple (Ripple Markets APAC)** | 100+ institutional partnerships across Asia and West Asia | MPI license expanded to cover stablecoin services (Dec 2025); issues RLUSD natively on XRP Ledger; integrates with Ripple's existing On-Demand Liquidity network. |
 
-## Middle East
+### Central Asia — regulatory movement confirmed, no named operating partner yet
+
+Uzbekistan's stablecoin payment sandbox took effect January 1, 2026 (National Agency for Perspective Projects, with the central bank); Kyrgyzstan launched a gold-backed stablecoin (the som/USDKG) in late 2025; Kazakhstan has piloted a state-linked stablecoin. This is real regulatory groundwork, not yet a market with a confirmed third-party settlement partner operating the way Yellow Card operates in Africa or Tazapay in Southeast Asia. Worth monitoring, not yet citable as covered.
+
+## West Asia
 
 | Candidate | Coverage | Notes |
 |---|---|---|
-| **TransFi** | Dubai HQ | Same provider as above — MENA is its home region. |
-| **Plasma One** | Middle East rollout (launched June 2026) | British stablecoin neobank on a purpose-built Layer 1, backed by Bitfinex and Peter Thiel. Early-stage; worth monitoring, not yet a proven integration partner. |
+| **TransFi** | Dubai HQ | Same provider as above. West Asia is its home region. |
+| **Plasma One** | West Asia rollout (launched June 2026) | British stablecoin neobank on a purpose-built Layer 1, backed by Bitfinex and Peter Thiel. Early-stage; worth monitoring, not yet a proven integration partner. |
 | **Yellow Card** | UAE (via the Mastercard partnership above) | Entry point into the region rather than deep native coverage yet. |
 
 ## Institutional / infrastructure layer (cross-region)
