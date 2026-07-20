@@ -86,8 +86,6 @@ export default function Navbar() {
 
             <div className="hidden md:flex items-center gap-3">
               <ThemeToggle />
-              <Link to="/track" className="btn-secondary text-sm py-2 px-4">Track Transfer</Link>
-              <Link to="/send-money" className="btn-primary text-sm py-2 px-4">Start Transfer</Link>
             </div>
 
             <button
