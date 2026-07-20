@@ -131,7 +131,7 @@ export default function Home() {
             </div>
 
             <div className="hidden lg:flex flex-shrink-0 items-center justify-center">
-              <SignatureGlobe size={220} />
+              <SignatureGlobe size={340} />
             </div>
           </div>
         </div>
