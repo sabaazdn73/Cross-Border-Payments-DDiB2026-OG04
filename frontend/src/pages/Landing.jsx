@@ -34,23 +34,23 @@ export default function Landing() {
         <div className="container-app max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <span className="inline-block px-3 py-1 rounded-full bg-danger-500/10 text-danger-400 text-xs font-semibold uppercase tracking-wider mb-3">The Problem</span>
-            <h2 className="text-2xl md:text-3xl font-bold text-ink">Correspondent banking wasn't built for these corridors</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-ink">Correspondent banking is shrinking, not scaling</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             <div className="glass p-6">
               <TrendingDown className="w-8 h-8 text-danger-400 mb-3" aria-hidden="true" />
-              <h3 className="font-bold text-ink mb-2">High, unpredictable cost</h3>
-              <p className="text-sm text-ink-muted leading-relaxed">Thin correspondent-banking relationships mean wide spreads and stacked intermediary fees, especially into emerging markets.</p>
+              <h3 className="font-bold text-ink mb-2">A shrinking, poorly-interconnected network</h3>
+              <p className="text-sm text-ink-muted leading-relaxed">Active correspondent banking relationships have fallen 25% since 2011, with the steepest declines in Africa, the Pacific Islands, and the Caribbean (BIS, 2026). Fewer links mean longer, costlier payment chains.</p>
             </div>
             <div className="glass p-6">
               <Clock className="w-8 h-8 text-danger-400 mb-3" aria-hidden="true" />
-              <h3 className="font-bold text-ink mb-2">Days, not seconds</h3>
-              <p className="text-sm text-ink-muted leading-relaxed">A transfer can pass through three or four correspondent banks before it reaches the recipient's account.</p>
+              <h3 className="font-bold text-ink mb-2">Whole regions lose direct access</h3>
+              <p className="text-sm text-ink-muted leading-relaxed">Banks "de-risk" by cutting off entire jurisdictions rather than individual accounts. FATF acknowledged in 2025 that this has caused real financial-inclusion harm, not just compliance friction.</p>
             </div>
             <div className="glass p-6">
               <ShieldCheck className="w-8 h-8 text-danger-400 mb-3" aria-hidden="true" />
-              <h3 className="font-bold text-ink mb-2">Opaque compliance</h3>
-              <p className="text-sm text-ink-muted leading-relaxed">Senders rarely get a verifiable record that a compliance check actually happened, only a black-box status update.</p>
+              <h3 className="font-bold text-ink mb-2">Pre-funding traps capital</h3>
+              <p className="text-sm text-ink-muted leading-relaxed">Traditional banks (and pre-funded stablecoin issuers alike) lock roughly $10 trillion globally in nostro/vostro accounts just to be ready to pay out (industry estimate, 2025). We don't pre-fund every corridor ourselves.</p>
             </div>
           </div>
         </div>
@@ -61,8 +61,8 @@ export default function Landing() {
         <div className="container-app max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <span className="inline-block px-3 py-1 rounded-full bg-success-500/10 text-success-400 text-xs font-semibold uppercase tracking-wider mb-3">The Solution</span>
-            <h2 className="text-2xl md:text-3xl font-bold text-ink">One licensed on-ramp in, one licensed payout partner out</h2>
-            <p className="text-ink-muted max-w-2xl mx-auto mt-3">Stablecoin settlement replaces the correspondent-banking chain with a single verifiable leg, anchored on the Hedera network. No wallet, no seed phrase, no crypto experience required from either side.</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-ink">We break the route apart, then ride the stablecoin trail</h2>
+            <p className="text-ink-muted max-w-2xl mx-auto mt-3">Instead of one long correspondent-banking chain, we decompose each transfer and route it through the fastest available licensed partner for that corridor. A stablecoin leg, anchored on the Hedera network, carries the value between them, so the outcome is a fiat-to-fiat transfer even though neither side ever touches crypto.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             <div className="glass p-6">
@@ -86,16 +86,31 @@ export default function Landing() {
 
       {/* Target market */}
       <section className="section bg-canvas">
-        <div className="container-app max-w-4xl mx-auto text-center">
-          <span className="inline-block px-3 py-1 rounded-full bg-brand-500/10 text-brand-500 text-xs font-semibold uppercase tracking-wider mb-3">First Target Market</span>
+        <div className="container-app max-w-5xl mx-auto text-center">
+          <span className="inline-block px-3 py-1 rounded-full bg-brand-500/10 text-brand-500 text-xs font-semibold uppercase tracking-wider mb-3">First Target Markets</span>
           <Target className="w-10 h-10 text-brand-500 mx-auto mb-4" aria-hidden="true" />
-          <h2 className="text-2xl md:text-3xl font-bold text-ink mb-4">Diaspora remittances into mobile-money-first Africa</h2>
-          <p className="text-ink-muted leading-relaxed max-w-2xl mx-auto mb-6">
-            The corridor with the clearest evidence base for this design: deep, licensed mobile money infrastructure already in place (M-Pesa, MTN MoMo, Airtel Money), thin correspondent-banking coverage driving up traditional transfer costs, and named potential partners (Yellow Card, Conduit) already operating at scale across the region. See the full research in the docs.
-          </p>
-          <Link to="/send-money" className="btn-primary inline-flex items-center gap-2">
+          <h2 className="text-2xl md:text-3xl font-bold text-ink mb-4">Two groups who feel this problem directly</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 text-left mt-8">
+            <div className="glass p-6">
+              <h3 className="font-bold text-ink mb-2">Freelancers in underbanked markets</h3>
+              <p className="text-sm text-ink-muted leading-relaxed">Nigeria alone has 1.8 million registered freelancers, the largest freelance market in Africa, and payment accessibility is reported as the number one challenge they face (Jobbers.io freelance payment report, Jan 2026). They need their earned currency to land reliably, in a currency they can actually use.</p>
+            </div>
+            <div className="glass p-6">
+              <h3 className="font-bold text-ink mb-2">Senders who don't want to touch crypto</h3>
+              <p className="text-sm text-ink-muted leading-relaxed">People sending money abroad who have no interest in learning wallets, seed phrases, or exchange rates, and who specifically want to avoid the scam and mis-send risk of handling digital assets directly. For them, the settlement layer should be invisible, not something they have to manage.</p>
+            </div>
+          </div>
+          <Link to="/send-money" className="btn-primary inline-flex items-center gap-2 mt-8">
             Try the demo flow <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </Link>
+        </div>
+      </section>
+
+      <section className="py-8 bg-canvas border-t border-hairline">
+        <div className="container-app max-w-3xl mx-auto">
+          <p className="text-xs text-ink-muted leading-relaxed">
+            Sources: Bank for International Settlements, correspondent banking relationship data (2026); FATF, updated de-risking guidance (2025); industry nostro/vostro capital estimates (~$10T, 2025); Jobbers.io, Global Freelance Payment Methods Report (Jan 2026). Figures are dated and should be re-verified before citing in a final report.
+          </p>
         </div>
       </section>
 
