@@ -7,6 +7,7 @@ export const exchangeRates = {
   AUD: 1.55, CAD: 1.36, AED: 3.67, PKR: 278.0, IDR: 15750.0,
   ARS: 1000.0, KRW: 1350.0, SAR: 3.75, BDT: 118.0, VND: 24500.0, AMD: 377.0,
   THB: 34.5, MYR: 4.4, HKD: 7.8, KZT: 480.0, UZS: 12700.0,
+  PEN: 3.75, CLP: 970.0, RWF: 1420.0, ZMW: 27.0, NZD: 1.65,
 };
 
 export const getExchangeRate = (fromCurrency, toCurrency) => {
