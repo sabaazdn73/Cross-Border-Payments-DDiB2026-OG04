@@ -37,8 +37,18 @@ pie showData
     "Hedera (~0.2%)" : 0.2
 ```
 
+At true proportional scale, Hedera's slice is a sliver too thin to render as a visible wedge on the pie above, roughly one degree of the full circle. That's not a missing data point; the bars below use the same numbers on a scale where a small value still shows as a visible, labeled bar, specifically so the smallest three aren't rendered as nothing:
+
+```
+Ethereum   ██████████████████████████████████████████████████████████████  67%
+Solana     █████████████████                                                17%
+BNB Chain  ████████                                                          8%
+Base       ███████                                                           7%
+Hedera     ▏                                                               0.2%
+```
+
 ## The honest read of this chart
 
-Hedera's slice is barely visible — and that is exactly the point being made, not a weakness being hidden. Hedera was never chosen for stablecoin liquidity depth; it was chosen for what [The Trust Layer](trust-layer.md) needs. The other four chains exist in this design specifically *because* Hedera's liquidity is this thin — the [routing decision](settlement-layer.md) checks real liquidity data and falls back to deeper pools automatically once an amount is large enough that settling on Hedera itself would risk slippage.
+Hedera's slice is barely visible, and that is exactly the point being made, not a weakness being hidden. Hedera was never chosen for stablecoin liquidity depth; it was chosen for what [The Trust Layer](trust-layer.md) needs. The other four chains exist in this design specifically *because* Hedera's liquidity is this thin — the [routing decision](settlement-layer.md) checks real liquidity data and falls back to deeper pools automatically once an amount is large enough that settling on Hedera itself would risk slippage.
 
 Ethereum's ~67% share is also worth reading correctly: it reflects **institutional custody balances**, not necessarily payment velocity. Solana and Base, despite much smaller supply, process large *transaction volumes* relative to their size — supply share and usage share are different metrics, and citing one to imply the other would be a real error.
