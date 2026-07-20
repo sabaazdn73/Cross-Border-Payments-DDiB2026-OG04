@@ -36,6 +36,11 @@ export const countries = [
   { code: 'HK', name: 'Hong Kong', flag: '🇭🇰', currency: 'HKD', dialCode: '+852' },
   { code: 'KZ', name: 'Kazakhstan', flag: '🇰🇿', currency: 'KZT', dialCode: '+7' },
   { code: 'UZ', name: 'Uzbekistan', flag: '🇺🇿', currency: 'UZS', dialCode: '+998' },
+  { code: 'PE', name: 'Peru', flag: '🇵🇪', currency: 'PEN', dialCode: '+51' },
+  { code: 'CL', name: 'Chile', flag: '🇨🇱', currency: 'CLP', dialCode: '+56' },
+  { code: 'RW', name: 'Rwanda', flag: '🇷🇼', currency: 'RWF', dialCode: '+250' },
+  { code: 'ZM', name: 'Zambia', flag: '🇿🇲', currency: 'ZMW', dialCode: '+260' },
+  { code: 'NZ', name: 'New Zealand', flag: '🇳🇿', currency: 'NZD', dialCode: '+64' },
 ];
 
 export const getCountryByCode = (code) => countries.find((c) => c.code === code);

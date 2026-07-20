@@ -35,6 +35,11 @@ export const currencies = [
   { code: 'HKD', name: 'Hong Kong Dollar', symbol: 'HK$', flag: '🇭🇰' },
   { code: 'KZT', name: 'Kazakhstani Tenge', symbol: 'KZT ', flag: '🇰🇿' },
   { code: 'UZS', name: 'Uzbekistani Som', symbol: 'UZS ', flag: '🇺🇿' },
+  { code: 'PEN', name: 'Peruvian Sol', symbol: 'S/', flag: '🇵🇪' },
+  { code: 'CLP', name: 'Chilean Peso', symbol: 'CLP$', flag: '🇨🇱' },
+  { code: 'RWF', name: 'Rwandan Franc', symbol: 'RWF ', flag: '🇷🇼' },
+  { code: 'ZMW', name: 'Zambian Kwacha', symbol: 'ZK', flag: '🇿🇲' },
+  { code: 'NZD', name: 'New Zealand Dollar', symbol: 'NZ$', flag: '🇳🇿' },
 ];
 
 export const getCurrencyByCode = (code) => currencies.find((c) => c.code === code);

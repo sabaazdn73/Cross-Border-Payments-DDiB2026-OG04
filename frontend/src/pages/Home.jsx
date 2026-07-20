@@ -18,7 +18,7 @@ import Footer from '../components/layout/Footer';
 const benefits = [
   { iconSrc: noWalletIcon, title: 'No Wallet Required', description: 'Send money internationally without ever touching a crypto wallet, seed phrase, or private key.' },
   { iconSrc: lightningIcon, title: 'Lightning Fast Settlement', description: 'Hedera network finalizes transactions in 3-5 seconds, far faster than traditional wire transfers.' },
-  { iconSrc: countriesIcon, title: '37+ Countries Supported', description: 'Send to recipients across Africa, Asia, Latin America, and beyond with competitive exchange rates.' },
+  { iconSrc: countriesIcon, title: '42+ Countries Supported', description: 'Send to and from Europe, North America, Africa, Asia, and Latin America, with competitive exchange rates.' },
   { iconSrc: complianceIcon, title: 'Compliance Built In', description: 'Automated KYC/AML screening with tamper-proof compliance records anchored on Hedera HCS.' },
   { iconSrc: trackingIcon, title: 'Real-Time Tracking', description: 'Monitor every step of your transfer from payment received to local payout completion.' },
   { iconSrc: feesIcon, title: 'Transparent Fees', description: 'No hidden charges. See the exact fee and exchange rate before you confirm your transfer.' },
@@ -68,8 +68,8 @@ const partners = [
 ];
 
 const stats = [
-  { value: '37+', label: 'Countries', icon: Globe },
-  { value: '36+', label: 'Currencies', icon: TrendingUp },
+  { value: '42+', label: 'Countries', icon: Globe },
+  { value: '41+', label: 'Currencies', icon: TrendingUp },
   { value: '3s', label: 'Network settlement', icon: Zap },
   { value: '100%', label: 'Verifiable', icon: Shield },
 ];
@@ -90,11 +90,12 @@ export default function Home() {
         <div className="container-app relative z-10 py-20">
           <div className="flex flex-col lg:flex-row items-center lg:items-center gap-10 lg:gap-16">
             <div className="max-w-2xl relative flex-1">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 leading-[1.15] tracking-tight animate-slide-up">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 leading-[1.15] tracking-tight animate-slide-up">
                 F2F Cross-Border
-                <br />
-                <span className="gradient-text font-extrabold">Fiat-to-Fiat</span> Settlement Platform
               </h1>
+              <p className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 tracking-tight animate-slide-up whitespace-nowrap">
+                <span className="gradient-text">Fiat-to-Fiat</span> <span className="text-white/70">Settlement Platform</span>
+              </p>
 
               <p className="text-lg md:text-xl text-white/60 mb-10 max-w-2xl leading-relaxed animate-slide-up">
               Fiat-to-fiat conversion, carried across borders on the stablecoin rail. An orchestration layer
@@ -296,7 +297,7 @@ export default function Home() {
             <h2 id="currencies-heading" className="text-3xl md:text-4xl font-bold text-ink mb-3">
               Supported Currencies
             </h2>
-            <p className="text-ink-muted">Send and receive in 36+ currencies worldwide</p>
+            <p className="text-ink-muted">Send and receive in 41+ currencies worldwide</p>
           </div>
           <div className="ticker-mask overflow-hidden">
             <div className="ticker-track gap-3">
@@ -315,7 +316,7 @@ export default function Home() {
             <p className="text-xs text-ink-muted mt-1">Researched candidates by region — see <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">full docs</a> for coverage detail</p>
           </div>
           <div className="ticker-mask overflow-hidden">
-            <div className="ticker-track gap-3" style={{ animationDirection: 'reverse', animationDuration: '32s' }}>
+            <div className="ticker-track gap-3" style={{ animationDirection: 'reverse', animationDuration: '65s' }}>
               {[...partners, ...partners].map((p, i) => (
                 <div key={`${p.name}-${i}`} className="glass px-5 py-3 flex items-center gap-2.5 hover:bg-brand-500/5 transition-all cursor-default shrink-0">
                   <Building2 className="w-4 h-4 text-brand-500 shrink-0" aria-hidden="true" />
