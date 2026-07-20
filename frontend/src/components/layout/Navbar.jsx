@@ -8,7 +8,6 @@ import MobileMenu from './MobileMenu';
 const navLinks = [
   { label: 'Home', to: '/', },
   { label: 'Send Money', to: '/send-money' },
-  { label: 'Track Transfer', to: '/track' },
   { label: 'Tamper Demo', to: '/tamper-demo' },
   { label: 'Landing', to: '/landing' },
 ];
