@@ -350,7 +350,7 @@ export default function Home() {
             <div className="ticker-track gap-3" style={{ animationDirection: 'reverse', animationDuration: '65s' }}>
               {[...partners, ...partners].map((p, i) => (
                 <div key={`${p.name}-${i}`} className="glass p-3 flex items-center gap-3 hover:bg-brand-500/5 transition-all cursor-default shrink-0">
-                  <img src={p.logoSrc} alt={p.name} className="h-8 w-auto max-w-[110px] object-contain rounded" />
+                  <img src={p.logoSrc} alt={p.name} className="h-11 w-auto max-w-[150px] object-contain rounded" />
                   <span className="text-xs text-ink-muted whitespace-nowrap border-l border-hairline pl-3">{p.region}</span>
                 </div>
               ))}
