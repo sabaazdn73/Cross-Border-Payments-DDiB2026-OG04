@@ -180,7 +180,7 @@ This is a sandbox demonstration receipt. Not a real financial document.
               </div>
 
               <div>
-                <h3 className="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-3">Hedera Blockchain Record</h3>
+                <h3 className="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-3">Hedera Network Record</h3>
                 <ReceiptRow label="TX Reference" value={transaction.hederaTxRef} mono />
                 <ReceiptRow label="HCS Topic ID" value={transaction.hederaTopicId} mono />
                 <ReceiptRow label="Sequence #" value={transaction.hederaSequenceNumber} mono />
