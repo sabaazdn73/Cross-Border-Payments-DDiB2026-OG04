@@ -164,7 +164,7 @@ export default function ComplianceVerification() {
           {/* Hash comparison */}
           <div className="glass p-6 mb-5 space-y-4">
             <h2 className="font-bold text-ink mb-2 text-sm uppercase tracking-wider">Hash Verification</h2>
-            <HashDisplay label="Stored Blockchain Hash (Anchored on HCS)" hash={storedHash} />
+            <HashDisplay label="Stored Network Hash (Anchored on HCS)" hash={storedHash} />
             <HashDisplay label="Current Calculated Hash" hash={currentHash} />
           </div>
 

@@ -85,7 +85,7 @@ export default function ReviewTransfer() {
               <div className="glass p-4 flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-success-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
                 <p className="text-sm text-ink-muted leading-relaxed">
-                  By confirming, you authorize this transfer. Compliance verification and blockchain
+                  By confirming, you authorize this transfer. Compliance verification and network
                   settlement will occur automatically. No crypto wallet interaction is required.
                 </p>
               </div>

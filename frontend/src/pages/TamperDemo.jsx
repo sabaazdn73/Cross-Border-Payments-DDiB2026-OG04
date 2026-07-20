@@ -40,7 +40,7 @@ export default function TamperDemo() {
   const [verifying, setVerifying] = useState(false);
   const [isTampered, setIsTampered] = useState(false);
 
-  // The "blockchain-anchored" hash is always of the original record
+  // The "network-anchored" hash is always of the original record
   const anchoredHash = generateRecordHash(ORIGINAL_RECORD);
   const currentHash = generateRecordHash(currentRecord);
 
@@ -138,7 +138,7 @@ export default function TamperDemo() {
             <div className="space-y-4">
               <div className="glass p-5">
                 <h2 className="font-bold text-ink text-sm uppercase tracking-wider mb-4">Hash Comparison</h2>
-                <HashDisplay label="Anchored Blockchain Hash (HCS)" hash={anchoredHash} className="mb-4" />
+                <HashDisplay label="Anchored Network Hash (HCS)" hash={anchoredHash} className="mb-4" />
                 <HashDisplay
                   label={isTampered ? 'Current Hash: MISMATCH ⚠' : 'Current Hash: Match ✓'}
                   hash={currentHash}

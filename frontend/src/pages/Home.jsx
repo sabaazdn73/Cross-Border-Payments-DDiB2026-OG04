@@ -27,7 +27,7 @@ const benefits = [
 const steps = [
   { step: '01', title: 'Enter Transfer Details', description: 'Fill in the sender and recipient information, choose currencies and payout method.', color: 'from-brand-500 to-brand-600' },
   { step: '02', title: 'Pay with Your Card', description: 'Make a standard card payment. No crypto, no wallets. Just your normal payment method.', color: 'from-accent-500 to-accent-600' },
-  { step: '03', title: 'Blockchain Settlement', description: 'Behind the scenes, funds are settled via stablecoin on Hedera. Compliance is anchored on HCS.', color: 'from-success-500 to-success-600' },
+  { step: '03', title: 'Network Settlement', description: 'Behind the scenes, funds are settled via stablecoin on Hedera. Compliance is anchored on HCS.', color: 'from-success-500 to-success-600' },
   { step: '04', title: 'Recipient Gets Paid', description: 'The recipient receives local currency via bank transfer, mobile money, or cash pickup.', color: 'from-brand-600 to-accent-500' },
 ];
 
@@ -66,7 +66,7 @@ const partners = [
 const stats = [
   { value: '30+', label: 'Countries', icon: Globe },
   { value: '30+', label: 'Currencies', icon: TrendingUp },
-  { value: '3s', label: 'Blockchain settlement', icon: Zap },
+  { value: '3s', label: 'Network settlement', icon: Zap },
   { value: '100%', label: 'Verifiable', icon: Shield },
 ];
 
@@ -86,33 +86,131 @@ export default function Home() {
         <div className="container-app relative z-10 py-20">
           <div className="max-w-4xl mx-auto text-center relative">
             <svg
-              className="hidden md:block absolute -top-4 right-0 w-14 h-14 animate-spin-slow opacity-70"
+              className="hidden md:block absolute -top-6 right-2 w-28 h-28 lg:w-32 lg:h-32 animate-spin-slow opacity-90"
               viewBox="0 0 100 100"
               aria-hidden="true"
             >
               <defs>
                 <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="2.2" result="blur" />
+                  <feGaussianBlur stdDeviation="1.4" result="blur" />
                   <feMerge>
                     <feMergeNode in="blur" />
                     <feMergeNode in="SourceGraphic" />
                   </feMerge>
                 </filter>
+                <radialGradient id="globeFill" cx="35%" cy="35%" r="70%">
+                  <stop offset="0%" stopColor="#0d2847" stopOpacity="0.5" />
+                  <stop offset="100%" stopColor="#050d1a" stopOpacity="0.7" />
+                </radialGradient>
               </defs>
-              <g filter="url(#neonGlow)" stroke="#5ee6ff" fill="none" strokeWidth="1">
-                <circle cx="50" cy="50" r="38" opacity="0.9" />
-                <ellipse cx="50" cy="50" rx="16" ry="38" opacity="0.6" />
-                <ellipse cx="50" cy="50" rx="38" ry="16" opacity="0.6" />
-                <ellipse cx="50" cy="50" rx="30" ry="38" opacity="0.4" />
-                <line x1="12" y1="50" x2="88" y2="50" opacity="0.4" />
-              </g>
-              <g fill="#a6f3ff">
-                <circle className="star-twinkle" cx="34" cy="30" r="1.6" style={{ animationDelay: '0s' }} />
-                <circle className="star-twinkle" cx="62" cy="24" r="1.2" style={{ animationDelay: '0.5s' }} />
-                <circle className="star-twinkle" cx="70" cy="46" r="1.4" style={{ animationDelay: '1s' }} />
-                <circle className="star-twinkle" cx="40" cy="66" r="1.3" style={{ animationDelay: '1.5s' }} />
-                <circle className="star-twinkle" cx="58" cy="72" r="1.1" style={{ animationDelay: '0.8s' }} />
-                <circle className="star-twinkle" cx="26" cy="52" r="1.2" style={{ animationDelay: '1.8s' }} />
+              {/* Sphere body + outline, no lat/long arcs -- just the globe edge */}
+              <circle cx="50" cy="50" r="38" fill="url(#globeFill)" stroke="#5ee6ff" strokeWidth="1" opacity="0.9" />
+              {/* Continents, as a dot-matrix silhouette (Europe/Africa/Middle East/Asia) */}
+              <g fill="#8fe9ff" filter="url(#neonGlow)">
+                <circle className="star-twinkle" cx="53.6" cy="28.3" r="1.3" style={{ animationDelay: '0.0s' }} />
+              <circle cx="52.5" cy="31.2" r="1.1" />
+              <circle cx="50.1" cy="24.2" r="1.1" />
+              <circle cx="53.8" cy="29.1" r="1.1" />
+              <circle cx="53.4" cy="28.3" r="1.1" />
+              <circle cx="54.5" cy="23.8" r="1.1" />
+              <circle className="star-twinkle" cx="55.5" cy="22.7" r="1.3" style={{ animationDelay: '2.22s' }} />
+              <circle cx="54.6" cy="25.8" r="1.1" />
+              <circle cx="55.5" cy="28.0" r="1.1" />
+              <circle cx="56.0" cy="24.1" r="1.1" />
+              <circle cx="54.9" cy="25.6" r="1.1" />
+              <circle cx="56.6" cy="27.5" r="1.1" />
+              <circle className="star-twinkle" cx="57.2" cy="25.9" r="1.3" style={{ animationDelay: '1.44s' }} />
+              <circle cx="55.1" cy="26.1" r="1.1" />
+              <circle cx="48.9" cy="23.7" r="1.1" />
+              <circle cx="44.1" cy="25.1" r="1.1" />
+              <circle cx="46.6" cy="27.3" r="1.1" />
+              <circle cx="49.0" cy="24.2" r="1.1" />
+              <circle className="star-twinkle" cx="49.3" cy="24.5" r="1.3" style={{ animationDelay: '0.66s' }} />
+              <circle cx="47.9" cy="25.6" r="1.1" />
+              <circle cx="48.2" cy="27.2" r="1.1" />
+              <circle cx="51.8" cy="37.6" r="1.1" />
+              <circle cx="48.8" cy="41.1" r="1.1" />
+              <circle cx="50.5" cy="39.2" r="1.1" />
+              <circle className="star-twinkle" cx="48.6" cy="41.8" r="1.3" style={{ animationDelay: '2.88s' }} />
+              <circle cx="49.3" cy="37.8" r="1.1" />
+              <circle cx="47.1" cy="45.2" r="1.1" />
+              <circle cx="47.8" cy="44.8" r="1.1" />
+              <circle cx="43.6" cy="50.1" r="1.1" />
+              <circle cx="46.4" cy="44.0" r="1.1" />
+              <circle className="star-twinkle" cx="46.5" cy="42.5" r="1.3" style={{ animationDelay: '2.1s' }} />
+              <circle cx="50.1" cy="52.5" r="1.1" />
+              <circle cx="49.4" cy="53.4" r="1.1" />
+              <circle cx="51.2" cy="56.6" r="1.1" />
+              <circle cx="51.2" cy="50.8" r="1.1" />
+              <circle cx="48.9" cy="50.3" r="1.1" />
+              <circle className="star-twinkle" cx="53.7" cy="58.9" r="1.3" style={{ animationDelay: '1.32s' }} />
+              <circle cx="52.9" cy="55.5" r="1.1" />
+              <circle cx="53.0" cy="55.9" r="1.1" />
+              <circle cx="51.4" cy="57.0" r="1.1" />
+              <circle cx="54.1" cy="58.0" r="1.1" />
+              <circle cx="49.6" cy="58.1" r="1.1" />
+              <circle className="star-twinkle" cx="53.7" cy="57.1" r="1.3" style={{ animationDelay: '0.54s' }} />
+              <circle cx="54.6" cy="60.6" r="1.1" />
+              <circle cx="50.4" cy="62.6" r="1.1" />
+              <circle cx="50.8" cy="62.0" r="1.1" />
+              <circle cx="51.9" cy="61.5" r="1.1" />
+              <circle cx="51.4" cy="62.2" r="1.1" />
+              <circle className="star-twinkle" cx="48.2" cy="60.3" r="1.3" style={{ animationDelay: '2.76s' }} />
+              <circle cx="48.8" cy="64.1" r="1.1" />
+              <circle cx="50.2" cy="63.0" r="1.1" />
+              <circle cx="45.4" cy="63.1" r="1.1" />
+              <circle cx="49.8" cy="61.2" r="1.1" />
+              <circle cx="52.1" cy="63.5" r="1.1" />
+              <circle className="star-twinkle" cx="53.4" cy="66.1" r="1.3" style={{ animationDelay: '1.98s' }} />
+              <circle cx="52.8" cy="63.8" r="1.1" />
+              <circle cx="52.4" cy="66.1" r="1.1" />
+              <circle cx="53.6" cy="67.6" r="1.1" />
+              <circle cx="54.5" cy="63.7" r="1.1" />
+              <circle cx="50.8" cy="64.2" r="1.1" />
+              <circle className="star-twinkle" cx="52.9" cy="65.8" r="1.3" style={{ animationDelay: '1.2s' }} />
+              <circle cx="54.3" cy="64.8" r="1.1" />
+              <circle cx="66.8" cy="29.8" r="1.1" />
+              <circle cx="63.0" cy="27.7" r="1.1" />
+              <circle cx="61.1" cy="28.1" r="1.1" />
+              <circle cx="62.3" cy="23.7" r="1.1" />
+              <circle className="star-twinkle" cx="64.0" cy="30.0" r="1.3" style={{ animationDelay: '0.42s' }} />
+              <circle cx="60.1" cy="27.4" r="1.1" />
+              <circle cx="66.5" cy="32.8" r="1.1" />
+              <circle cx="64.1" cy="31.0" r="1.1" />
+              <circle cx="68.7" cy="34.1" r="1.1" />
+              <circle cx="71.6" cy="31.9" r="1.1" />
+              <circle className="star-twinkle" cx="65.2" cy="33.1" r="1.3" style={{ animationDelay: '2.64s' }} />
+              <circle cx="69.3" cy="33.2" r="1.1" />
+              <circle cx="66.2" cy="34.8" r="1.1" />
+              <circle cx="68.2" cy="33.7" r="1.1" />
+              <circle cx="71.2" cy="33.5" r="1.1" />
+              <circle cx="74.5" cy="30.2" r="1.1" />
+              <circle className="star-twinkle" cx="72.8" cy="32.1" r="1.3" style={{ animationDelay: '1.86s' }} />
+              <circle cx="73.6" cy="32.3" r="1.1" />
+              <circle cx="70.9" cy="29.2" r="1.1" />
+              <circle cx="75.9" cy="28.2" r="1.1" />
+              <circle cx="74.1" cy="32.3" r="1.1" />
+              <circle cx="70.4" cy="39.1" r="1.1" />
+              <circle className="star-twinkle" cx="67.6" cy="39.1" r="1.3" style={{ animationDelay: '1.08s' }} />
+              <circle cx="66.0" cy="38.8" r="1.1" />
+              <circle cx="66.7" cy="31.6" r="1.1" />
+              <circle cx="72.1" cy="39.5" r="1.1" />
+              <circle cx="67.4" cy="42.2" r="1.1" />
+              <circle cx="70.0" cy="39.6" r="1.1" />
+              <circle className="star-twinkle" cx="67.5" cy="38.8" r="1.3" style={{ animationDelay: '0.3s' }} />
+              <circle cx="60.0" cy="40.9" r="1.1" />
+              <circle cx="67.2" cy="41.7" r="1.1" />
+              <circle cx="64.6" cy="39.3" r="1.1" />
+              <circle cx="62.6" cy="38.0" r="1.1" />
+              <circle cx="64.9" cy="40.1" r="1.1" />
+              <circle className="star-twinkle" cx="64.0" cy="38.5" r="1.3" style={{ animationDelay: '2.52s' }} />
+              <circle cx="62.1" cy="41.3" r="1.1" />
+              <circle cx="77.5" cy="28.3" r="1.1" />
+              <circle cx="58.0" cy="35.5" r="1.1" />
+              <circle cx="56.5" cy="35.1" r="1.1" />
+              <circle cx="58.5" cy="35.3" r="1.1" />
+              <circle className="star-twinkle" cx="58.6" cy="35.9" r="1.3" style={{ animationDelay: '1.74s' }} />
+              <circle cx="58.8" cy="37.9" r="1.1" />
               </g>
             </svg>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-500/20 border border-brand-500/30 text-brand-400 text-sm font-medium mb-8 animate-fade-in">
@@ -165,7 +263,7 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
-                <p className="text-3xl md:text-4xl font-black gradient-text mb-1">{stat.value}</p>
+                <p className="font-mono text-3xl md:text-4xl font-bold gradient-text mb-1 tracking-tight">{stat.value}</p>
                 <p className="text-ink-muted text-sm">{stat.label}</p>
               </div>
             ))}
