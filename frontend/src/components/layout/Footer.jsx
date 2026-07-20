@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Shield, Globe, Lock } from 'lucide-react';
+import { Shield, Globe, Lock, Zap } from 'lucide-react';
 import brandIcon from '../../assets/brand/icon.svg';
 import SiteQRCode from '../ui/SiteQRCode';
 
@@ -84,9 +84,15 @@ export default function Footer() {
           <p className="text-ink-muted/60 text-xs">
             &copy; {currentYear} Cross-Border. Sandbox demonstration only. Not a real financial service.
           </p>
-          <div className="flex items-center gap-1 text-xs text-ink-muted/60">
-            <Shield className="w-3 h-3" />
-            <span>Network-secured compliance records</span>
+          <div className="flex items-center gap-4">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-medium">
+              <Zap className="w-3 h-3" aria-hidden="true" />
+              Powered by Hedera Network
+            </span>
+            <div className="flex items-center gap-1 text-xs text-ink-muted/60">
+              <Shield className="w-3 h-3" />
+              <span>Network-secured compliance records</span>
+            </div>
           </div>
         </div>
       </div>
