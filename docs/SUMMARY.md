@@ -27,7 +27,10 @@
 
 ## Business
 * [Market Analysis](business/market-analysis.md)
+* [Alternative Approaches](business/alternative-approaches.md)
 * [Business Model](business/business-model.md)
+* [Go-to-Market Strategy](business/go-to-market.md)
+* [Token vs. No Token](business/token-decision.md)
 * [SWOT Analysis](business/swot.md)
 * [Partner Coverage by Corridor](business/partner-coverage.md)
 * [Potential Partners for Collaboration](business/potential-partners.md)
