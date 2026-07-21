@@ -32,6 +32,9 @@ import logoStraitsx from '../assets/logos/partners/straitsx.png';
 import logoPaxos from '../assets/logos/partners/paxos.png';
 import logoRipple from '../assets/logos/partners/ripple.png';
 import logoCircle from '../assets/logos/partners/circle.png';
+import logoEbanx from '../assets/logos/partners/ebanx.png';
+import logoMercadoPago from '../assets/logos/partners/mercado-pago.png';
+import logoPayu from '../assets/logos/partners/payu.png';
 import Footer from '../components/layout/Footer';
 
 const benefits = [
@@ -84,6 +87,9 @@ const partners = [
   { name: 'Paxos', region: 'Singapore', logoSrc: logoPaxos },
   { name: 'Ripple', region: 'Asia · West Asia', logoSrc: logoRipple },
   { name: 'Circle', region: 'Global (USDC issuer)', logoSrc: logoCircle },
+  { name: 'EBANX', region: 'Brazil · Latin America', logoSrc: logoEbanx },
+  { name: 'Mercado Pago', region: 'Latin America', logoSrc: logoMercadoPago },
+  { name: 'PayU', region: 'Colombia · Global', logoSrc: logoPayu },
 ];
 
 // Hedera is where we anchor (fixed, see the on-page explanation).
