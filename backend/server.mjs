@@ -574,12 +574,19 @@ app.post('/api/payments', (req, res) => {
   res.json({ success: true, paymentId: `PAY-${Date.now()}` });
 });
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`🚀 Settlement API Server running on http://localhost:${PORT}`);
-});
+// Start the server only when this file is actually run directly
+// (node backend/server.mjs), not when imported by a test file that
+// wants the Express app object itself (Supertest doesn't need a real
+// listening port -- it drives requests straight into the app).
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  app.listen(PORT, () => {
+    console.log(`🚀 Settlement API Server running on http://localhost:${PORT}`);
+  });
+}
 
 process.on('SIGTERM', () => {
   closeClient();
   process.exit(0);
 });
+
+export default app;

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node --test backend/services/hedera/__tests__/*.test.mjs backend/services/settlement/__tests__/*.test.mjs",
+    "test:vitest": "vitest run",
     "demo:modular": "node demo-modular.mjs",
     "demo:router": "node demo-router.mjs",
     "server": "node backend/server.mjs",
@@ -21,5 +22,9 @@
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "supertest": "^7.2.2",
+    "vitest": "^4.1.10"
   }
 }
