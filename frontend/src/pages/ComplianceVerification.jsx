@@ -167,12 +167,14 @@ export default function ComplianceVerification() {
             <HashDisplay label="Stored Network Hash (Anchored on HCS)" hash={storedHash} />
             <HashDisplay label="Current Calculated Hash" hash={currentHash} />
             <a
-              href="https://hashscan.io/testnet/topic/0.0.9617780"
+              href={transaction?.hashscanUrl || "https://hashscan.io/testnet/topic/0.0.9617780"}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-sm text-brand-500 font-medium hover:underline"
             >
-              View real anchored records on HashScan (Hedera testnet)
+              {transaction?.hashscanUrl
+                ? 'View this exact transaction on HashScan (Hedera testnet)'
+                : 'View real anchored records on HashScan (Hedera testnet)'}
             </a>
           </div>
 

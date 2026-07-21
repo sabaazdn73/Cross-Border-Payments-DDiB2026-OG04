@@ -206,6 +206,16 @@ app.get('/api/transfers/:id/compliance', async (req, res) => {
 });
 
 // 5. Verify compliance record against Hedera HCS
+//
+// IMPORTANT: this endpoint always attempts a REAL Mirror Node check
+// when the transaction has real anchor data (topicId + sequenceNumber),
+// regardless of isSimulationMode. isSimulationMode governs whether the
+// *payment/execution* leg is simulated -- it must never silently
+// downgrade compliance verification to a local, self-referential
+// comparison, since "verify against Hedera" is the entire point of
+// this endpoint. A local-only comparison was the actual bug reported:
+// it can never fail to match (it recomputes the same value it stores),
+// so it wasn't verifying anything.
 app.post('/api/transfers/:id/verify', async (req, res) => {
   const { id } = req.params;
   const { record } = req.body;
@@ -216,34 +226,37 @@ app.post('/api/transfers/:id/verify', async (req, res) => {
     return res.status(404).json({ error: 'Transaction not found' });
   }
 
+  const topicId = txn.hederaTopicId;
+  const seqNo = txn.complianceAnchor?.sequenceNumber;
+
   try {
-    if (isSimulationMode) {
-      // Simulate HCS mirror check with short artificial delay
-      await new Promise(r => setTimeout(r, 1500));
-      
-      const anchoredHash = txn.complianceAnchor?.recordHash;
-      if (!anchoredHash) {
-        return res.status(400).json({ error: 'Anchoring details missing in simulation DB' });
-      }
-
-      // Check if recomputed matches anchored
-      const verification = verifyRecord(record, {
-        consensus_timestamp: txn.complianceAnchor.consensusTimestamp,
-        recordHash: anchoredHash
-      });
-      return res.json(verification);
-    } else {
-      // Real check on Hedera HCS Mirror Node
-      const topicId = txn.hederaTopicId;
-      const seqNo = txn.complianceAnchor?.sequenceNumber;
-      if (!topicId || !seqNo) {
-        return res.status(400).json({ error: 'Anchoring details missing for this transaction' });
-      }
-
+    if (topicId && seqNo) {
+      // Real check on the real Hedera HCS Mirror Node -- the only
+      // path this endpoint should take when real anchor data exists.
       const mirror = await fetchMirrorMessage(topicId, seqNo);
       const verification = verifyRecord(record, mirror);
       return res.json(verification);
     }
+
+    if (isSimulationMode) {
+      // No real anchor data recorded for this transaction (e.g. it
+      // was created before Hedera anchoring was wired up, or anchoring
+      // itself failed). This is an honest fallback for that edge case,
+      // not the default path -- it's clearly labeled in the response
+      // as unverified-against-network so the UI can't present it as
+      // equivalent to a real check.
+      const anchoredHash = txn.complianceAnchor?.recordHash;
+      if (!anchoredHash) {
+        return res.status(400).json({ error: 'No compliance anchor recorded for this transaction' });
+      }
+      const verification = verifyRecord(record, {
+        consensus_timestamp: txn.complianceAnchor.consensusTimestamp,
+        recordHash: anchoredHash,
+      });
+      return res.json({ ...verification, networkChecked: false });
+    }
+
+    return res.status(400).json({ error: 'Anchoring details missing for this transaction' });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
