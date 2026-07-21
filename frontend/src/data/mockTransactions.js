@@ -19,10 +19,17 @@ export const mockTransactionRecords = [
     createdAt: new Date(Date.now() - 86400000).toISOString(),
     completedAt: new Date(Date.now() - 80000000).toISOString(),
     estimatedDelivery: '1-2 business days',
-    hederaTxRef: '0.0.4891234@1722345678.000000000',
-    hederaTopicId: '0.0.4891234',
-    hederaSequenceNumber: '847',
-    hederaConsensusTimestamp: '2026-07-18T11:30:00.123456789Z',
+    // Real Hedera testnet data, verified directly against the public
+    // Mirror Node (testnet.mirrornode.hedera.com) before being used
+    // here -- not invented. This is genuinely the first real message
+    // anchored on this project's topic, not a placeholder sequence
+    // number that doesn't exist yet.
+    hederaTxRef: '0.0.8762554@1784321564.234380124',
+    hederaTopicId: '0.0.9617780',
+    hederaSequenceNumber: '1',
+    hederaConsensusTimestamp: '2026-07-17T20:52:51.834087104Z',
+    hederaTransactionHash: '5e5e3dc9ce56986b53495dce832adb1aa58655189358b3f84d136c4c23f3b77320eb2ffd1d2b444b3e6b46257ddec437',
+    hashscanUrl: 'https://hashscan.io/testnet/transaction/1784321571.834087104',
     complianceStatus: 'verified',
     settlementStatus: 'settled',
     payoutStatus: 'paid',

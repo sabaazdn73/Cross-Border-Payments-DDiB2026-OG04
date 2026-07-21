@@ -287,16 +287,24 @@ export default function Home() {
                 <div className="space-y-1.5 text-xs">
                   <div className="flex justify-between">
                     <span className="text-ink-muted">HCS Topic ID</span>
-                    <span className="text-accent-400 font-mono">0.0.4891234</span>
+                    <span className="text-accent-400 font-mono">0.0.9617780</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-ink-muted">Sequence #</span>
-                    <span className="text-accent-400 font-mono">847</span>
+                    <span className="text-accent-400 font-mono">1</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-ink-muted">Verification</span>
                     <span className="text-success-400">Hash match ✓</span>
                   </div>
+                  <a
+                    href="https://hashscan.io/testnet/transaction/1784321571.834087104"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-brand-500 hover:underline pt-1"
+                  >
+                    View this real transaction on HashScan →
+                  </a>
                 </div>
               </div>
 
