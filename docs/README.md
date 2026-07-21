@@ -4,7 +4,7 @@
 layer over licensed payment rails, with a verifiable compliance trail
 anchored on Hedera.
 
-DDiB 2026 · University of Zurich · Online_Group 04
+DDiB 2026 · University of Zurich
 
 {% hint style="info" %}
 This is a working sandbox/testnet prototype built for a two-week
