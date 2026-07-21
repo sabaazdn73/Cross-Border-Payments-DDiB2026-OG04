@@ -193,12 +193,9 @@ export default function Home() {
       <section className="section" aria-labelledby="benefits-heading">
         <div className="container-app">
           <div className="text-center mb-14">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/20 text-brand-400 border border-brand-500/30 mb-4">
-              Why Choose Cross-Border
-            </span>
             <h2 id="benefits-heading" className="text-3xl md:text-4xl font-bold text-ink">
-              Everything you need,{' '}
-              <span className="gradient-text">nothing you don't</span>
+              Built around what a transfer{' '}
+              <span className="gradient-text">actually needs</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -221,11 +218,8 @@ export default function Home() {
       <section className="section bg-surface" aria-labelledby="how-it-works-heading">
         <div className="container-app">
           <div className="text-center mb-14">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-accent-500/20 text-accent-400 border border-accent-500/30 mb-4">
-              Simple Process
-            </span>
             <h2 id="how-it-works-heading" className="text-3xl md:text-4xl font-bold text-ink">
-              How it <span className="gradient-text">works</span>
+              How a transfer <span className="gradient-text">actually moves</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -250,9 +244,6 @@ export default function Home() {
         <div className="container-app">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-success-500/20 text-success-400 border border-success-500/30 mb-4">
-                Enterprise Security
-              </span>
               <h2 id="security-heading" className="text-3xl md:text-4xl font-bold text-ink mb-4">
                 Compliance you can<span className="gradient-text-success"> verify</span>
               </h2>
@@ -374,7 +365,6 @@ export default function Home() {
           {/* The heart of the project: anchor vs execution */}
           <div className="mt-20 max-w-4xl mx-auto">
             <div className="text-center mb-10">
-              <span className="inline-block px-3 py-1 rounded-full bg-brand-500/10 text-brand-500 text-xs font-semibold uppercase tracking-wider mb-3">The Core Idea</span>
               <h3 className="text-2xl md:text-3xl font-bold text-ink">One ledger to trust. Any network to move on.</h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
@@ -393,7 +383,7 @@ export default function Home() {
               {settlementNetworks.map((n) => (
                 <div key={n.name} className={`glass p-4 text-center ${n.live ? 'ring-2 ring-brand-500/40' : ''}`}>
                   <img src={n.logoSrc} alt={n.name} className="h-9 w-auto max-w-full object-contain mx-auto mb-2 rounded" />
-                  <p className="text-xs text-ink-muted">{n.share}</p>
+                  <p className="text-xs text-ink-muted font-mono">{n.share}</p>
                   <span className={`inline-block mt-2 px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wide ${n.live ? 'bg-success-500/15 text-success-400' : 'bg-ink-muted/10 text-ink-muted'}`}>
                     {n.live ? 'Live' : 'Planned'}
                   </span>

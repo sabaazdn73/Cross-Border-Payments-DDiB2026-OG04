@@ -85,7 +85,7 @@ export default function Footer() {
             &copy; {currentYear} Cross-Border. Sandbox demonstration only. Not a real financial service.
           </p>
           <div className="flex items-center gap-4">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-medium">
+            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-ink-muted">
               <Zap className="w-3 h-3" aria-hidden="true" />
               Powered by Hedera Network
             </span>

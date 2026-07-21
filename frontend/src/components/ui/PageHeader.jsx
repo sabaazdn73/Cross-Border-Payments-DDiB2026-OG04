@@ -2,7 +2,7 @@ export default function PageHeader({ badge, title, subtitle, children, className
   return (
     <div className={`text-center mb-10 ${className}`}>
       {badge && (
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/20 text-brand-400 border border-brand-500/30 mb-4">
+        <span className="block text-xs font-bold text-ink-muted uppercase tracking-wider mb-3">
           {badge}
         </span>
       )}

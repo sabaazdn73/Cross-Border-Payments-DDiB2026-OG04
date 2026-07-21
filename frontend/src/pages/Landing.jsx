@@ -33,7 +33,6 @@ export default function Landing() {
       <section className="section bg-canvas">
         <div className="container-app max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <span className="inline-block px-3 py-1 rounded-full bg-danger-500/10 text-danger-400 text-xs font-semibold uppercase tracking-wider mb-3">The Problem</span>
             <h2 className="text-2xl md:text-3xl font-bold text-ink">Correspondent banking is shrinking, not scaling</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -60,7 +59,6 @@ export default function Landing() {
       <section className="section bg-surface">
         <div className="container-app max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <span className="inline-block px-3 py-1 rounded-full bg-success-500/10 text-success-400 text-xs font-semibold uppercase tracking-wider mb-3">The Solution</span>
             <h2 className="text-2xl md:text-3xl font-bold text-ink">We break the route apart, then ride the stablecoin rail</h2>
             <p className="text-ink-muted max-w-2xl mx-auto mt-3">Instead of one long correspondent-banking chain, we decompose each transfer and route it through the fastest available licensed partner for that corridor. A stablecoin leg, anchored on the Hedera network, carries the value between them, so the outcome is a fiat-to-fiat transfer even though neither side ever touches crypto.</p>
           </div>
@@ -87,7 +85,6 @@ export default function Landing() {
       {/* Target market */}
       <section className="section bg-canvas">
         <div className="container-app max-w-5xl mx-auto text-center">
-          <span className="inline-block px-3 py-1 rounded-full bg-brand-500/10 text-brand-500 text-xs font-semibold uppercase tracking-wider mb-3">First Target Markets</span>
           <Target className="w-10 h-10 text-brand-500 mx-auto mb-4" aria-hidden="true" />
           <h2 className="text-2xl md:text-3xl font-bold text-ink mb-4">Two groups who feel this problem directly</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 text-left mt-8">
