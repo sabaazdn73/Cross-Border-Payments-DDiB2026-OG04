@@ -1,29 +1,30 @@
 import { useEffect, useRef } from 'react';
 
 /**
- * A stylized abstract globe (radial-gradient sphere + a lat/long grid
- * masked into a circle), not a photorealistic 3D earth. This is a
- * deliberate style choice: a data-visualization dashboard look
- * instead of a literal rendered planet.
+ * A stylized abstract globe -- layered radial-gradient shading (no
+ * lat/long grid, removed per request) built to read as a lit sphere:
+ * a bright specular highlight, a mid-tone lit face, a dark shadow
+ * side, and a soft rim-light on the terminator edge.
  *
- * "Rotation" here is a genuine animated illusion, not decoration for
- * its own sake: the grid's background-position slides continuously,
- * and the highlight sweeps with it, so the sphere reads as turning.
- * Small satellite dots orbit the rim on an elliptical path to sell
- * the same illusion further and double as "in-flight transaction"
- * motifs.
+ * Rotation is now carried entirely by the specular highlight sweeping
+ * across the sphere in an arc (the light source appears to move
+ * as the sphere turns under it) plus the orbiting satellite dots,
+ * since there's no grid left to slide.
  */
 export default function StyledGlobe({ size = 360 }) {
   const orbitRef = useRef(null);
+  const highlightRef = useRef(null);
 
   useEffect(() => {
     let raf;
     let angle = 0;
-    const el = orbitRef.current;
-    if (!el) return;
-    const dots = el.querySelectorAll('.orbit-dot');
+    const orbitEl = orbitRef.current;
+    const highlightEl = highlightRef.current;
+    if (!orbitEl) return;
+    const dots = orbitEl.querySelectorAll('.orbit-dot');
     const animate = () => {
       angle += 0.006;
+
       dots.forEach((dot, i) => {
         const offset = (i / dots.length) * Math.PI * 2;
         const a = angle + offset;
@@ -37,6 +38,13 @@ export default function StyledGlobe({ size = 360 }) {
         dot.style.zIndex = z;
         dot.style.opacity = 0.35 + 0.65 * scale;
       });
+
+      if (highlightEl) {
+        const hx = 50 + 34 * Math.cos(angle * 0.5);
+        const hy = 32 + 10 * Math.sin(angle * 0.5);
+        highlightEl.style.background = `radial-gradient(circle at ${hx}% ${hy}%, rgba(140,180,255,0.65), transparent 55%)`;
+      }
+
       raf = requestAnimationFrame(animate);
     };
     raf = requestAnimationFrame(animate);
@@ -46,10 +54,6 @@ export default function StyledGlobe({ size = 360 }) {
   return (
     <div style={{ position: 'relative', width: size, height: size }} aria-hidden="true">
       <style>{`
-        @keyframes globeSpin {
-          from { background-position: 0 0, 0 0; }
-          to { background-position: -160px 0, 0 -160px; }
-        }
         @keyframes ringPulse {
           0%, 100% { opacity: 0.5; }
           50% { opacity: 0.9; }
@@ -60,7 +64,6 @@ export default function StyledGlobe({ size = 360 }) {
         }
       `}</style>
 
-      {/* outer glow ring */}
       <div
         style={{
           position: 'absolute', inset: -14,
@@ -70,26 +73,28 @@ export default function StyledGlobe({ size = 360 }) {
         }}
       />
 
-      {/* the sphere */}
       <div
         style={{
           width: size, height: size, borderRadius: '50%', position: 'relative', overflow: 'hidden',
           background: `
-            radial-gradient(circle at 32% 28%, rgba(91,141,255,0.55), transparent 55%),
-            radial-gradient(circle at 68% 72%, rgba(201,162,77,0.18), transparent 50%),
-            linear-gradient(160deg, #0f1a33 0%, #060a14 70%)`,
-          boxShadow: 'inset -18px -18px 50px rgba(0,0,0,0.55), 0 0 90px rgba(47,95,224,0.25)',
+            radial-gradient(circle at 68% 74%, rgba(0,0,0,0.65), transparent 60%),
+            radial-gradient(circle at 38% 34%, rgba(70,110,200,0.35), transparent 62%),
+            linear-gradient(155deg, #16264a 0%, #0a1428 55%, #04070f 100%)`,
+          boxShadow: 'inset -22px -22px 60px rgba(0,0,0,0.6), inset 10px 10px 40px rgba(120,160,255,0.08), 0 0 90px rgba(47,95,224,0.25)',
         }}
       >
         <div
+          ref={highlightRef}
           style={{
             position: 'absolute', inset: 0, borderRadius: '50%',
-            backgroundImage: `
-              repeating-linear-gradient(90deg, rgba(255,255,255,0.08) 0 1px, transparent 1px 40px),
-              repeating-linear-gradient(0deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 40px)`,
-            WebkitMaskImage: 'radial-gradient(circle, black 60%, transparent 78%)',
-            maskImage: 'radial-gradient(circle, black 60%, transparent 78%)',
-            animation: 'globeSpin 9s linear infinite',
+            background: 'radial-gradient(circle at 84% 32%, rgba(140,180,255,0.65), transparent 55%)',
+            mixBlendMode: 'screen',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute', inset: 0, borderRadius: '50%',
+            boxShadow: 'inset 0 0 24px 2px rgba(120,160,255,0.25)',
           }}
         />
         {[
@@ -111,7 +116,6 @@ export default function StyledGlobe({ size = 360 }) {
         ))}
       </div>
 
-      {/* orbiting satellite dots (in-flight transactions) */}
       <div ref={orbitRef} style={{ position: 'absolute', top: '50%', left: '50%', width: 0, height: 0 }}>
         {[0, 1, 2].map((i) => (
           <div
@@ -126,7 +130,6 @@ export default function StyledGlobe({ size = 360 }) {
         ))}
       </div>
 
-      {/* floating anchor status card */}
       <div
         style={{
           position: 'absolute', bottom: 4, left: '50%', transform: 'translateX(-50%)',
