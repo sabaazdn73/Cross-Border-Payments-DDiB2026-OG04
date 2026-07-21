@@ -1,3 +1,5 @@
+import { mockTransactionRecords } from '../data/mockTransactions';
+
 const STORAGE_KEY = 'borderless_transactions';
 
 const getStorage = () => {
@@ -53,11 +55,20 @@ export const clearAllTransactions = () => {
 export const searchTransactions = (query) => {
   const all = getAllTransactions();
   const q = query.toLowerCase().trim();
-  return Object.values(all).filter(
+  const localMatches = Object.values(all).filter(
     (t) =>
       t.id?.toLowerCase().includes(q) ||
       t.senderName?.toLowerCase().includes(q) ||
       t.recipientName?.toLowerCase().includes(q) ||
       t.senderEmail?.toLowerCase().includes(q)
+  );
+  if (localMatches.length > 0) return localMatches;
+  // Fall back to the seeded demo record(s) so the "try an example"
+  // path works even before this browser has any local history.
+  return mockTransactionRecords.filter(
+    (t) =>
+      t.id?.toLowerCase().includes(q) ||
+      t.senderName?.toLowerCase().includes(q) ||
+      t.recipientName?.toLowerCase().includes(q)
   );
 };
