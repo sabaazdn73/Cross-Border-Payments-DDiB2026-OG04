@@ -24,9 +24,9 @@ export default function AppHome() {
           <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
           Hedera testnet
         </div>
-        <p className="text-white/55 text-[13px] mb-1.5">No wallet required</p>
-        <p className="text-white text-lg font-bold leading-snug mb-5">
-          Send across borders,<br />settle in seconds.
+        <p className="text-white/60 text-2xl font-script text-center mb-1.5">No wallet required</p>
+        <p className="text-white text-lg font-bold leading-snug mb-5 text-center">
+          Send across borders, settle in seconds.
         </p>
         <div className="flex justify-between bg-white/[0.06] border border-white/10 rounded-[18px] p-3.5">
           <button onClick={() => navigate('/app/send')} className="flex-1 flex flex-col items-center gap-2 text-white">
