@@ -87,7 +87,7 @@ export default function AppHome() {
             return (
               <div
                 key={tx.id}
-                onClick={() => navigate(`/transaction/${tx.id}`)}
+                onClick={() => navigate(`/app/transaction/${tx.id}`)}
                 className="flex items-center gap-3 px-4 py-3.5 border-b border-hairline last:border-b-0 cursor-pointer"
               >
                 <span className="w-9 h-9 rounded-full bg-brand-500/10 text-brand-500 flex items-center justify-center text-xs font-bold flex-shrink-0">

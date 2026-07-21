@@ -14,7 +14,7 @@ export default function AppVerify() {
     const results = searchTransactions(q);
     if (results.length > 0) {
       setNotFound(false);
-      navigate(`/transaction/${results[0].id}/verify`);
+      navigate(`/app/transaction/${results[0].id}`);
     } else {
       setNotFound(true);
     }
@@ -61,7 +61,7 @@ export default function AppVerify() {
 
       <p className="text-[11px] font-bold text-ink-muted uppercase tracking-wide mt-6 mb-2.5">Try an example</p>
       <button
-        onClick={() => { setQuery('TXN-9KF3XQ2'); navigate('/transaction/TXN-9KF3XQ2/verify'); }}
+        onClick={() => { setQuery('TXN-9KF3XQ2'); navigate('/app/transaction/TXN-9KF3XQ2'); }}
         className="border border-hairline bg-surface text-ink rounded-full px-4 py-2 text-xs font-mono font-semibold"
       >
         TXN-9KF3XQ2
