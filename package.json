@@ -6,6 +6,7 @@
   "scripts": {
     "test": "node --test backend/services/hedera/__tests__/*.test.mjs backend/services/settlement/__tests__/*.test.mjs",
     "test:vitest": "vitest run",
+    "test:e2e": "playwright test",
     "demo:modular": "node demo-modular.mjs",
     "demo:router": "node demo-router.mjs",
     "server": "node backend/server.mjs",
@@ -24,6 +25,7 @@
     "express": "^5.2.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "supertest": "^7.2.2",
     "vitest": "^4.1.10"
   }
