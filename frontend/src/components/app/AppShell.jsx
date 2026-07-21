@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { NavLink, useLocation, Link } from 'react-router-dom';
-import { Home, SendHorizonal, ShieldCheck, User, ArrowLeft, Globe2 } from 'lucide-react';
+import { Home, SendHorizonal, ShieldCheck, Users, User, ArrowLeft, Globe2 } from 'lucide-react';
 import brandIcon from '../../assets/brand/icon.svg';
 import ThemeToggle from '../ui/ThemeToggle';
 import AppSplash from './AppSplash';
@@ -16,6 +16,7 @@ const TABS = [
   { to: '/app', label: 'Home', icon: Home, end: true },
   { to: '/app/transfers', label: 'Transfers', icon: SendHorizonal },
   { to: '/app/verify', label: 'Verify', icon: ShieldCheck },
+  { to: '/app/community', label: 'Community', icon: Users },
   { to: '/app/profile', label: 'Profile', icon: User },
 ];
 
@@ -75,24 +76,32 @@ export default function AppShell({ children, title, showBack, onBack }) {
             <div className="flex-1 overflow-y-auto pb-24">{children}</div>
 
             {/* bottom tab bar */}
-            <div className="absolute left-0 right-0 bottom-0 flex justify-around items-center pt-2.5 pb-6 px-2 bg-surface border-t border-hairline">
-              {TABS.map((tab) => (
-                <NavLink
-                  key={tab.to}
-                  to={tab.to}
-                  end={tab.end}
-                  className={({ isActive }) =>
-                    `flex flex-col items-center gap-1 ${isActive ? 'text-brand-500' : 'text-ink-muted'}`
-                  }
-                >
-                  {({ isActive }) => (
-                    <>
-                      <tab.icon className="w-[21px] h-[21px]" strokeWidth={1.8} />
-                      <span className={`text-[11px] ${isActive ? 'font-bold' : 'font-medium'}`}>{tab.label}</span>
-                    </>
-                  )}
-                </NavLink>
-              ))}
+            <div className="absolute left-0 right-0 bottom-0 pt-2 pb-6 px-3 bg-surface/95 backdrop-blur-md border-t border-hairline">
+              <div className="flex justify-around items-center">
+                {TABS.map((tab) => (
+                  <NavLink
+                    key={tab.to}
+                    to={tab.to}
+                    end={tab.end}
+                    className="flex flex-col items-center gap-1 px-2"
+                  >
+                    {({ isActive }) => (
+                      <>
+                        <span
+                          className={`flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-200 ${
+                            isActive ? 'bg-brand-500/12 text-brand-500 scale-105' : 'text-ink-muted'
+                          }`}
+                        >
+                          <tab.icon className="w-[19px] h-[19px]" strokeWidth={isActive ? 2.2 : 1.8} />
+                        </span>
+                        <span className={`text-[10px] ${isActive ? 'font-bold text-brand-500' : 'font-medium text-ink-muted'}`}>
+                          {tab.label}
+                        </span>
+                      </>
+                    )}
+                  </NavLink>
+                ))}
+              </div>
             </div>
           </>
         )}

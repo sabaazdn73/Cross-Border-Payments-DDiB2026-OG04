@@ -30,11 +30,11 @@ export default function AppTransfers() {
       <p className="px-5 pb-2 text-[13px] font-bold text-ink">All transfers</p>
 
       {transfers.length === 0 ? (
-        <div className="mx-5 mb-6 bg-surface border border-hairline rounded-[18px] p-6 text-center">
+        <div className="mx-5 mb-6 bg-surface border border-hairline rounded-2xl shadow-sm p-6 text-center">
           <p className="text-sm text-ink-muted">Nothing here yet, real transfers you complete will show up in this list.</p>
         </div>
       ) : (
-        <div className="mx-5 mb-6 bg-surface border border-hairline rounded-[18px] overflow-hidden">
+        <div className="mx-5 mb-6 bg-surface border border-hairline rounded-2xl shadow-sm overflow-hidden">
           {transfers.map((tx) => {
             const country = getCountryByCode(tx.recipientCountry);
             return (

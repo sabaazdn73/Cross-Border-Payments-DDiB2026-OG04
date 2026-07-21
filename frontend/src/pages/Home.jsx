@@ -405,35 +405,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section" aria-labelledby="cta-heading">
-        <div className="container-app">
-          <div className="relative glass overflow-hidden p-10 md:p-16 text-center">
-            <div className="absolute inset-0" aria-hidden="true">
-              <div className="absolute top-0 left-1/4 w-64 h-64 rounded-full bg-brand-500/10 blur-3xl" />
-              <div className="absolute bottom-0 right-1/4 w-64 h-64 rounded-full bg-accent-500/10 blur-3xl" />
-            </div>
-            <div className="relative z-10">
-              <h2 id="cta-heading" className="text-3xl md:text-4xl font-black text-ink mb-4">
-                Ready to send money <span className="gradient-text">globally?</span>
-              </h2>
-              <p className="text-ink-muted mb-8 max-w-xl mx-auto">
-                Start your first transfer in minutes. No crypto experience required.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link to="/send-money" className="btn-primary text-base py-4 px-10">
-                  <SendHorizonal className="w-5 h-5" aria-hidden="true" />
-                  Start a Transfer
-                </Link>
-                <Link to="/tamper-demo" className="btn-secondary text-base py-4 px-10">
-                  View Demo
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <Footer />
     </div>
   );
