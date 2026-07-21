@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Shield, FileText, HelpCircle, RefreshCw } from 'lucide-react';
+import brandIcon from '../../assets/brand/icon.svg';
 import { clearAllTransactions } from '../../utils/storage';
 import { DOCS_URL } from '../../components/layout/Navbar';
 
@@ -21,9 +22,7 @@ export default function AppProfile() {
   return (
     <div className="px-5 pt-1 pb-6">
       <div className="flex items-center gap-3.5 bg-surface border border-hairline rounded-2xl shadow-sm p-4 mb-5">
-        <span className="w-[52px] h-[52px] rounded-full bg-brand-gradient text-white text-base font-bold flex items-center justify-center flex-shrink-0">
-          CB
-        </span>
+        <img src={brandIcon} alt="" className="w-[52px] h-[52px] rounded-2xl flex-shrink-0" />
         <div>
           <p className="text-[15px] font-bold text-ink">Sandbox Account</p>
           <p className="text-xs text-brand-500 font-semibold mt-0.5">Hedera testnet</p>

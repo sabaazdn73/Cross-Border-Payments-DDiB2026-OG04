@@ -3,15 +3,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { CheckCircle2, Clock, ShieldCheck, ExternalLink } from 'lucide-react';
 import { transferService, complianceService } from '../../services/api';
 import { generateComplianceRecord } from '../../data/complianceRecords';
+import { mockTransactionRecords } from '../../data/mockTransactions';
+import { getTransaction } from '../../utils/storage';
 import { getCountryByCode } from '../../data/countries';
 import CommunityCodeCard from '../../components/ui/CommunityCodeCard';
 
-/**
- * Replaces navigating out to the web TransactionStatus/Receipt pages,
- * which bring their own full Navbar+Footer and overflow the app
- * frame's narrower width. This is the same real transaction data
- * (transferService.getTransfer), laid out compactly for the app.
- */
 export default function AppTransactionDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -23,24 +19,25 @@ export default function AppTransactionDetail() {
 
   useEffect(() => {
     let active = true;
+    const localOrDemo = getTransaction(id) || mockTransactionRecords.find((t) => t.id === id) || null;
+    if (localOrDemo) setTxn(localOrDemo);
+
     transferService.getTransfer(id)
-      .then(async (res) => {
+      .then((res) => {
         if (!active) return;
-        const fetchedTxn = res?.data || res;
-        setTxn(fetchedTxn);
-        // The compliance record is a separate resource from the
-        // transaction itself, this was the actual bug: assuming the
-        // transaction object carried a complianceRecord field, which
-        // it never did, so verification always sent an empty {}
-        // and could never match.
-        try {
-          const record = await complianceService.getComplianceRecord(id);
-          if (active && record) setComplianceRecord(record);
-        } catch {
-          if (active) setComplianceRecord(generateComplianceRecord(fetchedTxn));
-        }
+        const real = res?.data || res;
+        if (real) setTxn(real);
       })
-      .catch(() => { if (active) setNotFound(true); });
+      .catch(() => {
+        if (active && !localOrDemo) setNotFound(true);
+      });
+
+    complianceService.getComplianceRecord(id)
+      .then((record) => { if (active && record) setComplianceRecord(record); })
+      .catch(() => {
+        if (active && localOrDemo) setComplianceRecord(generateComplianceRecord(localOrDemo));
+      });
+
     return () => { active = false; };
   }, [id]);
 
@@ -58,7 +55,7 @@ export default function AppTransactionDetail() {
     }
   };
 
-  if (notFound) {
+  if (notFound && !txn) {
     return (
       <div className="px-5 pt-10 text-center">
         <p className="text-sm text-ink-muted">Transaction not found.</p>
@@ -96,7 +93,7 @@ export default function AppTransactionDetail() {
         ].map(([label, val]) => (
           <div key={label} className="flex justify-between py-2 border-b border-hairline last:border-b-0 text-[12.5px]">
             <span className="text-ink-muted">{label}</span>
-            <span className="font-semibold text-ink text-right break-all ml-3">{val}</span>
+            <span className="font-semibold text-ink font-mono text-right break-all ml-3">{val}</span>
           </div>
         ))}
       </div>
@@ -134,7 +131,7 @@ export default function AppTransactionDetail() {
       </button>
       {verifyResult !== null && (
         <p className={`text-xs text-center mb-4 font-semibold ${verifyResult ? 'text-success-400' : 'text-danger-400'}`}>
-          {verifyResult ? 'Hash match, verified against the real network.' : 'Could not verify against the network.'}
+          {verifyResult ? 'Hash match, verified against the real network.' : 'Could not verify against the network right now. This checks Hedera live, so it can be affected by connectivity.'}
         </p>
       )}
 
