@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SendHorizonal, RefreshCw, ShieldCheck, MoreHorizontal, ArrowRight } from 'lucide-react';
+import complianceIcon from '../../assets/icons/04-compliance.svg';
 import { getAllTransactions } from '../../utils/storage';
 import { getCountryByCode } from '../../data/countries';
 
@@ -62,9 +63,7 @@ export default function AppHome() {
         onClick={() => window.open('https://hashscan.io/testnet/topic/0.0.9617780', '_blank')}
         className="mx-5 mb-5 bg-surface border border-hairline rounded-[18px] p-4 flex items-center gap-3.5 cursor-pointer"
       >
-        <span className="w-10 h-10 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-500 flex-shrink-0">
-          <ShieldCheck className="w-[19px] h-[19px]" />
-        </span>
+        <img src={complianceIcon} alt="" className="w-10 h-10 rounded-xl flex-shrink-0" />
         <div className="flex-1">
           <p className="text-[13.5px] font-semibold text-ink mb-0.5">Every transfer is verifiable</p>
           <p className="text-xs text-ink-muted leading-snug">Check any record on the real Hedera Mirror Node</p>

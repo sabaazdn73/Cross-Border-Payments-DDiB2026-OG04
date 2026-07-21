@@ -8,6 +8,7 @@ import { calculateServiceFee, calculateRecipientAmount, getDeliveryTime } from '
 import { formatAmount } from '../../utils/formatters';
 import { transferService } from '../../services/api';
 import { saveTransaction } from '../../utils/storage';
+import CommunityCodeCard from '../ui/CommunityCodeCard';
 
 const sortedCurrencies = [...currencies].sort((a, b) => a.code.localeCompare(b.code));
 const sortedCountries = [...countries].sort((a, b) => a.name.localeCompare(b.name));
@@ -22,6 +23,7 @@ const sortedCountries = [...countries].sort((a, b) => a.name.localeCompare(b.nam
 export default function AppSendMoneyFlow() {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
+  const [completedTxnId, setCompletedTxnId] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [form, setForm] = useState({
@@ -69,8 +71,8 @@ export default function AppSendMoneyFlow() {
         status: 'processing',
         createdAt: new Date().toISOString(),
       });
+      setCompletedTxnId(txnId);
       setStep(5);
-      setTimeout(() => navigate(`/app`), 1800);
     } catch (e) {
       setError('Could not reach the settlement backend right now. This demo needs the backend running.');
     } finally {
@@ -88,12 +90,19 @@ export default function AppSendMoneyFlow() {
 
   if (step === 5) {
     return (
-      <div className="h-full flex flex-col items-center justify-center px-8 text-center">
-        <div className="w-16 h-16 rounded-full bg-success-500/15 text-success-400 flex items-center justify-center mb-4">
+      <div className="h-full flex flex-col items-center px-6 pt-8 pb-6 overflow-y-auto">
+        <div className="w-16 h-16 rounded-full bg-success-500/15 text-success-400 flex items-center justify-center mb-4 flex-shrink-0">
           <Check className="w-8 h-8" />
         </div>
-        <p className="text-lg font-bold text-ink mb-1.5">Transfer initiated</p>
-        <p className="text-[13px] text-ink-muted leading-relaxed">Settling now on Hedera. Back to Home in a moment.</p>
+        <p className="text-lg font-bold text-ink mb-1.5 text-center">Transfer initiated</p>
+        <p className="text-[13px] text-ink-muted leading-relaxed text-center mb-5">Settling now on Hedera.</p>
+        {completedTxnId && <CommunityCodeCard transactionId={completedTxnId} compact />}
+        <button
+          onClick={() => navigate('/app')}
+          className="w-full mt-5 bg-brand-gradient text-white text-[14.5px] font-bold py-3.5 rounded-2xl flex-shrink-0"
+        >
+          Done
+        </button>
       </div>
     );
   }

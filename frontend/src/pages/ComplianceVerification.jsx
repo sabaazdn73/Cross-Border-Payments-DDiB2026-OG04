@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Shield, RefreshCw, ArrowLeft } from 'lucide-react';
+import complianceIcon from '../assets/icons/04-compliance.svg';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import HashDisplay from '../components/ui/HashDisplay';
@@ -121,9 +122,7 @@ export default function ComplianceVerification() {
           </div>
 
           <div className="text-center mb-8">
-            <div className="w-16 h-16 rounded-2xl bg-brand-gradient flex items-center justify-center mx-auto mb-4 shadow-glow">
-              <Shield className="w-8 h-8 text-ink" aria-hidden="true" />
-            </div>
+            <img src={complianceIcon} alt="" className="w-16 h-16 rounded-2xl mx-auto mb-4 shadow-glow" />
             <h1 className="text-3xl font-bold text-ink mb-2">Compliance Verification</h1>
             <p className="text-ink-muted">Verify the integrity of the compliance record anchored on Hedera HCS.</p>
           </div>

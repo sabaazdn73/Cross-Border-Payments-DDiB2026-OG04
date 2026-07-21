@@ -1,6 +1,7 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Home from '../pages/Home';
 import Landing from '../pages/Landing';
+import Community from '../pages/Community';
 import SendMoney from '../pages/SendMoney';
 import ReviewTransfer from '../pages/ReviewTransfer';
 import Payment from '../pages/Payment';
@@ -16,6 +17,7 @@ import AppTransfers from '../pages/app/AppTransfers';
 import AppVerify from '../pages/app/AppVerify';
 import AppProfile from '../pages/app/AppProfile';
 import AppSendMoneyFlow from '../components/app/AppSendMoneyFlow';
+import AppCommunity from '../pages/app/AppCommunity';
 
 function AppHomeRoute() {
   return <AppShell><AppHome /></AppShell>;
@@ -36,17 +38,23 @@ function AppSendRoute() {
   const navigate = useNavigate();
   return <AppShell title="Send money" showBack onBack={() => navigate('/app')}><AppSendMoneyFlow /></AppShell>;
 }
+function AppCommunityRoute() {
+  const navigate = useNavigate();
+  return <AppShell title="Community" showBack onBack={() => navigate('/app')}><AppCommunity /></AppShell>;
+}
 
 export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/landing" element={<Landing />} />
+      <Route path="/community" element={<Community />} />
       <Route path="/app" element={<AppHomeRoute />} />
       <Route path="/app/transfers" element={<AppTransfersRoute />} />
       <Route path="/app/verify" element={<AppVerifyRoute />} />
       <Route path="/app/profile" element={<AppProfileRoute />} />
       <Route path="/app/send" element={<AppSendRoute />} />
+      <Route path="/app/community" element={<AppCommunityRoute />} />
       <Route path="/send-money" element={<SendMoney />} />
       <Route path="/review-transfer" element={<ReviewTransfer />} />
       <Route path="/payment" element={<Payment />} />
