@@ -30,6 +30,7 @@
 * [Alternative Approaches](business/alternative-approaches.md)
 * [Business Model](business/business-model.md)
 * [Go-to-Market Strategy](business/go-to-market.md)
+* [5-Year Revenue Projection: Global Capture Model](business/global-capture-model.md)
 * [Token vs. No Token](business/token-decision.md)
 * [SWOT Analysis](business/swot.md)
 * [Partner Coverage by Corridor](business/partner-coverage.md)

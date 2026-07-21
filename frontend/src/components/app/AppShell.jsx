@@ -29,7 +29,7 @@ export default function AppShell({ children, title, showBack, onBack }) {
     <div className="min-h-screen flex justify-center bg-[#0d0f14] py-6 px-4">
       <div
         className="relative w-full max-w-[402px] bg-canvas rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10 flex flex-col"
-        style={{ height: 'min(874px, 92vh)', fontFamily: "'Inter', 'Noto Sans', system-ui, sans-serif" }}
+        style={{ height: 'min(874px, 92vh)', fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}
       >
         {!entered ? (
           <AppSplash onEnter={() => setEntered(true)} />
