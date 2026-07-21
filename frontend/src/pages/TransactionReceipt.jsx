@@ -3,6 +3,7 @@ import { Printer, Download, Shield, Home, ArrowLeft } from 'lucide-react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import StatusBadge from '../components/ui/StatusBadge';
+import CommunityCodeCard from '../components/ui/CommunityCodeCard';
 import EmptyState from '../components/ui/EmptyState';
 import { getTransaction } from '../utils/storage';
 import { mockTransactionRecords } from '../data/mockTransactions';
@@ -186,6 +187,10 @@ This is a sandbox demonstration receipt. Not a real financial document.
                 <ReceiptRow label="Sequence #" value={transaction.hederaSequenceNumber} mono />
                 <ReceiptRow label="Consensus Timestamp" value={transaction.hederaConsensusTimestamp} mono />
               </div>
+
+              {transaction.hederaTopicId && transaction.hederaSequenceNumber && (
+                <CommunityCodeCard transactionId={transaction.id} />
+              )}
             </div>
 
             <div className="mt-6 pt-6 border-t border-hairline text-center">

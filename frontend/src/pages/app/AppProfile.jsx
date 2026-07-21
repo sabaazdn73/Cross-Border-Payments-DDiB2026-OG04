@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { Shield, FileText, HelpCircle, RefreshCw } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Shield, FileText, HelpCircle, RefreshCw, Users } from 'lucide-react';
 import { clearAllTransactions } from '../../utils/storage';
 import { DOCS_URL } from '../../components/layout/Navbar';
 
 export default function AppProfile() {
+  const navigate = useNavigate();
   const [cleared, setCleared] = useState(false);
 
   const resetDemo = () => {
@@ -13,6 +15,7 @@ export default function AppProfile() {
   };
 
   const items = [
+    { icon: Users, label: 'Community', onClick: () => navigate('/app/community') },
     { icon: Shield, label: 'KYC / AML Compliance', href: null },
     { icon: FileText, label: 'Full Documentation', href: DOCS_URL },
     { icon: HelpCircle, label: 'Send Feedback', href: 'mailto:sabaazad93@gmail.com?subject=Cross-Border%20App%20Feedback' },
@@ -32,7 +35,18 @@ export default function AppProfile() {
 
       <p className="text-xs font-bold text-ink-muted uppercase tracking-wide mb-2.5">About</p>
       <div className="bg-surface border border-hairline rounded-2xl overflow-hidden mb-5">
-        {items.map((item) => (
+        {items.map((item) => item.onClick ? (
+          <button
+            key={item.label}
+            onClick={item.onClick}
+            className="w-full text-left flex items-center gap-3 px-4 py-3.5 border-b border-hairline last:border-b-0"
+          >
+            <span className="w-8 h-8 rounded-lg bg-surface-2 text-ink-muted flex items-center justify-center flex-shrink-0">
+              <item.icon className="w-[15px] h-[15px]" />
+            </span>
+            <span className="flex-1 text-[13.5px] text-ink">{item.label}</span>
+          </button>
+        ) : (
           <a
             key={item.label}
             href={item.href || '#'}

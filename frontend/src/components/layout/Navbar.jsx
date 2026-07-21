@@ -9,6 +9,7 @@ const navLinks = [
   { label: 'Home', to: '/', },
   { label: 'Send Money', to: '/send-money' },
   { label: 'Tamper Demo', to: '/tamper-demo' },
+  { label: 'Community', to: '/community' },
   { label: 'Landing', to: '/landing' },
   { label: 'App Demo', to: '/app' },
 ];

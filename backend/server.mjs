@@ -4,6 +4,7 @@ import { readFile, writeFile } from 'fs/promises';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import 'dotenv/config';
+import { generateCommunityCode, hashCommunityCode } from './services/community/code.mjs';
 
 import {
   getOrCreateTopic,
@@ -39,7 +40,7 @@ async function readDb() {
     const data = await readFile(DB_FILE, 'utf8');
     return JSON.parse(data);
   } catch (e) {
-    return { transactions: {} };
+    return { transactions: {}, communityPosts: [] };
   }
 }
 
@@ -260,6 +261,85 @@ app.post('/api/transfers/:id/verify', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+});
+
+// 5b. Generate the one-time Community Usage Code for a transaction.
+//
+// Entry requirement, enforced server-side: the transaction must have
+// a REAL Hedera anchor (topicId + sequenceNumber) -- this is what
+// proves the requester actually completed a real, hashed transaction,
+// not just typed in an ID. The code itself is deliberately NOT the
+// Hedera hash (that's public on HashScan, anyone could copy it) --
+// it's random entropy generated here, shown exactly once, and stored
+// only as a SHA-256 hash from that point on. This endpoint refuses to
+// regenerate/re-reveal a code that already exists for a transaction,
+// which is what "not recoverable" means in practice: lose it, and the
+// only way back in is a new real transaction.
+app.post('/api/transfers/:id/community-code', async (req, res) => {
+  const { id } = req.params;
+  const db = await readDb();
+  db.communityPosts = db.communityPosts || [];
+  const txn = db.transactions[id];
+
+  if (!txn) {
+    return res.status(404).json({ error: 'Transaction not found' });
+  }
+  if (!txn.hederaTopicId || !txn.complianceAnchor?.sequenceNumber) {
+    return res.status(400).json({
+      error: 'This transaction has no real Hedera anchor yet -- a Community Usage Code can only be issued after real anchoring.',
+    });
+  }
+  if (txn.communityCodeHash) {
+    return res.status(409).json({
+      error: 'A Community Usage Code was already generated for this transaction and cannot be shown again. It was only ever displayed once.',
+    });
+  }
+
+  const code = generateCommunityCode();
+  txn.communityCodeHash = hashCommunityCode(code);
+  txn.communityCodeIssuedAt = new Date().toISOString();
+  await writeDb(db);
+
+  // The raw code is returned exactly once, right here, and never again.
+  res.json({ code });
+});
+
+// 5c. Submit a community post -- requires a valid Community Usage Code.
+app.post('/api/community/posts', async (req, res) => {
+  const { code, displayName, country, message } = req.body;
+  if (!code || !message || message.trim().length < 5) {
+    return res.status(400).json({ error: 'A valid code and a message (5+ characters) are required.' });
+  }
+
+  const db = await readDb();
+  db.communityPosts = db.communityPosts || [];
+  const submittedHash = hashCommunityCode(code);
+  const matchingTxnId = Object.keys(db.transactions).find(
+    (txnId) => db.transactions[txnId].communityCodeHash === submittedHash
+  );
+
+  if (!matchingTxnId) {
+    return res.status(403).json({
+      error: 'That code was not recognized. Only senders with a real Community Usage Code from a completed, anchored transaction can post here.',
+    });
+  }
+
+  const post = {
+    id: `POST-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+    displayName: (displayName || 'Anonymous sender').slice(0, 60),
+    country: country || null,
+    message: message.trim().slice(0, 600),
+    createdAt: new Date().toISOString(),
+  };
+  db.communityPosts.unshift(post);
+  await writeDb(db);
+  res.status(201).json(post);
+});
+
+// 5d. List community posts (public feed).
+app.get('/api/community/posts', async (req, res) => {
+  const db = await readDb();
+  res.json(db.communityPosts || []);
 });
 
 // 6. Create a new transfer (Initiates the full workflow)

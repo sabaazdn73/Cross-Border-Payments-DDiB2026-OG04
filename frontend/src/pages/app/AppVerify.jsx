@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ShieldCheck, Search } from 'lucide-react';
+import complianceIcon from '../../assets/icons/04-compliance.svg';
 import { searchTransactions } from '../../utils/storage';
 
 export default function AppVerify() {
@@ -23,9 +24,7 @@ export default function AppVerify() {
   return (
     <div className="px-5 pt-1 pb-6">
       <div className="bg-surface border border-hairline rounded-[18px] p-4.5 mb-4.5 flex gap-3.5 items-start">
-        <span className="w-9.5 h-9.5 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-500 flex-shrink-0">
-          <ShieldCheck className="w-[18px] h-[18px]" />
-        </span>
+        <img src={complianceIcon} alt="" className="w-9.5 h-9.5 rounded-xl flex-shrink-0" />
         <div>
           <p className="text-sm font-bold text-ink mb-1">Verify any settlement</p>
           <p className="text-xs text-ink-muted leading-relaxed">

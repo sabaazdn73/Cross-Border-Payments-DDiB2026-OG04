@@ -58,4 +58,16 @@ export const paymentService = {
   },
 };
 
+export const communityService = {
+  generateCode: async (id) => {
+    return apiClient.post(`/transfers/${id}/community-code`);
+  },
+  submitPost: async ({ code, displayName, country, message }) => {
+    return apiClient.post('/community/posts', { code, displayName, country, message });
+  },
+  listPosts: async () => {
+    return apiClient.get('/community/posts');
+  },
+};
+
 export default apiClient;
