@@ -5,7 +5,7 @@ import {
   Banknote, Smartphone, Building2
 } from 'lucide-react';
 import Navbar, { DOCS_URL } from '../components/layout/Navbar';
-import SignatureGlobe from '../components/SignatureGlobe';
+import StyledGlobe from '../components/StyledGlobe';
 import noWalletIcon from '../assets/icons/01-no-wallet.svg';
 import lightningIcon from '../assets/icons/02-lightning-settlement.svg';
 import countriesIcon from '../assets/icons/03-countries.svg';
@@ -163,7 +163,7 @@ export default function Home() {
             </div>
 
             <div className="hidden lg:flex flex-shrink-0 items-center justify-center">
-              <SignatureGlobe size={340} />
+              <StyledGlobe size={340} />
             </div>
           </div>
         </div>

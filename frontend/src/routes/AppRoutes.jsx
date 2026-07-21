@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Home from '../pages/Home';
 import Landing from '../pages/Landing';
 import SendMoney from '../pages/SendMoney';
@@ -10,12 +10,37 @@ import ComplianceVerification from '../pages/ComplianceVerification';
 import TamperDemo from '../pages/TamperDemo';
 import TrackTransaction from '../pages/TrackTransaction';
 import NotFound from '../pages/NotFound';
+import AppShell from '../components/app/AppShell';
+import AppHome from '../pages/app/AppHome';
+import AppTransfers from '../pages/app/AppTransfers';
+import AppVerify from '../pages/app/AppVerify';
+import AppProfile from '../pages/app/AppProfile';
+
+function AppHomeRoute() {
+  return <AppShell><AppHome /></AppShell>;
+}
+function AppTransfersRoute() {
+  const navigate = useNavigate();
+  return <AppShell title="Transfers" showBack onBack={() => navigate('/app')}><AppTransfers /></AppShell>;
+}
+function AppVerifyRoute() {
+  const navigate = useNavigate();
+  return <AppShell title="Verify" showBack onBack={() => navigate('/app')}><AppVerify /></AppShell>;
+}
+function AppProfileRoute() {
+  const navigate = useNavigate();
+  return <AppShell title="Profile" showBack onBack={() => navigate('/app')}><AppProfile /></AppShell>;
+}
 
 export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/landing" element={<Landing />} />
+      <Route path="/app" element={<AppHomeRoute />} />
+      <Route path="/app/transfers" element={<AppTransfersRoute />} />
+      <Route path="/app/verify" element={<AppVerifyRoute />} />
+      <Route path="/app/profile" element={<AppProfileRoute />} />
       <Route path="/send-money" element={<SendMoney />} />
       <Route path="/review-transfer" element={<ReviewTransfer />} />
       <Route path="/payment" element={<Payment />} />
