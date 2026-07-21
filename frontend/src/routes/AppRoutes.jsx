@@ -18,6 +18,7 @@ import AppVerify from '../pages/app/AppVerify';
 import AppProfile from '../pages/app/AppProfile';
 import AppSendMoneyFlow from '../components/app/AppSendMoneyFlow';
 import AppCommunity from '../pages/app/AppCommunity';
+import AppTransactionDetail from '../pages/app/AppTransactionDetail';
 
 function AppHomeRoute() {
   return <AppShell><AppHome /></AppShell>;
@@ -42,6 +43,10 @@ function AppCommunityRoute() {
   const navigate = useNavigate();
   return <AppShell title="Community" showBack onBack={() => navigate('/app')}><AppCommunity /></AppShell>;
 }
+function AppTransactionDetailRoute() {
+  const navigate = useNavigate();
+  return <AppShell title="Transaction" showBack onBack={() => navigate('/app/transfers')}><AppTransactionDetail /></AppShell>;
+}
 
 export default function AppRoutes() {
   return (
@@ -55,6 +60,7 @@ export default function AppRoutes() {
       <Route path="/app/profile" element={<AppProfileRoute />} />
       <Route path="/app/send" element={<AppSendRoute />} />
       <Route path="/app/community" element={<AppCommunityRoute />} />
+      <Route path="/app/transaction/:id" element={<AppTransactionDetailRoute />} />
       <Route path="/send-money" element={<SendMoney />} />
       <Route path="/review-transfer" element={<ReviewTransfer />} />
       <Route path="/payment" element={<Payment />} />

@@ -73,7 +73,7 @@ export default function AppShell({ children, title, showBack, onBack }) {
             )}
 
             {/* content */}
-            <div className="flex-1 overflow-y-auto pb-24">{children}</div>
+            <div className="flex-1 overflow-y-auto overflow-x-hidden pb-24 min-w-0">{children}</div>
 
             {/* bottom tab bar */}
             <div className="absolute left-0 right-0 bottom-0 pt-2 pb-6 px-3 bg-surface/95 backdrop-blur-md border-t border-hairline">
