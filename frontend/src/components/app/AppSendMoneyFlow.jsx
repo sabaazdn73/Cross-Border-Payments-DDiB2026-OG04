@@ -61,7 +61,7 @@ export default function AppSendMoneyFlow() {
         payoutMethod: form.payoutMethod,
         purpose: 'Family Support',
       });
-      const txnId = result?.data?.id || result?.id || `APP-${Date.now()}`;
+      const txnId = result?.transferId || result?.transaction?.id || `APP-${Date.now()}`;
       saveTransaction({
         id: txnId,
         recipientName: form.recipientName || 'Recipient',

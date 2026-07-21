@@ -131,7 +131,7 @@ export default function Home() {
                 F2F Cross-Border
               </h1>
               <p className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 tracking-tight animate-slide-up whitespace-nowrap">
-                <span className="gradient-text">Fiat-to-Fiat</span> <span className="text-white/70">Settlement Platform</span>
+                <span className="gradient-text font-script text-4xl sm:text-5xl md:text-6xl">Fiat-to-Fiat</span> <span className="text-white/70">Settlement Platform</span>
               </p>
 
               <p className="text-lg md:text-xl text-white/60 mb-10 max-w-2xl leading-relaxed animate-slide-up">
@@ -151,21 +151,6 @@ export default function Home() {
                 Track Transaction
               </Link>
             </div>
-
-              <div className="flex flex-wrap items-center gap-6 mt-12 text-sm text-white/40">
-                <div className="flex items-center gap-1.5">
-                  <Shield className="w-4 h-4 text-success-400" aria-hidden="true" />
-                  KYC / AML Compliant
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Lock className="w-4 h-4 text-brand-400" aria-hidden="true" />
-                  Hedera Secured
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Star className="w-4 h-4 text-warning-400" aria-hidden="true" />
-                  Sandbox Demo
-                </div>
-              </div>
             </div>
 
             <div className="hidden lg:flex flex-shrink-0 items-center justify-center">

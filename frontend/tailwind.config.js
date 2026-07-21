@@ -53,8 +53,9 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'Noto Sans', 'system-ui', 'sans-serif'],
+        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
+        script: ['Caveat', 'cursive'],
       },
       backgroundImage: {
         'hero-gradient': 'linear-gradient(150deg, #060a17 0%, #0d1b3d 45%, #0a1230 75%, #050609 100%)',

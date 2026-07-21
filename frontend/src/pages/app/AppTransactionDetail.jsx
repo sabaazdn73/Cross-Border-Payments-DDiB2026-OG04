@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { CheckCircle2, Clock, ShieldCheck, ExternalLink } from 'lucide-react';
 import { transferService, complianceService } from '../../services/api';
+import { generateComplianceRecord } from '../../data/complianceRecords';
 import { getCountryByCode } from '../../data/countries';
 import CommunityCodeCard from '../../components/ui/CommunityCodeCard';
 
@@ -15,6 +16,7 @@ export default function AppTransactionDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [txn, setTxn] = useState(null);
+  const [complianceRecord, setComplianceRecord] = useState(null);
   const [notFound, setNotFound] = useState(false);
   const [verifyResult, setVerifyResult] = useState(null);
   const [verifying, setVerifying] = useState(false);
@@ -22,16 +24,32 @@ export default function AppTransactionDetail() {
   useEffect(() => {
     let active = true;
     transferService.getTransfer(id)
-      .then((res) => { if (active) setTxn(res.data || res); })
+      .then(async (res) => {
+        if (!active) return;
+        const fetchedTxn = res?.data || res;
+        setTxn(fetchedTxn);
+        // The compliance record is a separate resource from the
+        // transaction itself, this was the actual bug: assuming the
+        // transaction object carried a complianceRecord field, which
+        // it never did, so verification always sent an empty {}
+        // and could never match.
+        try {
+          const record = await complianceService.getComplianceRecord(id);
+          if (active && record) setComplianceRecord(record);
+        } catch {
+          if (active) setComplianceRecord(generateComplianceRecord(fetchedTxn));
+        }
+      })
       .catch(() => { if (active) setNotFound(true); });
     return () => { active = false; };
   }, [id]);
 
   const runVerify = async () => {
+    if (!complianceRecord) return;
     setVerifying(true);
     setVerifyResult(null);
     try {
-      const res = await complianceService.verifyComplianceHash(id, txn.complianceRecord || {});
+      const res = await complianceService.verifyComplianceHash(id, complianceRecord);
       setVerifyResult(res.verified);
     } catch (e) {
       setVerifyResult(false);
@@ -108,7 +126,7 @@ export default function AppTransactionDetail() {
 
       <button
         onClick={runVerify}
-        disabled={verifying}
+        disabled={verifying || !complianceRecord}
         className="w-full flex items-center justify-center gap-2 bg-surface border border-hairline text-ink text-[13px] font-bold py-3 rounded-2xl mb-3 disabled:opacity-60"
       >
         <ShieldCheck className="w-4 h-4" />
