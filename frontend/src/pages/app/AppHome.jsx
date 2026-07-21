@@ -27,7 +27,7 @@ export default function AppHome() {
           Send across borders,<br />settle in seconds.
         </p>
         <div className="flex justify-between bg-white/[0.06] border border-white/10 rounded-[18px] p-3.5">
-          <button onClick={() => navigate('/send-money')} className="flex-1 flex flex-col items-center gap-2 text-white">
+          <button onClick={() => navigate('/app/send')} className="flex-1 flex flex-col items-center gap-2 text-white">
             <span className="w-11 h-11 rounded-full bg-white/[0.14] flex items-center justify-center">
               <SendHorizonal className="w-[18px] h-[18px]" />
             </span>

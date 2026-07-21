@@ -19,7 +19,7 @@ export default function AppTransfers() {
     <div>
       <div className="px-5 pt-1 pb-4">
         <button
-          onClick={() => navigate('/send-money')}
+          onClick={() => navigate('/app/send')}
           className="w-full flex items-center justify-center gap-2 bg-brand-gradient text-white text-[14.5px] font-bold py-3.5 rounded-2xl shadow-lg"
         >
           <Plus className="w-4 h-4" />

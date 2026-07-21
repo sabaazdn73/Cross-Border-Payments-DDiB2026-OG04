@@ -15,6 +15,7 @@ import AppHome from '../pages/app/AppHome';
 import AppTransfers from '../pages/app/AppTransfers';
 import AppVerify from '../pages/app/AppVerify';
 import AppProfile from '../pages/app/AppProfile';
+import AppSendMoneyFlow from '../components/app/AppSendMoneyFlow';
 
 function AppHomeRoute() {
   return <AppShell><AppHome /></AppShell>;
@@ -31,6 +32,10 @@ function AppProfileRoute() {
   const navigate = useNavigate();
   return <AppShell title="Profile" showBack onBack={() => navigate('/app')}><AppProfile /></AppShell>;
 }
+function AppSendRoute() {
+  const navigate = useNavigate();
+  return <AppShell title="Send money" showBack onBack={() => navigate('/app')}><AppSendMoneyFlow /></AppShell>;
+}
 
 export default function AppRoutes() {
   return (
@@ -41,6 +46,7 @@ export default function AppRoutes() {
       <Route path="/app/transfers" element={<AppTransfersRoute />} />
       <Route path="/app/verify" element={<AppVerifyRoute />} />
       <Route path="/app/profile" element={<AppProfileRoute />} />
+      <Route path="/app/send" element={<AppSendRoute />} />
       <Route path="/send-money" element={<SendMoney />} />
       <Route path="/review-transfer" element={<ReviewTransfer />} />
       <Route path="/payment" element={<Payment />} />
