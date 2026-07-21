@@ -93,7 +93,7 @@ Use the following details in the Sandbox Payment page:
 
 ## 🔍 Demo Transaction
 
-Track an existing demo transaction using ID: **`TXN-DEMO-001`**
+Track an existing demo transaction using ID: **`TXN-9KF3XQ2`**
 
 ## ⚠️ Disclaimer
 

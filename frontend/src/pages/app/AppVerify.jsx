@@ -24,12 +24,12 @@ export default function AppVerify() {
   return (
     <div className="px-5 pt-1 pb-6">
       <div className="bg-surface border border-hairline rounded-[18px] p-4.5 mb-4.5 flex gap-3.5 items-start">
-        <img src={complianceIcon} alt="" className="w-9.5 h-9.5 rounded-xl flex-shrink-0" />
+        <img src={complianceIcon} alt="" className="w-10 h-10 rounded-xl flex-shrink-0" />
         <div>
           <p className="text-sm font-bold text-ink mb-1">Verify any settlement</p>
           <p className="text-xs text-ink-muted leading-relaxed">
             Every compliance record is hashed and anchored on Hedera Consensus Service.
-            Enter a real transaction ID (try TXN-DEMO-001) to verify it independently.
+            Enter a real transaction ID (try TXN-9KF3XQ2) to verify it independently.
           </p>
         </div>
       </div>
@@ -41,7 +41,7 @@ export default function AppVerify() {
           value={query}
           onChange={(e) => { setQuery(e.target.value); setNotFound(false); }}
           onKeyDown={(e) => e.key === 'Enter' && submit()}
-          placeholder="TXN-DEMO-001"
+          placeholder="TXN-9KF3XQ2"
           className="flex-1 min-w-0 border border-hairline bg-surface rounded-2xl px-4 py-3.5 text-[13px] font-mono text-ink outline-none"
         />
         <button
@@ -53,15 +53,15 @@ export default function AppVerify() {
         </button>
       </div>
       {notFound && (
-        <p className="text-xs text-danger-400 mb-4">No transaction found with that ID. Try TXN-DEMO-001.</p>
+        <p className="text-xs text-danger-400 mb-4">No transaction found with that ID. Try TXN-9KF3XQ2.</p>
       )}
 
       <p className="text-xs font-bold text-ink-muted uppercase tracking-wide mt-6 mb-2.5">Try an example</p>
       <button
-        onClick={() => { setQuery('TXN-DEMO-001'); navigate('/transaction/TXN-DEMO-001/verify'); }}
+        onClick={() => { setQuery('TXN-9KF3XQ2'); navigate('/transaction/TXN-9KF3XQ2/verify'); }}
         className="border border-hairline bg-surface-2 text-ink rounded-full px-3.5 py-2 text-xs font-semibold"
       >
-        TXN-DEMO-001
+        TXN-9KF3XQ2
       </button>
     </div>
   );
