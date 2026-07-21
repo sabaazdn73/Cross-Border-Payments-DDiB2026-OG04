@@ -142,13 +142,16 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-start gap-4 animate-slide-up">
-              <Link to="/send-money" className="btn-primary text-base py-4 px-8 w-full sm:w-auto">
-                <SendHorizonal className="w-5 h-5" aria-hidden="true" />
+              <Link to="/send-money" className="btn-primary text-base py-3.5 pl-3.5 pr-8 w-full sm:w-auto">
+                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20">
+                  <SendHorizonal className="w-4 h-4" aria-hidden="true" />
+                </span>
                 Start Onboarding
-                <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </Link>
-              <Link to="/track" className="btn-secondary text-base py-4 px-8 w-full sm:w-auto">
-                <Search className="w-5 h-5" aria-hidden="true" />
+              <Link to="/track" className="btn-secondary text-base py-3.5 pl-3.5 pr-8 w-full sm:w-auto">
+                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-brand-500/10">
+                  <Search className="w-4 h-4 text-brand-500" aria-hidden="true" />
+                </span>
                 Track Transaction
               </Link>
             </div>
