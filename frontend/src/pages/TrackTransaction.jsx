@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Hash, ArrowRight } from 'lucide-react';
+import trackingIcon from '../assets/icons/05-tracking.svg';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import PageHeader from '../components/ui/PageHeader';
@@ -64,7 +65,7 @@ export default function TrackTransaction() {
                       type="text"
                       value={query}
                       onChange={(e) => setQuery(e.target.value)}
-                      placeholder="Transaction ID (e.g. TXN-DEMO-001) or name..."
+                      placeholder="Transaction ID (e.g. TXN-9KF3XQ2) or name..."
                       className={`form-input pl-10 ${error ? 'error' : ''}`}
                       aria-invalid={error ? 'true' : 'false'}
                       aria-describedby={error ? 'track-error' : undefined}
@@ -80,8 +81,8 @@ export default function TrackTransaction() {
             </form>
             <p className="text-xs text-ink-muted/70 mt-3">
               Tip: Try{' '}
-              <span className="text-accent-400 font-mono cursor-pointer hover:underline" onClick={() => setQuery('TXN-DEMO-001')}>
-                TXN-DEMO-001
+              <span className="text-accent-400 font-mono cursor-pointer hover:underline" onClick={() => setQuery('TXN-9KF3XQ2')}>
+                TXN-9KF3XQ2
               </span>{' '}
               to see a demo transaction.
             </p>
@@ -110,7 +111,7 @@ export default function TrackTransaction() {
 
           {!searched && (
             <div className="glass p-6 text-center">
-              <Search className="w-10 h-10 text-ink-muted/50 mx-auto mb-3" aria-hidden="true" />
+              <img src={trackingIcon} alt="" className="w-12 h-12 mx-auto mb-3 opacity-60" />
               <p className="text-ink-muted text-sm">Enter a transaction ID above to track your transfer status.</p>
             </div>
           )}

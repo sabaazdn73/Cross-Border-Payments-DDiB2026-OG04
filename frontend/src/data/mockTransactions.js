@@ -1,6 +1,6 @@
 export const mockTransactionRecords = [
   {
-    id: 'TXN-DEMO-001',
+    id: 'TXN-9KF3XQ2',
     senderName: 'James Okafor',
     senderEmail: 'james@example.com',
     senderCountry: 'US',

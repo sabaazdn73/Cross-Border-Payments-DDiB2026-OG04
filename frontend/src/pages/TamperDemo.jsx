@@ -10,8 +10,8 @@ import { generateRecordHash } from '../utils/hashUtils';
 import { complianceService } from '../services/api';
 
 const ORIGINAL_RECORD = {
-  recordId: 'CMP-TXN-DEMO-001',
-  transactionId: 'TXN-DEMO-001',
+  recordId: 'CMP-TXN-9KF3XQ2',
+  transactionId: 'TXN-9KF3XQ2',
   senderName: 'James Okafor',
   senderEmail: 'james@example.com',
   senderCountry: 'US',
@@ -48,7 +48,7 @@ export default function TamperDemo() {
     setVerifying(true);
     setVerificationResult(null);
     try {
-      const res = await complianceService.verifyComplianceHash('TXN-DEMO-001', currentRecord);
+      const res = await complianceService.verifyComplianceHash('TXN-9KF3XQ2', currentRecord);
       setVerificationResult(res.verified);
     } catch (err) {
       console.warn("Backend verification failed, using client-side fallback:", err);
