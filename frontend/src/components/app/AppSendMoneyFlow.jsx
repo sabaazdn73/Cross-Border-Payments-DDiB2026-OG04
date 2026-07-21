@@ -99,7 +99,7 @@ export default function AppSendMoneyFlow() {
         {completedTxnId && <CommunityCodeCard transactionId={completedTxnId} compact />}
         <button
           onClick={() => navigate('/app')}
-          className="w-full mt-5 bg-brand-gradient text-white text-[14.5px] font-bold py-3.5 rounded-2xl flex-shrink-0"
+          className="w-full mt-5 bg-brand-gradient text-white text-[14.5px] font-bold py-3.5 rounded-2xl active:scale-[0.98] transition-transform flex-shrink-0"
         >
           Done
         </button>
@@ -230,7 +230,7 @@ export default function AppSendMoneyFlow() {
         <button
           disabled={submitting}
           onClick={() => (step < 4 ? setStep(step + 1) : submit())}
-          className="w-full flex items-center justify-center gap-2 bg-brand-gradient text-white text-[14.5px] font-bold py-3.5 rounded-2xl shadow-lg disabled:opacity-60"
+          className="w-full flex items-center justify-center gap-2 bg-brand-gradient text-white text-[14.5px] font-bold py-3.5 rounded-2xl active:scale-[0.98] transition-transform shadow-lg disabled:opacity-60"
         >
           {submitting ? 'Processing...' : step < 4 ? <>Continue <ArrowRight className="w-4 h-4" /></> : 'Confirm & Send'}
         </button>

@@ -54,7 +54,7 @@ export default function AppCommunity() {
         />
         {error && <p className="text-xs text-danger-400">{error}</p>}
         {success && <p className="text-xs text-success-400">Posted. Thank you.</p>}
-        <button disabled={submitting} className="w-full flex items-center justify-center gap-2 bg-brand-gradient text-white text-[13px] font-bold py-3 rounded-xl">
+        <button disabled={submitting} className="w-full flex items-center justify-center gap-2 bg-brand-gradient text-white text-[13px] font-bold py-3 rounded-xl active:scale-[0.98] transition-transform">
           <Send className="w-3.5 h-3.5" />
           {submitting ? 'Posting...' : 'Post'}
         </button>

@@ -46,7 +46,7 @@ export default function AppVerify() {
         />
         <button
           onClick={submit}
-          className="w-[52px] flex-shrink-0 bg-brand-gradient rounded-2xl flex items-center justify-center text-white shadow-sm"
+          className="w-[52px] flex-shrink-0 bg-brand-gradient rounded-2xl flex items-center justify-center text-white shadow-sm active:scale-[0.98] transition-transform"
           aria-label="Verify"
         >
           <Search className="w-[18px] h-[18px]" />

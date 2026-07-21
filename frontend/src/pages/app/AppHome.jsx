@@ -18,7 +18,8 @@ export default function AppHome() {
 
   return (
     <div>
-      <div className="mx-5 mb-3.5 rounded-[22px] p-5 relative overflow-hidden bg-hero-gradient shadow-lg">
+      <div className="mx-5 mb-3.5 rounded-[22px] p-5 relative overflow-hidden bg-hero-gradient shadow-xl ring-1 ring-white/5">
+        <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/[0.06] to-transparent pointer-events-none" />
         <div className="inline-flex items-center gap-1.5 bg-white/10 text-white/85 text-[11px] font-semibold px-2.5 py-1 rounded-full mb-4">
           <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
           Hedera testnet

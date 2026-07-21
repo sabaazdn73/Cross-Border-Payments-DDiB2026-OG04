@@ -274,7 +274,7 @@ export default function Home() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-ink-muted">Sequence #</span>
-                    <span className="text-accent-400 font-mono">1</span>
+                    <span className="text-accent-400 font-mono">2</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-ink-muted">Verification</span>
