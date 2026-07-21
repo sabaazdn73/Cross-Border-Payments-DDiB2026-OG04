@@ -20,8 +20,8 @@ export const generateComplianceRecord = (transaction) => ({
 export const mockHederaRefs = {
   topicId: '0.0.9617780',
   sequenceNumber: '2',
-  consensusTimestamp: '2026-07-17T20:52:51.834087104Z',
+  consensusTimestamp: '2026-07-18T08:04:57.785443Z',
   mirrorNodeUrl: 'https://testnet.mirrornode.hedera.com',
   explorerUrl: 'https://hashscan.io/testnet',
-  transactionUrl: 'https://hashscan.io/testnet/transaction/1784321571.834087104',
+  transactionUrl: 'https://hashscan.io/testnet/transaction/0.0.8762554@1784361892.460950287',
 };
