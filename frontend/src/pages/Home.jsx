@@ -36,6 +36,7 @@ import logoEbanx from '../assets/logos/partners/ebanx.png';
 import logoMercadoPago from '../assets/logos/partners/mercado-pago.png';
 import logoPayu from '../assets/logos/partners/payu.png';
 import Footer from '../components/layout/Footer';
+import FadeSection from '../components/ui/FadeSection';
 
 const benefits = [
   { iconSrc: noWalletIcon, title: 'No Wallet Required', description: 'Send money internationally without ever touching a crypto wallet, seed phrase, or private key.' },
@@ -161,7 +162,7 @@ export default function Home() {
       </section>
 
       {/* Stats */}
-      <section className="py-12 border-y border-hairline bg-surface" aria-label="Statistics">
+      <FadeSection as="section" className="py-12 border-y border-hairline bg-surface" aria-label="Statistics">
         <div className="container-app">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat) => (
@@ -172,10 +173,10 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </FadeSection>
 
       {/* Benefits */}
-      <section className="section" aria-labelledby="benefits-heading">
+      <FadeSection as="section" className="section" aria-labelledby="benefits-heading">
         <div className="container-app">
           <div className="text-center mb-14">
             <h2 id="benefits-heading" className="text-3xl md:text-4xl font-bold text-ink">
@@ -197,10 +198,10 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </FadeSection>
 
       {/* How It Works */}
-      <section className="section bg-surface" aria-labelledby="how-it-works-heading">
+      <FadeSection as="section" className="section bg-surface" aria-labelledby="how-it-works-heading">
         <div className="container-app">
           <div className="text-center mb-14">
             <h2 id="how-it-works-heading" className="text-3xl md:text-4xl font-bold text-ink">
@@ -222,10 +223,10 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </FadeSection>
 
       {/* Security & Compliance */}
-      <section className="section" aria-labelledby="security-heading">
+      <FadeSection as="section" className="section" aria-labelledby="security-heading">
         <div className="container-app">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -309,10 +310,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </FadeSection>
 
       {/* Supported Currencies */}
-      <section className="section bg-surface" aria-labelledby="currencies-heading">
+      <FadeSection as="section" className="section bg-surface" aria-labelledby="currencies-heading">
         <div className="container-app">
           <div className="text-center mb-10">
             <h2 id="currencies-heading" className="text-3xl md:text-4xl font-bold text-ink mb-3">
@@ -378,7 +379,7 @@ export default function Home() {
             <p className="text-center text-xs text-ink-muted mt-4">Ordered by USDC liquidity share among these five chains, mid-2026. See <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">the sourced breakdown</a> for the full picture, including why Hedera's thin slice is the point, not a gap.</p>
           </div>
         </div>
-      </section>
+      </FadeSection>
 
       <Footer />
     </div>
