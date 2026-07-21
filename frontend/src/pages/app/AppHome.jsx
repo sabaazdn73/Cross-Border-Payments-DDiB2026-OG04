@@ -61,7 +61,7 @@ export default function AppHome() {
 
       <div
         onClick={() => window.open('https://hashscan.io/testnet/topic/0.0.9617780', '_blank')}
-        className="mx-5 mb-5 bg-surface border border-hairline rounded-[18px] p-4 flex items-center gap-3.5 cursor-pointer"
+        className="mx-5 mb-5 bg-surface border border-hairline rounded-2xl shadow-sm p-4 flex items-center gap-3.5 cursor-pointer"
       >
         <img src={complianceIcon} alt="" className="w-10 h-10 rounded-xl flex-shrink-0" />
         <div className="flex-1">
@@ -77,11 +77,11 @@ export default function AppHome() {
       </div>
 
       {recent.length === 0 ? (
-        <div className="mx-5 mb-6 bg-surface border border-hairline rounded-[18px] p-6 text-center">
+        <div className="mx-5 mb-6 bg-surface border border-hairline rounded-2xl shadow-sm p-6 text-center">
           <p className="text-sm text-ink-muted">No transfers yet. Try sending one from the demo.</p>
         </div>
       ) : (
-        <div className="mx-5 mb-6 bg-surface border border-hairline rounded-[18px] overflow-hidden">
+        <div className="mx-5 mb-6 bg-surface border border-hairline rounded-2xl shadow-sm overflow-hidden">
           {recent.map((tx) => {
             const country = getCountryByCode(tx.recipientCountry);
             return (

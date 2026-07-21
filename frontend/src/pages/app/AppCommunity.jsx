@@ -35,7 +35,7 @@ export default function AppCommunity() {
 
   return (
     <div className="px-5 pt-1 pb-6">
-      <form onSubmit={submit} className="bg-surface border border-hairline rounded-2xl p-4 mb-5 space-y-2.5">
+      <form onSubmit={submit} className="bg-surface border border-hairline rounded-2xl shadow-sm p-4 mb-5 space-y-2.5">
         <p className="text-[13px] font-bold text-ink mb-1">Share your experience</p>
         <input
           type="text" required placeholder="Community Usage Code"
@@ -64,13 +64,13 @@ export default function AppCommunity() {
       {loading ? (
         <p className="text-xs text-ink-muted">Loading...</p>
       ) : posts.length === 0 ? (
-        <div className="bg-surface border border-hairline rounded-2xl p-5 text-center">
+        <div className="bg-surface border border-hairline rounded-2xl shadow-sm p-5 text-center">
           <p className="text-xs text-ink-muted">No posts yet.</p>
         </div>
       ) : (
         <div className="space-y-2.5">
           {posts.map((p) => (
-            <div key={p.id} className="bg-surface border border-hairline rounded-2xl p-3.5">
+            <div key={p.id} className="bg-surface border border-hairline rounded-2xl shadow-sm p-3.5">
               <div className="flex items-center justify-between mb-1.5">
                 <span className="text-xs font-semibold text-ink">{p.displayName}</span>
                 <span className="text-[10.5px] text-ink-muted">{formatDate(p.createdAt)}</span>
