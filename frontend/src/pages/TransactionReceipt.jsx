@@ -79,9 +79,8 @@ Compliance: ${transaction.complianceStatus}
 Settlement: ${transaction.settlementStatus}
 Payout: ${transaction.payoutStatus}
 
-HEDERA BLOCKCHAIN RECORD
+HEDERA NETWORK RECORD
 Topic ID: ${transaction.hederaTopicId}
-Sequence #: ${transaction.hederaSequenceNumber}
 Consensus Timestamp: ${transaction.hederaConsensusTimestamp}
 TX Reference: ${transaction.hederaTxRef}
 
@@ -184,11 +183,10 @@ This is a sandbox demonstration receipt. Not a real financial document.
                 <h3 className="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-3">Hedera Network Record</h3>
                 <ReceiptRow label="TX Reference" value={transaction.hederaTxRef} mono />
                 <ReceiptRow label="HCS Topic ID" value={transaction.hederaTopicId} mono />
-                <ReceiptRow label="Sequence #" value={transaction.hederaSequenceNumber} mono />
                 <ReceiptRow label="Consensus Timestamp" value={transaction.hederaConsensusTimestamp} mono />
               </div>
 
-              {transaction.hederaTopicId && transaction.hederaSequenceNumber && (
+              {transaction.hederaTopicId && transaction.hederaTxRef && (
                 <CommunityCodeCard transactionId={transaction.id} />
               )}
             </div>

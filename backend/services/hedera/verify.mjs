@@ -42,6 +42,54 @@ export async function fetchMirrorMessage(topicId, sequenceNumber, {
   );
 }
 
+/** A second, independent way to prove an anchor is real: given the
+ *  actual Hedera transaction ID (payerAccount-validStartSeconds-
+ *  validStartNanos), confirm directly from the public Mirror Node
+ *  that it genuinely exists, succeeded, and landed on the expected
+ *  topic. Doesn't require knowing a sequence number in advance (the
+ *  repeated real bug in this project was pointing a sequence number
+ *  at the wrong message) -- this only needs the transaction ID
+ *  itself, which is what a HashScan link already gives directly. */
+export async function fetchMirrorTransaction(transactionId, {
+  retries = 8, delayMs = 2000, network = getNetwork(), expectedTopicId = null,
+} = {}) {
+  // Mirror Node's REST path uses dashes: payer-seconds-nanos, while
+  // HashScan/SDK transaction IDs use payer@seconds.nanos -- accept
+  // either form here so callers can pass through whichever they have.
+  const restId = transactionId.includes('@')
+    ? transactionId.replace('@', '-').replace('.', '-')
+    : transactionId;
+  const url = `https://${network}.mirrornode.hedera.com/api/v1/transactions/${restId}`;
+
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    const res = await fetch(url);
+    if (res.ok) {
+      const raw = await res.json();
+      const txn = raw.transactions?.[0];
+      if (!txn) throw new Error(`Mirror Node returned no transaction for ${transactionId}.`);
+      const isSuccess = txn.result === 'SUCCESS';
+      const isRightTopic = !expectedTopicId || txn.entity_id === expectedTopicId;
+      return {
+        found: true,
+        verified: isSuccess && isRightTopic,
+        result: txn.result,
+        topicId: txn.entity_id,
+        consensusTimestamp: txn.consensus_timestamp,
+        transactionHash: txn.transaction_hash,
+        reason: !isSuccess
+          ? `Transaction result was ${txn.result}, not SUCCESS.`
+          : !isRightTopic
+          ? `Transaction landed on topic ${txn.entity_id}, not the expected ${expectedTopicId}.`
+          : null,
+      };
+    }
+    if (attempt < retries) await new Promise((r) => setTimeout(r, delayMs));
+  }
+  throw new Error(
+    `Mirror Node did not return transaction ${transactionId} after ${retries} attempts.`
+  );
+}
+
 /** HCS messages are base64 on the wire. Decode + parse back to the
  *  JSON payload anchor.mjs originally submitted. */
 export function decodeMirrorMessage(mirrorResponse) {

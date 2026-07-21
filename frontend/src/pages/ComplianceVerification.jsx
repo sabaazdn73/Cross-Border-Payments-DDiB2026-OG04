@@ -154,7 +154,7 @@ export default function ComplianceVerification() {
             <h2 className="font-bold text-ink mb-4 text-sm uppercase tracking-wider">Hedera HCS Reference</h2>
             <div className="space-y-3 text-sm">
               <div className="flex justify-between"><span className="text-ink-muted">Topic ID</span><span className="font-mono text-accent-400">{transaction.hederaTopicId}</span></div>
-              <div className="flex justify-between"><span className="text-ink-muted">Sequence #</span><span className="font-mono text-accent-400">{transaction.hederaSequenceNumber}</span></div>
+              <div className="flex justify-between flex-wrap gap-2"><span className="text-ink-muted">Transaction</span><span className="font-mono text-xs text-accent-400 break-all">{transaction.hederaTxRef}</span></div>
               <div className="flex justify-between flex-wrap gap-2"><span className="text-ink-muted">Consensus Timestamp</span><span className="font-mono text-xs text-accent-400">{transaction.hederaConsensusTimestamp}</span></div>
               <div className="flex justify-between"><span className="text-ink-muted">Mirror Node Status</span><span className="text-success-400 font-medium">✓ Anchored</span></div>
             </div>

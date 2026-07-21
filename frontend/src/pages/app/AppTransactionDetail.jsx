@@ -103,8 +103,9 @@ export default function AppTransactionDetail() {
           <p className="text-[11px] font-bold text-ink-muted uppercase tracking-wide mb-2">Hedera reference</p>
           {[
             ['Topic ID', txn.hederaTopicId],
+            ['Transaction', txn.hederaTxRef],
             ['Sequence #', txn.hederaSequenceNumber],
-          ].map(([label, val]) => (
+          ].filter(([, val]) => val).map(([label, val]) => (
             <div key={label} className="flex justify-between py-1.5 text-[12px]">
               <span className="text-ink-muted">{label}</span>
               <span className="font-mono text-ink break-all ml-3">{val}</span>
@@ -135,7 +136,7 @@ export default function AppTransactionDetail() {
         </p>
       )}
 
-      {txn.hederaTopicId && txn.hederaSequenceNumber && (
+      {txn.hederaTopicId && txn.hederaTxRef && (
         <CommunityCodeCard transactionId={txn.id} compact />
       )}
     </div>

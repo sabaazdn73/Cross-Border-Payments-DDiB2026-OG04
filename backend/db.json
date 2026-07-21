@@ -20,18 +20,16 @@
       "createdAt": "2026-07-17T11:30:00.000Z",
       "completedAt": "2026-07-17T11:31:00.000Z",
       "estimatedDelivery": "1-2 business days",
-      "hederaTxRef": "0.0.8762554@1784361892.460950287",
+      "hederaTxRef": "0.0.8762554@1784361895.557696832",
       "hederaTopicId": "0.0.9617780",
-      "hederaSequenceNumber": "2",
-      "hederaConsensusTimestamp": "2026-07-18T08:04:57.785443Z",
+      "hederaConsensusTimestamp": "2026-07-18T08:04:59.945159Z",
       "complianceStatus": "verified",
       "settlementStatus": "settled",
       "payoutStatus": "paid",
-      "hederaTransactionHash": "4bbddf329febc65ad...(truncated in captured evidence; see docs/reference/testnet-evidence.md)",
-      "hashscanUrl": "https://hashscan.io/testnet/transaction/0.0.8762554@1784361892.460950287",
+      "hederaTransactionHash": "1eCxqaK81a0E6u5GXxzhIsoUSsQl2yhkYWKjJYBgp3Q6tvJh9tebFrbCwgl8bPx0",
+      "hashscanUrl": "https://hashscan.io/testnet/transaction/0.0.8762554@1784361895.557696832",
       "complianceAnchor": {
-        "sequenceNumber": "2",
-        "consensusTimestamp": "2026-07-18T08:04:57.785443Z",
+        "consensusTimestamp": "2026-07-18T08:04:59.945159Z",
         "recordHash": "sha256:836e5f795e93d83e6aa04425c1a3db48b8a7585e2e71d811430ac0903d44d1cc"
       }
     },

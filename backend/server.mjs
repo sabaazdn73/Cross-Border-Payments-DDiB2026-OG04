@@ -12,6 +12,7 @@ import {
   anchorQuote,
   anchorRoutingDecision,
   fetchMirrorMessage,
+  fetchMirrorTransaction,
   verifyRecord,
   pseudoRef,
   closeClient,
@@ -229,14 +230,40 @@ app.post('/api/transfers/:id/verify', async (req, res) => {
 
   const topicId = txn.hederaTopicId;
   const seqNo = txn.complianceAnchor?.sequenceNumber;
+  const txnRef = txn.hederaTxRef;
 
   try {
     if (topicId && seqNo) {
       // Real check on the real Hedera HCS Mirror Node -- the only
       // path this endpoint should take when real anchor data exists.
-      const mirror = await fetchMirrorMessage(topicId, seqNo);
-      const verification = verifyRecord(record, mirror);
-      return res.json(verification);
+      try {
+        const mirror = await fetchMirrorMessage(topicId, seqNo);
+        const verification = verifyRecord(record, mirror);
+        return res.json(verification);
+      } catch (seqErr) {
+        // Fall through to transaction-ID verification below rather
+        // than failing outright -- a wrong or stale sequence number
+        // has been a real, repeated bug in this project, and the
+        // transaction ID itself (from a HashScan link) is a more
+        // direct, robust reference that doesn't depend on getting an
+        // index right.
+        if (!txnRef) throw seqErr;
+      }
+    }
+
+    if (txnRef) {
+      // Real check via the Mirror Node's transactions endpoint:
+      // confirms the specific transaction genuinely exists, succeeded,
+      // and landed on this project's topic -- independent of knowing
+      // the right sequence number in advance.
+      const proof = await fetchMirrorTransaction(txnRef, { expectedTopicId: topicId });
+      return res.json({
+        verified: proof.verified,
+        reason: proof.reason,
+        consensusTimestamp: proof.consensusTimestamp,
+        transactionHash: proof.transactionHash,
+        verificationMethod: 'transaction-id',
+      });
     }
 
     if (isSimulationMode) {
@@ -284,7 +311,7 @@ app.post('/api/transfers/:id/community-code', async (req, res) => {
   if (!txn) {
     return res.status(404).json({ error: 'Transaction not found' });
   }
-  if (!txn.hederaTopicId || !txn.complianceAnchor?.sequenceNumber) {
+  if (!txn.hederaTopicId || !(txn.complianceAnchor?.sequenceNumber || txn.hederaTxRef)) {
     return res.status(400).json({
       error: 'This transaction has no real Hedera anchor yet -- a Community Usage Code can only be issued after real anchoring.',
     });

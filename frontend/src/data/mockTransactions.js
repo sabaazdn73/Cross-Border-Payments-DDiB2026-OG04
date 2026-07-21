@@ -1,3 +1,12 @@
+// Real Hedera testnet transactions, each independently verified
+// against the public Mirror Node (testnet.mirrornode.hedera.com)
+// directly before use here -- confirmed SUCCESS, confirmed landed on
+// this project's real topic (0.0.9617780). No sequence number is set
+// here deliberately: getting a sequence number wrong (pointing at a
+// different real message than intended) was a real, repeated bug in
+// this project. Verification instead uses the transaction ID itself
+// via the Mirror Node's /transactions endpoint, a more direct
+// reference that doesn't depend on an extra lookup being correct.
 export const mockTransactionRecords = [
   {
     id: 'TXN-9KF3XQ2',
@@ -19,18 +28,69 @@ export const mockTransactionRecords = [
     createdAt: new Date(Date.now() - 86400000).toISOString(),
     completedAt: new Date(Date.now() - 80000000).toISOString(),
     estimatedDelivery: '1-2 business days',
-    // Real Hedera testnet data, taken directly from this project's
-    // own captured evidence (docs/reference/testnet-evidence.md),
-    // which itself records the actual demo-modular.mjs run output --
-    // not re-derived or guessed. This is the real compliance-anchor
-    // transaction (sequence #2 on this project's topic), not a
-    // placeholder.
-    hederaTxRef: '0.0.8762554@1784361892.460950287',
+    hederaTxRef: '0.0.8762554@1784361895.557696832',
     hederaTopicId: '0.0.9617780',
-    hederaSequenceNumber: '2',
-    hederaConsensusTimestamp: '2026-07-18T08:04:57.785443Z',
-    hederaTransactionHash: 'sha256:4bbddf329febc65ad...(see docs/reference/testnet-evidence.md for the captured run)',
-    hashscanUrl: 'https://hashscan.io/testnet/transaction/0.0.8762554@1784361892.460950287',
+    hederaConsensusTimestamp: '2026-07-18T08:04:59.945159Z',
+    hederaTransactionHash: '1eCxqaK81a0E6u5GXxzhIsoUSsQl2yhkYWKjJYBgp3Q6tvJh9tebFrbCwgl8bPx0',
+    hashscanUrl: 'https://hashscan.io/testnet/transaction/0.0.8762554@1784361895.557696832',
+    complianceStatus: 'verified',
+    settlementStatus: 'settled',
+    payoutStatus: 'paid',
+  },
+  {
+    id: 'TXN-7MW2KP9',
+    senderName: 'Elena Popescu',
+    senderEmail: 'elena@example.com',
+    senderCountry: 'PT',
+    recipientName: 'Sofia Hakobyan',
+    recipientEmail: 'sofia@example.com',
+    recipientCountry: 'AM',
+    amount: 320,
+    currency: 'EUR',
+    receivingCurrency: 'AMD',
+    recipientAmount: 138000,
+    fee: 4.99,
+    exchangeRate: 431.2,
+    payoutMethod: 'mobile_money',
+    purpose: 'Family Support',
+    status: 'completed',
+    createdAt: new Date(Date.now() - 172800000).toISOString(),
+    completedAt: new Date(Date.now() - 168000000).toISOString(),
+    estimatedDelivery: 'Within minutes',
+    hederaTxRef: '0.0.8762554@1784361946.860904874',
+    hederaTopicId: '0.0.9617780',
+    hederaConsensusTimestamp: '2026-07-18T08:05:53.049590Z',
+    hederaTransactionHash: 'M5h39X0IeA3lUJuPkb4lFYibB6pcBqKqWfuJK+i/wEQQs3o0tmbZpg16mhWscFFf',
+    hashscanUrl: 'https://hashscan.io/testnet/transaction/0.0.8762554@1784361946.860904874',
+    complianceStatus: 'verified',
+    settlementStatus: 'settled',
+    payoutStatus: 'paid',
+  },
+  {
+    id: 'TXN-5RT8QX1',
+    senderName: 'Carlos Mendes',
+    senderEmail: 'carlos@example.com',
+    senderCountry: 'BR',
+    recipientName: 'Aditi Sharma',
+    recipientEmail: 'aditi@example.com',
+    recipientCountry: 'IN',
+    amount: 250,
+    currency: 'USD',
+    receivingCurrency: 'INR',
+    recipientAmount: 20800,
+    fee: 4.99,
+    exchangeRate: 83.2,
+    payoutMethod: 'bank_transfer',
+    purpose: 'Freelance Payment',
+    status: 'completed',
+    createdAt: new Date(Date.now() - 259200000).toISOString(),
+    completedAt: new Date(Date.now() - 254400000).toISOString(),
+    estimatedDelivery: '1-2 business days',
+    hederaTxRef: '0.0.8762554@1784503620.595466655',
+    hederaTopicId: '0.0.9617780',
+    hederaConsensusTimestamp: '2026-07-19T23:27:08.832338Z',
+    hederaTransactionHash: 'NDa/JBQGOwMEHeMgoAkUsPA4Kb2TgdrACTjRJV4Qa0ejCSpN39n4fdlv5DCpulF3',
+    hashscanUrl: 'https://hashscan.io/testnet/transaction/0.0.8762554@1784503620.595466655',
     complianceStatus: 'verified',
     settlementStatus: 'settled',
     payoutStatus: 'paid',
