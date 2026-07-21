@@ -19,17 +19,18 @@ export const mockTransactionRecords = [
     createdAt: new Date(Date.now() - 86400000).toISOString(),
     completedAt: new Date(Date.now() - 80000000).toISOString(),
     estimatedDelivery: '1-2 business days',
-    // Real Hedera testnet data, verified directly against the public
-    // Mirror Node (testnet.mirrornode.hedera.com) before being used
-    // here -- not invented. This is genuinely the first real message
-    // anchored on this project's topic, not a placeholder sequence
-    // number that doesn't exist yet.
-    hederaTxRef: '0.0.8762554@1784321564.234380124',
+    // Real Hedera testnet data, taken directly from this project's
+    // own captured evidence (docs/reference/testnet-evidence.md),
+    // which itself records the actual demo-modular.mjs run output --
+    // not re-derived or guessed. This is the real compliance-anchor
+    // transaction (sequence #2 on this project's topic), not a
+    // placeholder.
+    hederaTxRef: '0.0.8762554@1784361892.460950287',
     hederaTopicId: '0.0.9617780',
-    hederaSequenceNumber: '1',
-    hederaConsensusTimestamp: '2026-07-17T20:52:51.834087104Z',
-    hederaTransactionHash: '5e5e3dc9ce56986b53495dce832adb1aa58655189358b3f84d136c4c23f3b77320eb2ffd1d2b444b3e6b46257ddec437',
-    hashscanUrl: 'https://hashscan.io/testnet/transaction/1784321571.834087104',
+    hederaSequenceNumber: '2',
+    hederaConsensusTimestamp: '2026-07-18T08:04:57.785443Z',
+    hederaTransactionHash: 'sha256:4bbddf329febc65ad...(see docs/reference/testnet-evidence.md for the captured run)',
+    hashscanUrl: 'https://hashscan.io/testnet/transaction/0.0.8762554@1784361892.460950287',
     complianceStatus: 'verified',
     settlementStatus: 'settled',
     payoutStatus: 'paid',

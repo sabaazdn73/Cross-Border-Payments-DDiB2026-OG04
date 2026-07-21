@@ -274,14 +274,14 @@ export default function Home() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-ink-muted">Sequence #</span>
-                    <span className="text-accent-400 font-mono">1</span>
+                    <span className="text-accent-400 font-mono">2</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-ink-muted">Verification</span>
                     <span className="text-success-400">Hash match ✓</span>
                   </div>
                   <a
-                    href="https://hashscan.io/testnet/transaction/1784321571.834087104"
+                    href="https://hashscan.io/testnet/transaction/0.0.8762554@1784361892.460950287"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block text-brand-500 hover:underline pt-1"

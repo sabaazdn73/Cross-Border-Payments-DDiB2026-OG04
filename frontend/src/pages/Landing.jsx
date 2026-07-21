@@ -13,9 +13,9 @@ export default function Landing() {
       <section className="relative pt-28 pb-16 bg-hero-gradient overflow-hidden">
         <div className="container-app relative z-10">
           <div className="max-w-3xl mx-auto text-center mb-10">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-brand-500/20 border border-brand-500/30 text-brand-400 text-sm font-medium mb-6">
+            <p className="text-xs font-bold text-white/50 uppercase tracking-widest mb-5">
               DDiB 2026 &middot; University of Zurich
-            </span>
+            </p>
             <h1 className="text-3xl md:text-5xl font-bold text-white leading-[1.15] tracking-tight mb-4">
               A settlement layer for the money that correspondent banking leaves behind
             </h1>
