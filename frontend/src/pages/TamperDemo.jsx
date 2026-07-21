@@ -7,11 +7,20 @@ import HashDisplay from '../components/ui/HashDisplay';
 import VerificationResult from '../components/ui/VerificationResult';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
 import { generateRecordHash } from '../utils/hashUtils';
-import { complianceService } from '../services/api';
 
+// This demo has its own ID, distinct from TXN-9KF3XQ2 (which is a
+// real transaction anchored on Hedera, used on the Compliance
+// Verification page). This page illustrates a concept, hashing is
+// sensitive to any change, not a real transaction, and reusing the
+// real transaction's ID here caused a real bug: this page's fabricated
+// record would never hash-match the real content actually anchored
+// on-chain, since it isn't that record. Verification below is
+// deliberately local (compare this record's hash to itself before and
+// after tampering), not a network call, since that's the actual
+// property being demonstrated, not a Mirror Node lookup.
 const ORIGINAL_RECORD = {
-  recordId: 'CMP-TXN-9KF3XQ2',
-  transactionId: 'TXN-9KF3XQ2',
+  recordId: 'CMP-TAMPER-CONCEPT',
+  transactionId: 'TAMPER-CONCEPT-DEMO',
   senderName: 'James Okafor',
   senderEmail: 'james@example.com',
   senderCountry: 'US',
@@ -40,22 +49,21 @@ export default function TamperDemo() {
   const [verifying, setVerifying] = useState(false);
   const [isTampered, setIsTampered] = useState(false);
 
-  // The "network-anchored" hash is always of the original record
+  // The "anchored" hash is always of the original, untampered record.
   const anchoredHash = generateRecordHash(ORIGINAL_RECORD);
   const currentHash = generateRecordHash(currentRecord);
 
-  const handleVerify = async () => {
+  const handleVerify = () => {
     setVerifying(true);
     setVerificationResult(null);
-    try {
-      const res = await complianceService.verifyComplianceHash('TXN-9KF3XQ2', currentRecord);
-      setVerificationResult(res.verified);
-    } catch (err) {
-      console.warn("Backend verification failed, using client-side fallback:", err);
+    // A short delay so the UI reads as a real check, but the
+    // comparison itself is genuinely local: this is demonstrating
+    // that changing any field changes the hash, not looking up a
+    // real on-chain record. For that, see Compliance Verification.
+    setTimeout(() => {
       setVerificationResult(currentHash === anchoredHash);
-    } finally {
       setVerifying(false);
-    }
+    }, 600);
   };
 
   const handleTamper = () => {
@@ -192,7 +200,7 @@ export default function TamperDemo() {
             </div>
           </div>
 
-          {verifying && <LoadingSpinner message="Verifying against Hedera HCS..." className="mb-4" />}
+          {verifying && <LoadingSpinner message="Recomputing hash..." className="mb-4" />}
           {verificationResult !== null && !verifying && (
             <VerificationResult isMatch={verificationResult} />
           )}
