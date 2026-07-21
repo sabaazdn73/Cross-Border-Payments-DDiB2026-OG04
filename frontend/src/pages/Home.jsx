@@ -273,15 +273,15 @@ export default function Home() {
                     <span className="text-accent-400 font-mono">0.0.9617780</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-ink-muted">Sequence #</span>
-                    <span className="text-accent-400 font-mono">2</span>
+                    <span className="text-ink-muted">Transaction</span>
+                    <span className="text-accent-400 font-mono text-[11px]">0.0.8762554@1784361895...</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-ink-muted">Verification</span>
                     <span className="text-success-400">Hash match ✓</span>
                   </div>
                   <a
-                    href="https://hashscan.io/testnet/transaction/0.0.8762554@1784361892.460950287"
+                    href="https://hashscan.io/testnet/transaction/0.0.8762554@1784361895.557696832"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block text-brand-500 hover:underline pt-1"
