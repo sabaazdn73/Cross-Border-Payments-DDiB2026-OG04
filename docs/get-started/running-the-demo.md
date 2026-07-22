@@ -17,7 +17,7 @@ cp .env.example .env
 Edit `.env` with your own testnet `HEDERA_ACCOUNT_ID` and
 `HEDERA_PRIVATE_KEY` (DER-encoded, from the Hedera portal).
 
-## Unit tests, no network required
+## Tests
 
 ```bash
 npm test
@@ -26,6 +26,21 @@ npm test
 14 tests covering canonical hashing, HMAC pseudonymisation, and the
 full routing decision logic (partner support, liquidity thresholds,
 fallback behaviour), all deterministic and network-free.
+
+```bash
+npm run test:vitest
+```
+
+21 tests: the same coverage above ported to Vitest, plus Supertest
+tests exercising real HTTP endpoints on the Express app directly
+(health check, 404 handling, community-post validation).
+
+```bash
+npx playwright install chromium   # once
+npm run test:e2e
+```
+
+6 end-to-end tests driving a real browser against the actual frontend, including confirming the tamper-detection demo genuinely flips from a hash match to a mismatch.
 
 ## The core proof
 
