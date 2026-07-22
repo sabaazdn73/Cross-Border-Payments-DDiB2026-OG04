@@ -75,26 +75,38 @@ function toTransactionRecord(row) {
 export async function readDb() {
   if (!usingMongo) return readDbFromFile();
 
-  const [transactions, communityPosts] = await Promise.all([
-    prisma.transaction.findMany(),
-    prisma.communityPost.findMany({ orderBy: { createdAt: 'desc' } }),
-  ]);
+  try {
+    const [transactions, communityPosts] = await Promise.all([
+      prisma.transaction.findMany(),
+      prisma.communityPost.findMany({ orderBy: { createdAt: 'desc' } }),
+    ]);
 
-  const transactionsById = {};
-  for (const row of transactions) {
-    transactionsById[row.id] = toTransactionRecord(row);
+    const transactionsById = {};
+    for (const row of transactions) {
+      transactionsById[row.id] = toTransactionRecord(row);
+    }
+
+    return {
+      transactions: transactionsById,
+      communityPosts: communityPosts.map((p) => ({
+        id: p.postId,
+        displayName: p.displayName,
+        country: p.country,
+        message: p.message,
+        createdAt: p.createdAt.toISOString(),
+      })),
+    };
+  } catch (e) {
+    // The client was generated and initialized fine, but the actual
+    // query failed at runtime (e.g. Render's DNS resolver couldn't
+    // resolve the mongodb+srv:// SRV record -- a real failure seen
+    // in production, not a hypothetical). This is exactly the case
+    // the earlier import-time-only fallback didn't cover: every read
+    // was crashing the request instead of degrading. Fall back to
+    // the local file for this call rather than letting it propagate.
+    console.error('⚠️  MongoDB read failed at runtime, falling back to local db.json for this request:', e.message);
+    return readDbFromFile();
   }
-
-  return {
-    transactions: transactionsById,
-    communityPosts: communityPosts.map((p) => ({
-      id: p.postId,
-      displayName: p.displayName,
-      country: p.country,
-      message: p.message,
-      createdAt: p.createdAt.toISOString(),
-    })),
-  };
 }
 
 // The known, explicitly-modeled columns -- everything else on a
@@ -113,46 +125,56 @@ const KNOWN_COLUMNS = [
 export async function writeDb(data) {
   if (!usingMongo) return writeDbToFile(data);
 
-  const txnWrites = Object.entries(data.transactions || {}).map(([id, txn]) => {
-    const columns = {};
-    const raw = {};
-    for (const [key, value] of Object.entries(txn)) {
-      if (key === 'id') continue;
-      if (KNOWN_COLUMNS.includes(key)) columns[key] = value;
-      else raw[key] = value;
-    }
-    if (columns.createdAt) columns.createdAt = new Date(columns.createdAt);
-    if (columns.completedAt) columns.completedAt = new Date(columns.completedAt);
-    if (columns.communityCodeIssuedAt) columns.communityCodeIssuedAt = new Date(columns.communityCodeIssuedAt);
+  try {
+    const txnWrites = Object.entries(data.transactions || {}).map(([id, txn]) => {
+      const columns = {};
+      const raw = {};
+      for (const [key, value] of Object.entries(txn)) {
+        if (key === 'id') continue;
+        if (KNOWN_COLUMNS.includes(key)) columns[key] = value;
+        else raw[key] = value;
+      }
+      if (columns.createdAt) columns.createdAt = new Date(columns.createdAt);
+      if (columns.completedAt) columns.completedAt = new Date(columns.completedAt);
+      if (columns.communityCodeIssuedAt) columns.communityCodeIssuedAt = new Date(columns.communityCodeIssuedAt);
 
-    return prisma.transaction.upsert({
-      where: { id },
-      update: { ...columns, raw },
-      create: { id, ...columns, raw },
+      return prisma.transaction.upsert({
+        where: { id },
+        update: { ...columns, raw },
+        create: { id, ...columns, raw },
+      });
     });
-  });
 
-  // Community posts are append-only in this app (no edits), so only
-  // insert ones that don't already exist rather than upserting every
-  // post on every write.
-  const existingPostIds = new Set(
-    (await prisma.communityPost.findMany({ select: { postId: true } })).map((p) => p.postId)
-  );
-  const postWrites = (data.communityPosts || [])
-    .filter((p) => !existingPostIds.has(p.id))
-    .map((p) =>
-      prisma.communityPost.create({
-        data: {
-          postId: p.id,
-          displayName: p.displayName,
-          country: p.country || null,
-          message: p.message,
-          createdAt: p.createdAt ? new Date(p.createdAt) : new Date(),
-        },
-      })
+    // Community posts are append-only in this app (no edits), so only
+    // insert ones that don't already exist rather than upserting every
+    // post on every write.
+    const existingPostIds = new Set(
+      (await prisma.communityPost.findMany({ select: { postId: true } })).map((p) => p.postId)
     );
+    const postWrites = (data.communityPosts || [])
+      .filter((p) => !existingPostIds.has(p.id))
+      .map((p) =>
+        prisma.communityPost.create({
+          data: {
+            postId: p.id,
+            displayName: p.displayName,
+            country: p.country || null,
+            message: p.message,
+            createdAt: p.createdAt ? new Date(p.createdAt) : new Date(),
+          },
+        })
+      );
 
-  await Promise.all([...txnWrites, ...postWrites]);
+    await Promise.all([...txnWrites, ...postWrites]);
+  } catch (e) {
+    // Same reasoning as readDb: a runtime connection failure here
+    // must not crash whatever request triggered this write (creating
+    // a transfer, issuing a community code, etc). Persist locally
+    // instead so the in-flight action still completes for the user,
+    // rather than a real network hiccup taking the whole flow down.
+    console.error('⚠️  MongoDB write failed at runtime, falling back to local db.json for this write:', e.message);
+    await writeDbToFile(data);
+  }
 }
 
 export async function closeDb() {
