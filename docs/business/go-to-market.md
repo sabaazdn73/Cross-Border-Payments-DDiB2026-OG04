@@ -31,6 +31,6 @@ Each phase is gated on **partner agreements**, not engineering work. Consistent 
 
 Per [Business Model](business-model.md): a transparent flat fee plus a stated FX spread, meaningfully below the global average cost, undercutting the *hidden* spread most incumbents charge, not necessarily the *total* cost, since the licensed partners' margins are the majority of the cost regardless of who orchestrates the transfer. The defensible pricing claim at launch is transparency and a real, moderate discount, not being unconditionally cheaper. (The exact discount figure and full unit economics are still being finalized separately.)
 
-## What would make this fail, stated honestly
+## What would make this fail
 
 Per the same section's own risk framing: a licensed CASP (Due, BVNK) adding a compliance-anchoring layer of their own would remove this project's main differentiation quickly, since they already have the licensing and corridor coverage. The go-to-market bet is that they are optimizing for corridors with existing volume, leaving the corridors this project targets under-served for long enough to establish a partner relationship advantage.

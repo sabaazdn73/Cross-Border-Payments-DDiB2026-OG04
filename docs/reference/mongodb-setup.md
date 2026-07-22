@@ -22,7 +22,7 @@ This replaces the earlier local `db.json` file with real MongoDB persistence via
    This needs real internet access to `binaries.prisma.sh` to download Prisma's query engine. It could not be run in the sandbox this feature was built in (that sandbox's network is restricted to a small allowlist that doesn't include Prisma's CDN); run it on your own machine, or as part of your deploy platform's build command (see below).
 3. On Render specifically: add `npm run db:generate` to the build command (Render's dashboard → your service → Settings → Build Command), e.g. `npm install && npm run db:generate`. Also add `MONGO_URI` under Environment Variables there, the same value as your local `.env`, not committed to git.
 
-## Honest fallback behavior
+## Fallback behavior
 
 If `MONGO_URI` isn't set, or the Prisma client hasn't been generated yet, `backend/db/store.mjs` logs a clear warning and falls back to the local `db.json` file automatically, rather than crashing the server. This was deliberate: it's what let this feature's own test suite keep passing in a sandbox that couldn't reach Prisma's binary CDN, and it means a misconfigured `MONGO_URI` degrades gracefully instead of taking the whole API down.
 

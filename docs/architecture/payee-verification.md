@@ -1,7 +1,7 @@
 # Payee Verification & Failed Settlement
 
 Two open questions any real remittance product has to answer. Both
-have real, standard industry answers — neither is something we invent.
+have real, standard industry answers, neither is something we invent.
 
 ## Does the destination account name match the recipient?
 
@@ -19,7 +19,7 @@ sent, the account name and IBAN/sort code are submitted to the
 | `unavailable` | The receiving bank doesn't support the check | Proceed, flagged as unverified |
 
 {% hint style="info" %}
-This check happens **between banks** — only a party with a banking
+This check happens **between banks**, only a party with a banking
 relationship can query it. That means it is performed by our
 **licensed payout partner**, not by us. We display the result; we
 don't (and structurally can't) perform the check ourselves. This is
@@ -29,8 +29,7 @@ architecture.
 
 ## What happens if the destination bank doesn't accept the funds?
 
-A transfer can fail after our settlement leg has already completed —
-the account may be closed, the CoP/VoP check may return `not_matched`,
+A transfer can fail after our settlement leg has already completed, the account may be closed, the CoP/VoP check may return `not_matched`,
 or the receiving bank may reject the payout for its own reasons. This
 needs a state the transfer can sit in, rather than silently disappearing
 or being reported as delivered when it wasn't.
@@ -46,7 +45,7 @@ stateDiagram-v2
 ```
 
 The stablecoin leg to the licensed partner may have already settled by
-this point — that's a separate concern from whether the *final* fiat
+this point, that's a separate concern from whether the *final* fiat
 leg succeeded, which is exactly why this needs its own explicit state
 rather than being folded into "completed" or silently retried.
 

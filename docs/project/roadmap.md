@@ -12,20 +12,20 @@
   researched, cited fallback)
 - 22 passing unit tests
 
-## Deliberately not built yet — and why
+## Deliberately not built yet, and why
 
 | Item | Why it's future work, not a shortcut taken now |
 |---|---|
-| **Ethereum / Solana / Base / BNB Chain execution** | Requires funded testnet accounts and SDKs for four chains — real integration work, not a coding shortcut. The *routing decision* already accounts for all four (see [Settlement Layer](../architecture/settlement-layer.md)); only execution is pending. |
-| **Full CCTP / Circle Mint bridging** | Depends on which CCTP version supports which chain at a given time — a fast-moving external dependency, verified at build time rather than hardcoded. |
+| **Ethereum / Solana / Base / BNB Chain execution** | Requires funded testnet accounts and SDKs for four chains, real integration work, not a coding shortcut. The *routing decision* already accounts for all four (see [Settlement Layer](../architecture/settlement-layer.md)); only execution is pending. |
+| **Full CCTP / Circle Mint bridging** | Depends on which CCTP version supports which chain at a given time, a fast-moving external dependency, verified at build time rather than hardcoded. |
 | **Real partner integration** | `PARTNER_CHAIN_SUPPORT` is illustrative scaffolding. Onboarding an actual sandbox payout partner is a business/legal step, not an engineering one. |
-| **Production licensing** | This project is legal *as designed* — non-custodial, orchestration-only. Any future step toward holding funds (e.g., our own stablecoin issuance, direct custody) would require CASP/PI/EMI authorisation and is explicitly out of scope. |
+| **Production licensing** | This project is legal *as designed*, non-custodial, orchestration-only. Any future step toward holding funds (e.g., our own stablecoin issuance, direct custody) would require CASP/PI/EMI authorisation and is explicitly out of scope. |
 
 ## Explicitly out of scope, permanently
 
 - Trading, DEX integration, or any activity requiring custody of a
-  client's crypto-assets — this would require a **different legal
+  client's crypto-assets, this would require a **different legal
   entity** with its own CASP authorisation, not an extension of this
   one. See [Why This Is Legal](../legal/why-this-is-legal.md).
-- Issuing our own stablecoin — EMT issuance is legally reserved to
+- Issuing our own stablecoin. EMT issuance is legally reserved to
   EMIs and credit institutions.

@@ -15,7 +15,7 @@
 | **Ripple / Stellar** | Cross-border settlement networks | Varies | Institutional | ❌ |
 | **Ours** | Orchestration over licensed rails | **None (by design)** | **Never, for either party** | ✅ **HCS-anchored, Mirror-verifiable** |
 
-### 8.1 Honest reading of this table
+### 8.1 Note on this table
 
 **This is a red ocean.** It is arguably the most contested use case in the history of crypto: Ripple since 2012, Stellar built for it, Circle, and Stripe paying roughly $1.1 billion for Bridge, reportedly for the licences more than the technology.
 
@@ -61,4 +61,4 @@ This is a floor, not a ceiling: dozens of comparable emerging-market corridors e
 
 ### 9.3 SOM: Serviceable Obtainable Market
 
-The portion of the SAM actually reachable given this project's real constraints (a small team, no signed partners yet, a licensed-partner-dependent model), not an aspirational share. Per the market capture assumptions already established for the go-to-market plan, an early-stage entrant against licensed incumbents realistically captures a small fraction of a percent of any single corridor in its first years, not a meaningful double-digit share. The exact volume this implies is part of the financial model being reworked separately (see the note in [Go-to-Market Strategy](go-to-market.md)); this section stops at the market-sizing question it's actually answering: **the addressable population is real and large ($176.5B+ across just three corridors), and the honest constraint on capturing it is partner relationships and licensing, not market size.**
+The portion of the SAM actually reachable given this project's real constraints (a small team, no signed partners yet, a licensed-partner-dependent model), not an aspirational share. Per the market capture assumptions already established for the go-to-market plan, an early-stage entrant against licensed incumbents realistically captures a small fraction of a percent of any single corridor in its first years, not a meaningful double-digit share. The exact volume this implies is part of the financial model being reworked separately (see the note in [Go-to-Market Strategy](go-to-market.md)); this section stops at the market-sizing question it's actually answering: **the addressable population is real and large ($176.5B+ across just three corridors), and the real constraint on capturing it is partner relationships and licensing, not market size.**

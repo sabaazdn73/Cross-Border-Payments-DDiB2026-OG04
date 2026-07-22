@@ -10,9 +10,9 @@
 | Fragmented compliance | Each institution repeats KYC; none can verify the other's |
 | Opaque FX | The spread, not the stated fee, is where the cost hides |
 
-### 2.2 The compliance gap — the one we address
+### 2.2 The compliance gap, the one we address
 
-Every regulated party in a cross-border chain runs its own checks. But when a regulator or counterparty later asks *"was this transaction compliant at the time it happened?"*, the evidence is a database row inside one institution — mutable, and attested by nobody but its owner.
+Every regulated party in a cross-border chain runs its own checks. But when a regulator or counterparty later asks *"was this transaction compliant at the time it happened?"*, the evidence is a database row inside one institution, mutable, and attested by nobody but its owner.
 
 **Formal problem statement:**
 

@@ -13,7 +13,7 @@ whole project:
 
 A product's trust anchor and its settlement rail don't have to be the
 same network. Hedera Consensus Service gives us a fixed-fee,
-deterministic-finality timestamping service — ideal for a compliance
+deterministic-finality timestamping service, ideal for a compliance
 trail that has to remain economical and verifiable for years. But
 Hedera's own stablecoin liquidity is real yet thin (tens of millions
 of dollars, not billions), so a large transfer settled entirely on
@@ -23,23 +23,23 @@ Separating the two means: **the compliance and routing evidence is
 always anchored the same way, on the same network, regardless of which
 chain the money actually moves through.** A regulator examining a
 transfer years later doesn't need to trust whichever settlement chain
-was in fashion at the time — only the anchor, which never changes.
+was in fashion at the time, only the anchor, which never changes.
 
 ## Component map
 
 ```
-backend/services/hedera/        — the trust anchor, always Hedera
+backend/services/hedera/, the trust anchor, always Hedera
   client.mjs        Hedera connection + key parsing
   hashing.mjs        canonical hashing + HMAC pseudonymous refs
   topic.mjs           HCS topic creation/reuse
   anchor.mjs           compliance / quote / routing-decision anchoring
   verify.mjs            Mirror Node read-back + tamper detection
 
-backend/services/settlement/    — which chain moves the value
+backend/services/settlement/, which chain moves the value
   corridorConfig.mjs   partner chain support, compliant stablecoins
   liquidity.mjs         real Hedera liquidity depth (DeFiLlama)
   corridorRouter.mjs     the routing decision function
-  execute.mjs             real execution (Hedera) / honest non-execution (elsewhere)
+  execute.mjs             real execution (Hedera) / labeled non-execution (elsewhere)
 ```
 
 Full function-level detail: [Module Reference](../reference/modules.md).

@@ -29,7 +29,7 @@ A token only earns its complexity if it does something the design cannot already
 - A token needs a market (liquidity, price discovery, an exchange listing or AMM pool) to be usable for anything, none of which is this project's competency and all of which is ongoing overhead.
 - Token price volatility becomes a distraction from the actual product metric (successful transfers), and a governance/community-management surface area that has nothing to do with settling payments.
 
-## The honest comparison
+## Comparison
 
 | | With a token | Without (current design) |
 |---|---|---|

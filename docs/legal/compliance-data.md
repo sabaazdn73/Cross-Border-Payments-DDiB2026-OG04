@@ -67,7 +67,7 @@ document/photo fraud, and would make our own compliance-anchoring
 model a more natural fit for a world where the *input* to KYC is
 already a verifiable credential rather than a photo.
 
-**The honest caveat, stated in the pilot's own report:** the
+**Note, from the pilot's own report:** the
 technology works; mutual legal recognition between jurisdictions does
 not exist yet, and building it is a multi-year regulatory process, not
 a technical one. This is a direction to watch, not a dependency this

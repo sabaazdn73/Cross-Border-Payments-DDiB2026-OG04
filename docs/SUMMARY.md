@@ -13,8 +13,8 @@
 
 ## Architecture
 * [System Overview](architecture/overview.md)
-* [The Trust Layer — Hedera](architecture/trust-layer.md)
-* [The Settlement Layer — Chain Routing](architecture/settlement-layer.md)
+* [The Trust Layer. Hedera](architecture/trust-layer.md)
+* [The Settlement Layer. Chain Routing](architecture/settlement-layer.md)
 * [Governance](architecture/governance.md)
 * [Data Model](architecture/data-model.md)
 * [API Design](architecture/api-design.md)
