@@ -51,6 +51,7 @@
 ## Reference
 * [Module Reference](reference/modules.md)
 * [Live Testnet Evidence](reference/testnet-evidence.md)
+* [MongoDB + Prisma Setup](reference/mongodb-setup.md)
 
 ## Project
 * [Roadmap](project/roadmap.md)

@@ -1,10 +1,10 @@
 import express from 'express';
 import cors from 'cors';
-import { readFile, writeFile } from 'fs/promises';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import 'dotenv/config';
 import { generateCommunityCode, hashCommunityCode } from './services/community/code.mjs';
+import { readDb, writeDb, closeDb } from './db/store.mjs';
 
 import {
   getOrCreateTopic,
@@ -27,27 +27,12 @@ import {
 } from "./services/settlement/index.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const DB_FILE = path.join(__dirname, 'db.json');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(express.json());
-
-// Load DB helper
-async function readDb() {
-  try {
-    const data = await readFile(DB_FILE, 'utf8');
-    return JSON.parse(data);
-  } catch (e) {
-    return { transactions: {}, communityPosts: [] };
-  }
-}
-
-async function writeDb(data) {
-  await writeFile(DB_FILE, JSON.stringify(data, null, 2), 'utf8');
-}
 
 // Check if Hedera credentials are set and valid
 let isSimulationMode = false;
@@ -613,6 +598,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
 
 process.on('SIGTERM', () => {
   closeClient();
+  closeDb();
   process.exit(0);
 });
 
