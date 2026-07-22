@@ -30,7 +30,7 @@ xychart-beta
     bar [1.32, 2.64, 3.96, 5.28, 6.60]
 ```
 
-## Reading this honestly: the capture-rate assumption is the whole story
+## Note: the capture-rate assumption is the whole story
 
 The arithmetic above is correct, and it's worth seeing exactly what it implies operationally, because the number is large enough that it needs a sanity check, not just a formula.
 

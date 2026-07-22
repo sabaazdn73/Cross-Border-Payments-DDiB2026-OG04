@@ -65,6 +65,6 @@ Uzbekistan's stablecoin payment sandbox took effect January 1, 2026 (National Ag
 | **Rhino.fi** | Infrastructure layer. Smart Deposit Addresses, deterministic multi-chain settlement. Powers Blockradar's wallet APIs for fintechs across Africa and LatAm, an indirect route into those regions. |
 | **Ripple Payments** | 75+ money-transmitter-equivalent licences globally; pursuing e-money licences in Europe and the UK. Relevant if a bank-grade, heavily-licensed single counterparty is preferred over a multi-regional patchwork. |
 
-## The honest summary
+## Note
 
 No single provider above covers every corridor this platform lists. That is the expected state of the market, not a gap unique to this project. Even the largest named players (BVNK, Due, Tazapay) explicitly pair with regional specialists outside their home markets. A real partnership strategy would combine 2-3 of the above rather than searching for one provider that does everything.

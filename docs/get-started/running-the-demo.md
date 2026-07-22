@@ -3,7 +3,7 @@
 ## Prerequisites
 
 - Node.js (any recent LTS)
-- A Hedera testnet account — free, from [portal.hedera.com](https://portal.hedera.com)
+- A Hedera testnet account, free, from [portal.hedera.com](https://portal.hedera.com)
 
 ## Setup
 
@@ -17,7 +17,7 @@ cp .env.example .env
 Edit `.env` with your own testnet `HEDERA_ACCOUNT_ID` and
 `HEDERA_PRIVATE_KEY` (DER-encoded, from the Hedera portal).
 
-## Unit tests — no network required
+## Unit tests, no network required
 
 ```bash
 npm test
@@ -35,7 +35,7 @@ node step1-hedera.mjs
 
 Creates an HCS topic, anchors a compliance hash, reads it back from a
 public Mirror Node, verifies a MATCH, tampers with the record, and
-shows the resulting MISMATCH — the entire trust argument in six steps.
+shows the resulting MISMATCH, the entire trust argument in six steps.
 
 ## The full pipeline
 
@@ -44,14 +44,13 @@ node demo-modular.mjs
 ```
 
 Anchors both a compliance record and a quote (FX rate + fee), verifies
-each independently, and demonstrates tamper detection on the quote —
-proving a sender wasn't quoted one rate and charged another.
+each independently, and demonstrates tamper detection on the quote, proving a sender wasn't quoted one rate and charged another.
 
 ## The routing demo
 
 ```bash
 node demo-router.mjs 100      # small amount → routes to Hedera, executes for real
-node demo-router.mjs 50000    # large amount → routes to Ethereum, honestly unexecuted
+node demo-router.mjs 50000    # large amount, routes to Ethereum, not executed
 ```
 
 See [Live Testnet Evidence](../reference/testnet-evidence.md) for a

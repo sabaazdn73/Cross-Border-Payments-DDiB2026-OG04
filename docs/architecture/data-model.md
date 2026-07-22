@@ -8,6 +8,6 @@
 | `anchors` | id, complianceRecordId, topicId, sequenceNumber, consensusTimestamp, messageHash, status |
 | `payouts` | id, transferId, provider, providerRef, status, receiptJson |
 
-**No table stores client funds, private keys, or wallet balances.** By design — [this section](../legal/why-this-is-legal.md).
+**No table stores client funds, private keys, or wallet balances.** By design, [this section](../legal/why-this-is-legal.md).
 
 ---
