@@ -169,7 +169,17 @@ app.get('/api/transfers/:id/compliance', async (req, res) => {
     return res.status(404).json({ error: 'Transaction not found' });
   }
 
-  // Build the off-chain compliance record structure
+  // The exact record that was actually hashed and anchored at
+  // creation time, stored verbatim, is the only thing that can ever
+  // correctly match on verify. Reconstructing a fresh, similar-but-
+  // different object here (as this route used to) meant no real
+  // transaction could ever pass verification, since the two objects
+  // never had the same fields to begin with. Only reconstruct as a
+  // fallback for older/demo records that predate storing this.
+  if (txn.complianceRecord) {
+    return res.json(txn.complianceRecord);
+  }
+
   const complianceRecord = {
     recordId: `CMP-${txn.id}`,
     transactionId: txn.id,
@@ -549,7 +559,19 @@ app.post('/api/transfers', async (req, res) => {
       settlementBridgeMethod: decision.bridgeMethod,
       settlementReason: decision.reason,
       settlementHashscanUrl: execution.hashscanUrl || null,
-      settlementNote: execution.note || null
+      settlementNote: execution.note || null,
+
+      // The EXACT record object that was hashed and anchored above
+      // (complianceRecord, built earlier in this route). Storing it
+      // verbatim, rather than letting GET /compliance reconstruct a
+      // similar-looking object later, was the actual root cause of
+      // a real bug: the reconstruction used a different field set
+      // (missing transferRef, provider, checkType, outcome, checkedAt
+      // entirely, and a different reviewedAt value) than what was
+      // actually hashed, so canonicalHash() could never match for
+      // ANY real transaction, not just tampered ones. Verify was
+      // failing on every genuine, correctly-anchored transaction.
+      complianceRecord,
     };
 
     db.transactions[txnId] = transaction;
