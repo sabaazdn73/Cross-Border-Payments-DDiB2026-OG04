@@ -25,7 +25,13 @@ Stablecoin settlement does not eliminate capital lock-up, it relocates it to the
 
 - **Hedera execution is fully real**: genuine HTS transfers, real HCS anchors, verifiable on HashScan.
 - **Ethereum, Solana, and Base routing decisions are real and anchored**, the logic that decides where a transfer *should* settle runs on live data (real liquidity checks). **Actual execution on those chains is not implemented**, and is clearly labelled as such rather than faked, because no funded testnet credentials exist yet for them in this project. See [Roadmap](../project/roadmap.md).
+- **The fiat on-ramp is currently a mock endpoint**, `POST /api/payments` returns a fixed success response; there is no real Stripe (or other PSP) integration, no PaymentIntent, no signed webhook. The frontend's test-card field exists to demonstrate the flow's shape, not to process a real card.
+- **The fiat off-ramp is currently a mock too.** No real payout-partner integration (Flutterwave or otherwise) exists; payout status is simulated the same way.
 - **The payout-failure reconciliation state is specified, not built**, the state machine and Mermaid diagram in [Payee Verification & Failed Settlement](../architecture/payee-verification.md) describe the intended design; implementing it requires a real payout partner's failure-notification webhook to build against, which doesn't exist yet.
+
+## Persistence layer
+
+Business records (transfers, compliance records, community posts) are stored in MongoDB via Prisma, not on-chain, see [MongoDB + Prisma Setup](../reference/mongodb-setup.md). If `MONGO_URI` isn't configured or the Prisma client hasn't been generated, the backend automatically falls back to a local JSON file rather than crashing, this is a deliberate resilience choice, not a sign the database migration is incomplete. Only a hash and pseudonymous metadata are ever anchored on Hedera regardless of which persistence path is active.
 
 ## Stablecoin choice is a legal constraint, not a preference
 
