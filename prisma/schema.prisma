@@ -8,6 +8,21 @@
 //   cluster, accessed through Prisma the same way Postgres would be,
 //   just with `provider = "mongodb"` instead of `"postgresql"`.
 //
+//   IMPORTANT: this project is pinned to Prisma 6.x (package.json:
+//   "prisma": "^6.19.3", "@prisma/client": "^6.19.3"), deliberately,
+//   NOT 7.x. Prisma 7 does not yet support MongoDB at all (per
+//   Prisma's own upgrade docs: "Support for MongoDB is limited to
+//   Prisma 6 as of now... we're working on support for MongoDB in
+//   v7"). A first attempt at this migration installed Prisma 7 (the
+//   default "latest" at the time) and failed on Render with a schema
+//   validation error (P1012, "url is no longer supported") that
+//   looked like a syntax problem but was actually a missing-feature
+//   problem: MongoDB + Prisma 7 doesn't exist yet as a supported
+//   combination. Do not upgrade past 6.x until Prisma officially adds
+//   MongoDB support to 7, or this schema (and the `url = env(...)`
+//   line below, which 7 removes from schema.prisma entirely) breaks
+//   again.
+//
 //   Nothing about Hedera anchoring changes: this only replaces WHERE
 //   the off-chain business records live, not what gets hashed and
 //   anchored to HCS.

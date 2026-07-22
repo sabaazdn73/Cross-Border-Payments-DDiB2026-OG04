@@ -2,6 +2,10 @@
 
 This replaces the earlier local `db.json` file with real MongoDB persistence via Prisma, matching what this project's own report claims (Technology Stack table: "Database: PostgreSQL + Prisma ORM"; the actual code before this change was a local JSON file). MongoDB, not PostgreSQL, since Prisma supports both and this project's data (transactions, community posts) is naturally document-shaped, and it's what was already provisioned for this project (a free MongoDB Atlas cluster).
 
+## Important: Prisma version is pinned to 6.x, not 7
+
+`package.json` pins `"prisma": "^6.19.3"` and `"@prisma/client": "^6.19.3"` deliberately. **Prisma 7 does not support MongoDB yet** (confirmed directly from Prisma's own upgrade documentation: "Support for MongoDB is limited to Prisma 6 as of now... we're working on support for MongoDB in v7"). A first deploy attempt installed Prisma 7 (the default "latest" when nothing was pinned) and failed on Render with `P1012: The datasource property 'url' is no longer supported in schema files`, which reads like a syntax error but is actually a missing-feature error. Don't upgrade past 6.x until Prisma officially ships MongoDB support in 7.
+
 ## What actually changed
 
 - `prisma/schema.prisma`: real schema for `Transaction` and `CommunityPost`, `provider = "mongodb"`.
