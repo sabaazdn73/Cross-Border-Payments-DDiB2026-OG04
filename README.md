@@ -89,3 +89,7 @@ boundary and canonicalisation rules.
 Sandbox and testnet. Not a payment institution, not a CASP, not a
 custodian. See `docs/legal-and-compliance.md`.
 
+## License
+
+All rights reserved. See `LICENSE`.
+
