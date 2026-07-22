@@ -140,11 +140,11 @@ This is a sandbox demonstration receipt. Not a real financial document.
             <div className="grid grid-cols-2 gap-4 mb-6 p-4 rounded-xl bg-white/3">
               <div className="text-center">
                 <p className="text-xs text-ink-muted mb-1">Amount Sent</p>
-                <p className="text-xl font-black text-ink">{formatAmount(transaction.amount, transaction.currency)}</p>
+                <p className="text-xl font-black font-mono text-ink">{formatAmount(transaction.amount, transaction.currency)}</p>
               </div>
               <div className="text-center">
                 <p className="text-xs text-ink-muted mb-1">Recipient Gets</p>
-                <p className="text-xl font-black text-success-400">{formatAmount(transaction.recipientAmount, transaction.receivingCurrency)}</p>
+                <p className="text-xl font-black font-mono text-success-400">{formatAmount(transaction.recipientAmount, transaction.receivingCurrency)}</p>
               </div>
             </div>
 
@@ -167,8 +167,8 @@ This is a sandbox demonstration receipt. Not a real financial document.
                 <h3 className="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-3">Transfer Details</h3>
                 <ReceiptRow label="Sending Currency" value={transaction.currency} />
                 <ReceiptRow label="Receiving Currency" value={transaction.receivingCurrency} />
-                <ReceiptRow label="Service Fee" value={formatAmount(transaction.fee, transaction.currency)} />
-                <ReceiptRow label="Exchange Rate" value={`1 ${transaction.currency} = ${Number(transaction.exchangeRate).toFixed(4)} ${transaction.receivingCurrency}`} />
+                <ReceiptRow label="Service Fee" value={formatAmount(transaction.fee, transaction.currency)} mono />
+                <ReceiptRow label="Exchange Rate" value={`1 ${transaction.currency} = ${Number(transaction.exchangeRate).toFixed(4)} ${transaction.receivingCurrency}`} mono />
                 <ReceiptRow label="Date" value={formatDate(transaction.createdAt)} />
               </div>
 

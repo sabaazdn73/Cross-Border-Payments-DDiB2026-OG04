@@ -139,8 +139,8 @@ export default function TransactionStatus() {
               </div>
               <div className="text-right">
                 <p className="text-xs text-ink-muted mb-1">Amount</p>
-                <p className="text-2xl font-black text-ink">{formatAmount(transaction.amount, transaction.currency)}</p>
-                <p className="text-sm text-success-400">→ {formatAmount(transaction.recipientAmount, transaction.receivingCurrency)}</p>
+                <p className="text-2xl font-black font-mono text-ink">{formatAmount(transaction.amount, transaction.currency)}</p>
+                <p className="text-sm font-mono text-success-400">→ {formatAmount(transaction.recipientAmount, transaction.receivingCurrency)}</p>
               </div>
             </div>
 

@@ -75,10 +75,10 @@ export default function ReviewTransfer() {
                 <h2 className="font-bold text-ink mb-4 flex items-center gap-2">
                   <DollarSign className="w-4 h-4 text-brand-400" aria-hidden="true" />Transfer Details
                 </h2>
-                <InfoRow label="You send" value={`${Number(summary.sendAmount).toLocaleString()} ${formData.currency}`} />
-                <InfoRow label="Service fee" value={`${summary.fee.toFixed(2)} ${formData.currency}`} />
-                <InfoRow label="Exchange rate" value={`1 ${formData.currency} = ${summary.exchangeRate.toLocaleString('en-US', { maximumFractionDigits: 4 })} ${formData.receivingCurrency}`} />
-                <InfoRow label="Recipient gets" value={`${Number(summary.recipientAmount).toLocaleString('en-US', { maximumFractionDigits: 2 })} ${formData.receivingCurrency}`} />
+                <InfoRow label="You send" value={`${Number(summary.sendAmount).toLocaleString()} ${formData.currency}`} mono />
+                <InfoRow label="Service fee" value={`${summary.fee.toFixed(2)} ${formData.currency}`} mono />
+                <InfoRow label="Exchange rate" value={`1 ${formData.currency} = ${summary.exchangeRate.toLocaleString('en-US', { maximumFractionDigits: 4 })} ${formData.receivingCurrency}`} mono />
+                <InfoRow label="Recipient gets" value={`${Number(summary.recipientAmount).toLocaleString('en-US', { maximumFractionDigits: 2 })} ${formData.receivingCurrency}`} mono />
                 <InfoRow label="Delivery time" value={summary.deliveryTime} />
               </div>
 

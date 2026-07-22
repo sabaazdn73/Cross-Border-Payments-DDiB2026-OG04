@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Shield, Globe, Lock, Zap } from 'lucide-react';
+import { Shield, Zap } from 'lucide-react';
 import brandIcon from '../../assets/brand/icon.svg';
 import SiteQRCode from '../ui/SiteQRCode';
 
@@ -19,17 +19,6 @@ export default function Footer() {
             <p className="text-ink-muted text-sm leading-relaxed">
               Walletless, fiat-to-fiat cross-border settlement powered by Hedera network.
             </p>
-            <div className="flex items-center gap-4 mt-4">
-              <div className="flex items-center gap-1 text-xs text-success-400">
-                <Shield className="w-3 h-3" /><span>Compliant</span>
-              </div>
-              <div className="flex items-center gap-1 text-xs text-accent-400">
-                <Lock className="w-3 h-3" /><span>Secure</span>
-              </div>
-              <div className="flex items-center gap-1 text-xs text-brand-400">
-                <Globe className="w-3 h-3" /><span>Global</span>
-              </div>
-            </div>
           </div>
 
           <div>
