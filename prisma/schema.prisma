@@ -1,0 +1,75 @@
+// ═══════════════════════════════════════════════════════════════════
+//   prisma/schema.prisma
+//   ───────────────────────────────────────────────────────────────
+//   MongoDB + Prisma ORM. This is what the project report actually
+//   claims (Section 4, Technology Stack table said "PostgreSQL +
+//   Prisma ORM" -- the real persistence was a local JSON file). This
+//   schema is the genuine fix: a real, provisioned MongoDB Atlas
+//   cluster, accessed through Prisma the same way Postgres would be,
+//   just with `provider = "mongodb"` instead of `"postgresql"`.
+//
+//   Nothing about Hedera anchoring changes: this only replaces WHERE
+//   the off-chain business records live, not what gets hashed and
+//   anchored to HCS.
+// ═══════════════════════════════════════════════════════════════════
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGO_URI")
+}
+
+model Transaction {
+  id                       String    @id @map("_id")
+  senderName               String?
+  senderEmail              String?
+  senderCountry             String?
+  recipientName            String?
+  recipientEmail           String?
+  recipientCountry         String?
+  amount                   Float?
+  currency                 String?
+  receivingCurrency        String?
+  recipientAmount          Float?
+  fee                      Float?
+  exchangeRate             Float?
+  payoutMethod             String?
+  purpose                  String?
+  status                   String?
+  complianceStatus         String?
+  settlementStatus         String?
+  payoutStatus             String?
+  createdAt                DateTime?
+  completedAt              DateTime?
+  estimatedDelivery        String?
+
+  hederaTxRef              String?
+  hederaTopicId            String?
+  hederaSequenceNumber     String?
+  hederaConsensusTimestamp String?
+  hederaTransactionHash    String?
+  hashscanUrl              String?
+
+  communityCodeHash        String?
+  communityCodeIssuedAt    DateTime?
+
+  raw                      Json?     // anything not modeled explicitly above,
+                                      // so a field added ad hoc in server.mjs
+                                      // isn't silently dropped during migration
+
+  @@map("transactions")
+}
+
+model CommunityPost {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  postId      String   @unique
+  displayName String
+  country     String?
+  message     String
+  createdAt   DateTime @default(now())
+
+  @@map("community_posts")
+}
