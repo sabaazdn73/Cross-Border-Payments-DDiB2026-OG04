@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { SendHorizonal, RefreshCw, ShieldCheck, MoreHorizontal, ArrowRight } from 'lucide-react';
 import complianceIcon from '../../assets/icons/04-compliance.svg';
 import { getAllTransactions } from '../../utils/storage';
+import { transferService } from '../../services/api';
 import { getCountryByCode } from '../../data/countries';
 
 export default function AppHome() {
@@ -10,10 +11,24 @@ export default function AppHome() {
   const [recent, setRecent] = useState([]);
 
   useEffect(() => {
-    const all = Object.values(getAllTransactions())
-      .sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0))
-      .slice(0, 4);
-    setRecent(all);
+    let active = true;
+    // Real data (now persisted in MongoDB, see backend/db/store.mjs)
+    // is the source of truth. Local storage is only a fallback for
+    // when the backend can't be reached, so the screen doesn't just
+    // go blank -- not the primary source any more.
+    transferService.listTransfers()
+      .then((txs) => {
+        if (!active) return;
+        setRecent((txs || []).slice(0, 4));
+      })
+      .catch(() => {
+        if (!active) return;
+        const all = Object.values(getAllTransactions())
+          .sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0))
+          .slice(0, 4);
+        setRecent(all);
+      });
+    return () => { active = false; };
   }, []);
 
   return (

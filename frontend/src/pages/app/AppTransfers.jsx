@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Plus } from 'lucide-react';
 import { getAllTransactions } from '../../utils/storage';
+import { transferService } from '../../services/api';
 import { getCountryByCode } from '../../data/countries';
 
 export default function AppTransfers() {
@@ -9,10 +10,17 @@ export default function AppTransfers() {
   const [transfers, setTransfers] = useState([]);
 
   useEffect(() => {
-    const all = Object.values(getAllTransactions()).sort(
-      (a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0)
-    );
-    setTransfers(all);
+    let active = true;
+    transferService.listTransfers()
+      .then((txs) => { if (active) setTransfers(txs || []); })
+      .catch(() => {
+        if (!active) return;
+        const all = Object.values(getAllTransactions()).sort(
+          (a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0)
+        );
+        setTransfers(all);
+      });
+    return () => { active = false; };
   }, []);
 
   return (
