@@ -5,6 +5,8 @@ import {
   Banknote, Smartphone, Building2
 } from 'lucide-react';
 import Navbar, { DOCS_URL } from '../components/layout/Navbar';
+import usdcLogo from '../assets/logos/stablecoins/usdc.png';
+import eurcLogo from '../assets/logos/stablecoins/eurc.png';
 import StyledGlobe from '../components/StyledGlobe';
 import noWalletIcon from '../assets/icons/01-no-wallet.svg';
 import lightningIcon from '../assets/icons/02-lightning-settlement.svg';
@@ -387,14 +389,14 @@ export default function Home() {
               <h3 className="text-center text-lg font-bold text-ink mb-6">Supported Stablecoins</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
                 <div className="glass p-5 flex items-center gap-4">
-                  <div className="w-11 h-11 rounded-full bg-blue-500/10 flex items-center justify-center flex-shrink-0 font-bold text-blue-500 font-mono text-sm">USDC</div>
+                  <img src={usdcLogo} alt="USDC" className="w-11 h-11 flex-shrink-0" />
                   <div>
                     <p className="text-sm font-semibold text-ink">USDC (Circle)</p>
                     <p className="text-xs text-ink-muted">Used across all five supported chains</p>
                   </div>
                 </div>
                 <div className="glass p-5 flex items-center gap-4">
-                  <div className="w-11 h-11 rounded-full bg-indigo-500/10 flex items-center justify-center flex-shrink-0 font-bold text-indigo-500 font-mono text-sm">EURC</div>
+                  <img src={eurcLogo} alt="EURC" className="w-11 h-11 flex-shrink-0" />
                   <div>
                     <p className="text-sm font-semibold text-ink">EURC (Circle)</p>
                     <p className="text-xs text-ink-muted">The MiCA-compliant choice for the EU leg</p>
