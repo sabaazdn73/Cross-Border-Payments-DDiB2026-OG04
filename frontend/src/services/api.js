@@ -38,6 +38,9 @@ export const transferService = {
   searchTransfers: async (query) => {
     return apiClient.get(`/transfers?search=${encodeURIComponent(query)}`);
   },
+  listTransfers: async () => {
+    return apiClient.get('/transfers');
+  },
   tamperTransfer: async (id, updates) => {
     return apiClient.post(`/transfers/${id}/tamper`, updates);
   }

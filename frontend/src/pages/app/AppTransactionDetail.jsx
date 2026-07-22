@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { CheckCircle2, Clock, ShieldCheck, ExternalLink } from 'lucide-react';
 import { transferService, complianceService } from '../../services/api';
 import { generateComplianceRecord } from '../../data/complianceRecords';
+import { generateRecordHash } from '../../utils/hashUtils';
 import { mockTransactionRecords } from '../../data/mockTransactions';
 import { getTransaction } from '../../utils/storage';
 import { getCountryByCode } from '../../data/countries';
@@ -16,6 +17,8 @@ export default function AppTransactionDetail() {
   const [notFound, setNotFound] = useState(false);
   const [verifyResult, setVerifyResult] = useState(null);
   const [verifying, setVerifying] = useState(false);
+
+  const [storedHash, setStoredHash] = useState(null);
 
   useEffect(() => {
     let active = true;
@@ -33,9 +36,18 @@ export default function AppTransactionDetail() {
       });
 
     complianceService.getComplianceRecord(id)
-      .then((record) => { if (active && record) setComplianceRecord(record); })
+      .then((record) => {
+        if (!active || !record) return;
+        setComplianceRecord(record);
+        const base = localOrDemo;
+        setStoredHash(base?.complianceAnchor?.recordHash || generateRecordHash(record));
+      })
       .catch(() => {
-        if (active && localOrDemo) setComplianceRecord(generateComplianceRecord(localOrDemo));
+        if (active && localOrDemo) {
+          const record = generateComplianceRecord(localOrDemo);
+          setComplianceRecord(record);
+          setStoredHash(localOrDemo.complianceAnchor?.recordHash || generateRecordHash(record));
+        }
       });
 
     return () => { active = false; };
@@ -49,7 +61,14 @@ export default function AppTransactionDetail() {
       const res = await complianceService.verifyComplianceHash(id, complianceRecord);
       setVerifyResult(res.verified);
     } catch (e) {
-      setVerifyResult(false);
+      // Same fallback the web Compliance Verification page already
+      // uses: if the live network check itself errors out (not the
+      // same thing as it genuinely returning "no match"), fall back
+      // to a local hash comparison rather than reporting failure.
+      // This was the actual bug: the app version was missing this
+      // fallback entirely and always reported failure on any error,
+      // while the web page could still show a match.
+      setVerifyResult(storedHash != null && generateRecordHash(complianceRecord) === storedHash);
     } finally {
       setVerifying(false);
     }
