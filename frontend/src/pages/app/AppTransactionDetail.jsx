@@ -53,17 +53,12 @@ export default function AppTransactionDetail() {
     return () => { active = false; };
   }, [id]);
 
-  const [tampered, setTampered] = useState(false);
-  const effectiveRecord = tampered && complianceRecord
-    ? { ...complianceRecord, riskScore: 'HIGH', amount: (complianceRecord.amount || 0) + 1 }
-    : complianceRecord;
-
   const runVerify = async () => {
     if (!complianceRecord) return;
     setVerifying(true);
     setVerifyResult(null);
     try {
-      const res = await complianceService.verifyComplianceHash(id, effectiveRecord);
+      const res = await complianceService.verifyComplianceHash(id, complianceRecord);
       setVerifyResult(res.verified);
     } catch (e) {
       // Same fallback the web Compliance Verification page already
@@ -73,7 +68,7 @@ export default function AppTransactionDetail() {
       // This was the actual bug: the app version was missing this
       // fallback entirely and always reported failure on any error,
       // while the web page could still show a match.
-      setVerifyResult(storedHash != null && generateRecordHash(effectiveRecord) === storedHash);
+      setVerifyResult(storedHash != null && generateRecordHash(complianceRecord) === storedHash);
     } finally {
       setVerifying(false);
     }
@@ -145,20 +140,6 @@ export default function AppTransactionDetail() {
           )}
         </div>
       )}
-
-      <div className="bg-surface border border-hairline rounded-2xl p-3.5 mb-3 flex items-center justify-between gap-3">
-        <div>
-          <p className="text-xs font-semibold text-ink">Simulate tampering</p>
-          <p className="text-[11px] text-ink-muted mt-0.5">Modify locally, then verify to see it fail</p>
-        </div>
-        <button
-          onClick={() => { setTampered((t) => !t); setVerifyResult(null); }}
-          className={`flex-shrink-0 relative w-11 h-6 rounded-full transition-colors ${tampered ? 'bg-danger-500' : 'bg-hairline'}`}
-          aria-pressed={tampered}
-        >
-          <span className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-all ${tampered ? 'left-6' : 'left-1'}`} />
-        </button>
-      </div>
 
       <button
         onClick={runVerify}
