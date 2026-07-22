@@ -25,6 +25,6 @@
 | Security | Operator key in `.env`, never committed; PSP webhook signature verified |
 | Integrity | Every anchor retains local hash, topic, sequence, consensus timestamp |
 | Verifiability | A third party verifies via Mirror Node with no access to us |
-| Honesty | The UI names the licensed parties in the flow, we do not present their service as ours |
+| Attribution | The UI names the licensed parties in the flow, we do not present their service as ours |
 
 ---
