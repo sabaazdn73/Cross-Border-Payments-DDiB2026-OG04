@@ -25,6 +25,23 @@ export default function ComplianceVerification() {
   const [notFound, setNotFound] = useState(false);
   const [verifying, setVerifying] = useState(false);
   const [verificationResult, setVerificationResult] = useState(null);
+  const [tampered, setTampered] = useState(false);
+
+  const toggleTamper = () => {
+    setTampered((t) => !t);
+    setVerificationResult(null);
+  };
+
+  // When "simulate tampering" is on, the record actually sent to the
+  // verify endpoint has a modified field, this is a real, working
+  // branch, not cosmetic. The backend genuinely recomputes the hash
+  // of whatever record it receives and compares it against the real
+  // anchor, so a tampered record here genuinely fails verification,
+  // it isn't a separate, fake "tampered" code path.
+  const effectiveRecord = tampered && complianceRecord
+    ? { ...complianceRecord, riskScore: 'HIGH', amount: (complianceRecord.amount || 0) + 1 }
+    : complianceRecord;
+  const effectiveCurrentHash = tampered ? generateRecordHash(effectiveRecord) : currentHash;
 
   useEffect(() => {
     let active = true;
@@ -73,11 +90,11 @@ export default function ComplianceVerification() {
     setVerifying(true);
     setVerificationResult(null);
     try {
-      const res = await complianceService.verifyComplianceHash(id, complianceRecord);
+      const res = await complianceService.verifyComplianceHash(id, effectiveRecord);
       setVerificationResult(res.verified);
     } catch (err) {
       console.error("Verification failed, falling back to local hash matching:", err);
-      setVerificationResult(currentHash === storedHash);
+      setVerificationResult(effectiveCurrentHash === storedHash);
     } finally {
       setVerifying(false);
     }
@@ -164,7 +181,7 @@ export default function ComplianceVerification() {
           <div className="glass p-6 mb-5 space-y-4">
             <h2 className="font-bold text-ink mb-2 text-sm uppercase tracking-wider">Hash Verification</h2>
             <HashDisplay label="Stored Network Hash (Anchored on HCS)" hash={storedHash} />
-            <HashDisplay label="Current Calculated Hash" hash={currentHash} />
+            <HashDisplay label="Current Calculated Hash" hash={effectiveCurrentHash} />
             <a
               href={transaction?.hashscanUrl || "https://hashscan.io/testnet/topic/0.0.9617780"}
               target="_blank"
@@ -175,6 +192,24 @@ export default function ComplianceVerification() {
                 ? 'View this exact transaction on HashScan (Hedera testnet)'
                 : 'View real anchored records on HashScan (Hedera testnet)'}
             </a>
+          </div>
+
+          {/* Tamper toggle: verify the real, untouched record by
+              default; this branches into a genuinely different,
+              modified record being sent for verification, not a
+              cosmetic label change. */}
+          <div className="glass p-4 mb-5 flex items-center justify-between gap-4">
+            <div>
+              <p className="text-sm font-semibold text-ink">Simulate tampering</p>
+              <p className="text-xs text-ink-muted mt-0.5">Modify this record locally, then verify to see it genuinely fail.</p>
+            </div>
+            <button
+              onClick={toggleTamper}
+              className={`flex-shrink-0 relative w-12 h-7 rounded-full transition-colors ${tampered ? 'bg-danger-500' : 'bg-hairline'}`}
+              aria-pressed={tampered}
+            >
+              <span className={`absolute top-1 w-5 h-5 rounded-full bg-white transition-all ${tampered ? 'left-6' : 'left-1'}`} />
+            </button>
           </div>
 
           {/* Verify button */}
