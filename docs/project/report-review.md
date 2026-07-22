@@ -56,9 +56,9 @@ This table has the most corrections. Each row below is exactly as written in the
 
 ---
 
-## 6. What's already honest and doesn't need softening
+## 6. What's already solid and doesn't need softening
 
-Worth saying plainly: most of this draft is accurate, careful, and already does the hard thing of stating limitations directly (Section 5.3's "what is genuinely executed vs. honestly not," Section 9's limitations list, Section 8's comparison table). The corrections above are specific and factual, not a sign the whole report needs rewriting. Sections 1, 2, 3 (except the one table), 6, 7, 8, 9, and 10 were checked and don't need changes.
+Worth saying plainly: most of this draft is accurate, careful, and already does the hard thing of stating limitations directly (Section 5.3's "what is genuinely executed vs. clearly labeled as not," Section 9's limitations list, Section 8's comparison table). The corrections above are specific and factual, not a sign the whole report needs rewriting. Sections 1, 2, 3 (except the one table), 6, 7, 8, 9, and 10 were checked and don't need changes.
 
 ---
 
