@@ -12,11 +12,7 @@ import 'flag-icons/css/flag-icons.min.css';
 // system font and causing exactly the visual inconsistency reported
 // (e.g. the Landing page looking like a different typeface). Bundling
 // the font files directly removes that external dependency entirely.
-import '@fontsource/plus-jakarta-sans/300.css';
-import '@fontsource/plus-jakarta-sans/400.css';
-import '@fontsource/plus-jakarta-sans/500.css';
-import '@fontsource/plus-jakarta-sans/600.css';
-import '@fontsource/plus-jakarta-sans/700.css';
+import "@fontsource-variable/plus-jakarta-sans/wght.css";
 import '@fontsource/plus-jakarta-sans/800.css';
 import '@fontsource/caveat/500.css';
 import '@fontsource/caveat/600.css';
