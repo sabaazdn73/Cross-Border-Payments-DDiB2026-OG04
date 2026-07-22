@@ -141,17 +141,19 @@ export default function Home() {
               not the wait and cost of traditional banking's slower rails.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-start gap-4 animate-slide-up">
-              <Link to="/send-money" className="btn-primary text-base py-3.5 pl-3.5 pr-8 w-full sm:w-auto">
-                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20">
-                  <SendHorizonal className="w-4 h-4" aria-hidden="true" />
-                </span>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 animate-slide-up">
+              <Link
+                to="/send-money"
+                className="flex items-center justify-center gap-2.5 rounded-full bg-white/95 hover:bg-white text-[#1a1530] font-semibold text-base py-3.5 px-7 transition-all duration-200 shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_6px_24px_rgba(0,0,0,0.2)] hover:-translate-y-0.5"
+              >
+                <SendHorizonal className="w-[18px] h-[18px] text-brand-500" aria-hidden="true" />
                 Start Onboarding
               </Link>
-              <Link to="/track" className="btn-secondary text-base py-3.5 pl-3.5 pr-8 w-full sm:w-auto">
-                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-brand-500/10">
-                  <Search className="w-4 h-4 text-brand-500" aria-hidden="true" />
-                </span>
+              <Link
+                to="/track"
+                className="flex items-center justify-center gap-2.5 rounded-full bg-white/10 hover:bg-white/[0.15] text-white font-semibold text-base py-3.5 px-7 transition-all duration-200 border border-white/15 hover:-translate-y-0.5"
+              >
+                <Search className="w-[18px] h-[18px]" aria-hidden="true" />
                 Track Transaction
               </Link>
             </div>
@@ -380,6 +382,27 @@ export default function Home() {
               ))}
             </div>
             <p className="text-center text-xs text-ink-muted mt-4">Ordered by USDC liquidity share among these five chains, mid-2026. See <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">the sourced breakdown</a> for the full picture, including why Hedera's thin slice is the point, not a gap.</p>
+
+            <div className="mt-12 pt-10 border-t border-hairline">
+              <h3 className="text-center text-lg font-bold text-ink mb-6">Supported Stablecoins</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                <div className="glass p-5 flex items-center gap-4">
+                  <div className="w-11 h-11 rounded-full bg-blue-500/10 flex items-center justify-center flex-shrink-0 font-bold text-blue-500 font-mono text-sm">USDC</div>
+                  <div>
+                    <p className="text-sm font-semibold text-ink">USDC (Circle)</p>
+                    <p className="text-xs text-ink-muted">Used across all five supported chains</p>
+                  </div>
+                </div>
+                <div className="glass p-5 flex items-center gap-4">
+                  <div className="w-11 h-11 rounded-full bg-indigo-500/10 flex items-center justify-center flex-shrink-0 font-bold text-indigo-500 font-mono text-sm">EURC</div>
+                  <div>
+                    <p className="text-sm font-semibold text-ink">EURC (Circle)</p>
+                    <p className="text-xs text-ink-muted">The MiCA-compliant choice for the EU leg</p>
+                  </div>
+                </div>
+              </div>
+              <p className="text-center text-xs text-ink-muted mt-4">USDT is deliberately excluded: it is not MiCA-compliant and has been delisted from major EU venues.</p>
+            </div>
           </div>
         </div>
       </FadeSection>

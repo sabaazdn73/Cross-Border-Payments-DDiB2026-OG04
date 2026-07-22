@@ -26,7 +26,7 @@ export default function TransferSummaryCard({
         {/* You send */}
         <div className="flex items-center justify-between">
           <span className="text-ink-muted text-sm">You send</span>
-          <span className="text-ink font-semibold">
+          <span className="text-ink font-mono font-semibold">
             {sendAmount > 0
               ? formatAmount(sendAmount, fromCurrency)
               : `${fromCur?.symbol || fromCurrency}0.00`}
@@ -39,7 +39,7 @@ export default function TransferSummaryCard({
             <DollarSign className="w-3 h-3" aria-hidden="true" />
             Service fee
           </span>
-          <span className="text-warning-400 text-sm font-medium">
+          <span className="text-warning-400 text-sm font-mono font-medium">
             {fee > 0 ? `- ${formatAmount(fee, fromCurrency)}` : '--'}
           </span>
         </div>
@@ -52,7 +52,7 @@ export default function TransferSummaryCard({
             <ArrowRight className="w-3 h-3" aria-hidden="true" />
             Exchange rate
           </span>
-          <span className="text-accent-400 text-sm font-medium">
+          <span className="text-accent-400 text-sm font-mono font-medium">
             {exchangeRate > 0
               ? `1 ${fromCurrency} = ${exchangeRate.toLocaleString('en-US', { maximumFractionDigits: 4 })} ${toCurrency}`
               : '--'}

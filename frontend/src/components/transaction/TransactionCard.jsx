@@ -19,11 +19,11 @@ export default function TransactionCard({ transaction, className = '' }) {
       <div className="grid grid-cols-2 gap-3 mb-4">
         <div>
           <p className="text-xs text-ink-muted mb-0.5">You sent</p>
-          <p className="font-semibold text-ink">{formatAmount(transaction.amount, transaction.currency)}</p>
+          <p className="font-semibold font-mono text-ink">{formatAmount(transaction.amount, transaction.currency)}</p>
         </div>
         <div className="text-right">
           <p className="text-xs text-ink-muted mb-0.5">Recipient gets</p>
-          <p className="font-semibold text-success-400">
+          <p className="font-semibold font-mono text-success-400">
             {formatAmount(transaction.recipientAmount, transaction.receivingCurrency)}
           </p>
         </div>
