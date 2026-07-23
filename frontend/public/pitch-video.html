@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>F2F Cross-Border — Pitch Video</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #05060f; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  #stage { position: relative; width: 100%; height: 100vh; background: radial-gradient(ellipse 120% 90% at 50% 20%, #1a1d47 0%, #0a0c22 55%, #05060f 100%); overflow: hidden; }
+
+  #bg-canvas, #three-canvas { position: absolute; inset: 0; }
+  #bg-canvas { opacity: .55; }
+  #three-canvas { opacity: 0; transition: opacity 1s ease; }
+  #three-canvas.active { opacity: 1; }
+
+  .scene { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .65s ease; padding: 0 8vw; text-align: center; z-index: 5; }
+  .scene.active { opacity: 1; pointer-events: auto; }
+
+  .card {
+    background: rgba(15,17,42,.42); backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,.1); border-radius: 22px;
+    padding: 34px 52px; opacity: 0; transform: translateY(16px) scale(.97);
+    transition: opacity .55s cubic-bezier(.19,1,.22,1), transform .55s cubic-bezier(.19,1,.22,1);
+    box-shadow: 0 30px 80px rgba(0,0,0,.35);
+  }
+  .scene.active .card { opacity: 1; transform: translateY(0) scale(1); }
+
+  .line { color: #fff; font-weight: 600; letter-spacing: -0.01em; opacity: 0; transform: translateY(10px); transition: opacity .5s ease, transform .5s ease; }
+  .scene.active .line { opacity: 1; transform: translateY(0); }
+  .l1 { transition-delay: .1s; } .l2 { transition-delay: .26s; } .l3 { transition-delay: .42s; }
+
+  .huge { font-size: clamp(32px, 5vw, 74px); line-height: 1.12; }
+  .big { font-size: clamp(21px, 3vw, 38px); line-height: 1.25; }
+  .med { font-size: clamp(15px, 1.9vw, 22px); font-weight: 400; color: rgba(255,255,255,.72); line-height: 1.5; max-width: 680px; }
+  .script { font-family: 'Caveat', cursive; font-weight: 700; color: #b4a6ff; font-size: 1.18em; }
+
+  .logo-mark { display: flex; flex-direction: column; align-items: center; gap: 22px; perspective: 800px; }
+  .logo-badge {
+    display: flex; align-items: baseline; justify-content: center; gap: 4px;
+    width: 180px; height: 180px; border-radius: 40px;
+    background: linear-gradient(135deg, #6c56e3, #8874ee);
+    box-shadow: 0 30px 90px rgba(108,86,227,.45);
+    opacity: 0; transform: scale(.7); transition: opacity .6s ease, transform .6s cubic-bezier(.34,1.4,.64,1);
+  }
+  .scene.active .logo-badge { opacity: 1; transform: scale(1); }
+  .f-char { font-size: 88px; font-weight: 800; color: #fff; display: inline-block; transform-style: preserve-3d; }
+  .f-num { font-size: 44px; font-weight: 700; color: rgba(255,255,255,.6); align-self: center; }
+  .f2 { animation: flipToFace 1.3s cubic-bezier(.34,1.1,.4,1) .5s both; }
+  @keyframes flipToFace { 0% { transform: rotateY(0deg); } 100% { transform: rotateY(180deg); } }
+  .logo-sub { font-size: clamp(30px, 4.4vw, 56px) !important; opacity: 0; transition: opacity .6s ease .9s; }
+  .scene.active .logo-sub { opacity: 1; }
+  .warm { color: #ff9466; }
+  .ok { color: #4ade80; }
+  .mono { font-family: 'JetBrains Mono', monospace; font-weight: 500; letter-spacing: 0.02em; }
+  .stack { display: flex; flex-direction: column; gap: 16px; align-items: center; }
+
+  .flow-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; max-width: 880px; }
+  .flow-step { padding: 12px 18px; border-radius: 13px; background: rgba(255,255,255,.06); border: 1px solid rgba(140,123,255,.3); color: #fff; font-size: clamp(11px,1.4vw,15px); font-weight: 500; opacity: 0; transform: scale(.85); transition: all .4s cubic-bezier(.19,1,.22,1); }
+  .scene.active .flow-step { opacity: 1; transform: scale(1); }
+  .flow-arrow { color: rgba(140,123,255,.5); font-size: 15px; opacity: 0; transition: opacity .4s; }
+  .scene.active .flow-arrow { opacity: 1; }
+  .fs0{transition-delay:.05s}.fs1{transition-delay:.2s}.fs2{transition-delay:.35s}.fs3{transition-delay:.5s}.fs4{transition-delay:.65s}.fs5{transition-delay:.8s}
+
+  .shot-wrap { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+  .browser-frame { width: min(76vw, 960px); border-radius: 14px; overflow: hidden; background: #10132b; border: 1px solid rgba(140,123,255,.25); box-shadow: 0 40px 110px rgba(0,0,0,.55), 0 0 0 1px rgba(140,123,255,.08); }
+  .browser-bar { height: 30px; background: #171a38; display: flex; align-items: center; gap: 6px; padding: 0 14px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.18); }
+  .shot-img-wrap { overflow: hidden; position: relative; height: 420px; }
+  .shot-img { position: absolute; width: 100%; height: 100%; left: 0; top: 0; object-fit: cover; object-position: top center; animation: none; }
+  .pan-a .shot-img { top: 0; animation: panA 8s ease-in-out forwards; }
+  .pan-b .shot-img { top: 0; animation: panB 8s ease-in-out forwards; }
+  @keyframes panA { 0%{transform:scale(1.15) translateY(0);} 50%{transform:scale(1.24) translateY(-6%);} 100%{transform:scale(1.3) translateY(-11%);} }
+  @keyframes panB { 0%{transform:scale(1.2) translateY(-2%);} 50%{transform:scale(1.28) translateY(-8%);} 100%{transform:scale(1.18) translateY(0);} }
+  .phone-frame { width: min(38vw, 250px); border-radius: 38px; overflow: hidden; background: #0d0f26; border: 6px solid #1c1f42; box-shadow: 0 50px 120px rgba(0,0,0,.55), 0 0 0 1px rgba(140,123,255,.1); }
+  .phone-img-wrap { overflow: hidden; position: relative; height: 540px; }
+  .phone-img-wrap .shot-img { width: 100%; height: 100%; left: 0; top: 0; object-fit: cover; object-position: top center; animation: panPhone 8s ease-in-out forwards; }
+  @keyframes panPhone { 0%{transform:scale(1.05) translateY(0);} 100%{transform:scale(1.12) translateY(-4%);} }
+
+  .caption { position: absolute; bottom: 8%; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,.8); font-size: clamp(12px,1.4vw,16px); font-weight: 500; background: rgba(10,12,30,.6); backdrop-filter: blur(6px); padding: 8px 18px; border-radius: 999px; border: 1px solid rgba(140,123,255,.25); white-space: nowrap; opacity: 0; transition: opacity .5s ease .3s; }
+  .scene.active .caption { opacity: 1; }
+
+  .geo { position: absolute; border: 1px solid rgba(140,123,255,.18); border-radius: 50%; pointer-events: none; }
+
+  .float-label {
+    position: absolute; color: rgba(255,255,255,.62); font-size: clamp(16px,2.1vw,24px); font-weight: 600;
+    opacity: 0; transition: opacity .8s ease; text-shadow: 0 2px 12px rgba(0,0,0,.4);
+  }
+  .scene.active .float-label { opacity: 1; }
+  .fl1 { top: 18%; left: 12%; animation: driftA 9s ease-in-out infinite; }
+  .fl2 { top: 26%; right: 10%; animation: driftB 11s ease-in-out infinite; }
+  .fl3 { bottom: 24%; left: 14%; animation: driftC 10s ease-in-out infinite; }
+  .fl4 { top: 12%; right: 24%; animation: driftB 12.5s ease-in-out infinite; }
+  .fl5 { bottom: 16%; right: 18%; animation: driftA 10.5s ease-in-out infinite; }
+  .fl6 { bottom: 30%; left: 32%; animation: driftC 13s ease-in-out infinite; }
+  .fl7 { top: 34%; left: 6%; animation: driftB 9.5s ease-in-out infinite; }
+  .fl8 { top: 8%; left: 30%; animation: driftA 11.5s ease-in-out infinite; }
+  @keyframes driftA { 0%,100%{transform:translate(0,0);} 50%{transform:translate(10px,-14px);} }
+  @keyframes driftB { 0%,100%{transform:translate(0,0);} 50%{transform:translate(-12px,10px);} }
+  @keyframes driftC { 0%,100%{transform:translate(0,0);} 50%{transform:translate(8px,12px);} }
+
+  #progress-wrap { position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: rgba(255,255,255,.08); z-index: 20; }
+  #progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg,#6c56e3,#8874ee); }
+
+  #start-overlay { position: absolute; inset: 0; z-index: 30; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; background: radial-gradient(ellipse 120% 90% at 50% 30%, #1a1d47 0%, #0a0c22 55%, #05060f 100%); }
+  #start-mark { width: 64px; height: 64px; border-radius: 16px; background: linear-gradient(135deg,#6c56e3,#8874ee); display: flex; align-items: center; justify-content: center; font-family: 'Caveat', cursive; font-weight: 700; font-size: 30px; color: #fff; box-shadow: 0 20px 50px rgba(108,86,227,.35); margin-bottom: 4px; }
+  #start-btn { width: 78px; height: 78px; border-radius: 50%; background: linear-gradient(135deg,#6c56e3,#8874ee); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 0 rgba(108,86,227,.5); animation: pulse 2.2s infinite; }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(108,86,227,.45);} 70%{box-shadow:0 0 0 22px rgba(108,86,227,0);} 100%{box-shadow:0 0 0 0 rgba(108,86,227,0);} }
+  #start-label { color: rgba(255,255,255,.55); font-size: 14px; }
+  #start-title { color: #fff; font-weight: 700; font-size: clamp(24px,3vw,36px); }
+  .accent { color: #8c7bff; }
+
+  .bubble-cloud { position: relative; width: 820px; max-width: 90vw; height: 400px; }
+  .bubble { position: absolute; border-radius: 50%; background: rgba(255,148,102,.1); border: 1px solid rgba(255,148,102,.4); display: flex; align-items: center; justify-content: center; text-align: center; padding: 10px; font-size: clamp(11px,1.25vw,14px); font-weight: 500; color: #fff; opacity: 0; transform: scale(.7); transition: opacity .6s ease, transform .6s cubic-bezier(.34,1.4,.64,1); }
+  .scene.active .bubble { opacity: 1; transform: scale(1); }
+  .bb0{transition-delay:.05s}.bb1{transition-delay:.18s}.bb2{transition-delay:.31s}.bb3{transition-delay:.44s}.bb4{transition-delay:.57s}.bb5{transition-delay:.7s}
+
+  .tree-flow { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .tree-row { display: flex; align-items: center; gap: 16px; }
+  .tree-node { padding: 10px 18px; border-radius: 12px; background: rgba(255,255,255,.06); border: 1px solid rgba(140,123,255,.35); color: #fff; font-weight: 600; font-size: clamp(11px,1.3vw,15px); opacity: 0; transform: scale(.85); transition: all .4s cubic-bezier(.19,1,.22,1); white-space: nowrap; }
+  .scene.active .tree-node { opacity: 1; transform: scale(1); }
+  .tree-note { color: rgba(255,255,255,.55); font-size: clamp(10px,1.05vw,13px); font-weight: 400; opacity: 0; transition: opacity .5s ease; max-width: 220px; text-align: left; }
+  .scene.active .tree-note { opacity: 1; }
+  .tree-down { color: rgba(140,123,255,.5); font-size: 14px; opacity: 0; transition: opacity .4s; }
+  .scene.active .tree-down { opacity: 1; }
+  .tn0{transition-delay:.05s}.tn1{transition-delay:.2s}.tn2{transition-delay:.35s}.tn3{transition-delay:.5s}.tn4{transition-delay:.65s}.tn5{transition-delay:.8s}
+
+  .radial-wrap { position: relative; width: 900px; max-width: 92vw; height: 540px; }
+  .radial-center {
+    position: absolute; top: 280px; left: 450px; transform: translate(-50%,-50%) scale(.8);
+    background: rgba(15,17,42,.55); backdrop-filter: blur(14px); border: 1px solid rgba(140,123,255,.4);
+    border-radius: 20px; padding: 20px 28px; text-align: center; max-width: 230px; z-index: 2;
+    box-shadow: 0 20px 60px rgba(0,0,0,.4); opacity: 0;
+    transition: opacity .5s ease, transform .5s cubic-bezier(.34,1.4,.64,1);
+  }
+  .scene.active .radial-center { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+  .radial-pt {
+    position: absolute; transform: translate(-50%,-50%); width: 190px;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(140,123,255,.22); border-radius: 14px;
+    padding: 12px 15px; font-size: clamp(11px,1.15vw,13px); color: rgba(255,255,255,.85); line-height: 1.4;
+    opacity: 0; transition: opacity .6s ease, transform .6s cubic-bezier(.19,1,.22,1);
+  }
+  .scene.active .radial-pt { opacity: 1; }
+  .rp0 { top: 70px; left: 450px; } .rp1 { top: 175px; left: 700px; } .rp2 { top: 385px; left: 700px; }
+  .rp3 { top: 490px; left: 450px; } .rp4 { top: 385px; left: 200px; } .rp5 { top: 175px; left: 200px; }
+  .rd0{transition-delay:.1s}.rd1{transition-delay:.25s}.rd2{transition-delay:.4s}.rd3{transition-delay:.55s}.rd4{transition-delay:.7s}.rd5{transition-delay:.85s}
+  .radial-title { color: #fff; font-weight: 700; font-size: clamp(20px,2.6vw,30px); line-height: 1.2; }
+  .radial-sub { color: rgba(255,255,255,.55); font-size: clamp(11px,1.2vw,13px); margin-top: 6px; }
+  .tag-web { color: #8c7bff; font-weight: 700; }
+  .tag-app { color: #ff9466; font-weight: 700; }
+
+  #ctrl-group { position: absolute; bottom: 22px; right: 22px; z-index: 25; display: none; align-items: center; gap: 10px; }
+  .ctrl-btn { width: 42px; height: 42px; border-radius: 50%;
+    background: rgba(15,17,42,.7); backdrop-filter: blur(8px); border: 1px solid rgba(140,123,255,.35);
+    display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background .2s ease; }
+  .ctrl-btn:hover { background: rgba(108,86,227,.35); }
+  #ctrl-play { width: 46px; height: 46px; }
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <div id="start-overlay">
+    <div id="start-mark">F2f</div>
+    <div id="start-title">F2F Cross-Border</div>
+    <div id="start-sub">Fiat-to-fiat settlement for anyone sending money across a border &mdash; anchored on a public network, never touching the funds themselves.</div>
+    <button id="start-btn" onclick="startShow()">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+    <div id="start-label">Play pitch</div>
+  </div>
+
+  <canvas id="bg-canvas"></canvas>
+  <canvas id="three-canvas"></canvas>
+
+  <div id="ctrl-group">
+    <button class="ctrl-btn" onclick="jumpScene(-1)" title="Previous">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18 6v12l-8.5-6zM6 6h2v12H6z"/></svg>
+    </button>
+    <button class="ctrl-btn" id="ctrl-play" onclick="togglePause()" title="Pause / Play">
+      <svg id="ctrl-icon" width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+    </button>
+    <button class="ctrl-btn" onclick="jumpScene(1)" title="Next">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M6 6v12l8.5-6zM16 6h2v12h-2z"/></svg>
+    </button>
+  </div>
+
+  <div class="scene" data-t="0"><div class="card stack">
+    <div class="line l1 huge">A few years ago,</div>
+    <div class="line l2 big">we moved to <span class="script">Europe</span> for a new experience.</div>
+  </div></div>
+
+  <div class="scene" data-t="3.2" data-globe="1">
+    <div class="float-label fl1">Nigeria</div>
+    <div class="float-label fl2">Philippines</div>
+    <div class="float-label fl3">Brazil</div>
+    <div class="float-label fl4">Armenia</div>
+    <div class="float-label fl5">Turkey</div>
+    <div class="float-label fl6">UAE</div>
+    <div class="card stack" style="margin-top:20vh;">
+    <div class="line l1 big">Friends who'd also moved</div>
+    <div class="line l2 big warm">couldn't get their own money across the border.</div>
+  </div></div>
+
+  <div class="scene" data-t="8" data-globe="1">
+    <div class="float-label fl2">3-5 days</div>
+    <div class="float-label fl3">high fees</div>
+    <div class="float-label fl4">hidden markups</div>
+    <div class="float-label fl5">frozen transfers</div>
+    <div class="float-label fl7">no visibility</div>
+    <div class="card stack" style="margin-top:20vh;">
+    <div class="line l1 huge warm">Slow. Expensive. Unpredictable.</div>
+  </div></div>
+
+  <div class="scene" data-t="12"><div class="stack">
+    <div class="line l1 big" style="margin-bottom:22px;">The traditional banking rails, up close</div>
+    <div class="bubble-cloud">
+      <div class="bubble bb0" style="width:170px;height:170px;top:10px;left:60px;">High, unpredictable fees</div>
+      <div class="bubble bb1" style="width:150px;height:150px;top:40px;left:330px;">3&ndash;5 day settlement</div>
+      <div class="bubble bb2" style="width:180px;height:180px;top:0;left:560px;">Correspondent-bank chains</div>
+      <div class="bubble bb3" style="width:160px;height:160px;top:220px;left:100px;">Weekend &amp; holiday delays</div>
+      <div class="bubble bb4" style="width:150px;height:150px;top:230px;left:340px;">Opaque routing</div>
+      <div class="bubble bb5" style="width:170px;height:170px;top:210px;left:560px;">Little to no audit trail</div>
+    </div>
+  </div></div>
+
+  <div class="scene" data-t="17.5"><div class="card stack">
+    <div class="line l1 big">We were crypto-native &mdash; fluent in DeFi and its rails.</div>
+    <div class="line l2 huge">So we set out to combine traditional banking with decentralized finance,</div>
+    <div class="line l3 big accent" style="transition-delay:.6s;">and ride stablecoin rails to fix all of it.</div>
+  </div></div>
+
+  <div class="scene" data-t="23"><div class="stack">
+    <div class="line l1 big" style="margin-bottom:14px;">The manual path we found first</div>
+    <div class="tree-flow">
+      <div class="tree-row"><div class="tree-node tn0">Local bank</div><div class="tree-note tn0">fiat leaves the sender's own account</div></div>
+      <div class="tree-down">&darr;</div>
+      <div class="tree-row"><div class="tree-node tn1">Licensed exchange &middot; KYC</div><div class="tree-note tn1">regulated on-ramp, identity checked once</div></div>
+      <div class="tree-down">&darr;</div>
+      <div class="tree-row"><div class="tree-node tn2">USDC</div><div class="tree-note tn2">a stable, liquid stablecoin rail</div></div>
+      <div class="tree-down">&darr;</div>
+      <div class="tree-row"><div class="tree-node tn3">Self-custody wallet</div><div class="tree-note tn3">bridges the two regulated ends</div></div>
+      <div class="tree-down">&darr;</div>
+      <div class="tree-row"><div class="tree-node tn4">EU exchange</div><div class="tree-note tn4">regulated off-ramp</div></div>
+      <div class="tree-down">&darr;</div>
+      <div class="tree-row"><div class="tree-node tn5">Local bank</div><div class="tree-note tn5">fiat lands in the recipient's own account</div></div>
+    </div>
+  </div></div>
+
+  <div class="scene" data-t="33"><div class="card stack">
+    <div class="line l1 huge ok">It worked. But entirely by hand.</div>
+  </div></div>
+
+  <div class="scene" data-t="36.5"><div class="card stack">
+    <div class="line l1 huge" style="max-width:820px;">Why not absorb that complexity ourselves?</div>
+  </div></div>
+
+  <div class="scene" data-t="40" data-nodes="1"><div class="radial-wrap">
+    <div class="radial-center">
+      <div class="radial-title">Orchestration Layer</div>
+      <div class="radial-sub">Coordinating licensed partners, end to end</div>
+    </div>
+    <div class="radial-pt rp0 rd0">Licensed exchange handles the fiat on-ramp</div>
+    <div class="radial-pt rp1 rd1">Compliance &amp; KYC engine screens every transfer</div>
+    <div class="radial-pt rp2 rd2">Stablecoin settlement routed to the best available rail</div>
+    <div class="radial-pt rp3 rd3">Every decision hashed &amp; anchored to HCS</div>
+    <div class="radial-pt rp4 rd4">Licensed exchange handles the fiat off-ramp</div>
+    <div class="radial-pt rp5 rd5">Real-time status tracked across every step</div>
+  </div></div>
+
+  <div class="scene" data-t="49"><div class="radial-wrap">
+    <div class="radial-center">
+      <div class="radial-title">Live Demo<br>Available Now</div>
+      <div class="radial-sub">Web &amp; mobile app</div>
+    </div>
+    <div class="radial-pt rp0 rd0"><span class="tag-web">Web</span> &mdash; instant onboarding, no wallet needed</div>
+    <div class="radial-pt rp1 rd1"><span class="tag-app">App</span> &mdash; the same flow, native on mobile</div>
+    <div class="radial-pt rp2 rd2"><span class="tag-web">Web</span> &mdash; send and track a transfer live</div>
+    <div class="radial-pt rp3 rd3"><span class="tag-app">App</span> &mdash; verify on-chain from your pocket</div>
+    <div class="radial-pt rp4 rd4"><span class="tag-web">Web</span> &mdash; public, anchored community feed</div>
+    <div class="radial-pt rp5 rd5"><span class="tag-app">App</span> &mdash; full transfer history &amp; profile</div>
+  </div></div>
+
+  <div class="scene" data-t="56"><div class="radial-wrap">
+    <div class="radial-center"><div class="radial-title">Why We Anchor</div></div>
+    <div class="radial-pt rp0 rd0">Any edit changes the hash &mdash; tamper-evident by design</div>
+    <div class="radial-pt rp1 rd1">Verified independently on a public Mirror Node</div>
+    <div class="radial-pt rp2 rd2">No single party controls the record</div>
+    <div class="radial-pt rp3 rd3">Auditable trail without exposing personal data</div>
+    <div class="radial-pt rp4 rd4">Timestamped by network consensus, not our clock</div>
+    <div class="radial-pt rp5 rd5">Trust that doesn't rely on taking our word for it</div>
+  </div></div>
+
+  <div class="scene" data-t="63"><div class="radial-wrap">
+    <div class="radial-center"><div class="radial-title">Choosing the Rail</div></div>
+    <div class="radial-pt rp0 rd0">Fast finality &mdash; seconds, not minutes</div>
+    <div class="radial-pt rp1 rd1">Low, predictable fees</div>
+    <div class="radial-pt rp2 rd2">Publicly verifiable via open mirror nodes</div>
+    <div class="radial-pt rp3 rd3">Safe to prototype fully on public testnet first</div>
+    <div class="radial-pt rp4 rd4">Stablecoin liquidity already deep on-chain</div>
+    <div class="radial-pt rp5 rd5">Architecture leaves room to add other chains</div>
+  </div></div>
+
+  <div class="scene" data-t="70"><div class="radial-wrap">
+    <div class="radial-center"><div class="radial-title">Liquidity &amp; Fallback</div></div>
+    <div class="radial-pt rp0 rd0">Liquidity depth checked before routing a transfer</div>
+    <div class="radial-pt rp1 rd1">Small transfers settle directly on the primary rail</div>
+    <div class="radial-pt rp2 rd2">Larger transfers route to deeper liquidity elsewhere</div>
+    <div class="radial-pt rp3 rd3">Slippage capped &mdash; never silently absorbed by the user</div>
+    <div class="radial-pt rp4 rd4">The routing decision itself gets hashed and anchored</div>
+    <div class="radial-pt rp5 rd5">Same guarantees, whichever rail is chosen</div>
+  </div></div>
+
+  <div class="scene" data-t="77"><div class="radial-wrap">
+    <div class="radial-center"><div class="radial-title">KYC &amp; Compliance</div></div>
+    <div class="radial-pt rp0 rd0">Licensed exchange partners perform KYC / AML</div>
+    <div class="radial-pt rp1 rd1">We never custody raw identity documents</div>
+    <div class="radial-pt rp2 rd2">Only the compliance outcome is hashed, not the ID</div>
+    <div class="radial-pt rp3 rd3">One compliance record per transfer, anchored on-chain</div>
+    <div class="radial-pt rp4 rd4">Sender and receiver stay on regulated, licensed rails</div>
+    <div class="radial-pt rp5 rd5">Privacy and auditability, at the same time</div>
+  </div></div>
+
+  <div class="scene" data-t="84"><div class="card stack">
+    <div class="line l1 big">For <span class="script">students</span>. Freelancers. Anyone sending money across a border.</div>
+  </div></div>
+
+  <div class="scene" data-t="88" data-nodes="1"><div class="card stack">
+    <div class="line l1 huge">F2F <span class="script">Cross-Border</span></div>
+    <div class="line l2 med mono" style="color:#8c7bff; margin-top:4px;">f2f-uzh.vercel.app</div>
+  </div></div>
+
+  <div id="progress-wrap"><div id="progress-bar"></div></div>
+</div>
+
+<script>
+const scenes = Array.from(document.querySelectorAll('.scene'));
+const times = scenes.map(s => parseFloat(s.dataset.t));
+const totalDuration = 93;
+let startTime = null;
+let pauseOffset = 0;
+let isPaused = false;
+
+function startShow() {
+  document.getElementById('start-overlay').style.display = 'none';
+  document.getElementById('ctrl-group').style.display = 'flex';
+  startTime = performance.now();
+  scenes.forEach(s => { const img = s.querySelector('.shot-img'); if (img) img.style.animation = 'none'; });
+  tick();
+}
+
+function currentElapsed() {
+  return isPaused ? pauseOffset : (performance.now() - startTime) / 1000;
+}
+
+function jumpScene(dir) {
+  const elapsed = currentElapsed();
+  let idx = -1;
+  for (let i = 0; i < times.length; i++) if (elapsed >= times[i] - 0.05) idx = i;
+  let targetIdx = idx + dir;
+  targetIdx = Math.max(0, Math.min(times.length - 1, targetIdx));
+  const newElapsed = times[targetIdx] + 0.01;
+  if (isPaused) {
+    pauseOffset = newElapsed;
+    scenes.forEach((s, i) => s.classList.toggle('active', i === targetIdx));
+    const active = scenes[targetIdx];
+    const wantsGlobe = active && active.dataset.globe === '1';
+    const wantsNodes = active && active.dataset.nodes === '1';
+    document.getElementById('three-canvas').classList.toggle('active', !!(wantsGlobe || wantsNodes));
+    threeMode = wantsGlobe ? 'globe' : (wantsNodes ? 'nodes' : null);
+  } else {
+    startTime = performance.now() - newElapsed * 1000;
+  }
+}
+
+function togglePause() {
+  const icon = document.getElementById('ctrl-icon');
+  if (isPaused) {
+    startTime = performance.now() - pauseOffset * 1000;
+    isPaused = false;
+    icon.innerHTML = '<path d="M6 5h4v14H6zm8 0h4v14h-4z"/>';
+    tick();
+  } else {
+    isPaused = true;
+    pauseOffset = (performance.now() - startTime) / 1000;
+    icon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+  }
+}
+
+function tick() {
+  if (isPaused) return;
+  const elapsed = (performance.now() - startTime) / 1000;
+  document.getElementById('progress-bar').style.width = Math.min(100, (elapsed / totalDuration) * 100) + '%';
+
+  let activeIdx = -1;
+  for (let i = 0; i < times.length; i++) if (elapsed >= times[i]) activeIdx = i;
+
+  scenes.forEach((s, i) => {
+    const wasActive = s.classList.contains('active');
+    const nowActive = i === activeIdx;
+    s.classList.toggle('active', nowActive);
+    if (nowActive && !wasActive) {
+      const img = s.querySelector('.shot-img');
+      if (img) { img.style.animation = 'none'; void img.offsetWidth; img.style.animation = ''; }
+    }
+  });
+
+  const active = scenes[activeIdx];
+  const wantsGlobe = active && active.dataset.globe === '1';
+  const wantsNodes = active && active.dataset.nodes === '1';
+  document.getElementById('three-canvas').classList.toggle('active', !!(wantsGlobe || wantsNodes));
+  threeMode = wantsGlobe ? 'globe' : (wantsNodes ? 'nodes' : null);
+
+  if (elapsed < totalDuration) requestAnimationFrame(tick);
+}
+
+let threeMode = null;
+let renderer, scene3d, camera3d, nodeGroup, globeGroup, arcData = [];
+
+function initThree() {
+  const canvas = document.getElementById('three-canvas');
+  renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  scene3d = new THREE.Scene();
+  camera3d = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
+  camera3d.position.z = 9;
+  buildNodeNetwork();
+  buildGlobeArc();
+  animateThree();
+}
+
+function buildNodeNetwork() {
+  nodeGroup = new THREE.Group();
+  const nodeCount = 22;
+  const positions = [];
+  const nodeMat = new THREE.MeshBasicMaterial({ color: 0x8c7bff });
+  const lineMat = new THREE.LineBasicMaterial({ color: 0x6c56e3, transparent: true, opacity: 0.25 });
+  for (let i = 0; i < nodeCount; i++) {
+    const phi = Math.acos(-1 + (2 * i) / nodeCount);
+    const theta = Math.sqrt(nodeCount * Math.PI) * phi;
+    const r = 3.4;
+    const x = r * Math.cos(theta) * Math.sin(phi), y = r * Math.sin(theta) * Math.sin(phi), z = r * Math.cos(phi);
+    positions.push(new THREE.Vector3(x, y, z));
+    const mesh = new THREE.Mesh(new THREE.SphereGeometry(0.06, 12, 12), nodeMat);
+    mesh.position.set(x, y, z);
+    nodeGroup.add(mesh);
+  }
+  for (let i = 0; i < positions.length; i++)
+    for (let j = i + 1; j < positions.length; j++)
+      if (positions[i].distanceTo(positions[j]) < 2.6)
+        nodeGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([positions[i], positions[j]]), lineMat));
+  nodeGroup.visible = false;
+  scene3d.add(nodeGroup);
+}
+
+function buildGlobeArc() {
+  globeGroup = new THREE.Group();
+  const innerMat = new THREE.MeshBasicMaterial({ color: 0x1a1740, transparent: true, opacity: 0.25 });
+  globeGroup.add(new THREE.Mesh(new THREE.SphereGeometry(2.96, 32, 24), innerMat));
+  const wireMat = new THREE.MeshBasicMaterial({ color: 0x5a50b0, wireframe: true, transparent: true, opacity: 0.28 });
+  globeGroup.add(new THREE.Mesh(new THREE.SphereGeometry(3, 26, 20), wireMat));
+
+  const routes = [
+    { start: new THREE.Vector3(-2.1, -0.6, 1.6), end: new THREE.Vector3(2.3, 0.9, -1.2), h: 4.6 },
+    { start: new THREE.Vector3(1.8, -1.4, 1.4), end: new THREE.Vector3(-2.4, 1.0, 0.6), h: 4.3 },
+    { start: new THREE.Vector3(-0.6, 2.1, 1.4), end: new THREE.Vector3(1.2, -1.9, -1.6), h: 4.5 },
+  ];
+
+  arcData = routes.map(r => {
+    const mid = r.start.clone().add(r.end).multiplyScalar(0.5).normalize().multiplyScalar(r.h);
+    const curve = new THREE.QuadraticBezierCurve3(r.start, mid, r.end);
+    const pts = curve.getPoints(70);
+    const arcLine = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: 0xff9466, transparent: true, opacity: 0.55 }));
+    globeGroup.add(arcLine);
+
+    const trailDots = [];
+    for (let i = 0; i < 7; i++) {
+      const m = new THREE.Mesh(new THREE.SphereGeometry(0.075 - i * 0.007, 10, 10), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 1 - i * 0.14 }));
+      globeGroup.add(m);
+      trailDots.push(m);
+    }
+
+    [r.start, r.end].forEach(p => {
+      const m = new THREE.Mesh(new THREE.SphereGeometry(0.075, 12, 12), new THREE.MeshBasicMaterial({ color: 0x8c7bff }));
+      m.position.copy(p);
+      globeGroup.add(m);
+    });
+
+    return { curve, trailDots, t: Math.random(), speed: 0.0022 + Math.random() * 0.0012 };
+  });
+
+  globeGroup.visible = false;
+  scene3d.add(globeGroup);
+}
+
+function easeInOutSine(x) { return -(Math.cos(Math.PI * x) - 1) / 2; }
+
+function animateThree() {
+  requestAnimationFrame(animateThree);
+  nodeGroup.visible = threeMode === 'nodes';
+  globeGroup.visible = threeMode === 'globe';
+  if (threeMode === 'nodes') { nodeGroup.rotation.y += 0.0028; nodeGroup.rotation.x += 0.0006; }
+  if (threeMode === 'globe') {
+    globeGroup.rotation.y += 0.0012;
+    arcData.forEach(route => {
+      route.t += route.speed;
+      if (route.t > 1.4) route.t = -0.4;
+      route.trailDots.forEach((dot, i) => {
+        const tt = route.t - i * 0.025;
+        if (tt < 0 || tt > 1) { dot.visible = false; return; }
+        dot.visible = true;
+        dot.position.copy(route.curve.getPoint(easeInOutSine(tt)));
+      });
+    });
+  }
+  if (renderer) renderer.render(scene3d, camera3d);
+}
+
+window.addEventListener('resize', () => {
+  if (!renderer) return;
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera3d.aspect = window.innerWidth / window.innerHeight;
+  camera3d.updateProjectionMatrix();
+});
+
+function initBgParticles() {
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  const shapes = [];
+  for (let i = 0; i < 14; i++) {
+    shapes.push({
+      x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+      r: 40 + Math.random() * 140, vx: (Math.random() - 0.5) * 0.12, vy: (Math.random() - 0.5) * 0.12,
+      type: Math.random() > 0.5 ? 'circle' : 'ring',
+    });
+  }
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    shapes.forEach(s => {
+      s.x += s.vx; s.y += s.vy;
+      if (s.x < -200) s.x = canvas.width + 200; if (s.x > canvas.width + 200) s.x = -200;
+      if (s.y < -200) s.y = canvas.height + 200; if (s.y > canvas.height + 200) s.y = -200;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(140,123,255,0.08)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+initThree();
+initBgParticles();
+</script>
+
+</body>
+</html>
