@@ -168,6 +168,30 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Watch the Pitch */}
+      <FadeSection as="section" className="py-16 bg-surface border-y border-hairline" aria-labelledby="pitch-video-heading">
+        <div className="container-app">
+          <div className="text-center mb-8">
+            <h2 id="pitch-video-heading" className="text-2xl md:text-3xl font-bold text-ink">
+              Watch <span className="gradient-text">our story</span>
+            </h2>
+            <p className="text-ink-muted text-sm mt-2 max-w-xl mx-auto">
+              How we got here, how the platform is built, and why we anchor every transfer.
+            </p>
+          </div>
+          <div className="max-w-4xl mx-auto glass p-2 rounded-2xl overflow-hidden">
+            <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
+              <iframe
+                src="/pitch-video.html"
+                title="F2F Cross-Border pitch video"
+                className="absolute inset-0 w-full h-full rounded-xl border-0"
+                allow="autoplay"
+              />
+            </div>
+          </div>
+        </div>
+      </FadeSection>
+
       {/* Stats */}
       <FadeSection as="section" className="py-12 border-y border-hairline bg-surface" aria-label="Statistics">
         <div className="container-app">
