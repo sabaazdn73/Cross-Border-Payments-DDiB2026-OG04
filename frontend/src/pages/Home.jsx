@@ -179,7 +179,7 @@ export default function Home() {
               How we got here, how the platform is built, and why we anchor every transfer.
             </p>
           </div>
-          <div className="max-w-4xl mx-auto glass p-2 rounded-2xl overflow-hidden">
+          <div className="max-w-6xl mx-auto glass p-2 rounded-2xl overflow-hidden">
             <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
               <iframe
                 src="/pitch-video.html"
