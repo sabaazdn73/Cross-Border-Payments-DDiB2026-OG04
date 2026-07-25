@@ -38,6 +38,7 @@ import {
   ScheduleSignTransaction,
   ScheduleInfoQuery,
   TopicMessageSubmitTransaction,
+  Timestamp,
 } from "@hashgraph/sdk";
 import { getClient, getNetwork } from "./client.mjs";
 import { canonicalHash } from "./hashing.mjs";
@@ -74,7 +75,7 @@ export async function createCompletionSchedule(topicId, record) {
   const scheduleTx = await new ScheduleCreateTransaction()
     .setScheduledTransaction(innerTx)
     .setScheduleMemo(`completion:${record.transferRef}`)
-    .setExpirationTime(expirationTime)
+    .setExpirationTime(Timestamp.fromDate(expirationTime)) // must be a Hedera Timestamp, not a raw JS Date
     .setWaitForExpiry(false) // execute the instant both signatures land, don't wait for expiry
     .execute(client);
 

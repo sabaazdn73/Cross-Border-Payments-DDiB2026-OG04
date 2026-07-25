@@ -10,19 +10,19 @@ export default function HowItWorks() {
 
       <section className="relative min-h-screen flex items-center pt-16 overflow-hidden" aria-label="How it works">
         <div className="absolute inset-0 bg-hero-gradient" aria-hidden="true" />
-        <div className="relative py-16 px-4 sm:px-6 lg:px-8">
+        <div className="relative w-full py-16 px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
               How It <span className="gradient-text font-script">Actually</span> Works
             </h1>
-            <p className="text-ink-muted mt-4">
+            <p className="text-white/60 mt-4">
               One corridor, start to finish &mdash; Portugal to Armenia &mdash; with every
               anchor point to Hedera marked along the way, and a behind-the-scenes map
               of the exact backend calls involved.
             </p>
           </div>
 
-          <FadeSection as="div" className="max-w-[1600px] mx-auto glass p-2 rounded-2xl overflow-hidden">
+          <FadeSection as="div" className="w-full max-w-[1800px] mx-auto glass p-2 rounded-2xl overflow-hidden">
             <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
               <iframe
                 src="/use-case-story.html"
