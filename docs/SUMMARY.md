@@ -29,6 +29,8 @@
 * [Market Analysis](business/market-analysis.md)
 * [Alternative Approaches](business/alternative-approaches.md)
 * [Business Model](business/business-model.md)
+* [Lean Canvas](business/lean-canvas.md)
+* [Hedera Network Impact](business/network-impact.md)
 * [Go-to-Market Strategy](business/go-to-market.md)
 * [5-Year Revenue Projection: Global Capture Model](business/global-capture-model.md)
 * [Token vs. No Token](business/token-decision.md)
@@ -58,6 +60,7 @@
 ## Project
 * [Roadmap](project/roadmap.md)
 * [Pitch Strategy](project/pitch-strategy.md)
+* [User Feedback Survey](project/user-feedback-survey.md)
 * [Conclusion](project/conclusion.md)
 * [Team & Contributions](project/contributions.md)
 * [FAQ](project/faq.md)
