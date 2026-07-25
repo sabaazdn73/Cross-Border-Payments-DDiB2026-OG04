@@ -123,9 +123,12 @@ export async function getOrCreateThresholdAccount({ usdcTokenId } = {}) {
   };
 
   console.warn(
-    `[thresholdAccount] Created intermediary account ${accountId} on ${network}. ` +
-    `Save this as INTERMEDIARY_ACCOUNT_ID in .env to reuse it across restarts.`
-  );
+  `[thresholdAccount] Created intermediary account ${accountId} on ${network}.\n` +
+  `[thresholdAccount] Save ALL THREE of these as env vars to reuse across restarts:\n` +
+  `[thresholdAccount]   INTERMEDIARY_ACCOUNT_ID=${accountId}\n` +
+  `[thresholdAccount]   INTERMEDIARY_SOURCE_KEY=${sourcePartnerKey.toStringDer()}\n` +
+  `[thresholdAccount]   INTERMEDIARY_DEST_KEY=${destinationPartnerKey.toStringDer()}`
+);
 
   return _cached;
 }

@@ -1,6 +1,6 @@
 # Introduction
 
-**Walletless Cross-Border Settlement** is a non-custodial orchestration
+**F2F Cross-Border: Fiat-to-Fiat Settlement Platform** is a non-custodial orchestration
 layer over licensed payment rails, with a verifiable compliance trail
 anchored on Hedera.
 

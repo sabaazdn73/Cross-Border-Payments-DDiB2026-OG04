@@ -1,9 +1,9 @@
-# Walletless Cross-Border Settlement
+# F2F Cross-Border: Fiat-to-Fiat Settlement Platform
 
 A non-custodial orchestration layer over licensed payment rails, with a
 verifiable compliance trail anchored on Hedera.
 
-DDiB 2026 · University of Zurich · Online_Group 04
+DDiB 2026 · University of Zurich
 
 ## What this proves
 
