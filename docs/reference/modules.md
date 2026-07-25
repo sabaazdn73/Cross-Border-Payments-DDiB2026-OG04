@@ -17,8 +17,33 @@
 ### `topic.mjs`
 - `getOrCreateTopic({ memo })`, reuses `HEDERA_TOPIC_ID` from `.env`
   if set, otherwise creates a submit-key-protected HCS topic (private
-  writes, public reads) and persists the new ID back to `.env`.
+  writes, public reads) and persists the new ID back to `.env`. Holds
+  the compliance, quote, and routing anchors.
+- `getOrCreateCompletionTopic(submitKeyList, { memo })`, reuses
+  `HEDERA_COMPLETION_TOPIC_ID` if set, otherwise creates a dedicated
+  second HCS topic whose submit key is the 2-of-2 partner `KeyList`
+  rather than the operator key. This is what makes the completion
+  schedule genuinely wait for both partner signatures instead of
+  auto-executing at creation.
 - `topicHashscanUrl(topicId)`
+
+### `thresholdAccount.mjs`
+- `getOrCreateThresholdAccount({ usdcTokenId })`, reuses
+  `INTERMEDIARY_ACCOUNT_ID` / `INTERMEDIARY_SOURCE_KEY` /
+  `INTERMEDIARY_DEST_KEY` from `.env` if set, otherwise creates the
+  2-of-2 threshold-key intermediary settlement account and associates
+  it with the settlement stablecoin. Returns `{ accountId,
+  sourcePartnerKey, destinationPartnerKey }`.
+
+### `scheduleAnchor.mjs`
+- `createCompletionSchedule(topicId, record)`, wraps a
+  `TopicMessageSubmitTransaction` (the completion message) inside a
+  `ScheduleCreateTransaction` on the dedicated completion topic. Sits
+  pending until both partner keys sign. Expiry is 48 hours, well
+  under HSS's 62-day ceiling (HIP-423).
+- `signCompletionSchedule(scheduleId, signerPrivateKey)`, submits one
+  required signature. Called once per partner key. Returns whether
+  this signature completed the set and triggered execution.
 
 ### `anchor.mjs`
 - `anchorComplianceRecord(topicId, record)`
@@ -50,9 +75,10 @@ and HashScan links.
 - `FALLBACK_CHAIN_PRIORITY`, `BRIDGE_METHOD_BY_CHAIN`
 
 ### `liquidity.mjs`
-- `fetchHederaStablecoinLiquidityUsd({ forceRefresh })`, a real
-  DeFiLlama API call (SaucerSwap TVL, ≈ two-thirds of Hedera's total
-  DeFi liquidity per Messari), cached for 15 minutes.
+- `fetchHederaStablecoinLiquidityUsd({ forceRefresh })`, a real call
+  to SaucerSwap's own `/stats` REST endpoint, Hedera's largest DEX
+  and a named ecosystem partner rather than a third-party aggregator,
+  cached for 15 minutes.
 - `RESEARCHED_FALLBACK_TVL_USD`, a conservative, cited fallback
   figure used only if the live call fails.
 

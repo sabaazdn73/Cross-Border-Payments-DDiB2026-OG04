@@ -58,6 +58,7 @@
 * [App Tour](reference/app-tour.md)
 
 ## Project
+* [ETHGlobal Lisbon 2026](project/ethglobal-lisbon.md)
 * [Roadmap](project/roadmap.md)
 * [Pitch Strategy](project/pitch-strategy.md)
 * [User Feedback Survey](project/user-feedback-survey.md)

@@ -17,6 +17,13 @@
 5. **Payout.** The licensed destination partner converts to local
    currency and credits an ordinary bank account. The recipient never
    knows a blockchain was involved.
+6. **Completion anchor.** A fourth record, "this transfer is fully
+   complete", is anchored only once **both** the source-side and
+   destination-side partner have independently signed off through the
+   Hedera Schedule Service, see
+   [The Trust Layer](../architecture/trust-layer.md#the-completion-anchor-gated-by-two-parties-not-one).
+   This is genuine two-party confirmation, not our backend marking its
+   own homework.
 
 ## Why anchor the *routing decision*, not just compliance?
 
