@@ -47,3 +47,44 @@ export function topicHashscanUrl(topicId) {
   return `https://hashscan.io/${getNetwork()}/topic/${topicId}`;
 }
 
+/** Returns the existing completion topic ID from .env, or creates a
+ *  dedicated HCS topic for completion-anchor messages whose submit
+ *  key is the 2-of-2 partner KeyList (source + destination), NOT the
+ *  operator key. This is what actually makes the completion schedule
+ *  wait for both partner signatures: if this topic reused the main
+ *  topic's operator-keyed submit key, the operator's own payer
+ *  signature on ScheduleCreateTransaction would already satisfy the
+ *  required signer, and the schedule would execute immediately at
+ *  creation — before either partner ever signs. Only ONE completion
+ *  topic should exist per environment; call this once and persist
+ *  HEDERA_COMPLETION_TOPIC_ID like the other one-time resources. */
+export async function getOrCreateCompletionTopic(submitKeyList, { memo = "DDiB2026-OG04 · completion anchor (2-of-2 gated)" } = {}) {
+  const existing = process.env.HEDERA_COMPLETION_TOPIC_ID;
+  if (existing) return existing;
+
+  const client = getClient();
+
+  const tx = await new TopicCreateTransaction()
+    .setTopicMemo(memo)
+    .setSubmitKey(submitKeyList) // 2-of-2 partner KeyList — NOT client.operatorPublicKey
+    .execute(client);
+  const receipt = await tx.getReceipt(client);
+  const topicId = receipt.topicId.toString();
+
+  if (existsSync(".env")) {
+    const env = readFileSync(".env", "utf8");
+    writeFileSync(".env", env.includes("HEDERA_COMPLETION_TOPIC_ID=")
+      ? env.replace(/HEDERA_COMPLETION_TOPIC_ID=.*/, `HEDERA_COMPLETION_TOPIC_ID=${topicId}`)
+      : env.trimEnd() + `\nHEDERA_COMPLETION_TOPIC_ID=${topicId}\n`);
+  }
+
+  console.warn(
+    `[topic] Created dedicated completion topic ${topicId} (submit key = 2-of-2 partner list).\n` +
+    `[topic] Save this as an env var to reuse across restarts:\n` +
+    `[topic]   HEDERA_COMPLETION_TOPIC_ID=${topicId}`
+  );
+
+  process.env.HEDERA_COMPLETION_TOPIC_ID = topicId;
+  return topicId;
+}
+

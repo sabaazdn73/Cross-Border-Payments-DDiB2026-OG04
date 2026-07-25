@@ -6,8 +6,10 @@ import 'dotenv/config';
 import { generateCommunityCode, hashCommunityCode } from './services/community/code.mjs';
 import { readDb, writeDb, closeDb } from './db/store.mjs';
 
+import { KeyList } from "@hashgraph/sdk";
 import {
   getOrCreateTopic,
+  getOrCreateCompletionTopic,
   anchorComplianceRecord,
   anchorQuote,
   anchorRoutingDecision,
@@ -204,11 +206,22 @@ app.post('/api/transfers/:id/complete', async (req, res) => {
         hashscanUrl: "https://hashscan.io/testnet/transaction/simulated",
       };
     } else {
-      const topicId = await getOrCreateTopic();
       const { accountId, sourcePartnerKey, destinationPartnerKey } =
         await getOrCreateThresholdAccount();
 
-      const created = await createCompletionSchedule(topicId, completionRecord);
+      // The completion message must live on a topic whose submit key
+      // is the 2-of-2 partner KeyList — NOT the main compliance
+      // topic's operator-keyed submit key. Otherwise the operator's
+      // own payer signature on ScheduleCreateTransaction already
+      // satisfies the required signer, and the schedule executes
+      // immediately at creation, before either partner ever signs.
+      const twoOfTwo = KeyList.of(
+        sourcePartnerKey.publicKey,
+        destinationPartnerKey.publicKey
+      ).setThreshold(2);
+      const completionTopicId = await getOrCreateCompletionTopic(twoOfTwo);
+
+      const created = await createCompletionSchedule(completionTopicId, completionRecord);
 
       // Two genuinely separate ScheduleSignTransaction calls, one per
       // key — this is the real HSS multi-party approval, not a single
@@ -617,7 +630,16 @@ app.post('/api/transfers', async (req, res) => {
           destinationPartner: "destination_licensed_partner",
         };
         const { sourcePartnerKey, destinationPartnerKey } = await getOrCreateThresholdAccount();
-        const created = await createCompletionSchedule(topicId, completionRecord);
+
+        // Dedicated 2-of-2-gated topic — see getOrCreateCompletionTopic
+        // for why this can't reuse the main operator-keyed topicId.
+        const twoOfTwo = KeyList.of(
+          sourcePartnerKey.publicKey,
+          destinationPartnerKey.publicKey
+        ).setThreshold(2);
+        const completionTopicId = await getOrCreateCompletionTopic(twoOfTwo);
+
+        const created = await createCompletionSchedule(completionTopicId, completionRecord);
         await signCompletionSchedule(created.scheduleId, sourcePartnerKey);
         const afterSecondSignature = await signCompletionSchedule(created.scheduleId, destinationPartnerKey);
         completionAnchor = {
