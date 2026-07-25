@@ -22,7 +22,7 @@ export default function HowItWorks() {
             </p>
           </div>
 
-          <FadeSection as="div" className="w-full max-w-[1800px] mx-auto glass p-2 rounded-2xl overflow-hidden">
+          <FadeSection as="div" className="w-full max-w-[1260px] mx-auto glass p-2 rounded-2xl overflow-hidden">
             <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
               <iframe
                 src="/use-case-story.html"
