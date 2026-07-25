@@ -17,6 +17,7 @@
 | Zero capital lock-up? | **No.** The float moves to our payout partner. What we remove is the correspondent chain, one liquidity partner per corridor instead of a nostro network. |
 | Where is the token? | Nowhere. Settlement uses USDC/EURC. Issuing our own EMT is legally reserved to EMIs. |
 | Isn't this just Bridge/Ramp? | They leave a wallet in the flow, and none of them makes the compliance trail verifiable. That is the gap we occupy. |
+| How do you know a transfer actually completed, not just your own backend saying so? | Once both the source-side and destination-side partner sign, Hedera's own consensus executes the completion, no code of ours triggers it. That's the Hedera Schedule Service: the message only reaches HCS once both signatures land. |
 | Is it production ready? | No. Sandbox and testnet. [this section](../analysis/innovation-ethics.md) lists what it is not. |
 
 ---

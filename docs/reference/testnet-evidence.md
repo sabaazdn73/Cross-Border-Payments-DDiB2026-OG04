@@ -71,6 +71,28 @@ testnet.
 ```
 
 {% hint style="success" %}
-The $18,111,247 liquidity figure above is a **live** number read from
-DeFiLlama at the moment this ran, not a hardcoded or simulated value.
+The $18,111,247 figure in the run above reflects the liquidity source
+in use at the time (DeFiLlama). The liquidity source was later
+switched to SaucerSwap's own `/stats` endpoint, a named Hedera
+ecosystem partner rather than a third-party aggregator, verified
+separately end to end: $26,510,503, live, not hardcoded.
 {% endhint %}
+
+## Completion anchor (Hedera Schedule Service), a real captured run
+
+Intermediary settlement account, 2-of-2 threshold key:
+[0.0.9753237](https://hashscan.io/testnet/account/0.0.9753237)
+
+Dedicated completion topic, submit key = the same 2-of-2 partner
+`KeyList`, not the operator key:
+[0.0.9753239](https://hashscan.io/testnet/topic/0.0.9753239)
+
+```
+[thresholdAccount] Created intermediary account 0.0.9753237 on testnet.
+[topic] Created dedicated completion topic 0.0.9753239 (submit key = 2-of-2 partner list).
+```
+
+The schedule created against that topic does not execute at creation,
+and does not execute after only one partner's `ScheduleSignTransaction`
+signs it, only after both. That gap between "created" and "executed"
+is what makes the two-party requirement real rather than asserted.

@@ -1,8 +1,9 @@
 # ETHGlobal Lisbon 2026
 
-F2F Cross-Border was extended past the original UZH submission to also
-enter **ETHGlobal Lisbon 2026**, under the **Continuity Track** ("Ship
-a Feature", extending an existing project rather than starting fresh)
+F2F Cross-Border was extended past the original UZH submission (see
+[UZH Blockchain](uzh-blockchain.md) for that phase) to also enter
+**ETHGlobal Lisbon 2026**, under the **Continuity Track** ("Ship a
+Feature", extending an existing project rather than starting fresh)
 and targeting two bounties:
 
 - **No Solidity Allowed** — the entire settlement, anchoring, and
