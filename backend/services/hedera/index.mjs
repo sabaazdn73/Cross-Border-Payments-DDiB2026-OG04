@@ -20,4 +20,6 @@ export { canonicalHash, pseudoRef } from "./hashing.mjs";
 export { getOrCreateTopic, topicHashscanUrl } from "./topic.mjs";
 export { anchorComplianceRecord, anchorQuote, anchorRoutingDecision } from "./anchor.mjs";
 export { fetchMirrorMessage, fetchMirrorTransaction, decodeMirrorMessage, verifyRecord } from "./verify.mjs";
+export { getOrCreateThresholdAccount } from "./thresholdAccount.mjs";
+export { createCompletionSchedule, signCompletionSchedule } from "./scheduleAnchor.mjs";
 

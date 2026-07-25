@@ -17,7 +17,10 @@ import {
   pseudoRef,
   closeClient,
   getClient,
-  canonicalHash
+  canonicalHash,
+  getOrCreateThresholdAccount,
+  createCompletionSchedule,
+  signCompletionSchedule
 } from "./services/hedera/index.mjs";
 
 import {
@@ -161,7 +164,82 @@ app.get('/api/transfers/:id/status', async (req, res) => {
   });
 });
 
-// 4. Get compliance record
+// 3b. Complete a transfer: creates the HSS completion schedule (waiting
+// on both partners' signatures) and, in this demo, signs it with both
+// demo partner keys so the full end-to-end HSS flow is exercised —
+// see scheduleAnchor.mjs and thresholdAccount.mjs for what "both
+// partners" means here. Call this once the destination partner's
+// payout-confirmed webhook would have fired in a real integration.
+app.post('/api/transfers/:id/complete', async (req, res) => {
+  const db = await readDb();
+  const txn = db.transactions[req.params.id];
+  if (!txn) {
+    return res.status(404).json({ error: 'Transaction not found' });
+  }
+  if (txn.completionAnchor) {
+    return res.json({ alreadyCompleted: true, completionAnchor: txn.completionAnchor });
+  }
+
+  const pepper = process.env.HEDERA_PSEUDO_PEPPER || "demo_pseudo_pepper_for_cross_border";
+  const recomputedTransferRef = pseudoRef(txn.id, pepper);
+
+  const completionRecord = {
+    recordId: `CPL-${txn.id}`,
+    transferRef: recomputedTransferRef,
+    completedAt: new Date().toISOString(),
+    sourcePartner: "source_licensed_partner",
+    destinationPartner: "destination_licensed_partner",
+  };
+
+  try {
+    let completionAnchor;
+
+    if (isSimulationMode) {
+      completionAnchor = {
+        scheduleId: `0.0.${Math.floor(Math.random() * 900000) + 100000}`,
+        expirationTime: new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString(),
+        recordHash: "sha256:" + canonicalHash(completionRecord),
+        executed: true,
+        executedAt: new Date().toISOString(),
+        hashscanUrl: "https://hashscan.io/testnet/transaction/simulated",
+      };
+    } else {
+      const topicId = await getOrCreateTopic();
+      const { accountId, sourcePartnerKey, destinationPartnerKey } =
+        await getOrCreateThresholdAccount();
+
+      const created = await createCompletionSchedule(topicId, completionRecord);
+
+      // Two genuinely separate ScheduleSignTransaction calls, one per
+      // key — this is the real HSS multi-party approval, not a single
+      // call pretending to be two.
+      await signCompletionSchedule(created.scheduleId, sourcePartnerKey);
+      const afterSecondSignature = await signCompletionSchedule(
+        created.scheduleId,
+        destinationPartnerKey
+      );
+
+      completionAnchor = {
+        ...created,
+        intermediaryAccountId: accountId,
+        executed: afterSecondSignature.executed,
+        executedAt: afterSecondSignature.executedAt,
+      };
+    }
+
+    txn.completionAnchor = completionAnchor;
+    txn.status = 'completed';
+    db.transactions[req.params.id] = txn;
+    await writeDb(db);
+
+    res.json({ completionAnchor });
+  } catch (err) {
+    console.error('Completion anchor failed:', err);
+    res.status(500).json({ error: 'Failed to create or sign completion schedule', detail: err.message });
+  }
+});
+
+
 app.get('/api/transfers/:id/compliance', async (req, res) => {
   const db = await readDb();
   const txn = db.transactions[req.params.id];
