@@ -30,7 +30,7 @@ import { fetchHederaStablecoinLiquidityUsd, RESEARCHED_FALLBACK_TVL_USD } from "
  * @param {number} amountUsd     - the transfer amount, in USD terms
  * @param {object} [opts]
  * @param {Function} [opts.liquidityFetcher] - defaults to the real
- *   DeFiLlama-backed fetchHederaStablecoinLiquidityUsd. Tests pass a
+ *   SaucerSwap-backed fetchHederaStablecoinLiquidityUsd. Tests pass a
  *   fake here so the decision logic runs deterministically with no
  *   network access — the branching logic is what's under test, not
  *   the HTTP call (which has its own, separate real implementation).

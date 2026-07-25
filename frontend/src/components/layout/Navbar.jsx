@@ -6,7 +6,7 @@ import ThemeToggle from '../ui/ThemeToggle';
 import MobileMenu from './MobileMenu';
 
 const navLinks = [
-  { label: 'Home', to: '/', },
+  { label: 'How It Works', to: '/how-it-works' },
   { label: 'Send Money', to: '/send-money' },
   { label: 'Tamper Demo', to: '/tamper-demo' },
   { label: 'Community', to: '/community' },

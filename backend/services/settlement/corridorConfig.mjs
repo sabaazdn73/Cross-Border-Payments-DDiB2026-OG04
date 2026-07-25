@@ -33,7 +33,16 @@ export const PARTNER_CHAIN_SUPPORT = {
 /** Chains where USDC or EURC is natively issued by Circle (not a
  *  bridged/wrapped representation) — confirmed as of mid-2026.
  *  Native issuance matters because a wrapped token is a bridge's
- *  IOU, not Circle's asset, and carries the bridge's own risk. */
+ *  IOU, not Circle's asset, and carries the bridge's own risk.
+ *
+ *  Note on EURC + Hedera specifically: we looked into adding EURC as
+ *  a second Hedera-native option (distinct from USDC) for the EUR
+ *  leg of this corridor. As of this check, Circle's own EURC
+ *  documentation lists native EURC on Ethereum, Solana, Avalanche,
+ *  Base, and Stellar only — Hedera is not among them. Rather than
+ *  claim a Hedera/EURC pairing that doesn't exist, USDC remains the
+ *  Hedera-side stablecoin here. Re-check Circle's docs periodically;
+ *  this could change. */
 export const COMPLIANT_STABLECOIN_CHAINS = {
   hedera:   { stablecoin: "USDC", native: true },
   ethereum: { stablecoin: "USDC", native: true },
