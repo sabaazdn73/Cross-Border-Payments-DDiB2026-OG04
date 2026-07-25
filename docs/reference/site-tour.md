@@ -8,6 +8,12 @@ Every page on the live site, with a screenshot and what it does.
 
 The landing page. States the core promise directly: fiat-to-fiat conversion carried across borders on the stablecoin rail, with no wallet ever touching either side of the transfer. The globe on the right shows a live routing-anchor status card. Below the fold: hero statistics (countries, currencies, settlement speed, verifiability), the four core benefits (no wallet required, lightning-fast settlement, countries supported, compliance built in), a "how a transfer actually moves" walkthrough, the compliance and security section, supported currencies, potential settlement partners, and the settlement-networks breakdown showing Hedera as the always-on anchor network alongside where liquidity actually sits (Ethereum, Solana, BNB Chain, Base). Sections fade in with a soft blur as the page is scrolled.
 
+## How It Works
+
+![How It Works page](../assets/tour/how-it-works.png)
+
+A full walkthrough of one corridor, start to finish, Portugal to Armenia, with every anchor point to Hedera marked along the way: the interactive use-case video embedded at the top, and a horizontal, scrollable backend-call map below it showing the exact sequence of API/Hedera calls involved, with the HCS anchor steps visually distinguished from the rest.
+
 ## Send Money
 
 ![Send Money page](../assets/tour/send-money.png)
