@@ -1,6 +1,7 @@
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import FadeSection from '../components/ui/FadeSection';
+import BackendMap from '../components/BackendMap';
 
 export default function HowItWorks() {
   return (
@@ -33,6 +34,20 @@ export default function HowItWorks() {
           </FadeSection>
         </div>
       </section>
+
+      <FadeSection as="section" className="py-16 bg-surface border-t border-hairline">
+        <div className="container-app">
+          <div className="text-center max-w-2xl mx-auto mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-ink">
+              Behind the <span className="gradient-text">scenes</span>
+            </h2>
+            <p className="text-ink-muted text-sm mt-2">
+              The same corridor, step by step, with the exact backend calls involved.
+            </p>
+          </div>
+          <BackendMap />
+        </div>
+      </FadeSection>
 
       <Footer />
     </>

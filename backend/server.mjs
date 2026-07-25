@@ -491,7 +491,7 @@ app.post('/api/transfers', async (req, res) => {
   };
 
   let topicId = "0.0.9617780"; // Default HCS demo topic
-  let compAnchor, quoteAnchor, routingAnchor, decision, execution;
+  let compAnchor, quoteAnchor, routingAnchor, decision, execution, completionAnchor;
 
   try {
     if (isSimulationMode) {
@@ -550,6 +550,25 @@ app.post('/api/transfers', async (req, res) => {
             hashscanUrl: `https://hashscan.io/testnet/transaction/0.0.9617780@${Math.floor(Date.now()/1000)}.000000000`,
           }
         : executeOnUnavailableChain(decision.chain, { amountUsd });
+
+      // Step 5: Completion anchor (simulated) — see the real branch
+      // below for what this represents: an HSS schedule requiring
+      // both partners' signatures before "transfer complete" anchors.
+      const completionRecord = {
+        recordId: `CPL-${txnId}`,
+        transferRef,
+        completedAt: new Date().toISOString(),
+        sourcePartner: "source_licensed_partner",
+        destinationPartner: "destination_licensed_partner",
+      };
+      completionAnchor = {
+        scheduleId: `0.0.${Math.floor(Math.random() * 900000) + 100000}`,
+        expirationTime: new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString(),
+        recordHash: "sha256:" + canonicalHash(completionRecord),
+        executed: true,
+        executedAt: new Date().toISOString(),
+        hashscanUrl: `https://hashscan.io/testnet/transaction/simulated`,
+      };
     } else {
       // Real Hedera execution
       topicId = await getOrCreateTopic();
@@ -582,6 +601,38 @@ app.post('/api/transfers', async (req, res) => {
 
       // Step 4: Settlement Execution
       execution = await executeSettlement(decision, { amountUsd });
+
+      // Step 5: Completion anchor — the HSS-gated final anchor.
+      // In a real integration this would fire once the destination
+      // partner's payout-confirmed webhook lands; here, for the demo,
+      // we trigger it immediately after settlement so the full flow
+      // (initiation -> routing -> settlement -> completion) is visible
+      // in a single transfer, without a separate manual call.
+      try {
+        const completionRecord = {
+          recordId: `CPL-${txnId}`,
+          transferRef,
+          completedAt: new Date().toISOString(),
+          sourcePartner: "source_licensed_partner",
+          destinationPartner: "destination_licensed_partner",
+        };
+        const { sourcePartnerKey, destinationPartnerKey } = await getOrCreateThresholdAccount();
+        const created = await createCompletionSchedule(topicId, completionRecord);
+        await signCompletionSchedule(created.scheduleId, sourcePartnerKey);
+        const afterSecondSignature = await signCompletionSchedule(created.scheduleId, destinationPartnerKey);
+        completionAnchor = {
+          ...created,
+          executed: afterSecondSignature.executed,
+          executedAt: afterSecondSignature.executedAt,
+        };
+      } catch (completionErr) {
+        // Don't fail the whole transfer if the completion anchor has
+        // trouble — the transfer itself (compliance, quote, routing,
+        // settlement) already succeeded and is anchored. Log it
+        // loudly so it isn't missed, and leave completionAnchor unset
+        // so the frontend can show "completion pending" honestly.
+        console.error("Completion anchor failed (transfer itself still succeeded):", completionErr);
+      }
     }
 
     const fee = calculateTotalFee(amountUsd, payoutMethodId);
@@ -633,6 +684,10 @@ app.post('/api/transfers', async (req, res) => {
         consensusTimestamp: routingAnchor.consensusTimestamp,
         hashscanTxUrl: routingAnchor.hashscanTxUrl
       },
+      // The HSS-gated completion anchor. Unset (null) if it hasn't
+      // fired yet or failed — see the try/catch around its creation
+      // above. Never fabricate a value here if it didn't happen.
+      completionAnchor: completionAnchor || null,
       settlementChain: decision.chain,
       settlementBridgeMethod: decision.bridgeMethod,
       settlementReason: decision.reason,
