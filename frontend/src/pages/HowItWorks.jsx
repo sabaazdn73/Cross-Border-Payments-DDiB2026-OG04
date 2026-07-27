@@ -93,7 +93,7 @@ export default function HowItWorks() {
 
           <p className="text-center text-sm">
             <a
-              href="https://deep-dive-into-blockchain.gitbook.io/untitled/legal/regulator-oversight"
+              href="https://deep-dive-into-blockchain.gitbook.io/untitled/compliance-and-legal/regulator-oversight"
               target="_blank"
               rel="noreferrer"
               className="text-brand-500 hover:underline"
