@@ -22,6 +22,7 @@ const badges = [
   { text: 'No black box', dot: 'bg-success-400', top: '42%', left: '2%', duration: '3.3s' },
   { text: 'Anomaly flagged', dot: 'bg-accent-400', top: '42%', right: '2%', duration: '4.2s' },
   { text: 'Publicly verifiable', dot: 'bg-brand-400', bottom: '4%', left: '6%', duration: '3.6s' },
+  { text: 'Independently checkable', dot: 'bg-accent-400', bottom: '4%', right: '6%', duration: '4s' },
 ];
 
 export default function NotificationPhotoSection({
@@ -34,19 +35,20 @@ export default function NotificationPhotoSection({
       style={{
         aspectRatio: ASPECT_RATIO,
         background: `#0a1428 center / contain no-repeat url(${imageSrc})`,
+        containerType: 'inline-size',
       }}
       role="img"
       aria-label={imageAlt}
     >
       <style>{`
         .notif-badge {
-          font-size: clamp(9px, 2.2vw, 13px);
-          padding: clamp(5px, 1vw, 8px) clamp(9px, 2vw, 16px);
-          gap: clamp(5px, 0.9vw, 8px);
+          font-size: clamp(8px, 2.6cqw, 13px);
+          padding: clamp(4px, 1.1cqw, 8px) clamp(7px, 2.3cqw, 16px);
+          gap: clamp(4px, 1cqw, 8px);
         }
         .notif-badge-dot {
-          width: clamp(6px, 1.2vw, 8px);
-          height: clamp(6px, 1.2vw, 8px);
+          width: clamp(5px, 1.4cqw, 8px);
+          height: clamp(5px, 1.4cqw, 8px);
         }
       `}</style>
 
