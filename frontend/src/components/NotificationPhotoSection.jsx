@@ -1,101 +1,47 @@
 /**
- * A photo with floating notification chips overlaid on it, the hub's
- * hero. Chips deliberately mix moments from both projects (F2F's
- * compliance/settlement anchors, OnChain Oversight's monitoring),
- * since this section introduces the collection, not one product.
+ * The hub's hero: the real photo with floating glassmorphism badges
+ * scattered naturally around it (top-left, top-right, bottom-center),
+ * matching the reference composition -- not a rigid row. Badges mix
+ * moments from both projects (F2F's compliance/settlement anchors,
+ * OnChain Oversight's monitoring), since this introduces the
+ * collection, not one product.
+ *
+ * Positions use small fixed insets (Tailwind spacing tokens), which
+ * stay safe at any window width for phrases this short -- no
+ * percentage math, no per-breakpoint overlap patching needed.
  */
 export default function NotificationPhotoSection({
   imageSrc = '/hub.jpeg',
   imageAlt = 'Person checking a transfer on their phone',
 }) {
-  const chips = [
-    { text: 'Compliance anchored', top: '8%', left: '5%' },
-    { text: 'Anomaly flagged for review', top: '8%', right: '5%' },
-    { text: 'Publicly verifiable', bottom: '6%', right: '5%' },
-  ];
-
   return (
-    <section style={{ padding: '0' }}>
-      <style>{`
-        .notif-chip { font-size: 13px; padding: 8px 16px; }
-        .notif-caption-text { font-size: 22px; }
-        @media (max-width: 640px) {
-          .notif-photo-card { min-height: 260px !important; }
-          .notif-chip { font-size: 11px; padding: 6px 11px; gap: 6px !important; }
-          .notif-chip .notif-dot { width: 14px !important; height: 14px !important; }
-          .notif-caption { bottom: 14px !important; left: 14px !important; right: 14px !important; }
-          .notif-caption-text { font-size: 15px !important; }
-          .notif-chip-top-right { top: 20% !important; }
-        }
-      `}</style>
+    <section
+      className="relative w-full h-64 sm:h-[420px] rounded-3xl overflow-hidden bg-[#0a1428]"
+      style={{ background: `#0a1428 center / contain no-repeat url(${imageSrc})` }}
+      role="img"
+      aria-label={imageAlt}
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/30" />
+
       <div
-        className="notif-photo-card"
-        style={{
-          position: 'relative',
-          width: '100%',
-          minHeight: 420,
-          borderRadius: 16,
-          overflow: 'hidden',
-          background: `#0a1428 center / contain no-repeat url(${imageSrc})`,
-        }}
-        role="img"
-        aria-label={imageAlt}
+        className="absolute top-5 left-5 sm:top-10 sm:left-8 glass px-3 py-1.5 sm:px-4 sm:py-2 rounded-full flex items-center gap-2 shadow-lg animate-bounce"
+        style={{ animationDuration: '3s' }}
       >
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'linear-gradient(180deg, rgba(5,6,15,0.1) 0%, rgba(5,6,15,0.55) 100%)',
-          }}
-        />
+        <span className="w-2 h-2 rounded-full bg-success-400 flex-shrink-0" />
+        <span className="text-[11px] sm:text-xs font-medium text-ink whitespace-nowrap">Compliance anchored</span>
+      </div>
 
-        {chips.map((chip, i) => (
-          <div
-            key={i}
-            className="notif-chip"
-            style={{
-              position: 'absolute',
-              top: chip.top, left: chip.left, right: chip.right, bottom: chip.bottom,
-              display: 'flex', alignItems: 'center', gap: 8,
-              background: 'rgba(18,20,27,0.85)',
-              backdropFilter: 'blur(6px)',
-              border: '1px solid rgba(108,86,227,0.35)',
-              borderRadius: 999,
-              fontWeight: 500, color: '#f2f4f8',
-              whiteSpace: 'nowrap',
-              maxWidth: 'calc(100% - 16px)',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-            }}
-          >
-            <span
-              className="notif-dot"
-              style={{
-                width: 18, height: 18, borderRadius: '50%',
-                background: '#6c56e3',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                flexShrink: 0,
-              }}
-            >
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
-                <path d="M5 13l4 4 10-10" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </span>
-            {chip.text}
-          </div>
-        ))}
+      <div
+        className="absolute top-16 right-5 sm:top-20 sm:right-8 glass px-3 py-1.5 sm:px-4 sm:py-2 rounded-full flex items-center gap-2 shadow-lg animate-bounce"
+        style={{ animationDuration: '4s' }}
+      >
+        <span className="w-2 h-2 rounded-full bg-accent-400 flex-shrink-0" />
+        <span className="text-[11px] sm:text-xs font-medium text-ink whitespace-nowrap">Anomaly flagged</span>
+      </div>
 
-        <div
-          className="notif-caption"
-          style={{
-            position: 'absolute', bottom: 24, left: 24, right: 24,
-            color: '#ffffff',
-          }}
-        >
-          <p className="notif-caption-text" style={{ fontWeight: 500, margin: 0, lineHeight: 1.3 }}>
-            Every step, provable the moment it happens.
-          </p>
-        </div>
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 sm:bottom-8 glass px-3 py-1.5 sm:px-4 sm:py-2 rounded-full flex items-center gap-2 shadow-lg">
+        <span className="w-2 h-2 rounded-full bg-brand-400 flex-shrink-0" />
+        <span className="text-[11px] sm:text-xs font-medium text-ink whitespace-nowrap">Publicly verifiable</span>
       </div>
     </section>
   );
