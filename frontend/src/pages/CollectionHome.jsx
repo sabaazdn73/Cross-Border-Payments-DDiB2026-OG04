@@ -17,6 +17,7 @@ const projects = [
       'Fiat in, fiat out, no wallet ever. Licensed partners handle the money; Hedera anchors every step so it’s provable, not just claimed.',
     to: '/cross-border',
     cta: 'Explore F2F Cross-Border',
+    hideCta: true,
     image: f2fEthglobalCard,
     refs: [
       { label: 'View on ETHGlobal', href: 'https://ethglobal.com/showcase/f2f-cross-border-xcxmu' },
@@ -149,12 +150,14 @@ export default function CollectionHome() {
                       )}
                     </div>
                   )}
-                  <Wrapper
-                    {...wrapperProps}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brand-400/10 border border-transparent text-sm font-semibold text-brand-500 hover:bg-brand-500 hover:text-white hover:border-brand-500 transition-all duration-300"
-                  >
-                    {proj.cta} &rarr;
-                  </Wrapper>
+                  {!proj.hideCta && (
+                    <Wrapper
+                      {...wrapperProps}
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brand-400/10 border border-transparent text-sm font-semibold text-brand-500 hover:bg-brand-500 hover:text-white hover:border-brand-500 transition-all duration-300"
+                    >
+                      {proj.cta} &rarr;
+                    </Wrapper>
+                  )}
                 </div>
               );
             })}
