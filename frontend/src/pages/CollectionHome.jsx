@@ -78,10 +78,10 @@ export default function CollectionHome() {
 
         <section className="max-w-2xl">
           <p className="text-ink-muted leading-relaxed">
-            Money moves through wildly different rails today &mdash; card and bank
+            Money moves through wildly different rails today; card and bank
             transfers, compliant stablecoins settling in seconds, and increasingly,
-            autonomous AI agents paying each other directly over protocols like x402
-            &mdash; and each of those rails comes with its own tooling, its own
+            autonomous AI agents paying each other directly over protocols
+            and each of those rails comes with its own tooling, its own
             dashboards, and its own private idea of what actually counts as proof.
           </p>
           <p className="gradient-text font-script text-3xl md:text-4xl my-6 leading-snug">
