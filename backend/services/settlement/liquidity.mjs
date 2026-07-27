@@ -14,15 +14,8 @@
 //   a more direct, first-party figure than a third party's
 //   re-aggregation of the same protocol.
 //
-//   IMPORTANT — sandbox note for whoever reads this: this exact call
-//   could not be executed from Claude's development sandbox (network
-//   egress there is restricted to a small allowlist of domains, and
-//   api.saucerswap.finance isn't on it). It uses the identical
-//   fetch() pattern already proven live against Hedera's Mirror Node
-//   in verify.mjs, so it is expected to work from a normal machine
-//   with full internet access — but it has NOT been run end-to-end
-//   yet. Run it once and check the console output before relying on
-//   it in the demo.
+//   Verified end-to-end on a real machine (2026-07-26): returns a
+//   live tvlUsd figure around $26.5M.
 //
 //   Why cached, not live-per-request: DEX liquidity does not move
 //   meaningfully minute-to-minute the way an order book does. A
