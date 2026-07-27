@@ -43,6 +43,7 @@
 * [Regulatory Landscape](legal/regulatory-landscape.md)
 * [Why This Is Legal](legal/why-this-is-legal.md)
 * [Compliance Data & Privacy](legal/compliance-data.md)
+* [Regulator Oversight: A Public-Anchoring Case](legal/regulator-oversight.md)
 
 ## Analysis
 * [Testing & Validation](analysis/testing-validation.md)

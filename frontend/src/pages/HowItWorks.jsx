@@ -49,6 +49,61 @@ export default function HowItWorks() {
         </div>
       </FadeSection>
 
+      <FadeSection as="section" className="py-16 bg-canvas border-t border-hairline">
+        <div className="container-app max-w-3xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-ink">
+              Built for <span className="gradient-text">regulatory oversight</span>, not just users
+            </h2>
+            <p className="text-ink-muted text-sm mt-2">
+              Every anchor above is readable by anyone through a public Hedera Mirror
+              Node &mdash; no API key, no dashboard access, no need to trust our database.
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-3 mb-8">
+            <div className="glass p-5 rounded-xl">
+              <h3 className="text-sm font-semibold text-ink mb-1">What's observable</h3>
+              <p className="text-ink-muted text-sm">
+                When a compliance check happened, that a quote existed before
+                settlement, why a transfer routed where it did, and that both
+                partners independently confirmed completion &mdash; each with a
+                consensus timestamp neither party controls.
+              </p>
+            </div>
+            <div className="glass p-5 rounded-xl">
+              <h3 className="text-sm font-semibold text-ink mb-1">Retail scale, today</h3>
+              <p className="text-ink-muted text-sm">
+                This platform's Phase 1 targets individual retail transfers, exactly
+                the segment regulators most often lack the resources to audit deeply.
+                Public anchoring lowers that oversight cost without a formal
+                disclosure request.
+              </p>
+            </div>
+            <div className="glass p-5 rounded-xl">
+              <h3 className="text-sm font-semibold text-ink mb-1">Same pattern, larger institutions</h3>
+              <p className="text-ink-muted text-sm">
+                The underlying choice &mdash; anchor a hash and a pseudonymous
+                reference publicly, keep plaintext off-chain &mdash; isn't specific
+                to a small platform. It's a reusable pattern for any institution's
+                compliance trail.
+              </p>
+            </div>
+          </div>
+
+          <p className="text-center text-sm">
+            <a
+              href="https://deep-dive-into-blockchain.gitbook.io/untitled/legal/regulator-oversight"
+              target="_blank"
+              rel="noreferrer"
+              className="text-brand-500 hover:underline"
+            >
+              Read the full regulator-facing case &rarr;
+            </a>
+          </p>
+        </div>
+      </FadeSection>
+
       <Footer />
     </>
   );
