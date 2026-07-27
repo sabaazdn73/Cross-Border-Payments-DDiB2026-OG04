@@ -1,4 +1,5 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
+import CollectionHome from '../pages/CollectionHome';
 import Home from '../pages/Home';
 import Landing from '../pages/Landing';
 import HowItWorks from '../pages/HowItWorks';
@@ -52,7 +53,8 @@ function AppTransactionDetailRoute() {
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<CollectionHome />} />
+      <Route path="/cross-border" element={<Home />} />
       <Route path="/how-it-works" element={<HowItWorks />} />
       <Route path="/landing" element={<Landing />} />
       <Route path="/community" element={<Community />} />

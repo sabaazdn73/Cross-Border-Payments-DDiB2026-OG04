@@ -44,7 +44,7 @@ export default function Navbar() {
       >
         <div className="container-app">
           <div className="flex items-center justify-between h-16">
-            <Link to="/" className="flex items-center gap-2 group" aria-label="Cross-Border home">
+            <Link to="/cross-border" className="flex items-center gap-2 group" aria-label="Cross-Border home">
               <img src={brandIcon} alt="" className="w-11 h-11 rounded-lg shadow-glow" />
               <span className="font-bold text-lg text-ink group-hover:text-brand-400 transition-colors">
                 Cross-Border
