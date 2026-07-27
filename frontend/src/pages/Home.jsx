@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import {
   ArrowRight, Shield, Zap, Globe, Clock, Lock, CheckCircle2,
   SendHorizonal, Search, ChevronRight, Star, TrendingUp,
-  Banknote, Smartphone, Building2
+  Banknote, Smartphone, Building2, Smartphone as PhoneIcon
 } from 'lucide-react';
 import Navbar, { DOCS_URL } from '../components/layout/Navbar';
 import usdcLogo from '../assets/logos/stablecoins/usdc.png';
@@ -119,31 +119,29 @@ export default function Home() {
     <div className="min-h-screen bg-canvas">
       <Navbar />
 
-      {/* Hero */}
-      <section className="relative min-h-screen flex items-center pt-16 overflow-hidden" aria-label="Hero section">
-        <div className="absolute inset-0 bg-hero-gradient" aria-hidden="true" />
-        <div className="absolute inset-0" aria-hidden="true">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-blue-500/10 blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-brand-500/10 blur-3xl" />
-        </div>
+      <div className="flex flex-col lg:flex-row pt-16">
 
-        <div className="container-app relative z-10 py-20">
-          <div className="flex flex-col lg:flex-row items-center lg:items-center gap-10 lg:gap-16">
-            <div className="max-w-2xl relative flex-1">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 leading-[1.15] tracking-tight animate-slide-up">
-                F2F Cross-Border
-              </h1>
-              <p className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 tracking-tight animate-slide-up whitespace-nowrap">
-                <span className="gradient-text font-script text-4xl sm:text-5xl md:text-6xl">Fiat-to-Fiat</span> <span className="text-white/70">Settlement Platform</span>
-              </p>
-
-              <p className="text-lg md:text-xl text-white/60 mb-10 max-w-2xl leading-relaxed animate-slide-up">
-              Fiat-to-fiat conversion, carried across borders on the stablecoin rail. An orchestration layer
-              coordinates licensed partners behind the scenes, so senders and recipients get a modern transfer,
-              not the wait and cost of traditional banking's slower rails.
+        {/* ------------------------------------------------------- */}
+        {/* Sticky sidebar -- always-visible intro, CTAs, the globe  */}
+        {/* ------------------------------------------------------- */}
+        <aside className="w-full lg:w-[38%] lg:sticky lg:top-16 lg:h-[calc(100vh-4rem)] bg-hero-gradient text-white overflow-y-auto p-8 md:p-10 lg:p-12 flex flex-col justify-between">
+          <div>
+            <h1 className="text-3xl sm:text-4xl font-bold text-white mb-1 leading-[1.15] tracking-tight">
+              F2F Cross-Border
+            </h1>
+            <p className="text-2xl sm:text-3xl font-semibold mb-6 tracking-tight">
+              <span className="gradient-text font-script text-4xl sm:text-5xl">Fiat-to-Fiat</span>{' '}
+              <span className="text-white/70 text-xl sm:text-2xl">Settlement Platform</span>
             </p>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 animate-slide-up">
+            <p className="text-white/60 mb-8 leading-relaxed">
+              Fiat-to-fiat conversion, carried across borders on the stablecoin rail.
+              An orchestration layer coordinates licensed partners behind the scenes,
+              so senders and recipients get a modern transfer, not the wait and cost
+              of traditional banking&rsquo;s slower rails.
+            </p>
+
+            <div className="flex flex-col gap-3 mb-10">
               <Link
                 to="/send-money"
                 className="flex items-center justify-center gap-2.5 rounded-full bg-white/95 hover:bg-white text-[#1a1530] font-semibold text-base py-3.5 px-7 transition-all duration-200 shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_6px_24px_rgba(0,0,0,0.2)] hover:-translate-y-0.5"
@@ -158,109 +156,118 @@ export default function Home() {
                 <Search className="w-[18px] h-[18px]" aria-hidden="true" />
                 Track Transaction
               </Link>
-            </div>
+              <Link
+                to="/app"
+                className="flex items-center justify-center gap-2 text-sm font-medium text-white/50 hover:text-white/80 transition-colors py-2"
+              >
+                <PhoneIcon className="w-4 h-4" aria-hidden="true" />
+                Try the mobile app demo &rarr;
+              </Link>
             </div>
 
-            <div className="hidden lg:flex flex-shrink-0 items-center justify-center">
-              <StyledGlobe size={340} />
+            <div className="flex justify-center mb-10">
+              <StyledGlobe size={220} />
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Watch the Pitch */}
-      <FadeSection as="section" className="py-16 bg-surface border-y border-hairline" aria-labelledby="pitch-video-heading">
-        <div className="container-app">
-          <div className="text-center mb-8">
-            <h2 id="pitch-video-heading" className="text-2xl md:text-3xl font-bold text-ink">
-              Watch <span className="gradient-text">our story</span>
-            </h2>
-            <p className="text-ink-muted text-sm mt-2 max-w-xl mx-auto">
-              How we got here, how the platform is built, and why we anchor every transfer.
-            </p>
-          </div>
-          <div className="max-w-6xl mx-auto glass p-2 rounded-2xl overflow-hidden">
-            <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
-              <iframe
-                src="/pitch-video.html"
-                title="F2F Cross-Border pitch video"
-                className="absolute inset-0 w-full h-full rounded-xl border-0"
-                allow="autoplay"
-              />
-            </div>
-          </div>
-        </div>
-      </FadeSection>
-
-      {/* Stats */}
-      <FadeSection as="section" className="py-12 border-y border-hairline bg-surface" aria-label="Statistics">
-        <div className="container-app">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {stats.map((stat) => (
+          <div className="grid grid-cols-3 gap-3 pt-6 border-t border-white/10">
+            {stats.slice(0, 3).map((stat) => (
               <div key={stat.label} className="text-center">
-                <p className="font-mono text-3xl md:text-4xl font-bold gradient-text mb-1 tracking-tight">{stat.value}</p>
-                <p className="text-ink-muted text-sm">{stat.label}</p>
+                <p className="font-mono text-xl font-bold gradient-text tracking-tight">{stat.value}</p>
+                <p className="text-white/50 text-[11px] leading-tight mt-0.5">{stat.label}</p>
               </div>
             ))}
           </div>
-        </div>
-      </FadeSection>
+        </aside>
 
-      {/* Benefits */}
-      <FadeSection as="section" className="section" aria-labelledby="benefits-heading">
-        <div className="container-app">
-          <div className="text-center mb-14">
-            <h2 id="benefits-heading" className="text-3xl md:text-4xl font-bold text-ink">
-              Built around what a transfer{' '}
-              <span className="gradient-text">actually needs</span>
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {benefits.map((b, i) => (
-              <div key={i} className="glass p-6 hover:bg-brand-500/5 transition-all duration-300 group">
-                <img
-                  src={b.iconSrc}
-                  alt=""
-                  className="w-12 h-12 rounded-xl mb-4 group-hover:shadow-glow transition-shadow"
-                />
-                <h3 className="font-bold text-ink mb-2">{b.title}</h3>
-                <p className="text-ink-muted text-sm leading-relaxed">{b.description}</p>
+        {/* ------------------------------------------------------- */}
+        {/* Scrollable main -- everything else, unchanged content   */}
+        {/* ------------------------------------------------------- */}
+        <main className="w-full lg:w-[62%] flex flex-col">
+
+          <FadeSection as="section" className="py-16 border-b border-hairline" aria-labelledby="pitch-video-heading">
+            <div className="container-app">
+              <div className="text-center mb-8">
+                <h2 id="pitch-video-heading" className="text-2xl md:text-3xl font-bold text-ink">
+                  Watch <span className="gradient-text">our story</span>
+                </h2>
+                <p className="text-ink-muted text-sm mt-2 max-w-xl mx-auto">
+                  How we got here, how the platform is built, and why we anchor every transfer.
+                </p>
               </div>
-            ))}
-          </div>
-        </div>
-      </FadeSection>
-
-      {/* How It Works */}
-      <FadeSection as="section" className="section bg-surface" aria-labelledby="how-it-works-heading">
-        <div className="container-app">
-          <div className="text-center mb-14">
-            <h2 id="how-it-works-heading" className="text-3xl md:text-4xl font-bold text-ink">
-              How a transfer <span className="gradient-text">actually moves</span>
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {steps.map((step, i) => (
-              <div key={i} className="relative glass p-6">
-                <div className={`text-5xl font-black bg-gradient-to-r ${step.color} bg-clip-text text-transparent mb-4`}>
-                  {step.step}
+              <div className="glass p-2 rounded-2xl overflow-hidden">
+                <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
+                  <iframe
+                    src="/pitch-video.html"
+                    title="F2F Cross-Border pitch video"
+                    className="absolute inset-0 w-full h-full rounded-xl border-0"
+                    allow="autoplay"
+                  />
                 </div>
-                <h3 className="font-bold text-ink mb-2">{step.title}</h3>
-                <p className="text-ink-muted text-sm leading-relaxed">{step.description}</p>
-                {i < steps.length - 1 && (
-                  <ChevronRight className="hidden lg:block absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 text-ink-muted/40 z-10" aria-hidden="true" />
-                )}
               </div>
-            ))}
-          </div>
-        </div>
-      </FadeSection>
+            </div>
+          </FadeSection>
 
-      {/* Security & Compliance */}
-      <FadeSection as="section" className="section" aria-labelledby="security-heading">
-        <div className="container-app">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+          <FadeSection as="section" className="py-12 border-b border-hairline bg-surface" aria-label="Statistics">
+            <div className="container-app">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                {stats.map((stat) => (
+                  <div key={stat.label} className="text-center">
+                    <p className="font-mono text-3xl md:text-4xl font-bold gradient-text mb-1 tracking-tight">{stat.value}</p>
+                    <p className="text-ink-muted text-sm">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </FadeSection>
+
+          <FadeSection as="section" className="py-16 md:py-24" aria-labelledby="benefits-heading">
+            <div className="container-app">
+              <div className="text-center mb-14">
+                <h2 id="benefits-heading" className="text-3xl md:text-4xl font-bold text-ink">
+                  Built around what a transfer{' '}
+                  <span className="gradient-text">actually needs</span>
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {benefits.map((b, i) => (
+                  <div key={i} className="glass p-6 hover:bg-brand-500/5 transition-all duration-300 group">
+                    <img
+                      src={b.iconSrc}
+                      alt=""
+                      className="w-12 h-12 rounded-xl mb-4 group-hover:shadow-glow transition-shadow"
+                    />
+                    <h3 className="font-bold text-ink mb-2">{b.title}</h3>
+                    <p className="text-ink-muted text-sm leading-relaxed">{b.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </FadeSection>
+
+          <FadeSection as="section" className="py-16 md:py-24 bg-surface" aria-labelledby="how-it-works-heading">
+            <div className="container-app">
+              <div className="text-center mb-14">
+                <h2 id="how-it-works-heading" className="text-3xl md:text-4xl font-bold text-ink">
+                  How a transfer <span className="gradient-text">actually moves</span>
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {steps.map((step, i) => (
+                  <div key={i} className="relative glass p-6">
+                    <div className={`text-5xl font-black bg-gradient-to-r ${step.color} bg-clip-text text-transparent mb-4`}>
+                      {step.step}
+                    </div>
+                    <h3 className="font-bold text-ink mb-2">{step.title}</h3>
+                    <p className="text-ink-muted text-sm leading-relaxed">{step.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </FadeSection>
+
+          <FadeSection as="section" className="py-16 md:py-24" aria-labelledby="security-heading">
+            <div className="container-app">
               <h2 id="security-heading" className="text-3xl md:text-4xl font-bold text-ink mb-4">
                 Compliance you can<span className="gradient-text-success"> verify</span>
               </h2>
@@ -269,7 +276,7 @@ export default function Home() {
                 anchored on Hedera's Consensus Service. This creates an immutable, tamper-evident
                 audit trail, verifiable by anyone, anytime.
               </p>
-              <ul className="space-y-3">
+              <ul className="space-y-3 mb-8">
                 {[
                   'KYC / AML automated screening',
                   'Sanctions list verification',
@@ -283,155 +290,178 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <Link to="/tamper-demo" className="btn-secondary mt-8 inline-flex">
+              <Link to="/tamper-demo" className="btn-secondary mb-10 inline-flex">
                 See Tamper Detection Demo
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </Link>
-            </div>
 
-            <div className="space-y-4">
-              <div className="glass p-5">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-8 h-8 rounded-lg bg-success-500/20 flex items-center justify-center">
-                    <Shield className="w-4 h-4 text-success-400" aria-hidden="true" />
+              <div className="space-y-4">
+                <div className="glass p-5">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-8 h-8 rounded-lg bg-success-500/20 flex items-center justify-center">
+                      <Shield className="w-4 h-4 text-success-400" aria-hidden="true" />
+                    </div>
+                    <span className="font-semibold text-ink text-sm">Compliance Record Verified</span>
+                    <span className="ml-auto text-xs text-success-400 bg-success-500/10 border border-success-500/20 px-2 py-0.5 rounded-full">✓ Passed</span>
                   </div>
-                  <span className="font-semibold text-ink text-sm">Compliance Record Verified</span>
-                  <span className="ml-auto text-xs text-success-400 bg-success-500/10 border border-success-500/20 px-2 py-0.5 rounded-full">✓ Passed</span>
+                  <div className="space-y-1.5 text-xs">
+                    <div className="flex justify-between">
+                      <span className="text-ink-muted">HCS Topic ID</span>
+                      <span className="text-accent-400 font-mono">0.0.9617780</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-ink-muted">Transaction</span>
+                      <span className="text-accent-400 font-mono text-[11px]">0.0.8762554@1784361895...</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-ink-muted">Verification</span>
+                      <span className="text-success-400">Hash match ✓</span>
+                    </div>
+                    <a
+                      href="https://hashscan.io/testnet/transaction/0.0.8762554@1784361895.557696832"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-brand-500 hover:underline pt-1"
+                    >
+                      View this real transaction on HashScan →
+                    </a>
+                  </div>
                 </div>
-                <div className="space-y-1.5 text-xs">
-                  <div className="flex justify-between">
-                    <span className="text-ink-muted">HCS Topic ID</span>
-                    <span className="text-accent-400 font-mono">0.0.9617780</span>
+
+                {[
+                  { Icon: Building2, label: 'Bank Transfer', desc: 'Direct to bank account' },
+                  { Icon: Smartphone, label: 'Mobile Money', desc: 'M-Pesa, MTN, Airtel' },
+                  { Icon: Banknote, label: 'Cash Pickup', desc: 'Pick up at agent location' },
+                ].map(({ Icon, label, desc }) => (
+                  <div key={label} className="glass p-4 flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-brand-500/20 flex items-center justify-center">
+                      <Icon className="w-4 h-4 text-brand-400" aria-hidden="true" />
+                    </div>
+                    <div>
+                      <p className="text-ink text-sm font-medium">{label}</p>
+                      <p className="text-ink-muted text-xs">{desc}</p>
+                    </div>
+                    <CheckCircle2 className="w-4 h-4 text-success-400 ml-auto" aria-hidden="true" />
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-ink-muted">Transaction</span>
-                    <span className="text-accent-400 font-mono text-[11px]">0.0.8762554@1784361895...</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-ink-muted">Verification</span>
-                    <span className="text-success-400">Hash match ✓</span>
-                  </div>
-                  <a
-                    href="https://hashscan.io/testnet/transaction/0.0.8762554@1784361895.557696832"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-brand-500 hover:underline pt-1"
-                  >
-                    View this real transaction on HashScan →
-                  </a>
+                ))}
+              </div>
+            </div>
+          </FadeSection>
+
+          <FadeSection as="section" className="py-16 md:py-24 bg-surface" aria-labelledby="currencies-heading">
+            <div className="container-app">
+              <div className="text-center mb-10">
+                <h2 id="currencies-heading" className="text-3xl md:text-4xl font-bold text-ink mb-3">
+                  Supported Currencies
+                </h2>
+                <p className="text-ink-muted">Send and receive in 41+ currencies worldwide</p>
+              </div>
+              <div className="ticker-mask overflow-hidden">
+                <div className="ticker-track gap-3">
+                  {[...currencies, ...currencies].map((cur, i) => (
+                    <div key={`${cur.code}-${i}`} className="glass p-3 text-center hover:bg-brand-500/5 transition-all group cursor-default w-28 shrink-0">
+                      <span className={`fi fi-${cur.countryCode.toLowerCase()} rounded-sm block mx-auto mb-1 w-8 h-6`} aria-hidden="true" />
+                      <p className="text-xs font-bold text-ink">{cur.code}</p>
+                      <p className="text-xs text-ink-muted truncate">{cur.name}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              {[
-                { Icon: Building2, label: 'Bank Transfer', desc: 'Direct to bank account' },
-                { Icon: Smartphone, label: 'Mobile Money', desc: 'M-Pesa, MTN, Airtel' },
-                { Icon: Banknote, label: 'Cash Pickup', desc: 'Pick up at agent location' },
-              ].map(({ Icon, label, desc }) => (
-                <div key={label} className="glass p-4 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-brand-500/20 flex items-center justify-center">
-                    <Icon className="w-4 h-4 text-brand-400" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <p className="text-ink text-sm font-medium">{label}</p>
-                    <p className="text-ink-muted text-xs">{desc}</p>
-                  </div>
-                  <CheckCircle2 className="w-4 h-4 text-success-400 ml-auto" aria-hidden="true" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </FadeSection>
-
-      {/* Supported Currencies */}
-      <FadeSection as="section" className="section bg-surface" aria-labelledby="currencies-heading">
-        <div className="container-app">
-          <div className="text-center mb-10">
-            <h2 id="currencies-heading" className="text-3xl md:text-4xl font-bold text-ink mb-3">
-              Supported Currencies
-            </h2>
-            <p className="text-ink-muted">Send and receive in 41+ currencies worldwide</p>
-          </div>
-          <div className="ticker-mask overflow-hidden">
-            <div className="ticker-track gap-3">
-              {[...currencies, ...currencies].map((cur, i) => (
-                <div key={`${cur.code}-${i}`} className="glass p-3 text-center hover:bg-brand-500/5 transition-all group cursor-default w-28 shrink-0">
-                  <span className={`fi fi-${cur.countryCode.toLowerCase()} rounded-sm block mx-auto mb-1 w-8 h-6`} aria-hidden="true" />
-                  <p className="text-xs font-bold text-ink">{cur.code}</p>
-                  <p className="text-xs text-ink-muted truncate">{cur.name}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="text-center mt-14 mb-8">
-            <p className="text-sm font-semibold text-ink-muted uppercase tracking-wider">Potential Settlement Partners</p>
-            <p className="text-xs text-ink-muted mt-1">Researched candidates by region, see <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">full docs</a> for coverage detail</p>
-          </div>
-          <div className="ticker-mask overflow-hidden">
-            <div className="ticker-track gap-3" style={{ animationDirection: 'reverse', animationDuration: '65s' }}>
-              {[...partners, ...partners].map((p, i) => (
-                <div key={`${p.name}-${i}`} className="glass p-3 flex items-center gap-3 hover:bg-brand-500/5 transition-all cursor-default shrink-0">
-                  <img src={p.logoSrc} alt={p.name} className="h-11 w-auto max-w-[150px] object-contain rounded" />
-                  <span className="text-xs text-ink-muted whitespace-nowrap border-l border-hairline pl-3">{p.region}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* The heart of the project: anchor vs execution */}
-          <div className="mt-20 max-w-4xl mx-auto">
-            <div className="text-center mb-10">
-              <h3 className="text-2xl md:text-3xl font-bold text-ink">One ledger to trust. Any network to move on.</h3>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
-              <div className="glass p-6">
-                <h4 className="font-bold text-ink mb-2">Where we anchor: always Hedera</h4>
-                <p className="text-sm text-ink-muted leading-relaxed">Every compliance check, quote, and routing decision is hashed and anchored on Hedera Consensus Service, fixed and non-negotiable. Not because it has the deepest liquidity (it doesn't), but because of what a compliance trail actually needs: fixed, predictable fees, deterministic aBFT finality, and a consensus timestamp neither party controls. This is enterprise-grade record-keeping, not a trading venue choice.</p>
+              <div className="text-center mt-14 mb-8">
+                <p className="text-sm font-semibold text-ink-muted uppercase tracking-wider">Potential Settlement Partners</p>
+                <p className="text-xs text-ink-muted mt-1">Researched candidates by region, see <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">full docs</a> for coverage detail</p>
               </div>
-              <div className="glass p-6">
-                <h4 className="font-bold text-ink mb-2">Where we execute: whichever network fits the transfer</h4>
-                <p className="text-sm text-ink-muted leading-relaxed">The actual stablecoin leg can settle on Hedera or route to a deeper-liquidity chain, decided per transfer by real parameters: transaction size, which network the destination partner supports, and live liquidity depth. This is an optimization problem, solved fresh for every transfer, not a fixed choice.</p>
-              </div>
-            </div>
-
-            <p className="text-center text-sm font-semibold text-ink-muted uppercase tracking-wider mb-6">Settlement Networks</p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-              {settlementNetworks.map((n) => (
-                <div key={n.name} className={`glass p-4 text-center ${n.live ? 'ring-2 ring-brand-500/40' : ''}`}>
-                  <img src={n.logoSrc} alt={n.name} className="h-9 w-auto max-w-full object-contain mx-auto mb-2 rounded" />
-                  <p className="text-xs text-ink-muted font-mono">{n.share}</p>
-                  <span className={`inline-block mt-2 px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wide ${n.live ? 'bg-success-500/15 text-success-400' : 'bg-ink-muted/10 text-ink-muted'}`}>
-                    {n.live ? 'Live' : 'Planned'}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <p className="text-center text-xs text-ink-muted mt-4">Ordered by USDC liquidity share among these five chains, mid-2026. See <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">the sourced breakdown</a> for the full picture, including why Hedera's thin slice is the point, not a gap.</p>
-
-            <div className="mt-12 pt-10 border-t border-hairline">
-              <h3 className="text-center text-lg font-bold text-ink mb-6">Supported Stablecoins</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
-                <div className="glass p-5 flex items-center gap-4">
-                  <img src={usdcLogo} alt="USDC" className="w-11 h-11 flex-shrink-0" />
-                  <div>
-                    <p className="text-sm font-semibold text-ink">USDC (Circle)</p>
-                    <p className="text-xs text-ink-muted">Used across all five supported chains</p>
-                  </div>
-                </div>
-                <div className="glass p-5 flex items-center gap-4">
-                  <img src={eurcLogo} alt="EURC" className="w-11 h-11 flex-shrink-0" />
-                  <div>
-                    <p className="text-sm font-semibold text-ink">EURC (Circle)</p>
-                    <p className="text-xs text-ink-muted">The MiCA-compliant choice for the EU leg</p>
-                  </div>
+              <div className="ticker-mask overflow-hidden">
+                <div className="ticker-track gap-3" style={{ animationDirection: 'reverse', animationDuration: '65s' }}>
+                  {[...partners, ...partners].map((p, i) => (
+                    <div key={`${p.name}-${i}`} className="glass p-3 flex items-center gap-3 hover:bg-brand-500/5 transition-all cursor-default shrink-0">
+                      <img src={p.logoSrc} alt={p.name} className="h-11 w-auto max-w-[150px] object-contain rounded" />
+                      <span className="text-xs text-ink-muted whitespace-nowrap border-l border-hairline pl-3">{p.region}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
-              <p className="text-center text-xs text-ink-muted mt-4">USDT is deliberately excluded: it is not MiCA-compliant and has been delisted from major EU venues.</p>
+
+              <div className="mt-20">
+                <div className="text-center mb-10">
+                  <h3 className="text-2xl md:text-3xl font-bold text-ink">One ledger to trust. Any network to move on.</h3>
+                </div>
+                <div className="grid grid-cols-1 gap-5 mb-10">
+                  <div className="glass p-6">
+                    <h4 className="font-bold text-ink mb-2">Where we anchor: always Hedera</h4>
+                    <p className="text-sm text-ink-muted leading-relaxed">Every compliance check, quote, and routing decision is hashed and anchored on Hedera Consensus Service, fixed and non-negotiable. Not because it has the deepest liquidity (it doesn't), but because of what a compliance trail actually needs: fixed, predictable fees, deterministic aBFT finality, and a consensus timestamp neither party controls. This is enterprise-grade record-keeping, not a trading venue choice.</p>
+                  </div>
+                  <div className="glass p-6">
+                    <h4 className="font-bold text-ink mb-2">Where we execute: whichever network fits the transfer</h4>
+                    <p className="text-sm text-ink-muted leading-relaxed">The actual stablecoin leg can settle on Hedera or route to a deeper-liquidity chain, decided per transfer by real parameters: transaction size, which network the destination partner supports, and live liquidity depth. This is an optimization problem, solved fresh for every transfer, not a fixed choice.</p>
+                  </div>
+                </div>
+
+                <p className="text-center text-sm font-semibold text-ink-muted uppercase tracking-wider mb-6">Settlement Networks</p>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                  {settlementNetworks.map((n) => (
+                    <div key={n.name} className={`glass p-4 text-center ${n.live ? 'ring-2 ring-brand-500/40' : ''}`}>
+                      <img src={n.logoSrc} alt={n.name} className="h-9 w-auto max-w-full object-contain mx-auto mb-2 rounded" />
+                      <p className="text-xs text-ink-muted font-mono">{n.share}</p>
+                      <span className={`inline-block mt-2 px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wide ${n.live ? 'bg-success-500/15 text-success-400' : 'bg-ink-muted/10 text-ink-muted'}`}>
+                        {n.live ? 'Live' : 'Planned'}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-center text-xs text-ink-muted mt-4">Ordered by USDC liquidity share among these five chains, mid-2026. See <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="text-brand-500 hover:underline">the sourced breakdown</a> for the full picture, including why Hedera's thin slice is the point, not a gap.</p>
+
+                <div className="mt-12 pt-10 border-t border-hairline">
+                  <h3 className="text-center text-lg font-bold text-ink mb-6">Supported Stablecoins</h3>
+                  <div className="grid grid-cols-1 gap-4 max-w-2xl mx-auto">
+                    <div className="glass p-5 flex items-center gap-4">
+                      <img src={usdcLogo} alt="USDC" className="w-11 h-11 flex-shrink-0" />
+                      <div>
+                        <p className="text-sm font-semibold text-ink">USDC (Circle)</p>
+                        <p className="text-xs text-ink-muted">Used across all five supported chains</p>
+                      </div>
+                    </div>
+                    <div className="glass p-5 flex items-center gap-4">
+                      <img src={eurcLogo} alt="EURC" className="w-11 h-11 flex-shrink-0" />
+                      <div>
+                        <p className="text-sm font-semibold text-ink">EURC (Circle)</p>
+                        <p className="text-xs text-ink-muted">The MiCA-compliant choice for the EU leg</p>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-center text-xs text-ink-muted mt-4">USDT is deliberately excluded: it is not MiCA-compliant and has been delisted from major EU venues.</p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </FadeSection>
+          </FadeSection>
+
+          <FadeSection as="section" className="py-16 md:py-24">
+            <div className="container-app">
+              <div className="relative bg-[#0a1428] rounded-[2rem] overflow-hidden p-10 md:p-14">
+                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_bottom_right,_var(--tw-gradient-stops))] from-brand-400 via-transparent to-transparent" aria-hidden="true" />
+                <h2 className="relative z-10 text-2xl md:text-3xl font-light text-white mb-3 max-w-lg">
+                  Built for <span className="font-semibold text-brand-400">regulatory oversight</span>, not just users.
+                </h2>
+                <p className="relative z-10 text-white/60 text-sm mb-6 max-w-md">
+                  Every anchor above is readable by anyone through a public Hedera Mirror Node,
+                  no API key, no trusting our database. See how the same pattern generalises
+                  to any on-chain activity, in our sister project.
+                </p>
+                <a
+                  href="https://deep-dive-into-blockchain.gitbook.io/untitled/compliance-and-legal/regulator-oversight"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="relative z-10 inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-400 text-white px-6 py-3 rounded-full font-medium text-sm transition-colors"
+                >
+                  Read the OnChain Oversight concept &rarr;
+                </a>
+              </div>
+            </div>
+          </FadeSection>
+
+        </main>
+      </div>
 
       <Footer />
     </div>
