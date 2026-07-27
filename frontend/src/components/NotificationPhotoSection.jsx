@@ -5,7 +5,7 @@
  * since this section introduces the collection, not one product.
  */
 export default function NotificationPhotoSection({
-  imageSrc = '/hub.png',
+  imageSrc = '/hub.jpeg',
   imageAlt = 'Person checking a transfer on their phone',
 }) {
   const chips = [
