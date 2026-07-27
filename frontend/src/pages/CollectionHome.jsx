@@ -27,6 +27,17 @@ const projects = [
   },
 ];
 
+// The two fiat legs and the two real, MiCA-compliant stablecoins F2F
+// actually uses (see corridorConfig.mjs — USDT is deliberately
+// excluded, it isn't MiCA-authorised). Keep this in sync with that
+// file if the corridor set ever changes.
+const flowItems = [
+  { key: 'usd', label: '$', kind: 'fiat', delay: '0s' },
+  { key: 'usdc', label: 'USDC', kind: 'coin', delay: '1.25s', from: 'from-blue-500 to-blue-800' },
+  { key: 'ngn', label: '\u20a6', kind: 'fiat', delay: '2.5s' },
+  { key: 'eurc', label: 'EURC', kind: 'coin', delay: '3.75s', from: 'from-indigo-500 to-purple-800' },
+];
+
 export default function CollectionHome() {
   return (
     <div className="flex min-h-screen bg-canvas font-sans antialiased">
@@ -34,9 +45,9 @@ export default function CollectionHome() {
         @keyframes flowThrough {
           0% { transform: translate(-250px, -50%) scale(0.8); opacity: 0; }
           20% { transform: translate(-120px, -50%) scale(1); opacity: 1; }
-          45% { transform: translate(-20px, -50%) scale(1.1); opacity: 1; filter: brightness(1); }
-          50% { transform: translate(0px, -50%) scale(1.2); opacity: 1; filter: brightness(1.5) drop-shadow(0 0 10px rgba(136,116,238,0.8)); }
-          55% { transform: translate(20px, -50%) scale(1.1); opacity: 1; filter: brightness(1); }
+          45% { transform: translate(-20px, -50%) scale(1.15); opacity: 1; filter: brightness(1); }
+          50% { transform: translate(0px, -50%) scale(1.3); opacity: 1; filter: brightness(1.6) drop-shadow(0 0 16px rgba(136,116,238,0.9)); }
+          55% { transform: translate(20px, -50%) scale(1.15); opacity: 1; filter: brightness(1); }
           80% { transform: translate(120px, -50%) scale(1); opacity: 1; }
           100% { transform: translate(250px, -50%) scale(0.8); opacity: 0; }
         }
@@ -46,17 +57,20 @@ export default function CollectionHome() {
           85% { opacity: 1; }
           100% { top: 90%; opacity: 0; }
         }
-        .anim-coin-1 { animation: flowThrough 5s infinite cubic-bezier(0.4, 0, 0.2, 1); }
-        .anim-coin-2 { animation: flowThrough 5s infinite cubic-bezier(0.4, 0, 0.2, 1) 1.6s; }
-        .anim-coin-3 { animation: flowThrough 5s infinite cubic-bezier(0.4, 0, 0.2, 1) 3.2s; }
+        @keyframes gatePulse {
+          0%, 92%, 100% { box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+          50% { box-shadow: 0 10px 40px rgba(136,116,238,0.5); }
+        }
+        .anim-flow { animation: flowThrough 5s infinite cubic-bezier(0.4, 0, 0.2, 1); }
         .anim-laser { animation: laserScan 2s ease-in-out infinite alternate; }
+        .anim-gate { animation: gatePulse 5s ease-in-out infinite; }
       `}</style>
 
       <aside className="sticky top-0 left-0 h-screen w-full md:w-[40%] bg-[#0a1428] text-white p-10 md:p-16 flex flex-col justify-between overflow-y-auto z-20 shadow-2xl">
         <div className="flex justify-between items-center">
           <div className="font-medium text-base tracking-wide flex items-center gap-3">
             <img src={brandIcon} alt="" className="w-9 h-9 rounded-xl shadow-sm" />
-            <span>F2F Cross-Border and Regulatory Oversight</span>
+            <span>F2F Cross-Border &amp; OnChain Oversight</span>
           </div>
         </div>
 
@@ -87,7 +101,7 @@ export default function CollectionHome() {
         <div className="flex gap-5 text-xs font-medium tracking-wide text-white/40 pt-10">
           <a href="mailto:sabaazad93@gmail.com" className="hover:text-white transition-colors">Contact</a>
           <span>&middot;</span>
-          <a href="https://www.linkedin.com/in/saba-azadegan-2974b622a" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">»Social</a>
+          <a href="https://www.linkedin.com/in/saba-azadegan-2974b622a" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">Social</a>
           <span>&middot;</span>
           <a href="https://github.com/sabaazdn73" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">GitHub</a>
         </div>
@@ -98,7 +112,7 @@ export default function CollectionHome() {
         <section className="relative w-full h-64 bg-white border border-gray-100 rounded-[2.5rem] shadow-sm flex items-center justify-center overflow-hidden">
           <div className="absolute w-full h-[2px] bg-gradient-to-r from-transparent via-gray-300 to-transparent top-1/2 -translate-y-1/2"></div>
 
-          <div className="absolute z-10 w-28 h-40 border-x-4 border-t border-b border-[#0a1428] bg-white/40 backdrop-blur-md rounded-3xl flex items-center justify-center shadow-lg">
+          <div className="anim-gate absolute z-10 w-28 h-40 border-x-4 border-t border-b border-[#0a1428] bg-white/40 backdrop-blur-md rounded-3xl flex items-center justify-center">
             <span className="absolute -top-8 text-[10px] uppercase font-bold tracking-widest text-[#0a1428]/60 bg-white px-3 py-1 rounded-full border border-gray-100">
               Oversight Node
             </span>
@@ -106,20 +120,24 @@ export default function CollectionHome() {
             <div className="absolute w-full h-full border border-brand-400/30 rounded-3xl animate-ping opacity-20"></div>
           </div>
 
-          <div className="absolute top-1/2 left-1/2 anim-coin-1 z-20 w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-700 rounded-full flex items-center justify-center shadow-[0_8px_15px_rgba(0,0,0,0.2)] border-[3px] border-white/80">
-            <span className="text-white font-bold text-sm tracking-tighter">USDT</span>
-          </div>
-
-          <div className="absolute top-1/2 left-1/2 anim-coin-2 z-20 w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-800 rounded-full flex items-center justify-center shadow-[0_8px_15px_rgba(0,0,0,0.2)] border-[3px] border-white/80">
-            <span className="text-white font-bold text-sm tracking-tighter">USDC</span>
-          </div>
-
-          <div className="absolute top-1/2 left-1/2 anim-coin-3 z-20 w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-800 rounded-full flex items-center justify-center shadow-[0_8px_15px_rgba(0,0,0,0.2)] border-[3px] border-white/80">
-            <span className="text-white font-bold text-xl font-serif">€</span>
-          </div>
+          {flowItems.map((item) => (
+            <div
+              key={item.key}
+              className={`absolute top-1/2 left-1/2 anim-flow z-20 flex items-center justify-center border-[3px] border-white/80 rounded-full ${
+                item.kind === 'coin'
+                  ? `w-14 h-14 bg-gradient-to-br ${item.from} shadow-[0_8px_15px_rgba(0,0,0,0.2)]`
+                  : 'w-12 h-12 bg-[#0a1428] shadow-[0_8px_15px_rgba(0,0,0,0.15)]'
+              }`}
+              style={{ animationDelay: item.delay }}
+            >
+              <span className={`text-white font-bold tracking-tighter ${item.kind === 'coin' ? 'text-sm' : 'text-lg font-serif'}`}>
+                {item.label}
+              </span>
+            </div>
+          ))}
 
           <span className="absolute bottom-4 text-[11px] text-gray-400 tracking-wide">
-            Every settlement passes through a public, verifiable checkpoint
+            Fiat in, compliant stablecoin across, every crossing logged
           </span>
         </section>
 
