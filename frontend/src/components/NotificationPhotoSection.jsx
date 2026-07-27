@@ -11,18 +11,21 @@ export default function NotificationPhotoSection({
   const chips = [
     { text: 'Compliance anchored', top: '8%', left: '5%' },
     { text: 'Anomaly flagged for review', top: '8%', right: '5%' },
-    { text: 'Publicly verifiable', bottom: '16%', left: '32%' },
+    { text: 'Publicly verifiable', bottom: '6%', right: '5%' },
   ];
 
   return (
     <section style={{ padding: '0' }}>
       <style>{`
         .notif-chip { font-size: 13px; padding: 8px 16px; }
+        .notif-caption-text { font-size: 22px; }
         @media (max-width: 640px) {
           .notif-photo-card { min-height: 260px !important; }
           .notif-chip { font-size: 11px; padding: 6px 11px; gap: 6px !important; }
           .notif-chip .notif-dot { width: 14px !important; height: 14px !important; }
-          .notif-caption { font-size: 16px !important; bottom: 14px !important; left: 14px !important; right: 14px !important; }
+          .notif-caption { bottom: 14px !important; left: 14px !important; right: 14px !important; }
+          .notif-caption-text { font-size: 15px !important; }
+          .notif-chip-top-right { top: 20% !important; }
         }
       `}</style>
       <div
@@ -89,7 +92,7 @@ export default function NotificationPhotoSection({
             color: '#ffffff',
           }}
         >
-          <p style={{ fontSize: 22, fontWeight: 500, margin: 0, lineHeight: 1.3 }}>
+          <p className="notif-caption-text" style={{ fontWeight: 500, margin: 0, lineHeight: 1.3 }}>
             Every step, provable the moment it happens.
           </p>
         </div>
