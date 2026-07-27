@@ -33,7 +33,7 @@ export default function NotificationPhotoSection({
           minHeight: 420,
           borderRadius: 16,
           overflow: 'hidden',
-          background: `center / cover no-repeat url(${imageSrc})`,
+          background: `#0a1428 center / contain no-repeat url(${imageSrc})`,
         }}
         role="img"
         aria-label={imageAlt}

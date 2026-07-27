@@ -30,8 +30,8 @@ const projects = [
 
 export default function CollectionHome() {
   return (
-    <div className="flex min-h-screen bg-canvas font-sans antialiased">
-      <aside className="sticky top-0 left-0 h-screen w-full md:w-[40%] bg-[#0a1428] text-white p-10 md:p-16 flex flex-col justify-between overflow-y-auto z-20 shadow-2xl">
+    <div className="flex flex-col md:flex-row min-h-screen bg-canvas font-sans antialiased">
+      <aside className="relative md:sticky md:top-0 md:left-0 h-auto md:h-screen w-full md:w-[40%] bg-[#0a1428] text-white p-10 md:p-16 flex flex-col justify-between md:overflow-y-auto z-20 shadow-2xl">
         <div className="flex justify-between items-center">
           <div className="font-medium text-base tracking-wide flex items-center gap-3">
             <img src={brandIcon} alt="" className="w-9 h-9 rounded-xl shadow-sm" />
