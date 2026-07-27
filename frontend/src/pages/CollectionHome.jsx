@@ -78,15 +78,10 @@ export default function CollectionHome() {
 
         <section className="max-w-2xl">
           <p className="text-ink-muted leading-relaxed">
-            Money moves through wildly different rails today: card and bank
-            transfers, compliant stablecoins, and increasingly, autonomous
-            AI agents paying each other directly over protocols like x402.
-            Each rail has its own tooling, its own dashboards, its own idea
-            of &ldquo;proof.&rdquo; Neither a sender nor a regulator should have to
-            learn five different systems to answer one question: did this
-            actually happen, and can I check that myself? That&rsquo;s the one
-            idea both projects here are built on, applied to two different
-            audiences.
+            Money moves through wildly different rails today:
+            card and bank transfers, compliant stablecoins, and increasingly, autonomous AI agents paying each other directly over protocols.
+            Each rail has its own tooling, its own dashboards, its own idea of &ldquo;proof.&rdquo; Neither a sender nor a regulator should have to
+            learn five different systems to answer one question: did this actually happen, and can I check that myself? That&rsquo;s the one idea both projects here are built on.
           </p>
         </section>
 
