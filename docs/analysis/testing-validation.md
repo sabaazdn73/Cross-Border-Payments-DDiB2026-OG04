@@ -5,7 +5,7 @@
 | Suite | Runner | Coverage |
 |---|---|---|
 | Unit (14 tests) | Node's built-in `node --test` | Canonical hashing (order-independence, tamper sensitivity), pseudonymous reference generation, corridor routing decisions |
-| Unit (21 tests) | Vitest + Supertest | Same hashing/routing logic ported to Vitest, plus real HTTP-level tests against the actual Express app: health check, 404 handling, community-post validation (rejects a missing code, an unrecognized code, a too-short message) |
+| Unit (26 tests) | Vitest + Supertest | Same hashing/routing logic ported to Vitest, plus real HTTP-level tests against the actual Express app: health check, 404 handling, community-post validation (rejects a missing code, an unrecognized code, a too-short message), plus 5 tests for the HSS completion-schedule flow (creation, rejection of an incomplete record, and — the critical case — that the same partner key signing twice does not fake a second signature) |
 | End-to-end (6 tests) | Playwright, real Chromium | Home page loads with the core promise visible; Send Money form has no wallet/private-key/seed-phrase text anywhere; Tamper Demo loads with an initial hash match; tampering the record and re-verifying genuinely flips the UI to a mismatch; Community page shows the code requirement; the app shell's splash screen appears before entry |
 
 Run them: `npm test` (unit), `npm run test:vitest` (Vitest + Supertest), `npm run test:e2e` (Playwright, after `npx playwright install chromium`).
