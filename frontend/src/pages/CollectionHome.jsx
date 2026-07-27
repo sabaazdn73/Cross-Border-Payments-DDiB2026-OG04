@@ -11,7 +11,7 @@ const offerings = [
 const projects = [
   {
     name: 'F2F Cross-Border',
-    tag: 'Live — ETHGlobal Lisbon 2026 winner',
+    tag: 'Live — ETHGlobal Lisbon 2026 Partner Prize Winner',
     description:
       'Fiat in, fiat out, no wallet ever. Licensed partners handle the money; Hedera anchors every step so it’s provable, not just claimed.',
     to: '/cross-border',
@@ -19,7 +19,7 @@ const projects = [
   },
   {
     name: 'OnChain Oversight',
-    tag: 'In development — Cambridge C:\\>DIR Agentic Regulator Hackathon',
+    tag: 'In development',
     description:
       'An autonomous agent that continuously watches public on-chain activity across Hedera and Ethereum and hands regulators source-linked, replayable findings — never a black box, never unsupervised.',
     to: 'https://deep-dive-into-blockchain.gitbook.io/untitled/compliance-and-legal/regulator-oversight',
