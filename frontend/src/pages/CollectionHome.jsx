@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import brandIcon from '../assets/brand/icon.svg';
 import NotificationPhotoSection from '../components/NotificationPhotoSection';
+import f2fEthglobalCard from '../assets/marketing/f2f-uzh-ethglobal.jpeg';
 
 const offerings = [
   { icon: '⚡', label: 'Instant settlement' },
@@ -16,6 +17,11 @@ const projects = [
       'Fiat in, fiat out, no wallet ever. Licensed partners handle the money; Hedera anchors every step so it’s provable, not just claimed.',
     to: '/cross-border',
     cta: 'Explore F2F Cross-Border',
+    image: f2fEthglobalCard,
+    refs: [
+      { label: 'View on ETHGlobal', href: 'https://ethglobal.com/showcase/f2f-cross-border-xcxmu' },
+      { label: 'Open live demo', href: '/cross-border', internal: true },
+    ],
   },
   {
     name: 'OnChain Oversight',
@@ -114,7 +120,35 @@ export default function CollectionHome() {
                 >
                   <p className="text-xs md:text-sm font-semibold tracking-wider uppercase text-brand-400 mb-4">{proj.tag}</p>
                   <h3 className="text-2xl md:text-3xl font-medium tracking-tight text-ink mb-4">{proj.name}</h3>
-                  <p className="text-ink-muted text-base md:text-lg leading-relaxed mb-10 max-w-2xl">{proj.description}</p>
+                  {proj.image && (
+                    <img
+                      src={proj.image}
+                      alt={`${proj.name} — ETHGlobal Lisbon 2026 showcase`}
+                      className="w-full max-w-sm rounded-2xl border border-hairline mb-6"
+                    />
+                  )}
+                  <p className="text-ink-muted text-base md:text-lg leading-relaxed mb-6 max-w-2xl">{proj.description}</p>
+                  {proj.refs && (
+                    <div className="flex flex-wrap gap-x-5 gap-y-2 mb-6 text-sm">
+                      {proj.refs.map((ref) =>
+                        ref.internal ? (
+                          <Link key={ref.label} to={ref.href} className="text-brand-500 hover:underline">
+                            {ref.label} &rarr;
+                          </Link>
+                        ) : (
+                          <a
+                            key={ref.label}
+                            href={ref.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-brand-500 hover:underline"
+                          >
+                            {ref.label} &rarr;
+                          </a>
+                        )
+                      )}
+                    </div>
+                  )}
                   <Wrapper
                     {...wrapperProps}
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brand-400/10 border border-transparent text-sm font-semibold text-brand-500 hover:bg-brand-500 hover:text-white hover:border-brand-500 transition-all duration-300"
