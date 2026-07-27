@@ -47,7 +47,7 @@ export default function AppShell({ children, title, showBack, onBack }) {
                 </div>
                 <div className="flex items-center gap-2">
                   <Link
-                    to="/"
+                    to="/cross-border"
                     className="flex items-center gap-1 text-[11px] font-semibold text-ink-muted bg-surface-2 border border-hairline rounded-full px-2.5 py-1.5"
                   >
                     <Globe2 className="w-3 h-3" />

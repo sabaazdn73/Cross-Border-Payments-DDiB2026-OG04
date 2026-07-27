@@ -126,12 +126,12 @@ export default function Home() {
         {/* ------------------------------------------------------- */}
         <aside className="w-full lg:w-[38%] lg:sticky lg:top-16 lg:h-[calc(100vh-4rem)] bg-hero-gradient text-white overflow-y-auto p-8 md:p-10 lg:p-12 flex flex-col justify-between">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-bold text-white mb-1 leading-[1.15] tracking-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-1 leading-[1.15] tracking-tight">
               F2F Cross-Border
             </h1>
-            <p className="text-2xl sm:text-3xl font-semibold mb-6 tracking-tight">
-              <span className="gradient-text font-script text-4xl sm:text-5xl">Fiat-to-Fiat</span>{' '}
-              <span className="text-white/70 text-xl sm:text-2xl">Settlement Platform</span>
+            <p className="text-xl sm:text-2xl font-semibold mb-6 tracking-tight">
+              <span className="gradient-text font-script text-3xl sm:text-4xl lg:text-5xl">Fiat-to-Fiat</span>{' '}
+              <span className="text-white/70 text-lg sm:text-xl">Settlement Platform</span>
             </p>
 
             <p className="text-white/60 mb-8 leading-relaxed">
@@ -140,6 +140,10 @@ export default function Home() {
               so senders and recipients get a modern transfer, not the wait and cost
               of traditional banking&rsquo;s slower rails.
             </p>
+
+            <div className="flex justify-center mb-10">
+              <StyledGlobe size={200} />
+            </div>
 
             <div className="flex flex-col gap-3 mb-10">
               <Link
@@ -163,10 +167,6 @@ export default function Home() {
                 <PhoneIcon className="w-4 h-4" aria-hidden="true" />
                 Try the mobile app demo &rarr;
               </Link>
-            </div>
-
-            <div className="flex justify-center mb-10">
-              <StyledGlobe size={220} />
             </div>
           </div>
 
@@ -431,6 +431,63 @@ export default function Home() {
                     </div>
                   </div>
                   <p className="text-center text-xs text-ink-muted mt-4">USDT is deliberately excluded: it is not MiCA-compliant and has been delisted from major EU venues.</p>
+
+                  <div className="mt-10 stablecoin-flow-scene relative w-full h-48 sm:h-64 bg-white border border-hairline rounded-[2.5rem] shadow-sm flex items-center justify-center overflow-hidden">
+                    <style>{`
+                      .stablecoin-flow-scene { --flow-distance: 110px; }
+                      @media (min-width: 640px) { .stablecoin-flow-scene { --flow-distance: 250px; } }
+                      @keyframes stablecoinFlow {
+                        0% { transform: translate(calc(-1 * var(--flow-distance)), -50%) scale(0.8); opacity: 0; }
+                        20% { transform: translate(calc(-0.48 * var(--flow-distance)), -50%) scale(1); opacity: 1; }
+                        45% { transform: translate(calc(-0.08 * var(--flow-distance)), -50%) scale(1.15); opacity: 1; filter: brightness(1); }
+                        50% { transform: translate(0px, -50%) scale(1.3); opacity: 1; filter: brightness(1.6) drop-shadow(0 0 16px rgba(108,86,227,0.9)); }
+                        55% { transform: translate(calc(0.08 * var(--flow-distance)), -50%) scale(1.15); opacity: 1; filter: brightness(1); }
+                        80% { transform: translate(calc(0.48 * var(--flow-distance)), -50%) scale(1); opacity: 1; }
+                        100% { transform: translate(var(--flow-distance), -50%) scale(0.8); opacity: 0; }
+                      }
+                      @keyframes stablecoinLaser {
+                        0% { top: 10%; opacity: 0; }
+                        15% { opacity: 1; }
+                        85% { opacity: 1; }
+                        100% { top: 90%; opacity: 0; }
+                      }
+                      .anim-stablecoin-flow { animation: stablecoinFlow 5s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+                      .anim-stablecoin-laser { animation: stablecoinLaser 2s ease-in-out infinite alternate; }
+                    `}</style>
+
+                    <div className="absolute w-full h-[2px] bg-gradient-to-r from-transparent via-hairline to-transparent top-1/2 -translate-y-1/2" />
+
+                    <div className="absolute z-10 w-20 h-28 sm:w-28 sm:h-40 border-x-4 border-t border-b border-brand-500 bg-white/40 backdrop-blur-md rounded-3xl flex items-center justify-center">
+                      <span className="absolute -top-7 sm:-top-8 text-[9px] sm:text-[10px] uppercase font-bold tracking-widest text-brand-600 bg-white px-2.5 sm:px-3 py-1 rounded-full border border-hairline whitespace-nowrap">
+                        Anchored here
+                      </span>
+                      <div className="absolute w-full h-[3px] bg-brand-400 shadow-[0_0_15px_rgba(108,86,227,0.9)] anim-stablecoin-laser rounded-full" />
+                    </div>
+
+                    {[
+                      { key: 'usd', label: '$', kind: 'fiat', delay: '0s' },
+                      { key: 'usdc', label: 'USDC', kind: 'coin', delay: '1.6s', from: 'from-blue-500 to-blue-800' },
+                      { key: 'eurc', label: 'EURC', kind: 'coin', delay: '3.2s', from: 'from-indigo-500 to-purple-800' },
+                    ].map((item) => (
+                      <div
+                        key={item.key}
+                        className={`absolute top-1/2 left-1/2 anim-stablecoin-flow z-20 flex items-center justify-center border-[3px] border-white/80 rounded-full ${
+                          item.kind === 'coin'
+                            ? `w-10 h-10 sm:w-14 sm:h-14 bg-gradient-to-br ${item.from} shadow-[0_8px_15px_rgba(0,0,0,0.2)]`
+                            : 'w-9 h-9 sm:w-12 sm:h-12 bg-[#0a1428] shadow-[0_8px_15px_rgba(0,0,0,0.15)]'
+                        }`}
+                        style={{ animationDelay: item.delay }}
+                      >
+                        <span className={`text-white font-bold tracking-tighter ${item.kind === 'coin' ? 'text-[10px] sm:text-sm' : 'text-base sm:text-lg font-serif'}`}>
+                          {item.label}
+                        </span>
+                      </div>
+                    ))}
+
+                    <span className="absolute bottom-4 text-[11px] text-ink-muted tracking-wide">
+                      Fiat in, compliant stablecoin across, every crossing logged
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
