@@ -30,15 +30,12 @@ const projects = [
 export default function CollectionHome() {
   return (
     <div className="flex min-h-screen bg-canvas font-sans antialiased">
-      {/* 
-        Keyframe Styles for the custom Gateway Animation 
-      */}
       <style>{`
         @keyframes flowThrough {
           0% { transform: translate(-250px, -50%) scale(0.8); opacity: 0; }
           20% { transform: translate(-120px, -50%) scale(1); opacity: 1; }
           45% { transform: translate(-20px, -50%) scale(1.1); opacity: 1; filter: brightness(1); }
-          50% { transform: translate(0px, -50%) scale(1.2); opacity: 1; filter: brightness(1.5) drop-shadow(0 0 10px rgba(74,222,128,0.8)); }
+          50% { transform: translate(0px, -50%) scale(1.2); opacity: 1; filter: brightness(1.5) drop-shadow(0 0 10px rgba(136,116,238,0.8)); }
           55% { transform: translate(20px, -50%) scale(1.1); opacity: 1; filter: brightness(1); }
           80% { transform: translate(120px, -50%) scale(1); opacity: 1; }
           100% { transform: translate(250px, -50%) scale(0.8); opacity: 0; }
@@ -69,9 +66,8 @@ export default function CollectionHome() {
             <span className="font-semibold text-brand-400">Make it provable.</span>
           </h1>
           <p className="text-white/60 text-base md:text-lg leading-relaxed mb-12 max-w-md">
-            Every step of a financial system,
-            fiat or on-chain, human or agent, should be independently
-            verifiable, not just trusted.
+            Every step of a financial system, fiat or on-chain, human or
+            agent, should be independently verifiable, not just trusted.
           </p>
 
           <p className="text-xs uppercase tracking-widest font-semibold text-white/50 mb-4">What ties them together</p>
@@ -91,36 +87,29 @@ export default function CollectionHome() {
         <div className="flex gap-5 text-xs font-medium tracking-wide text-white/40 pt-10">
           <a href="mailto:sabaazad93@gmail.com" className="hover:text-white transition-colors">Contact</a>
           <span>&middot;</span>
+          <a href="https://www.linkedin.com/in/saba-azadegan-2974b622a" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">»Social</a>
+          <span>&middot;</span>
           <a href="https://github.com/sabaazdn73" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">GitHub</a>
         </div>
       </aside>
 
       <main className="w-full md:w-[60%] flex flex-col p-8 md:p-16 lg:p-24 gap-12 overflow-x-hidden">
-        
-        {/* --- NEW ANIMATION HERO SECTION --- */}
-        <section className="relative w-full h-64 bg-white border border-gray-100 rounded-[2.5rem] shadow-sm flex items-center justify-center overflow-hidden">
-          {/* Background Grid for aesthetic */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-          
-          {/* Connection Line */}
-          <div className="absolute w-full h-[2px] bg-gradient-to-r from-transparent via-gray-300 to-transparent top-1/2 -translate-y-1/2 border-dashed"></div>
 
-          {/* Oversight Gate (Center) */}
+        <section className="relative w-full h-64 bg-white border border-gray-100 rounded-[2.5rem] shadow-sm flex items-center justify-center overflow-hidden">
+          <div className="absolute w-full h-[2px] bg-gradient-to-r from-transparent via-gray-300 to-transparent top-1/2 -translate-y-1/2"></div>
+
           <div className="absolute z-10 w-28 h-40 border-x-4 border-t border-b border-[#0a1428] bg-white/40 backdrop-blur-md rounded-3xl flex items-center justify-center shadow-lg">
             <span className="absolute -top-8 text-[10px] uppercase font-bold tracking-widest text-[#0a1428]/60 bg-white px-3 py-1 rounded-full border border-gray-100">
               Oversight Node
             </span>
-            {/* Scanning Laser */}
-            <div className="absolute w-full h-[3px] bg-brand-400 shadow-[0_0_15px_rgba(var(--brand-400),1)] anim-laser rounded-full"></div>
-            {/* Pulse effect rings */}
+            <div className="absolute w-full h-[3px] bg-brand-400 shadow-[0_0_15px_rgba(136,116,238,0.9)] anim-laser rounded-full"></div>
             <div className="absolute w-full h-full border border-brand-400/30 rounded-3xl animate-ping opacity-20"></div>
           </div>
 
-          {/* Animated Coins */}
           <div className="absolute top-1/2 left-1/2 anim-coin-1 z-20 w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-700 rounded-full flex items-center justify-center shadow-[0_8px_15px_rgba(0,0,0,0.2)] border-[3px] border-white/80">
             <span className="text-white font-bold text-sm tracking-tighter">USDT</span>
           </div>
-          
+
           <div className="absolute top-1/2 left-1/2 anim-coin-2 z-20 w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-800 rounded-full flex items-center justify-center shadow-[0_8px_15px_rgba(0,0,0,0.2)] border-[3px] border-white/80">
             <span className="text-white font-bold text-sm tracking-tighter">USDC</span>
           </div>
@@ -128,8 +117,11 @@ export default function CollectionHome() {
           <div className="absolute top-1/2 left-1/2 anim-coin-3 z-20 w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-800 rounded-full flex items-center justify-center shadow-[0_8px_15px_rgba(0,0,0,0.2)] border-[3px] border-white/80">
             <span className="text-white font-bold text-xl font-serif">€</span>
           </div>
+
+          <span className="absolute bottom-4 text-[11px] text-gray-400 tracking-wide">
+            Every settlement passes through a public, verifiable checkpoint
+          </span>
         </section>
-        {/* --- END ANIMATION SECTION --- */}
 
         <section>
           <p className="text-xs font-bold uppercase tracking-widest text-ink-muted mb-3">Projects</p>

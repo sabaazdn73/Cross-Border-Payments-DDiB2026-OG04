@@ -6,6 +6,7 @@ import ThemeToggle from '../ui/ThemeToggle';
 import MobileMenu from './MobileMenu';
 
 const navLinks = [
+  { label: 'Home', to: '/cross-border' },
   { label: 'How It Works', to: '/how-it-works' },
   { label: 'Send Money', to: '/send-money' },
   { label: 'Tamper Demo', to: '/tamper-demo' },
@@ -44,7 +45,7 @@ export default function Navbar() {
       >
         <div className="container-app">
           <div className="flex items-center justify-between h-16">
-            <Link to="/cross-border" className="flex items-center gap-2 group" aria-label="Cross-Border home">
+            <Link to="/" className="flex items-center gap-2 group" aria-label="Collection home">
               <img src={brandIcon} alt="" className="w-11 h-11 rounded-lg shadow-glow" />
               <span className="font-bold text-lg text-ink group-hover:text-brand-400 transition-colors">
                 Cross-Border
