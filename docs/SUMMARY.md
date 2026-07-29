@@ -59,8 +59,9 @@
 * [App Tour](reference/app-tour.md)
 
 ## Project
-* [UZH Blockchain](project/uzh-blockchain.md)
-* [ETHGlobal Lisbon 2026](project/ethglobal-lisbon.md)
+* [Milestones](project/milestones.md)
+  * [UZH Blockchain](project/uzh-blockchain.md)
+  * [ETHGlobal Lisbon 2026](project/ethglobal-lisbon.md)
 * [Roadmap](project/roadmap.md)
 * [Pitch Strategy](project/pitch-strategy.md)
 * [User Feedback Survey](project/user-feedback-survey.md)

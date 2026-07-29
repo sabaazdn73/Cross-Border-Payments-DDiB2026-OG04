@@ -34,6 +34,24 @@ And **every crypto-native player leaves a wallet somewhere in the flow** (for th
 
 > The wallet disappears for both sides, and the compliance evidence becomes independently verifiable. We do not compete with the licensed rails; we sit on top of them and make the chain provable.
 
+### 8.3 This isn't a retail-only idea: BIS Project Agorá validates the same thesis at wholesale scale
+
+None of the table above competes at the level the BIS operates at,
+and that is exactly the point worth noting. **Project Agorá** (the
+BIS, seven central banks including the Fed, Bank of England, and the
+Swiss National Bank, plus 40+ institutions like JPMorgan, HSBC, and
+UBS) reached the same diagnosis this project starts from, correspondent
+banking is slow and opaque, and is now moving to real-value testing
+of a tokenised, atomic-settlement alternative (prototype report,
+May 2026). Agorá operates at wholesale/interbank scale and keeps the
+two-tier banking system intact by design, it is not a competitor to
+this project, it is independent validation from the most conservative
+institutions in the industry that the underlying thesis, tokenise the
+value transfer, keep the trust layer neutral and verifiable, is sound
+at any scale, not just a retail-fintech pitch. See
+[the regulator-oversight case](../legal/regulator-oversight.md#independent-validation-at-wholesale-scale-bis-project-agora)
+for the architectural parallel in detail.
+
 ---
 
 ## 9. Market sizing: TAM, SAM, SOM

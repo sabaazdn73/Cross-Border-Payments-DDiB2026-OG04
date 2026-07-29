@@ -67,6 +67,40 @@ same in kind:
   verify claims across firms, rather than learning each firm's
   internal reporting format separately.
 
+## Independent validation at wholesale scale: BIS Project Agorá
+
+This same structural principle, split the shared coordination layer
+from the parties who keep actual authority, is already being tested
+at the largest possible scale by the most conservative institutions
+in finance. The Bank for International Settlements' **Project Agorá**
+(seven central banks, including the Federal Reserve Bank of New York,
+the Bank of England, and the Swiss National Bank, plus 40+ financial
+institutions) published its prototype report in May 2026 and is now
+moving to real-value testing.
+
+Agorá's own design report states the core decision explicitly:
+central banks wanted to retain local control, so tokenised commercial
+bank deposits sit on a shared **unifying ledger**, while tokenised
+central bank reserves stay on separate **jurisdictional ledgers**,
+one per currency area, each under the relevant central bank's own
+authority. The unifying layer coordinates; it never becomes the
+custodian of any jurisdiction's reserves.
+
+![Structural analogy between Project Agorá's two-layer ledger design and F2F's anchor/execution split](../assets/diagrams/agora-analogy.png)
+
+This is the same split this project makes, at a different scale:
+Hedera anchors and proves (the unifying layer), while custody and
+execution stay with the licensed partners and whichever settlement
+chain fits the transfer (the jurisdictional layer). Agorá is also a
+useful reminder of the open question at this pattern's frontier:
+its own report notes the next phase must "examine how an Agorá-type
+platform could operate within existing legal and regulatory
+frameworks, including... laws designed to counter money-laundering."
+Even a BIS-led consortium has not yet solved cross-jurisdictional
+AML/CFT oversight for a multi-ledger system, which is precisely the
+gap this project's regulator-oversight case, and its sister project
+tackling on-chain agent activity, are aimed at.
+
 ## What this is not claiming
 
 This is not a claim that F2F Cross-Border is itself a regulatory
