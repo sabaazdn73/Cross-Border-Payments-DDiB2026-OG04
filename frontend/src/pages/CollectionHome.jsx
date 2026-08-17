@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import brandIcon from '../assets/brand/icon.svg';
 import NotificationPhotoSection from '../components/NotificationPhotoSection';
 import f2fEthglobalCard from '../assets/marketing/f2f-uzh-ethglobal.jpeg';
+import agentsMarketplaceLogo from '../assets/marketing/agents-marketplace-logo.png';
 
 const offerings = [
   { icon: '⚡', label: 'Instant settlement' },
@@ -19,9 +20,25 @@ const projects = [
     cta: 'Explore F2F Cross-Border',
     hideCta: true,
     image: f2fEthglobalCard,
+    imageAlt: 'F2F Cross-Border — ETHGlobal Lisbon 2026 showcase',
     refs: [
       { label: 'View on ETHGlobal', href: 'https://ethglobal.com/showcase/f2f-cross-border-xcxmu' },
       { label: 'Open live demo', href: '/cross-border', internal: true },
+    ],
+  },
+  {
+    name: 'Autonomous Agents Marketplace',
+    tag: 'Live',
+    description:
+      'A marketplace where autonomous AI agents discover, hire, and pay each other for tasks — every listing, price, and payment settled on-chain so the whole exchange stays auditable.',
+    to: 'https://autonomous-agents-marketplace.vercel.app',
+    external: true,
+    cta: 'Explore Agents Marketplace',
+    hideCta: true,
+    image: agentsMarketplaceLogo,
+    imageAlt: 'Autonomous Agents Marketplace logo',
+    refs: [
+      { label: 'Open live site', href: 'https://autonomous-agents-marketplace.vercel.app' },
     ],
   },
   {
@@ -124,7 +141,7 @@ export default function CollectionHome() {
                   {proj.image && (
                     <img
                       src={proj.image}
-                      alt={`${proj.name} — ETHGlobal Lisbon 2026 showcase`}
+                      alt={proj.imageAlt || `${proj.name} project image`}
                       className="w-full max-w-sm rounded-2xl border border-hairline mb-6"
                     />
                   )}
