@@ -36,7 +36,7 @@ const projects = [
     cta: 'Explore Agents Marketplace',
     hideCta: true,
     image: agentsMarketplaceLogo,
-    imageAlt: 'Autonomous Agents Marketplace logo',
+    imageAlt: 'Autonomous Agents Marketplace — showcase',
     refs: [
       { label: 'Open live site', href: 'https://autonomous-agents-marketplace.vercel.app' },
     ],
