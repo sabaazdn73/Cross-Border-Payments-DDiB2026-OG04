@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import brandIcon from '../assets/brand/icon.svg';
 import NotificationPhotoSection from '../components/NotificationPhotoSection';
 import f2fEthglobalCard from '../assets/marketing/f2f-uzh-ethglobal.jpeg';
-import agentsMarketplaceLogo from '../assets/marketing/agents-marketplace-logo.png';
+import agentsMarketplaceLogo from '../assets/marketing/agents-marketplace.jpg';
 
 const offerings = [
   { icon: '⚡', label: 'Instant settlement' },
@@ -37,6 +37,7 @@ const projects = [
     hideCta: true,
     image: agentsMarketplaceLogo,
     imageAlt: 'Autonomous Agents Marketplace — showcase',
+    imageClassName: 'max-w-lg',
     refs: [
       { label: 'Open live site', href: 'https://autonomous-agents-marketplace.vercel.app' },
     ],
@@ -55,7 +56,7 @@ const projects = [
 export default function CollectionHome() {
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-canvas font-sans antialiased">
-      <aside className="relative md:sticky md:top-0 md:left-0 h-auto md:h-screen w-full md:w-[40%] bg-[#0a1428] text-white p-10 md:p-16 flex flex-col justify-between md:overflow-y-auto z-20 shadow-2xl">
+      <aside className="relative md:sticky md:top-0 md:left-0 h-auto md:h-screen w-full md:w-[420px] md:shrink-0 bg-[#0a1428] text-white p-10 md:p-16 flex flex-col justify-between md:overflow-y-auto z-20 shadow-2xl">
         <div className="flex justify-between items-center">
           <div className="font-medium text-base tracking-wide flex items-center gap-3">
             <img src={brandIcon} alt="" className="w-9 h-9 rounded-xl shadow-sm" />
@@ -96,7 +97,7 @@ export default function CollectionHome() {
         </div>
       </aside>
 
-      <main className="w-full md:w-[60%] flex flex-col p-8 md:p-16 lg:p-24 gap-12 overflow-x-hidden">
+      <main className="w-full md:flex-1 flex flex-col p-8 md:p-16 lg:p-24 gap-12 overflow-x-hidden">
 
         <NotificationPhotoSection />
 
@@ -142,7 +143,7 @@ export default function CollectionHome() {
                     <img
                       src={proj.image}
                       alt={proj.imageAlt || `${proj.name} project image`}
-                      className="w-full max-w-sm rounded-2xl border border-hairline mb-6"
+                      className={`w-full ${proj.imageClassName || 'max-w-sm'} rounded-2xl border border-hairline mb-6`}
                     />
                   )}
                   <p className="text-ink-muted text-base md:text-lg leading-relaxed mb-6 max-w-2xl">{proj.description}</p>
