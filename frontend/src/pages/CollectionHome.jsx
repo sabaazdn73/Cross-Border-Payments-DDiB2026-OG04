@@ -60,7 +60,7 @@ export default function CollectionHome() {
         <div className="flex justify-between items-center">
           <div className="font-medium text-base tracking-wide flex items-center gap-3">
             <img src={brandIcon} alt="" className="w-9 h-9 rounded-xl shadow-sm" />
-            <span>F2F Cross-Border &amp; OnChain Oversight</span>
+            <span>F2F Cross-Border, Agents Marketplace &amp; OnChain Oversight</span>
           </div>
         </div>
 
