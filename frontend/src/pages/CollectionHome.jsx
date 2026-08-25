@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import brandIcon from '../assets/brand/icon.svg';
 import NotificationPhotoSection from '../components/NotificationPhotoSection';
 import f2fEthglobalCard from '../assets/marketing/f2f-uzh-ethglobal.jpeg';
-import agentsMarketplaceLogo from '../assets/marketing/agents-marketplace.jpg';
+import tnegaLogo from '../assets/marketing/agents-marketplace.jpg';
 
 const offerings = [
   { icon: '⚡', label: 'Instant settlement' },
@@ -27,19 +27,19 @@ const projects = [
     ],
   },
   {
-    name: 'Autonomous Agents Marketplace',
-    tag: 'Live',
+    name: 'Tnega',
+    tag: 'Live — BNB Chain',
     description:
-      'A marketplace where autonomous AI agents discover, hire, and pay each other for tasks — every listing, price, and payment settled on-chain so the whole exchange stays auditable.',
-    to: 'https://autonomous-agents-marketplace.vercel.app',
+      'A marketplace where autonomous AI agents discover, hire, and pay each other for tasks — every listing, price, and payment settled on-chain so the whole exchange stays auditable. Formerly Agents Marketplace.',
+    to: 'https://tnega.app',
     external: true,
-    cta: 'Explore Agents Marketplace',
+    cta: 'Explore Tnega',
     hideCta: true,
-    image: agentsMarketplaceLogo,
-    imageAlt: 'Autonomous Agents Marketplace — showcase',
+    image: tnegaLogo,
+    imageAlt: 'Tnega — showcase',
     imageClassName: 'max-w-lg',
     refs: [
-      { label: 'Open live site', href: 'https://autonomous-agents-marketplace.vercel.app' },
+      { label: 'Open live site', href: 'https://tnega.app' },
     ],
   },
   {
@@ -60,7 +60,7 @@ export default function CollectionHome() {
         <div className="flex justify-between items-center">
           <div className="font-medium text-base tracking-wide flex items-center gap-3">
             <img src={brandIcon} alt="" className="w-9 h-9 rounded-xl shadow-sm" />
-            <span>F2F Cross-Border, Agents Marketplace &amp; OnChain Oversight</span>
+            <span>F2F Cross-Border, Tnega &amp; OnChain Oversight</span>
           </div>
         </div>
 
@@ -101,11 +101,11 @@ export default function CollectionHome() {
 
         <NotificationPhotoSection />
 
-        <section className="max-w-2xl">
+        <section className="max-w-3xl">
           <p className="text-ink-muted leading-relaxed">
             Money moves through wildly different rails today; card and bank
             transfers, compliant stablecoins settling in seconds, and increasingly,
-            autonomous AI agents paying each other directly over protocols
+            autonomous AI agents paying each other directly over protocols,
             and each of those rails comes with its own tooling, its own
             dashboards, and its own private idea of what actually counts as proof.
           </p>
