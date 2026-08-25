@@ -90,9 +90,9 @@ const projects = [
     accent: 'success',
     tag: 'In development',
     blurb:
-      'An autonomous agent built for regulators, not traders. It continuously reads public on-chain activity across Hedera and Ethereum and hands back source-linked, replayable findings instead of a dashboard they have to take on faith.',
+      'Strict read-only monitoring for regulators across Hedera and Ethereum — never autonomous action. Its Jurisdiction Attestation flags which licensed on/off-ramp a flow touches and whether a protocol’s own jurisdiction claim actually checks out against public registries; the absence of attestation is itself the signal.',
     description:
-      'An autonomous agent that continuously watches public on-chain activity across Hedera and Ethereum and hands regulators source-linked, replayable findings — never a black box, never unsupervised.',
+      'Strict read-only monitoring across Hedera and Ethereum — by design, it can never block, control, or act on a wallet or transaction. Its Jurisdiction Attestation surfaces two public signals: which licensed on/off-ramp a flow touches, and whether a protocol’s own jurisdiction claim actually cross-references a public regulator or company registry. No attestation is itself the flag — a direct answer to FATF’s own finding that most jurisdictions still can’t identify which decentralized entities fall under their rules.',
     to: 'https://deep-dive-into-blockchain.gitbook.io/untitled/compliance-and-legal/regulator-oversight',
     external: true,
     cta: 'Read the concept',
@@ -103,19 +103,20 @@ export default function CollectionHome() {
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-canvas font-sans antialiased">
       <aside className="relative md:sticky md:top-0 md:left-0 h-auto md:h-screen w-full md:w-[420px] md:shrink-0 bg-[#0a1428] text-white p-10 md:p-16 flex flex-col justify-between md:overflow-y-auto overflow-x-hidden z-20 shadow-2xl">
-        {/* Decorative gradient glow — depth for the flat navy field, kept behind everything */}
-        <div className="pointer-events-none absolute -top-32 -right-24 w-80 h-80 rounded-full bg-brand-500/20 blur-3xl" />
-        <div className="pointer-events-none absolute bottom-0 -left-20 w-64 h-64 rounded-full bg-success-500/10 blur-3xl" />
+        {/* Decorative gradient glow — depth for the flat navy field, kept behind everything.
+            transform-gpu + will-change-transform promote each blob to its own compositor
+            layer so the sticky sidebar's scroll repaints never have to re-rasterize these
+            large blurred regions together with the text — that repaint coupling is what
+            was reading as jumpy/jittery text during scroll. */}
+        <div className="pointer-events-none absolute -top-32 -right-24 w-80 h-80 rounded-full bg-brand-500/20 blur-3xl transform-gpu will-change-transform" />
+        <div className="pointer-events-none absolute bottom-0 -left-20 w-64 h-64 rounded-full bg-success-500/10 blur-3xl transform-gpu will-change-transform" />
 
-        <div className="relative flex justify-between items-center">
-          <div className="font-medium text-base tracking-wide flex items-center gap-3">
-            <img src={brandIcon} alt="" className="w-9 h-9 rounded-xl shadow-sm" />
-            <span>F2F Cross-Border, Tnega &amp; OnChain Oversight</span>
-          </div>
+        <div className="relative flex items-center">
+          <img src={brandIcon} alt="F2F Collection" className="w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-sm" />
         </div>
 
         <div className="relative mt-20 flex-grow">
-          <h1 className="text-4xl sm:text-5xl md:text-[3.5rem] font-light leading-[1.1] tracking-tight mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-[2.3rem] font-light leading-[1.15] tracking-tight mb-6 whitespace-nowrap">
             Money moves. <br />
             <span className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-brand-300 to-brand-400">Make it provable.</span>
           </h1>
@@ -170,9 +171,11 @@ export default function CollectionHome() {
       </aside>
 
       <main className="relative w-full md:flex-1 flex flex-col p-8 md:p-16 lg:p-24 gap-16 overflow-x-hidden">
-        {/* Decorative gradient glows — soft color on the otherwise flat canvas */}
-        <div className="pointer-events-none absolute top-0 right-0 w-[28rem] h-[28rem] rounded-full bg-brand-400/10 blur-3xl -z-10" />
-        <div className="pointer-events-none absolute bottom-0 left-0 w-[24rem] h-[24rem] rounded-full bg-success-400/10 blur-3xl -z-10" />
+        {/* Decorative gradient glows — soft color on the otherwise flat canvas.
+            Isolated onto their own compositor layer (transform-gpu + will-change-transform)
+            so they never force a repaint of the body text around them while scrolling. */}
+        <div className="pointer-events-none absolute top-0 right-0 w-[28rem] h-[28rem] rounded-full bg-brand-400/10 blur-3xl -z-10 transform-gpu will-change-transform" />
+        <div className="pointer-events-none absolute bottom-0 left-0 w-[24rem] h-[24rem] rounded-full bg-success-400/10 blur-3xl -z-10 transform-gpu will-change-transform" />
 
         <NotificationPhotoSection />
 
