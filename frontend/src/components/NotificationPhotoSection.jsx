@@ -58,11 +58,6 @@ export default function NotificationPhotoSection({
           backdrop-filter: blur(10px) saturate(160%);
           -webkit-backdrop-filter: blur(10px) saturate(160%);
           text-shadow: 0 1px 3px rgba(0,0,0,0.45);
-          /* animate-bounce only ever touches transform, but combined with
-             backdrop-filter it's still expensive to re-sample every frame —
-             will-change promotes each badge to its own compositor layer so
-             the bounce never forces a repaint of anything outside this box. */
-          will-change: transform;
         }
         .notif-badge-dot {
           width: clamp(4px, 1.2cqw, 8px);

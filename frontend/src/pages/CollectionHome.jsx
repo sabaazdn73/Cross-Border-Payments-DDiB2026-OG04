@@ -61,6 +61,8 @@ const projects = [
     hideCta: true,
     image: f2fEthglobalCard,
     imageAlt: 'F2F Cross-Border — ETHGlobal Lisbon 2026 showcase',
+    imageWidth: 768,
+    imageHeight: 820,
     refs: [
       { label: 'View on ETHGlobal', href: 'https://ethglobal.com/showcase/f2f-cross-border-xcxmu' },
       { label: 'Open live demo', href: '/cross-border', internal: true },
@@ -81,6 +83,8 @@ const projects = [
     image: tnegaLogo,
     imageAlt: 'Tnega — showcase',
     imageClassName: 'max-w-lg',
+    imageWidth: 1400,
+    imageHeight: 581,
     refs: [
       { label: 'Open live site', href: 'https://tnega.app' },
     ],
@@ -104,12 +108,12 @@ export default function CollectionHome() {
     <div className="flex flex-col md:flex-row min-h-screen bg-canvas font-sans antialiased">
       <aside className="relative md:sticky md:top-0 md:left-0 h-auto md:h-screen w-full md:w-[420px] md:shrink-0 bg-[#0a1428] text-white p-10 md:p-16 flex flex-col justify-between md:overflow-y-auto overflow-x-hidden z-20 shadow-2xl">
         {/* Decorative gradient glow — depth for the flat navy field, kept behind everything.
-            transform-gpu + will-change-transform promote each blob to its own compositor
-            layer so the sticky sidebar's scroll repaints never have to re-rasterize these
-            large blurred regions together with the text — that repaint coupling is what
-            was reading as jumpy/jittery text during scroll. */}
-        <div className="pointer-events-none absolute -top-32 -right-24 w-80 h-80 rounded-full bg-brand-500/20 blur-3xl transform-gpu will-change-transform" />
-        <div className="pointer-events-none absolute bottom-0 -left-20 w-64 h-64 rounded-full bg-success-500/10 blur-3xl transform-gpu will-change-transform" />
+            Static (no animation, no will-change) — real testing showed the earlier
+            transform-gpu/will-change promotion here didn't fix the scroll jitter and
+            plausibly made it worse by forcing extra permanent compositor layers for
+            content that never actually animates. Plain, unpromoted, static divs. */}
+        <div className="pointer-events-none absolute -top-32 -right-24 w-80 h-80 rounded-full bg-brand-500/20 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-0 -left-20 w-64 h-64 rounded-full bg-success-500/10 blur-3xl" />
 
         <div className="relative flex items-center">
           <img src={brandIcon} alt="F2F Collection" className="w-24 h-24 md:w-32 md:h-32 rounded-2xl shadow-sm" />
@@ -171,11 +175,11 @@ export default function CollectionHome() {
       </aside>
 
       <main className="relative w-full md:flex-1 flex flex-col p-8 md:p-16 lg:p-24 gap-16 overflow-x-hidden">
-        {/* Decorative gradient glows — soft color on the otherwise flat canvas.
-            Isolated onto their own compositor layer (transform-gpu + will-change-transform)
-            so they never force a repaint of the body text around them while scrolling. */}
-        <div className="pointer-events-none absolute top-0 right-0 w-[28rem] h-[28rem] rounded-full bg-brand-400/10 blur-3xl -z-10 transform-gpu will-change-transform" />
-        <div className="pointer-events-none absolute bottom-0 left-0 w-[24rem] h-[24rem] rounded-full bg-success-400/10 blur-3xl -z-10 transform-gpu will-change-transform" />
+        {/* Decorative gradient glows — soft color on the otherwise flat canvas. Static,
+            no will-change: these never animate, so permanently promoting them to their
+            own compositor layer only adds GPU memory/compositing overhead for nothing. */}
+        <div className="pointer-events-none absolute top-0 right-0 w-[28rem] h-[28rem] rounded-full bg-brand-400/10 blur-3xl -z-10" />
+        <div className="pointer-events-none absolute bottom-0 left-0 w-[24rem] h-[24rem] rounded-full bg-success-400/10 blur-3xl -z-10" />
 
         <NotificationPhotoSection />
 
@@ -247,6 +251,8 @@ export default function CollectionHome() {
                     <img
                       src={proj.image}
                       alt={proj.imageAlt || `${proj.name} project image`}
+                      width={proj.imageWidth}
+                      height={proj.imageHeight}
                       className={`w-full ${proj.imageClassName || 'max-w-sm'} rounded-2xl border border-hairline mb-6`}
                     />
                   )}
