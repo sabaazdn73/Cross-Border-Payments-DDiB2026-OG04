@@ -90,9 +90,9 @@ const projects = [
     accent: 'success',
     tag: 'In development',
     blurb:
-      'Strict read-only monitoring for regulators across Hedera and Ethereum — never autonomous action. Its Jurisdiction Attestation flags which licensed on/off-ramp a flow touches and whether a protocol’s own jurisdiction claim actually checks out against public registries; the absence of attestation is itself the signal.',
+      'Strict read-only monitoring for regulators across Ethereum — never autonomous action. Its Jurisdiction Attestation flags which licensed on/off-ramp a flow touches and whether a protocol’s own jurisdiction claim actually checks out against public registries; the absence of attestation is itself the signal.',
     description:
-      'Strict read-only monitoring across Hedera and Ethereum — by design, it can never block, control, or act on a wallet or transaction. Its Jurisdiction Attestation surfaces two public signals: which licensed on/off-ramp a flow touches, and whether a protocol’s own jurisdiction claim actually cross-references a public regulator or company registry. No attestation is itself the flag — a direct answer to FATF’s own finding that most jurisdictions still can’t identify which decentralized entities fall under their rules.',
+      'Strict read-only monitoring across Ethereum — by design, it can never block, control, or act on a wallet or transaction. Its Jurisdiction Attestation surfaces two public signals: which licensed on/off-ramp a flow touches, and whether a protocol’s own jurisdiction claim actually cross-references a public regulator or company registry. No attestation is itself the flag — a direct answer to FATF’s own finding that most jurisdictions still can’t identify which decentralized entities fall under their rules.',
     to: 'https://deep-dive-into-blockchain.gitbook.io/untitled/compliance-and-legal/regulator-oversight',
     external: true,
     cta: 'Read the concept',
@@ -112,7 +112,7 @@ export default function CollectionHome() {
         <div className="pointer-events-none absolute bottom-0 -left-20 w-64 h-64 rounded-full bg-success-500/10 blur-3xl transform-gpu will-change-transform" />
 
         <div className="relative flex items-center">
-          <img src={brandIcon} alt="F2F Collection" className="w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-sm" />
+          <img src={brandIcon} alt="F2F Collection" className="w-24 h-24 md:w-32 md:h-32 rounded-2xl shadow-sm" />
         </div>
 
         <div className="relative mt-20 flex-grow">
