@@ -16,7 +16,7 @@ export default function HowItWorks() {
               How It <span className="gradient-text font-script">Actually</span> Works
             </h1>
             <p className="text-white/60 mt-4">
-              One corridor, start to finish &mdash; Portugal to Armenia &mdash; with every
+              One corridor, start to finish, Portugal to Armenia, with every
               anchor point to Hedera marked along the way, and a behind-the-scenes map
               of the exact backend calls involved.
             </p>
@@ -57,7 +57,7 @@ export default function HowItWorks() {
             </h2>
             <p className="text-ink-muted text-sm mt-2">
               Every anchor above is readable by anyone through a public Hedera Mirror
-              Node &mdash; no API key, no dashboard access, no need to trust our database.
+              Node. No API key, no dashboard access, no need to trust our database.
             </p>
           </div>
 
@@ -67,7 +67,7 @@ export default function HowItWorks() {
               <p className="text-ink-muted text-sm">
                 When a compliance check happened, that a quote existed before
                 settlement, why a transfer routed where it did, and that both
-                partners independently confirmed completion &mdash; each with a
+                partners independently confirmed completion, each with a
                 consensus timestamp neither party controls.
               </p>
             </div>
@@ -83,8 +83,8 @@ export default function HowItWorks() {
             <div className="glass p-5 rounded-xl">
               <h3 className="text-sm font-semibold text-ink mb-1">Same pattern, larger institutions</h3>
               <p className="text-ink-muted text-sm">
-                The underlying choice &mdash; anchor a hash and a pseudonymous
-                reference publicly, keep plaintext off-chain &mdash; isn't specific
+                The underlying choice, anchoring a hash and a pseudonymous
+                reference publicly while keeping plaintext off-chain, isn't specific
                 to a small platform. It's a reusable pattern for any institution's
                 compliance trail.
               </p>
