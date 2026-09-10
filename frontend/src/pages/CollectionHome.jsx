@@ -11,7 +11,7 @@ const offerings = [
 ];
 
 // One accent per project, pulled from the existing brand/warning/success
-// ramps in tailwind.config.js — brand (violet) for F2F, warning (gold)
+// ramps in tailwind.config.js: brand (violet) for F2F, warning (gold)
 // for Tnega since that's BNB Chain's own color, success (blue) for
 // OnChain Oversight since blue is already this codebase's "verified /
 // regulator" signal. Written as full literal class strings (not built
@@ -51,16 +51,16 @@ const projects = [
   {
     name: 'F2F Cross-Border',
     accent: 'brand',
-    tag: 'Live — ETHGlobal Lisbon 2026 Partner Prize Winner',
+    tag: 'Live: ETHGlobal Lisbon 2026 Partner Prize Winner',
     blurb:
-      'Send money across borders without ever touching a crypto wallet. A licensed on-ramp converts to a compliant stablecoin, Hedera settles it in seconds, and a licensed local partner pays out in the recipient’s currency — every step anchored on Hedera’s public Mirror Node.',
+      'Send money across borders without ever touching a crypto wallet. A licensed on-ramp converts to a compliant stablecoin, Hedera settles it in seconds, and a licensed local partner pays out in the recipient’s currency. Every step is anchored on Hedera’s public Mirror Node.',
     description:
       'Fiat in, fiat out, no wallet ever. Licensed partners handle the money; Hedera anchors every step so it’s provable, not just claimed.',
     to: '/cross-border',
     cta: 'Explore F2F Cross-Border',
     hideCta: true,
     image: f2fEthglobalCard,
-    imageAlt: 'F2F Cross-Border — ETHGlobal Lisbon 2026 showcase',
+    imageAlt: 'F2F Cross-Border at ETHGlobal Lisbon 2026',
     imageWidth: 768,
     imageHeight: 820,
     refs: [
@@ -71,17 +71,17 @@ const projects = [
   {
     name: 'Tnega',
     accent: 'warning',
-    tag: 'Live — 1,500+ agents on BNB Chain',
+    tag: 'Live: 1,500+ agents on BNB Chain',
     blurb:
-      'A live marketplace of autonomous AI agents on BNB Smart Chain mainnet. Agents publish and discover each other through ERC-8004 identity registries, get hired directly, and get paid through real ERC-8183 escrow — so an agent economy trades under the same on-chain scrutiny as everything else here.',
+      'A live marketplace of autonomous AI agents on BNB Smart Chain mainnet. Agents publish and discover each other through ERC-8004 identity registries, get hired directly, and get paid through real ERC-8183 escrow, so an agent economy trades under the same on-chain scrutiny as everything else here.',
     description:
-      'A marketplace where autonomous AI agents discover, hire, and pay each other for tasks — every listing, price, and payment settled on-chain so the whole exchange stays auditable. Formerly Agents Marketplace.',
+      'A marketplace where autonomous AI agents discover, hire, and pay each other for tasks. Every listing, price, and payment settles on-chain, so the whole exchange stays auditable. Formerly Agents Marketplace.',
     to: 'https://tnega.app',
     external: true,
     cta: 'Explore Tnega',
     hideCta: true,
     image: tnegaLogo,
-    imageAlt: 'Tnega — showcase',
+    imageAlt: 'Tnega showcase',
     imageClassName: 'max-w-lg',
     imageWidth: 1998,
     imageHeight: 787,
@@ -94,9 +94,9 @@ const projects = [
     accent: 'success',
     tag: 'In development',
     blurb:
-      'Strict read-only monitoring for regulators across Ethereum — never autonomous action. Its Jurisdiction Attestation flags which licensed on/off-ramp a flow touches and whether a protocol’s own jurisdiction claim actually checks out against public registries; the absence of attestation is itself the signal.',
+      'Strict read-only monitoring for regulators across Ethereum, never autonomous action. Its Jurisdiction Attestation flags which licensed on/off-ramp a flow touches and whether a protocol’s own jurisdiction claim actually checks out against public registries; the absence of attestation is itself the signal.',
     description:
-      'Strict read-only monitoring across Ethereum — by design, it can never block, control, or act on a wallet or transaction. Its Jurisdiction Attestation surfaces two public signals: which licensed on/off-ramp a flow touches, and whether a protocol’s own jurisdiction claim actually cross-references a public regulator or company registry. No attestation is itself the flag — a direct answer to FATF’s own finding that most jurisdictions still can’t identify which decentralized entities fall under their rules.',
+      'Strict read-only monitoring across Ethereum. By design it can never block, control, or act on a wallet or transaction. Its Jurisdiction Attestation surfaces two public signals: which licensed on/off-ramp a flow touches, and whether a protocol’s own jurisdiction claim actually cross-references a public regulator or company registry. No attestation is itself the flag, a direct answer to FATF’s own finding that most jurisdictions still can’t identify which decentralized entities fall under their rules.',
     to: 'https://deep-dive-into-blockchain.gitbook.io/untitled/compliance-and-legal/regulator-oversight',
     external: true,
     cta: 'Read the concept',
@@ -107,8 +107,8 @@ export default function CollectionHome() {
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-canvas font-sans antialiased">
       <aside className="relative md:sticky md:top-0 md:left-0 h-auto md:h-screen w-full md:w-[420px] md:shrink-0 bg-[#0a1428] text-white p-10 md:p-16 flex flex-col justify-between md:overflow-y-auto overflow-x-hidden z-20 shadow-2xl">
-        {/* Decorative gradient glow — depth for the flat navy field, kept behind everything.
-            Static (no animation, no will-change) — real testing showed the earlier
+        {/* Decorative gradient glow adding depth to the flat navy field, kept behind everything.
+            Static (no animation, no will-change), because real testing showed the earlier
             transform-gpu/will-change promotion here didn't fix the scroll jitter and
             plausibly made it worse by forcing extra permanent compositor layers for
             content that never actually animates. Plain, unpromoted, static divs. */}
@@ -175,7 +175,7 @@ export default function CollectionHome() {
       </aside>
 
       <main className="relative w-full md:flex-1 flex flex-col p-8 md:p-16 lg:p-24 gap-16 overflow-x-hidden">
-        {/* Decorative gradient glows — soft color on the otherwise flat canvas. Static,
+        {/* Decorative gradient glows adding soft color to the otherwise flat canvas. Static,
             no will-change: these never animate, so permanently promoting them to their
             own compositor layer only adds GPU memory/compositing overhead for nothing. */}
         <div className="pointer-events-none absolute top-0 right-0 w-[28rem] h-[28rem] rounded-full bg-brand-400/10 blur-3xl -z-10" />

@@ -7,7 +7,7 @@
 //     "the same logical record always produces the same hash" and
 //     "a changed record produces a different hash" (§25.3 test
 //     matrix, row: "Canonicalization and SHA-256 hashing").
-//   No network access needed — these run in under a second.
+//   No network access needed: these run in under a second.
 // ═══════════════════════════════════════════════════════════════════
 
 import { test } from "node:test";

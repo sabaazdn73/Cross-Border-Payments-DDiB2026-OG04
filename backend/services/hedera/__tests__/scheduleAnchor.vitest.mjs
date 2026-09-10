@@ -11,7 +11,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 // Shared fake-ledger state: tracks how many distinct signers have
 // signed the one schedule created in a test, so ScheduleInfoQuery
-// can report executedAt only once both have signed — the same
+// can report executedAt only once both have signed, the same
 // two-party gate the real HSS enforces.
 let signaturesSeen;
 
@@ -102,7 +102,7 @@ describe('createCompletionSchedule', () => {
   });
 });
 
-describe('signCompletionSchedule — two-party gate', () => {
+describe('signCompletionSchedule, two-party gate', () => {
   it('does not report executed after only one signature', async () => {
     const afterFirst = await signCompletionSchedule('0.0.9999', 'source-key');
     expect(afterFirst.executed).toBe(false);

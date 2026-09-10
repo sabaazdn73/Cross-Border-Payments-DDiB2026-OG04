@@ -55,14 +55,14 @@ try {
   isSimulationMode = true;
 }
 
-// Health check — reports whether real Hedera credentials loaded.
+// Health check: reports whether real Hedera credentials loaded.
 // Hit this first after any deploy: if isSimulationMode is true, the
 // env vars are missing or wrong, and every "transaction" returned by
 // the API is fabricated, not real. Fix the env vars, don't ignore this.
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'ok',
-    hederaMode: isSimulationMode ? 'SIMULATION (fake data — check env vars)' : 'LIVE (real testnet)',
+    hederaMode: isSimulationMode ? 'SIMULATION (fake data, check env vars)' : 'LIVE (real testnet)',
     network: process.env.HEDERA_NETWORK || 'not set',
     topicId: process.env.HEDERA_TOPIC_ID || 'not set',
     timestamp: new Date().toISOString(),
@@ -168,7 +168,7 @@ app.get('/api/transfers/:id/status', async (req, res) => {
 
 // 3b. Complete a transfer: creates the HSS completion schedule (waiting
 // on both partners' signatures) and, in this demo, signs it with both
-// demo partner keys so the full end-to-end HSS flow is exercised —
+// demo partner keys so the full end-to-end HSS flow is exercised,
 // see scheduleAnchor.mjs and thresholdAccount.mjs for what "both
 // partners" means here. Call this once the destination partner's
 // payout-confirmed webhook would have fired in a real integration.
@@ -210,7 +210,7 @@ app.post('/api/transfers/:id/complete', async (req, res) => {
         await getOrCreateThresholdAccount();
 
       // The completion message must live on a topic whose submit key
-      // is the 2-of-2 partner KeyList — NOT the main compliance
+      // is the 2-of-2 partner KeyList, NOT the main compliance
       // topic's operator-keyed submit key. Otherwise the operator's
       // own payer signature on ScheduleCreateTransaction already
       // satisfies the required signer, and the schedule executes
@@ -224,7 +224,7 @@ app.post('/api/transfers/:id/complete', async (req, res) => {
       const created = await createCompletionSchedule(completionTopicId, completionRecord);
 
       // Two genuinely separate ScheduleSignTransaction calls, one per
-      // key — this is the real HSS multi-party approval, not a single
+      // key: this is the real HSS multi-party approval, not a single
       // call pretending to be two.
       await signCompletionSchedule(created.scheduleId, sourcePartnerKey);
       const afterSecondSignature = await signCompletionSchedule(
@@ -564,7 +564,7 @@ app.post('/api/transfers', async (req, res) => {
           }
         : executeOnUnavailableChain(decision.chain, { amountUsd });
 
-      // Step 5: Completion anchor (simulated) — see the real branch
+      // Step 5: Completion anchor (simulated), see the real branch
       // below for what this represents: an HSS schedule requiring
       // both partners' signatures before "transfer complete" anchors.
       const completionRecord = {
@@ -615,7 +615,7 @@ app.post('/api/transfers', async (req, res) => {
       // Step 4: Settlement Execution
       execution = await executeSettlement(decision, { amountUsd });
 
-      // Step 5: Completion anchor — the HSS-gated final anchor.
+      // Step 5: Completion anchor: the HSS-gated final anchor.
       // In a real integration this would fire once the destination
       // partner's payout-confirmed webhook lands; here, for the demo,
       // we trigger it immediately after settlement so the full flow
@@ -631,7 +631,7 @@ app.post('/api/transfers', async (req, res) => {
         };
         const { sourcePartnerKey, destinationPartnerKey } = await getOrCreateThresholdAccount();
 
-        // Dedicated 2-of-2-gated topic — see getOrCreateCompletionTopic
+        // Dedicated 2-of-2-gated topic: see getOrCreateCompletionTopic
         // for why this can't reuse the main operator-keyed topicId.
         const twoOfTwo = KeyList.of(
           sourcePartnerKey.publicKey,
@@ -649,7 +649,7 @@ app.post('/api/transfers', async (req, res) => {
         };
       } catch (completionErr) {
         // Don't fail the whole transfer if the completion anchor has
-        // trouble — the transfer itself (compliance, quote, routing,
+        // trouble: the transfer itself (compliance, quote, routing,
         // settlement) already succeeded and is anchored. Log it
         // loudly so it isn't missed, and leave completionAnchor unset
         // so the frontend can show "completion pending" honestly.
@@ -707,7 +707,7 @@ app.post('/api/transfers', async (req, res) => {
         hashscanTxUrl: routingAnchor.hashscanTxUrl
       },
       // The HSS-gated completion anchor. Unset (null) if it hasn't
-      // fired yet or failed — see the try/catch around its creation
+      // fired yet or failed: see the try/catch around its creation
       // above. Never fabricate a value here if it didn't happen.
       completionAnchor: completionAnchor || null,
       settlementChain: decision.chain,

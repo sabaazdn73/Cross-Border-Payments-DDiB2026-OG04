@@ -8,8 +8,8 @@ DDiB 2026 · University of Zurich
 ## What this proves
 
 The licensed parties move the money and perform the checks. We never hold
-funds. Our contribution is that each compliance decision — and now each
-settlement-routing decision — is hashed and anchored with a consensus
+funds. Our contribution is that each compliance decision, and now each
+settlement-routing decision, is hashed and anchored with a consensus
 timestamp, so "the checks passed at this moment" becomes independently
 verifiable rather than asserted.
 
@@ -26,8 +26,8 @@ verifiable rather than asserted.
 | Completion topic (2-of-2 partner-keyed submit key) | [0.0.9753239](https://hashscan.io/testnet/topic/0.0.9753239) |
 | Intermediary settlement account (2-of-2 threshold key) | [0.0.9753237](https://hashscan.io/testnet/account/0.0.9753237) |
 
-Every anchor above was independently verified via a public Mirror Node —
-not our own database — and the tamper test (edit a record, recompute,
+Every anchor above was independently verified via a public Mirror Node,
+not our own database, and the tamper test (edit a record, recompute,
 compare) correctly flips MATCH to MISMATCH.
 
 ## Which Hedera services this actually uses
@@ -50,7 +50,7 @@ compare) correctly flips MATCH to MISMATCH.
 
 ## Architecture
 
-    backend/services/hedera/        the trust anchor — always Hedera
+    backend/services/hedera/        the trust anchor, always Hedera
       client.mjs      connection + key parsing (ED25519 or ECDSA)
       hashing.mjs      canonical hashing + HMAC pseudonymous references
       topic.mjs        HCS topic creation/reuse (main + completion)
@@ -70,7 +70,7 @@ compare) correctly flips MATCH to MISMATCH.
 
 ## Why the settlement chain isn't always Hedera
 
-Hedera is our trust layer — every compliance and routing decision is
+Hedera is our trust layer. Every compliance and routing decision is
 anchored there regardless of which chain actually settles the value.
 But Hedera's stablecoin liquidity is real but thin (tens of millions,
 not billions), so large transfers are routed to deeper liquidity
@@ -83,7 +83,7 @@ not just us.
 - **Hedera**: fully real. A genuine HTS token transfer on testnet, a real
   transaction ID, verifiable on HashScan.
 - **Ethereum / Solana**: the routing *decision* is real and anchored, but
-  actual execution is deliberately left unexecuted and clearly labeled —
+  actual execution is deliberately left unexecuted and clearly labeled:
   we have no funded testnet credentials for those chains yet. This is
   intentional: fabricating a transaction reference for a chain we cannot
   actually reach would be exactly the "fake blockchain demo" risk this

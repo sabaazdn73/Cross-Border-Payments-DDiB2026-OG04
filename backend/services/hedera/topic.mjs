@@ -2,10 +2,10 @@
 //   backend/services/hedera/topic.mjs
 //   ───────────────────────────────────────────────────────────────
 //   One HCS topic is the spine of the whole compliance trail: every
-//   anchored record — compliance checks and quote commitments alike —
+//   anchored record, compliance checks and quote commitments alike,
 //   is a message on this single topic, in order, with a submit key so
 //   only our backend can write to it (anyone can still READ it; that
-//   asymmetry — private writes, public reads — is deliberate and is
+//   asymmetry, private writes and public reads, is deliberate and is
 //   what makes Mirror Node verification meaningful).
 // ═══════════════════════════════════════════════════════════════════
 
@@ -15,7 +15,7 @@ import { readFileSync, writeFileSync, existsSync } from "node:fs";
 
 /** Returns the existing topic ID from .env, or creates a new HCS
  *  topic and persists it back to .env so the next run reuses it.
- *  Only ONE topic should exist per environment — don't call this
+ *  Only ONE topic should exist per environment, don't call this
  *  more than once per deployment. */
 export async function getOrCreateTopic({ memo = "DDiB2026-OG04 · compliance anchor" } = {}) {
   const existing = process.env.HEDERA_TOPIC_ID;
@@ -55,7 +55,7 @@ export function topicHashscanUrl(topicId) {
  *  topic's operator-keyed submit key, the operator's own payer
  *  signature on ScheduleCreateTransaction would already satisfy the
  *  required signer, and the schedule would execute immediately at
- *  creation — before either partner ever signs. Only ONE completion
+ *  creation: before either partner ever signs. Only ONE completion
  *  topic should exist per environment; call this once and persist
  *  HEDERA_COMPLETION_TOPIC_ID like the other one-time resources. */
 export async function getOrCreateCompletionTopic(submitKeyList, { memo = "DDiB2026-OG04 · completion anchor (2-of-2 gated)" } = {}) {
@@ -66,7 +66,7 @@ export async function getOrCreateCompletionTopic(submitKeyList, { memo = "DDiB20
 
   const tx = await new TopicCreateTransaction()
     .setTopicMemo(memo)
-    .setSubmitKey(submitKeyList) // 2-of-2 partner KeyList — NOT client.operatorPublicKey
+    .setSubmitKey(submitKeyList) // 2-of-2 partner KeyList, NOT client.operatorPublicKey
     .execute(client);
   const receipt = await tx.getReceipt(client);
   const topicId = receipt.topicId.toString();

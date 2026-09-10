@@ -6,7 +6,7 @@ single timeline: what each stage actually added to the architecture,
 what came of it, and which paths are still open or under way. Each
 milestone links to a full write-up where one exists.
 
-## 1. UZH Blockchain — Deep Dive into Blockchain 2026 (17–23 July 2026)
+## 1. UZH Blockchain: Deep Dive into Blockchain 2026 (17-23 July 2026)
 
 The origin. Built from scratch for the University of Zurich's DDiB
 2026 summer school: the Hedera trust layer (compliance, quote, and
@@ -17,7 +17,7 @@ and the initial documentation site. Full phase-by-phase detail:
 
 **Outcome:** completed submission, 23 July hand-in.
 
-## 2. ETHGlobal Lisbon 2026 (24–26 July 2026)
+## 2. ETHGlobal Lisbon 2026 (24-26 July 2026)
 
 Independently extended past the UZH submission for ETHGlobal Lisbon,
 Continuity Track. Added the HSS-gated, 2-of-2 threshold-key
@@ -28,7 +28,7 @@ walkthrough page, and the SaucerSwap liquidity source. Full detail:
 **Outcome:** won the **Autonomous On-Chain Automation Platform**
 partner prize (Hedera track).
 
-## 3. Becoming a collection: the site split, and OnChain Oversight (26–28 July 2026)
+## 3. Becoming a collection: the site split, and OnChain Oversight (26-28 July 2026)
 
 Two things happened together here, worth documenting since neither
 is covered by the two pages above.
@@ -53,7 +53,7 @@ the shared architectural reasoning.
 **Outcome:** ongoing; the collection hub and regulator-oversight
 section are live.
 
-## 4. Cambridge C:\>DIR 'Agentic Regulator' Hackathon — Preliminary Round (submitted 28 July 2026)
+## 4. Cambridge C:\>DIR 'Agentic Regulator' Hackathon: Preliminary Round (submitted 28 July 2026)
 
 The first formal submission for **OnChain Oversight** specifically,
 not F2F itself, under the team name "F2F OnChain Oversight",

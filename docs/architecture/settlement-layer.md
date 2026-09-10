@@ -52,9 +52,9 @@ detail; re-verify before relying on a specific bridge method.
 
 ## Why Base is included as a fallback
 
-Base carries native USDC with roughly **$4.1–4.3B in supply** (~5.8%
+Base carries native USDC with roughly **$4.1-4.3B in supply** (~5.8%
 of global USDC supply, mid-2026), smaller than Ethereum (~70%) or
-Solana (~10–20%+), but with very high transaction velocity. One
+Solana (~10-20%+), but with very high transaction velocity. One
 caveat worth stating plainly: a large share of that volume is
 concentrated in a handful of DeFi pools (e.g. Aerodrome), not
 necessarily representative of liquidity available for payment

@@ -2,14 +2,14 @@
 //   src/data/settlementSpeed.js
 //   ───────────────────────────────────────────────────────────────
 //   Per-currency settlement speed, driven by which REAL local instant-
-//   payment rail is available at the destination — not a flat "1-2
+//   payment rail is available at the destination, not a flat "1-2
 //   business days" for every bank transfer, which was never accurate
 //   for corridors that already have instant rails (SEPA Instant, PIX,
 //   UPI...) and quietly wrong in the other direction for the ones
 //   that don't.
 //
-//   `verified: true`  — a named, sourced real-time payment scheme.
-//   `verified: false` — no confirmed instant rail; shown as a
+//   `verified: true`  is a named, sourced real-time payment scheme.
+//   `verified: false` means no confirmed instant rail; shown as a
 //     conservative standard-transfer estimate rather than a guess
 //     dressed up as fact. Update this entry once a specific corridor
 //     is confirmed rather than assuming speed we haven't checked.
@@ -26,7 +26,7 @@ export const settlementSpeedByCurrency = {
   AUD: { rail: 'NPP',                seconds: 60,   verified: true },
   CAD: { rail: 'Interac e-Transfer', seconds: 90,   verified: true },
 
-  // Mobile money — already effectively instant in these markets;
+  // Mobile money is already effectively instant in these markets;
   // handled by the existing "Mobile Money" payout method, not a bank rail.
   NGN: { rail: 'Mobile Money',       seconds: 120,  verified: true },
   GHS: { rail: 'Mobile Money',       seconds: 120,  verified: true },
@@ -36,7 +36,7 @@ export const settlementSpeedByCurrency = {
   BDT: { rail: 'Mobile Money (bKash)', seconds: 120, verified: true },
 };
 
-// Conservative default for any currency not in the table above —
+// Conservative default for any currency not in the table above.
 // stated honestly as standard bank transfer timing, not a guess at
 // an instant rail we haven't confirmed exists for that corridor.
 export const DEFAULT_SETTLEMENT = {
@@ -56,6 +56,6 @@ export function getSettlementEstimate(currencyCode) {
   return {
     ...DEFAULT_SETTLEMENT,
     label: `${DEFAULT_SETTLEMENT.businessDays[0]}-${DEFAULT_SETTLEMENT.businessDays[1]} business days`,
-    description: 'via standard bank transfer — no confirmed instant rail for this corridor',
+    description: 'via standard bank transfer, no confirmed instant rail for this corridor',
   };
 }

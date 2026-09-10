@@ -3,7 +3,7 @@ const STEPS = [
     n: '01',
     title: "Maria pays €500",
     detail:
-      "Bison Bank / Bison Digital Assets — Portugal's first MiCA-licensed bank CASP, authorised under both PSD2 and MiCA.",
+      "Bison Bank / Bison Digital Assets, Portugal's first MiCA-licensed bank CASP, authorised under both PSD2 and MiCA.",
     anchor: false,
   },
   {
@@ -24,7 +24,7 @@ const STEPS = [
     n: '04',
     title: 'Liquidity check',
     detail:
-      'chooseSettlementRail() calls fetchHederaStablecoinLiquidityUsd(), a live read from SaucerSwap — Hedera\'s native DEX — via its /stats endpoint.',
+      'chooseSettlementRail() calls fetchHederaStablecoinLiquidityUsd(), a live read from SaucerSwap, Hedera\'s native DEX, via its /stats endpoint.',
     anchor: false,
   },
   {
@@ -38,7 +38,7 @@ const STEPS = [
     n: '06',
     title: 'Two-of-two settlement',
     detail:
-      'executeSettlement() moves USDC into a Hedera account governed by a 2-of-2 threshold key — one signer is Bison Bank, the other the destination CASP. Neither key is ours.',
+      'executeSettlement() moves USDC into a Hedera account governed by a 2-of-2 threshold key. One signer is Bison Bank, the other the destination CASP. Neither key is ours.',
     anchor: false,
   },
   {
@@ -52,14 +52,14 @@ const STEPS = [
     n: '08',
     title: 'Completion schedule',
     detail:
-      'createCompletionSchedule() wraps a final HCS message in a ScheduleCreateTransaction — pending until both partners sign, expiring in 48h if they don\'t (well under HSS\'s 62-day ceiling).',
+      'createCompletionSchedule() wraps a final HCS message in a ScheduleCreateTransaction that stays pending until both partners sign, expiring in 48h if they don\'t (well under HSS\'s 62-day ceiling).',
     anchor: false,
   },
   {
     n: '09',
     title: 'Completion anchor',
     detail:
-      'Two separate ScheduleSignTransaction calls land. The instant both do, Hedera\'s own consensus executes the wrapped message — "this transfer completed" is anchored the moment it becomes true.',
+      'Two separate ScheduleSignTransaction calls land. The instant both do, Hedera\'s own consensus executes the wrapped message, so "this transfer completed" is anchored the moment it becomes true.',
     anchor: true,
   },
 ];

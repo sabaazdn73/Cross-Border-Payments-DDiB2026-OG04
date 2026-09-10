@@ -3,7 +3,7 @@
 //   ───────────────────────────────────────────────────────────────
 //   Owns exactly one thing: a connected Hedera Client.
 //   Everyone else (anchor.mjs, topic.mjs, verify.mjs) imports
-//   getClient() from here instead of building their own — so there
+//   getClient() from here instead of building their own, so there
 //   is one place that knows about .env, one place that parses the
 //   key, and one place to change if the operator account ever moves.
 //
@@ -40,7 +40,7 @@ export function parsePrivateKey(raw) {
 }
 
 /** Returns a singleton, already-connected Hedera Client.
- *  Safe to call from any service — it only builds the client once. */
+ *  Safe to call from any service, it only builds the client once. */
 export function getClient() {
   if (_client) return _client;
 

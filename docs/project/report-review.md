@@ -50,7 +50,7 @@ This table has the most corrections. Each row below is exactly as written in the
 
 ## 5. Section 3.1, Component Responsibilities table
 
-**Draft says:** "PostgreSQL persistence — Stores business records and external references..."
+**Draft says:** "PostgreSQL persistence. Stores business records and external references..."
 
 **⚠️ CHANGE NEEDED**, same correction as item 2: this should say **MongoDB persistence**, not PostgreSQL. Recommend also adding one sentence noting the deliberate local-file fallback (if MongoDB is unreachable, the backend degrades to a local file rather than crashing), since that's a real, notable design choice, not just an implementation detail.
 

@@ -10,7 +10,7 @@
 //     } from "../services/hedera/index.mjs";
 //
 //   No other file in /backend should import client.mjs, anchor.mjs,
-//   hashing.mjs or verify.mjs directly — that keeps every Hedera
+//   hashing.mjs or verify.mjs directly, that keeps every Hedera
 //   detail (key parsing, network name, Mirror Node URL shape) in one
 //   place, so if any of it changes, only this folder changes.
 // ═══════════════════════════════════════════════════════════════════

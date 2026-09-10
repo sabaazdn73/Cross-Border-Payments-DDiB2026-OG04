@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════════════════
-//  STEP 1 — Prove the rail is real.
+//  STEP 1: Prove the rail is real.
 //
 //  Save as: step1-hedera.mjs   (next to your .env)
 //  Run:     npm i @hashgraph/sdk dotenv
@@ -7,9 +7,9 @@
 //
 //  What it does, and why each part exists:
 //    1. Connects to Hedera testnet with your operator key
-//    2. Creates an HCS topic — this is the compliance trail's spine
+//    2. Creates an HCS topic: this is the compliance trail's spine
 //    3. Hashes a fake compliance record and anchors ONLY the hash
-//    4. Reads it back from a public Mirror Node — no access to us
+//    4. Reads it back from a public Mirror Node, no access to us
 //    5. Recomputes the hash and compares → MATCH
 //    6. Tampers with the record and compares again → MISMATCH
 //
@@ -68,7 +68,7 @@ try {
     : PrivateKey.fromStringED25519(KEY_RAW);
   ok(`key parsed (${operatorKey.type ?? "ED25519"})`);
 } catch (e) {
-  bad("could not parse the private key — copy the DER value from the portal");
+  bad("could not parse the private key, copy the DER value from the portal");
   log("     " + e.message);
   process.exit(1);
 }
@@ -76,7 +76,7 @@ try {
 const client = Client.forName(NETWORK).setOperator(AccountId.fromString(ACCOUNT), operatorKey);
 
 // ─── 1. topic ──────────────────────────────────────────────────────
-step("1", "HCS topic — the spine of the compliance trail");
+step("1", "HCS topic, the spine of the compliance trail");
 let topicId = process.env.HEDERA_TOPIC_ID;
 
 if (topicId) {
@@ -84,7 +84,7 @@ if (topicId) {
 } else {
   const tx = await new TopicCreateTransaction()
     .setTopicMemo("DDiB2026-OG04 · compliance anchor")
-    // Only our backend may write. Anyone may read — that asymmetry is the point.
+    // Only our backend may write. Anyone may read, that asymmetry is the point.
     .setSubmitKey(operatorKey.publicKey)
     .execute(client);
   const receipt = await tx.getReceipt(client);
@@ -103,7 +103,7 @@ if (topicId) {
 }
 
 // ─── 2. the record ─────────────────────────────────────────────────
-step("2", "A compliance record — this NEVER goes on-chain");
+step("2", "A compliance record, this NEVER goes on-chain");
 const record = {
   v: 1,
   recordId: "cmp_" + Date.now(),
@@ -138,7 +138,7 @@ log(`     https://hashscan.io/${NETWORK}/transaction/${submit.transactionId.toSt
 
 // ─── 4. read back from a PUBLIC mirror node ────────────────────────
 step("4", "Reading it back from a public Mirror Node");
-log("     (a third party could run this — it never touches our server)");
+log("     (a third party could run this, it never touches our server)");
 const mirror = `https://${NETWORK}.mirrornode.hedera.com/api/v1/topics/${topicId}/messages/${seq}`;
 
 let onChain = null;
@@ -149,7 +149,7 @@ for (let i = 1; i <= 12; i++) {
   await new Promise((s) => setTimeout(s, 2000));
 }
 log("");
-if (!onChain) { bad("mirror node did not return the message — try again in a moment"); process.exit(1); }
+if (!onChain) { bad("mirror node did not return the message, try again in a moment"); process.exit(1); }
 
 const decoded = JSON.parse(Buffer.from(onChain.message, "base64").toString());
 ok(`consensus timestamp ${onChain.consensus_timestamp}`);
@@ -158,22 +158,22 @@ log(`     ↑ this timestamp came from the network. We could not have set it,`);
 log(`       moved it, or backdated it. That is the whole argument.`);
 
 // ─── 5. verify ─────────────────────────────────────────────────────
-step("5", "Verify — recompute and compare");
+step("5", "Verify, recompute and compare");
 const rehash = "sha256:" + canonicalHash(record);
 rehash === decoded.recordHash
-  ? ok("\x1b[32mMATCH\x1b[0m — the record is provably the one that was anchored")
-  : bad("MISMATCH — unexpected");
+  ? ok("\x1b[32mMATCH\x1b[0m, the record is provably the one that was anchored")
+  : bad("MISMATCH, unexpected");
 
 // ─── 6. tamper ─────────────────────────────────────────────────────
-step("6", "Tamper — the demo's kill shot");
+step("6", "Tamper, the demo's kill shot");
 const tampered = { ...record, outcome: "FAIL" };
 log("     someone edits the stored record: outcome PASS → FAIL");
 const tamperedHash = "sha256:" + canonicalHash(tampered);
 log(`     recomputed: ${tamperedHash.slice(0, 24)}…`);
 log(`     anchored:   ${decoded.recordHash.slice(0, 24)}…`);
 tamperedHash === decoded.recordHash
-  ? bad("MATCH — that should be impossible")
-  : ok("\x1b[31mMISMATCH\x1b[0m — the edit is detected, and the anchor cannot be edited back");
+  ? bad("MATCH, that should be impossible")
+  : ok("\x1b[31mMISMATCH\x1b[0m, the edit is detected, and the anchor cannot be edited back");
 
 // ─── done ──────────────────────────────────────────────────────────
 log("\n" + "─".repeat(66));

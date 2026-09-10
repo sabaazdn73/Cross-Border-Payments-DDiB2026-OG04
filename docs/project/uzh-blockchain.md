@@ -20,7 +20,7 @@ without either side of the transfer ever touching a wallet.
 
 ## What was actually implemented, phase by phase
 
-### Foundation (17–18 July): the Hedera trust layer and the base app
+### Foundation (17-18 July): the Hedera trust layer and the base app
 
 - Real Hedera Consensus Service (HCS) anchoring, Mirror Node
   verification, and a working tamper-detection proof, the mechanism

@@ -3,7 +3,7 @@ import { Sun, Moon } from 'lucide-react';
 
 /**
  * Light is the default look (no class needed). This toggles a `.dark`
- * class on <html> for users who want the dark palette — persisted so
+ * class on <html> for users who want the dark palette, persisted so
  * the choice survives a reload.
  */
 export default function ThemeToggle() {

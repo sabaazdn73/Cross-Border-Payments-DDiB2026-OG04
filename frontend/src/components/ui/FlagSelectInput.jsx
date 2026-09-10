@@ -6,7 +6,7 @@ import 'flag-icons/css/flag-icons.min.css';
 /**
  * A country/currency select that shows a REAL flag icon (SVG, via the
  * flag-icons library) rather than a flag emoji. Emoji flags depend on
- * the operating system shipping a font with those glyphs — Windows
+ * the operating system shipping a font with those glyphs. Windows
  * and some Android builds don't, and render the two-letter country
  * code as plain text instead of a flag. An SVG-based icon renders
  * identically everywhere, which is what "the same experience for
@@ -15,7 +15,7 @@ import 'flag-icons/css/flag-icons.min.css';
  *
  * Built on Radix's unstyled Select primitive rather than the native
  * <select> specifically because a native <option> can only contain
- * plain text — it structurally cannot show an icon. Radix renders
+ * plain text, so it structurally cannot show an icon. Radix renders
  * its own list, so each row can carry both the flag and the label.
  *
  * Wire this up via react-hook-form's <Controller>, not register(),

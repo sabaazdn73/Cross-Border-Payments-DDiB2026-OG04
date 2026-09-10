@@ -6,10 +6,10 @@ F2F Cross-Border was extended past the original UZH submission (see
 Feature", extending an existing project rather than starting fresh)
 and targeting two bounties:
 
-- **No Solidity Allowed** — the entire settlement, anchoring, and
+- **No Solidity Allowed**: the entire settlement, anchoring, and
   completion layer runs on Hedera's native services (HCS, HTS, HSS),
   with no Solidity contracts anywhere in the flow.
-- **Autonomous On-Chain Automation Platform** (Continuity-only) — met
+- **Autonomous On-Chain Automation Platform** (Continuity-only): met
   by the Hedera Schedule Service (HSS) completion anchor, described
   below, which is genuinely autonomous: once both required signatures
   land, Hedera's own consensus executes the message submission with

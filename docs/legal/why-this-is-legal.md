@@ -19,7 +19,7 @@ We do neither:
   parties** hold their own.
 - We never operate a wallet in a client's name.
 
-This is the EBA's **scenario 2**, partnering with an authorised PSP —
+This is the EBA's **scenario 2**, partnering with an authorised PSP,
 explicitly contemplated in the regulatory guidance issued when the
 dual-licensing regime took effect.
 

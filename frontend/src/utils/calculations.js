@@ -34,13 +34,13 @@ export const calculateRecipientAmount = (amount, fromCurrency, toCurrency, payou
 // Delivery time now reflects the REAL fastest available rail for the
 // destination currency, not a flat estimate for every bank transfer.
 // A payout to EUR via SEPA Instant and a payout to a currency with no
-// confirmed instant rail are genuinely different — showing the same
+// confirmed instant rail are genuinely different. Showing the same
 // "1-2 business days" for both was inaccurate in both directions.
 export const getDeliveryTime = (payoutMethodId, toCurrency) => {
   const method = getPayoutMethodById(payoutMethodId);
 
   // Mobile money and cash pickup already carry their own realistic
-  // estimate per method — only "bank_transfer" varies by which local
+  // estimate per method; only "bank_transfer" varies by which local
   // instant-payment rail (if any) the destination currency has.
   if (payoutMethodId === 'bank_transfer' && toCurrency) {
     const estimate = getSettlementEstimate(toCurrency);

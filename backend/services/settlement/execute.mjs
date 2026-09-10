@@ -2,7 +2,7 @@
 //   backend/services/settlement/execute.mjs
 //   ───────────────────────────────────────────────────────────────
 //   Executes the settlement leg for whichever chain corridorRouter.mjs
-//   chose. Read this file's honesty split carefully — it matters for
+//   chose. Read this file's honesty split carefully, it matters for
 //   the demo and for the report:
 //
 //   chain === "hedera"  → REAL. A genuine HTS token transfer on
@@ -14,12 +14,12 @@
 //     such. This project has no funded Solana/Ethereum testnet
 //     credentials. Returning a fabricated transaction ID for a chain
 //     we cannot actually reach would be exactly the "fake blockchain
-//     demo" the risk register warns about — so this returns an
+//     demo" the risk register warns about, so this returns an
 //     honest, structured "integration point" result instead.
 //
 //   This split is not a shortcut: it matches what the six-day plan's
-//   own MVP scope explicitly allows — "a Hedera testnet stablecoin
-//   transfer OR a controlled token-transfer simulation" — and keeps
+//   own MVP scope explicitly allows, "a Hedera testnet stablecoin
+//   transfer OR a controlled token-transfer simulation", and keeps
 //   the Hedera path, which is the actual thesis of the project,
 //   completely real.
 // ═══════════════════════════════════════════════════════════════════
@@ -34,7 +34,7 @@ let _demoTokenId = null;
 
 /** Creates a small fungible HTS token to stand in for the settled
  *  stablecoin ON HEDERA TESTNET ONLY. This is a REAL token on a REAL
- *  test network — not a mock object — it is simply not actually
+ *  test network, not a mock object. It is simply not actually
  *  Circle's USDC (that would require a funded USDC testnet position,
  *  which is a partner/liquidity-provisioning step, not a coding one).
  *  Created once and reused; the ID is logged so it can be opened on
@@ -70,7 +70,7 @@ export async function executeOnHedera({ amountUsd, destinationAccountId }) {
 
   if (destinationAccountId) {
     // If the destination account hasn't associated the token yet,
-    // this step would need to happen from THEIR key, not ours — in
+    // this step would need to happen from THEIR key, not ours, in
     // a real integration the partner associates once during onboarding.
     // Left as an explicit step here rather than silently skipped.
     try {
@@ -78,7 +78,7 @@ export async function executeOnHedera({ amountUsd, destinationAccountId }) {
         .setAccountId(destinationAccountId)
         .setTokenIds([tokenId])
         .execute(client);
-    } catch { /* already associated — fine */ }
+    } catch { /* already associated, fine */ }
   }
 
   const amountUnits = Math.round(amountUsd * 100);  // 2 decimals
@@ -102,7 +102,7 @@ export async function executeOnHedera({ amountUsd, destinationAccountId }) {
 
 /** Honest non-execution for any chain we don't have live credentials
  *  for. This is the "integration point" a real deployment would wire
- *  up to a Solana or EVM SDK — deliberately NOT faked. */
+ *  up to a Solana or EVM SDK: deliberately NOT faked. */
 export function executeOnUnavailableChain(chain, { amountUsd }) {
   return {
     executed: false,

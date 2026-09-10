@@ -1,8 +1,8 @@
 // ═══════════════════════════════════════════════════════════════════
 //   backend/services/hedera/verify.mjs
 //   ───────────────────────────────────────────────────────────────
-//   Reads an anchored message back from a PUBLIC Mirror Node — not
-//   from our own database — and compares it against a freshly
+//   Reads an anchored message back from a PUBLIC Mirror Node, not
+//   from our own database: and compares it against a freshly
 //   recomputed hash of the record as it exists off-chain right now.
 //
 //   This is the entire verification claim in code:
@@ -37,7 +37,7 @@ export async function fetchMirrorMessage(topicId, sequenceNumber, {
   }
   throw new Error(
     `Mirror Node did not return topic ${topicId} message #${sequenceNumber} ` +
-    `after ${retries} attempts. It may still be propagating — safe to retry ` +
+    `after ${retries} attempts. It may still be propagating, safe to retry ` +
     `from the caller as a "Pending Verification" state rather than a failure.`
   );
 }
@@ -118,7 +118,7 @@ export function verifyRecord(record, anchoredMessage) {
   }
   return {
     verified: false,
-    reason: "Recomputed hash does not match the anchored hash — the off-chain " +
+    reason: "Recomputed hash does not match the anchored hash, the off-chain " +
             "record has changed since it was anchored, or does not correspond " +
             "to this anchor.",
     recomputedHash: recomputed,

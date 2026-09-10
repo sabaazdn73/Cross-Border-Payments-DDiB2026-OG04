@@ -26,8 +26,8 @@ const schema = z.object({
   amount: z.coerce.number({ invalid_type_error: 'Enter a valid amount' }).min(1, 'Minimum amount is 1').max(50000, 'Maximum amount is 50,000'),
   currency: z.string().min(1, 'Select sending currency'),
   recipientName: z.string().min(2, 'Recipient name must be at least 2 characters'),
-  // This is where the money actually needs to go — a bank account, a
-  // mobile money number, or a pickup ID — never an email address, which
+  // This is where the money actually needs to go: a bank account, a
+  // mobile money number, or a pickup ID, never an email address, which
   // is not a payout destination in a card/account-to-account model.
   recipientAccountDetails: z.string().min(4, 'Enter the recipient\'s account or mobile number'),
   recipientCountry: z.string().min(1, 'Select recipient country'),
@@ -55,7 +55,7 @@ const currencyOptions = [...currencies]
   });
 const payoutOptions = payoutMethods.map((m) => ({ value: m.id, label: m.label }));
 
-// The recipient identifier means something different per payout method —
+// The recipient identifier means something different per payout method.
 // a bank account number is not a mobile money number is not a pickup ID.
 // Labeling it generically as "contact info" (or worse, accepting an email)
 // hid this; the field now matches whichever method is actually selected.
@@ -84,7 +84,7 @@ export default function SendMoney() {
 
   // Fills every field with a realistic, internally-consistent example
   // so the whole flow can be demonstrated by clicking through screens
-  // rather than typing — Portugal to Armenia, a corridor with a real
+  // rather than typing. Portugal to Armenia is a corridor with a real
   // named partner (TransFi handles AMD conversion and local payout)
   // and an active regulatory push from the Central Bank of Armenia.
   const fillDemoData = () => {
@@ -228,7 +228,7 @@ export default function SendMoney() {
                   <TransferSummaryCard {...summary} />
                   <div className="mt-4 glass p-4">
                     <p className="text-xs text-ink-muted leading-relaxed">
-                      🔒 Your payment is processed securely. Network settlement happens automatically —
+                      🔒 Your payment is processed securely. Network settlement happens automatically.
                       no crypto wallet interaction required.
                     </p>
                   </div>

@@ -3,7 +3,7 @@
 //   ───────────────────────────────────────────────────────────────
 //   Run with: node --test backend/services/settlement/__tests__/*.test.mjs
 //
-//   These test the DECISION logic only — a fake liquidityFetcher is
+//   These test the DECISION logic only, a fake liquidityFetcher is
 //   injected so no network call happens. This is the right boundary:
 //   the branching rules (partner support, compliance, threshold) are
 //   deterministic and should be tested as such. The real HTTP call in
@@ -16,7 +16,7 @@ import { chooseSettlementRail } from "../corridorRouter.mjs";
 import { HEDERA_SAFE_AMOUNT_USD } from "../corridorConfig.mjs";
 
 const deepLiquidity = async () => 90_000_000;   // pretend Hedera is deep
-const thinLiquidity = async () => 500_000;      // pretend Hedera is thin (still doesn't matter — threshold is on amount, not on this value, see note below)
+const thinLiquidity = async () => 500_000;      // pretend Hedera is thin (still doesn't matter, threshold is on amount, not on this value, see note below)
 
 test("chooses hedera when partner supports it and amount is within the safe threshold", async () => {
   const decision = await chooseSettlementRail(

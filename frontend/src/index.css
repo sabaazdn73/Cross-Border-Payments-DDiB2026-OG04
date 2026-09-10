@@ -73,7 +73,7 @@
 }
 
 @layer components {
-  /* Glass card — layered shadow instead of a single flat one, plus a
+  /* Glass card: layered shadow instead of a single flat one, plus a
      near-invisible grain texture. Small details, but they're exactly
      what separates a hand-tuned card from an untouched Tailwind default. */
   .glass {
@@ -267,7 +267,7 @@
 .text-ink-muted { color: var(--ink-muted); }
 .border-hairline { border-color: var(--hairline); }
 
-/* Currency ticker — infinite horizontal scroll. The list is rendered
+/* Currency ticker: infinite horizontal scroll. The list is rendered
    twice back-to-back and the animation moves exactly one copy's width,
    so the loop point is invisible. Pauses on hover so a specific
    currency can actually be read, not just glimpsed mid-scroll. */
@@ -288,7 +288,7 @@
   mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
 }
 
-/* Slow, continuous globe rotation — decorative, signals global reach */
+/* Slow, continuous globe rotation: decorative, signals global reach */
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -297,7 +297,7 @@
   animation: spin-slow 12s linear infinite;
 }
 
-/* Blue glass hero panel — genuine glassmorphism: a translucent,
+/* Blue glass hero panel: genuine glassmorphism: a translucent,
    blurred, blue-tinted panel with an inner highlight, sitting on top
    of the hero gradient rather than content floating directly on it. */
 .hero-glass {

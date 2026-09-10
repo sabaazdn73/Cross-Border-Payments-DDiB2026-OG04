@@ -4,10 +4,10 @@
 //   Run:  node demo-router.mjs
 //
 //   Ties together everything from this round: real routing decision
-//   (with a REAL DeFiLlama liquidity check — run this yourself, it
+//   (with a REAL DeFiLlama liquidity check, run this yourself, it
 //   could not be tested from the sandbox that built it, see
 //   liquidity.mjs), anchoring that decision on HCS so the "why this
-//   chain" reasoning is itself auditable, and — for the Hedera path —
+//   chain" reasoning is itself auditable, and, for the Hedera path,
 //   a genuinely executed HTS transfer on testnet.
 //
 //   Run it twice with different amounts to see both branches:
@@ -38,7 +38,7 @@ if (decision.liquidityCheckedUsd) {
   log(`     Hedera liquidity checked: $${Math.round(decision.liquidityCheckedUsd).toLocaleString()}`);
 }
 
-step("2", "Anchor the routing decision itself — auditable, not just asserted");
+step("2", "Anchor the routing decision itself, auditable, not just asserted");
 const topicId = await getOrCreateTopic();
 const routingRecord = {
   recordId: "rtd_" + Date.now(),
@@ -55,7 +55,7 @@ step("3", "Verify the routing decision independently via Mirror Node");
 const mirror = await fetchMirrorMessage(topicId, anchor.sequenceNumber);
 const result = verifyRecord(routingRecord, mirror);
 result.verified
-  ? ok(`MATCH — anyone can confirm why this transfer went to ${decision.chain}, independent of us`)
+  ? ok(`MATCH, anyone can confirm why this transfer went to ${decision.chain}, independent of us`)
   : warn(result.reason);
 
 step("4", "Execute the settlement leg");
@@ -64,7 +64,7 @@ if (execution.executed) {
   ok(`REAL transaction on ${execution.chain}: ${execution.transactionId}`);
   log(`     ${execution.hashscanUrl}`);
 } else {
-  warn(`NOT executed on ${execution.chain} — ${execution.note}`);
+  warn(`NOT executed on ${execution.chain}, ${execution.note}`);
 }
 
 log("\n" + "─".repeat(70));

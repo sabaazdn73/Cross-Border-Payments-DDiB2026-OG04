@@ -22,7 +22,7 @@ standard-transfer estimate rather than guessing.
 | KES | Kenya | Mobile Money (M-Pesa) | ~1 min | Safaricom |
 | BDT | Bangladesh | Mobile Money (bKash) | ~2 min | bKash |
 
-Every other supported currency defaults to **1–2 business
+Every other supported currency defaults to **1-2 business
 days via standard bank transfer**, stated as an estimate, not dressed
 up as a confirmed instant rail we haven't verified.
 

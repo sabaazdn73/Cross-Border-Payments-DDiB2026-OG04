@@ -1,22 +1,22 @@
 // ═══════════════════════════════════════════════════════════════════
 //   backend/services/hedera/anchor.mjs
 //   ───────────────────────────────────────────────────────────────
-//   Anchors a hash — never the underlying record — to the HCS topic.
+//   Anchors a hash, never the underlying record, to the HCS topic.
 //   Two record kinds share one mechanism:
 //
-//   "compliance" — a KYC/AML check outcome. Proves a licensed party's
+//   "compliance": a KYC/AML check outcome. Proves a licensed party's
 //     check happened at a specific, network-issued moment (§13.2,
 //     §15 of the report). This is the core of the project.
 //
-//   "quote"      — the FX rate and fee shown to the sender BEFORE
+//   "quote"     : the FX rate and fee shown to the sender BEFORE
 //     settlement. Anchoring it means that when the payout partner
 //     later honours (or doesn't) that quote, anyone can verify the
 //     rate wasn't quietly changed between quote and settlement.
-//     Same mechanism, different payload — this is intentionally
+//     Same mechanism, different payload, this is intentionally
 //     cheap to add because the pipeline already exists.
 //
 //   What NEVER appears in the payload: names, IBANs, amounts, raw
-//   KYC documents. Only a hash and pseudonymous references — see
+//   KYC documents. Only a hash and pseudonymous references, see
 //   docs/COMPLIANCE_DATA.md for the full privacy boundary.
 // ═══════════════════════════════════════════════════════════════════
 
@@ -28,7 +28,7 @@ import { canonicalHash } from "./hashing.mjs";
  *  HCS, and return everything the caller needs to store and later
  *  verify. `kind` just labels the message so a human (or a Mirror
  *  Node explorer) reading it back knows what it is without needing
- *  our database — it is metadata, not sensitive data. */
+ *  our database: it is metadata, not sensitive data. */
 async function anchorRecord(topicId, record, kind) {
   const hash = canonicalHash(record);
   const payload = {
@@ -37,7 +37,7 @@ async function anchorRecord(topicId, record, kind) {
     recordId: record.recordId,
     transferRef: record.transferRef,
     recordHash: `sha256:${hash}`,
-    appTimestamp: new Date().toISOString(),   // what WE claim — see verify.mjs
+    appTimestamp: new Date().toISOString(),   // what WE claim, see verify.mjs
   };
 
   const client = getClient();
@@ -52,8 +52,8 @@ async function anchorRecord(topicId, record, kind) {
   const network = getNetwork();
 
   return {
-    hash,                                     // hex, no prefix — for local comparison
-    recordHash: payload.recordHash,            // "sha256:…" — as anchored
+    hash,                                     // hex, no prefix, for local comparison
+    recordHash: payload.recordHash,            // "sha256:…", as anchored
     topicId,
     sequenceNumber,
     transactionId,
@@ -82,7 +82,7 @@ export function anchorQuote(topicId, quote) {
   return anchorRecord(topicId, quote, "quote");
 }
 
-/** Anchor a settlement-chain routing decision — WHY this transfer
+/** Anchor a settlement-chain routing decision, WHY this transfer
  *  went to this chain, not just the compliance/quote facts. Makes
  *  the corridorRouter.mjs decision itself auditable: a regulator (or
  *  a curious teammate) can verify the stated reason wasn't rewritten

@@ -101,7 +101,7 @@ This is a sandbox demonstration receipt. Not a real financial document.
       <Navbar />
       <main className="flex-1 pt-24 pb-16 px-4">
         <div className="container-app max-w-3xl">
-          {/* Action bar — hidden on print */}
+          {/* Action bar, hidden on print */}
           <div className="no-print flex flex-wrap items-center gap-3 mb-6">
             <Link to={`/transaction/${id}`} className="btn-secondary text-sm py-2 px-4">
               <ArrowLeft className="w-4 h-4" aria-hidden="true" />Back to Status

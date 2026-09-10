@@ -1,7 +1,7 @@
 // ═══════════════════════════════════════════════════════════════════
 //   backend/services/settlement/liquidity.mjs
 //   ───────────────────────────────────────────────────────────────
-//   Real HTTP call to SaucerSwap's own official REST API — a named
+//   Real HTTP call to SaucerSwap's own official REST API, a named
 //   Hedera ecosystem partner, not a third-party aggregator. SaucerSwap
 //   is the largest DEX on Hedera (docs.saucerswap.finance/developer/
 //   rest-api), and its /stats endpoint returns tvlUsd directly, so no
@@ -51,7 +51,7 @@ export async function fetchHederaStablecoinLiquidityUsd({ forceRefresh = false }
   const tvlUsd = data.tvlUsd;
 
   if (!tvlUsd || Number.isNaN(tvlUsd)) {
-    throw new Error("Could not find tvlUsd in the SaucerSwap /stats response — check the response shape.");
+    throw new Error("Could not find tvlUsd in the SaucerSwap /stats response, check the response shape.");
   }
 
   _cache = { tvlUsd, fetchedAt: Date.now() };
@@ -62,6 +62,6 @@ export async function fetchHederaStablecoinLiquidityUsd({ forceRefresh = false }
  *  at the wrong moment: a conservative, cited figure. SaucerSwap has
  *  publicly reported TVL in the low tens of millions USD across
  *  2026 on its own /stats endpoint. Treat this as a conservative
- *  estimate, not a live number — always prefer the live fetch when
+ *  estimate, not a live number: always prefer the live fetch when
  *  it succeeds. */
 export const RESEARCHED_FALLBACK_TVL_USD = 24_000_000;

@@ -1,7 +1,7 @@
 # A Regulator-Facing Case for Public Anchoring
 
-Everything anchored to Hedera in this system — compliance, quote,
-routing decision, completion — is readable by anyone through a public
+Everything anchored to Hedera in this system (compliance, quote,
+routing decision, completion) is readable by anyone through a public
 Mirror Node, with no API key, no dashboard access, and no need to
 trust our database. That property was built for auditability. It
 also happens to be directly useful to regulators, and to a much wider
@@ -19,11 +19,11 @@ this system anchors to and independently see, for any transfer:
 - **Why** a transfer settled on a given chain (the routing-decision
   anchor)
 - **That** both counterparties independently confirmed completion
-  (the HSS-gated completion anchor — see
+  (the HSS-gated completion anchor, see
   [The Trust Layer](../architecture/trust-layer.md#the-completion-anchor-gated-by-two-parties-not-one))
 
 What they see is a hash and a pseudonymous reference, never a name,
-account number, or KYC document — the plaintext stays off-chain with
+account number, or KYC document. The plaintext stays off-chain with
 the licensed party, per
 [compliance-data.md](compliance-data.md). A regulator gets
 proof that a compliant process happened and when, not the underlying
@@ -33,7 +33,7 @@ privacy trade-off.
 ## Why this matters now, at retail/Phase 1 scale
 
 This system's first phase targets individual retail transfers through
-smaller sending platforms and community partners — exactly the
+smaller sending platforms and community partners, exactly the
 segment regulators most often lack the resources to audit deeply.
 A retail money-transfer operator today is typically overseen through
 periodic filings and after-the-fact requests for records, not
@@ -45,9 +45,9 @@ actually happened at the time claimed.
 
 ## Why the same pattern scales to large financial institutions
 
-The infrastructure choice here — anchor a hash and a pseudonymous
+The infrastructure choice here, anchoring a hash and a pseudonymous
 reference to a public consensus network, keep the plaintext off-chain
-— isn't specific to a small retail platform. It's a general pattern
+isn't specific to a small retail platform. It's a general pattern
 for making any institution's compliance and settlement trail
 independently verifiable without exposing customer data. For a large
 financial institution, the value case is different in scale but the
@@ -105,12 +105,12 @@ tackling on-chain agent activity, are aimed at.
 
 This is not a claim that F2F Cross-Border is itself a regulatory
 reporting tool, or that anchoring alone satisfies any specific
-jurisdiction's compliance regime — see
+jurisdiction's compliance regime, see
 [why-this-is-legal.md](why-this-is-legal.md) for the actual
 regulatory positioning of this project. The claim here is narrower
-and, we think, more durable: the underlying infrastructure pattern —
+and, we think, more durable: the underlying infrastructure pattern,
 public, consensus-anchored, privacy-preserving evidence of compliance
-events — is a reusable choice that benefits regulatory oversight at
+events, is a reusable choice that benefits regulatory oversight at
 any scale, from a single retail corridor to an entire large
 institution's transaction flow. This project is one concrete,
 working demonstration of that pattern at the smaller end of that

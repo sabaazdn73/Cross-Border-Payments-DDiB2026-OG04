@@ -1,6 +1,6 @@
-# Borderless — Walletless Cross-Border Settlement
+# Borderless: Walletless Cross-Border Settlement
 
-A complete, modern, responsive frontend application for cross-border payments powered by Hedera blockchain settlement — without requiring users to interact with a crypto wallet.
+A complete, modern, responsive frontend application for cross-border payments powered by Hedera blockchain settlement, without requiring users to interact with a crypto wallet.
 
 ## 🌐 Live Demo Features
 

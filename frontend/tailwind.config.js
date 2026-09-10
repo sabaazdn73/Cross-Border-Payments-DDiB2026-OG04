@@ -8,9 +8,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Single restrained brand accent — a muted indigo-violet, matching
+        // Single restrained brand accent, a muted indigo-violet, matching
         // the F2F mark. Banking-grade palettes (N26, Revolut, Wise) lean on
-        // ONE accent used sparingly, not saturating every surface — that
+        // ONE accent used sparingly, not saturating every surface. That
         // discipline is what this ramp replaces the old green with.
         brand: {
           50:  '#f3f1fe',
@@ -36,7 +36,7 @@ export default {
           600: '#5641c4',
         },
         // "Success/verified" reads as a professional blue rather than
-        // green — the same signal banks use for a verified badge.
+        // green, the same signal banks use for a verified badge.
         success: {
           400: '#6fa8f5',
           500: '#3d7ee8',
