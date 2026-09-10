@@ -71,7 +71,7 @@ const projects = [
   {
     name: 'Tnega',
     accent: 'warning',
-    tag: 'Live: 1,500+ agents on BNB Chain',
+    tag: 'Live: +10,000 agents on multichains',
     blurb:
       'A live marketplace of autonomous AI agents on BNB Smart Chain mainnet. Agents publish and discover each other through ERC-8004 identity registries, get hired directly, and get paid through real ERC-8183 escrow, so an agent economy trades under the same on-chain scrutiny as everything else here.',
     description:
