@@ -83,8 +83,8 @@ const projects = [
     image: tnegaLogo,
     imageAlt: 'Tnega — showcase',
     imageClassName: 'max-w-lg',
-    imageWidth: 1400,
-    imageHeight: 581,
+    imageWidth: 1998,
+    imageHeight: 787,
     refs: [
       { label: 'Open live site', href: 'https://tnega.app' },
     ],
@@ -200,28 +200,6 @@ export default function CollectionHome() {
             systems just to get an honest answer to that one question, and that
             single conviction is what all three projects in this collection are built on.
           </p>
-        </section>
-
-        <section>
-          <p className="text-xs font-bold uppercase tracking-widest text-ink-muted mb-3">Three ways in</p>
-          <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-ink mb-10 max-w-2xl">
-            One conviction, applied to fiat rails, an agent economy, and the regulators watching both.
-          </h2>
-          <div className="grid sm:grid-cols-3 gap-8 md:gap-10">
-            {projects.map((proj) => {
-              const a = ACCENTS[proj.accent];
-              return (
-                <div key={proj.name} className="relative pl-5">
-                  <span
-                    className="absolute left-0 top-[0.4rem] w-2 h-2 rounded-full"
-                    style={{ background: a.dot }}
-                  />
-                  <p className={`text-sm font-semibold uppercase tracking-wide mb-2 ${a.text}`}>{proj.name}</p>
-                  <p className="text-ink-muted text-sm leading-relaxed">{proj.blurb}</p>
-                </div>
-              );
-            })}
-          </div>
         </section>
 
         <div className="h-px w-full max-w-3xl bg-gradient-to-r from-hairline via-hairline to-transparent" />
