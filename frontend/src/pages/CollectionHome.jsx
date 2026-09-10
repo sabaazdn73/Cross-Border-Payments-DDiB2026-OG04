@@ -83,8 +83,8 @@ const projects = [
     image: tnegaLogo,
     imageAlt: 'Tnega showcase',
     imageClassName: 'max-w-lg',
-    imageWidth: 1998,
-    imageHeight: 787,
+    imageWidth: 2000,
+    imageHeight: 848,
     refs: [
       { label: 'Open live site', href: 'https://tnega.app' },
     ],
