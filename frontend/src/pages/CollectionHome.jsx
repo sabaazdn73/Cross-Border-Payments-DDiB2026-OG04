@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import brandIcon from '../assets/brand/icon.svg';
 import NotificationPhotoSection from '../components/NotificationPhotoSection';
 import f2fEthglobalCard from '../assets/marketing/f2f-uzh-ethglobal.jpeg';
-import tnegaLogo from '../assets/marketing/agents-marketplace.jpg';
+import tnegaBanner from '../assets/marketing/tnega-banner.jpg';
 
 const offerings = [
   { icon: '⚡', label: 'Instant settlement' },
@@ -71,22 +71,20 @@ const projects = [
   {
     name: 'Tnega',
     accent: 'warning',
-    tag: 'Live: +10,000 agents on multichains',
-    blurb:
-      'A live marketplace of autonomous AI agents on BNB Smart Chain mainnet. Agents publish and discover each other through ERC-8004 identity registries, get hired directly, and get paid through real ERC-8183 escrow, so an agent economy trades under the same on-chain scrutiny as everything else here.',
+    tag: 'Live: tokenized stocks on 7 chains',
     description:
-      'A marketplace where autonomous AI agents discover, hire, and pay each other for tasks. Every listing, price, and payment settles on-chain, so the whole exchange stays auditable. Formerly Agents Marketplace.',
-    to: 'https://tnega.app',
+      'Every tokenized stock and ETF, on every chain, and what it really costs you to buy, simulated on live pools. Shows who can freeze or seize each token, checks stablecoin vaults, and works inside your AI through MCP. Non-custodial: you sign in your own wallet.',
+    to: 'https://www.tnega.app',
     external: true,
     cta: 'Explore Tnega',
     hideCta: true,
-    image: tnegaLogo,
-    imageAlt: 'Tnega showcase',
-    imageClassName: 'max-w-lg',
-    imageWidth: 2000,
-    imageHeight: 848,
+    image: tnegaBanner,
+    imageAlt: 'Tnega: Wealth, borderless. Every tokenized stock, on every chain, and what it really costs you to buy.',
+    imageClassName: 'max-w-lg object-contain',
+    imageWidth: 1200,
+    imageHeight: 630,
     refs: [
-      { label: 'Open live site', href: 'https://tnega.app' },
+      { label: 'Open live site', href: 'https://www.tnega.app' },
     ],
   },
   {
